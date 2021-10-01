@@ -225,12 +225,10 @@ class Tasting
                 break;
             case in_array($this->total, range(self::PROBLEMATIC['range']['start'], self::PROBLEMATIC['range']['end'])):
             default:
-                var_dump($this->score);
                 $this->score = array(
                     "score" => $this->total,
                     "label" => self::PROBLEMATIC['label']
                 );
-                var_dump($this->score);
         }
     }
 }
