@@ -5,6 +5,7 @@ DEFINE('RESOURCES_FOLDER', '../resources/');
 DEFINE('CONTROLLERS_FOLDER', APP_FOLDER . '/controllers/');
 DEFINE('CLASS_FOLDER', APP_FOLDER . '/class/');
 DEFINE('VIEWS_FOLDER', RESOURCES_FOLDER . '/views/');
+DEFINE('PARTIALS_FOLDER', VIEWS_FOLDER . '/partials/');
 DEFINE('LOGS_FOLDER', '../logs/');
 
 
@@ -13,8 +14,7 @@ require_once(CONFIG_FOLDER . 'init.php');
 @session_start();
 
 spl_autoload_register(function ($class) {
-    $className = strtolower($class);
-    $sources = array(CONTROLLERS_FOLDER . "/$className.php", CLASS_FOLDER . "$className.php");
+    $sources = array(CONTROLLERS_FOLDER . "/$class.php", CLASS_FOLDER . "$class.php");
     foreach ($sources as $source) {
         if (file_exists($source)) {
             require_once $source;
