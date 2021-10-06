@@ -4,7 +4,7 @@ Projet de mise en place d'une plateforme web permettant aux usagers (de la plate
 
 ## **Contexte**
 
-S'inspirer du contexte du sujet de TP. Ajouter le fait que c'est un projet étudiant de M1 MIAGE pour le module PDL, etc...
+Projet étudiant de M1 MIAGE pour le module PDL.
 
 
 ### **Participants**
