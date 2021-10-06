@@ -18,11 +18,20 @@ S'inspirer du contexte du sujet de TP. Ajouter le fait que c'est un projet étud
 
 ## **Objectif du projet**
 
-S'inspirer du receuil du besoin du sujet de TP
+Créer une plateforme web permettant de réaliser des dégustations dans le « style BJCP » afin de faciliter le partage des impressions sur les bières entre passionnées du sujet.
 
 ## Fonctionnalités
 
-Lister les différentes fonctionnalités prévues dans le projet
+♦ saisir des dégustations dans lesquelles on retrouve les mêmes 
+éléments que la feuille de score BJCP
+
+♦ disposer d’un compte utilisateur dans lequel l'utilisateur peut administrer ses 
+dégustations
+
+♦ permettre à l'utilisateur d'accéder aux dégustations réalisées par les autres utilisateurs de 
+la plateforme
+
+♦ pouvoir facilement visualiser les diverses informations du style de bière jugée
 
 ## Technologie utilisées
 
