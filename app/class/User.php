@@ -23,7 +23,7 @@ class User
         $this->password = false;
     }
 
-    public function initValue($id = false, $firstName, $lastName, $email, $password = false, $tastings = array())
+    public function initValue($id = false, $firstName, $lastName, $email, $password = false)
     {
         $this->id = ($id) ? $id : false;
         $this->firstName = $firstName;
@@ -34,38 +34,19 @@ class User
 
     public function __initFromDbObject($o)
     {
-        $this->id = $o[self::ID];
+        $this->id = (int)$o[self::ID];
         $this->firstName = $o[self::FIRST_NAME];
         $this->lastName = $o[self::LAST_NAME];
         $this->email = $o[self::EMAIL];
-        $this->tastings = $this->getUserTastings();
-    }
-
-    public function getUserTastings()
-    {
-        $res = false;
-        $dbInstance = Db::getInstance()->getDbInstance();
-        $sql = "SELECT * FROM tasting WHERE user_id = " . $this->id . "";
-        $result = mysqli_query($dbInstance, $sql);
-        if ($result) {
-            $tastings = [];
-            while ($row = mysqli_fetch_assoc($result)) {
-                $tasting = new Tasting();
-                $tasting->__initFromDbObject($row);
-                array_push($tastings, $tasting);
-            }
-            return $tastings;
-        } else {
-            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
-        }
-        return $res;
+        $this->tastings = Tasting::getUserTastings($this->id);
     }
 
     public static function getUserById($id = false)
     {
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
-        $sql = 'SELECT * FROM user WHERE id = ' . (int)$id . '';
+        $id = ($id) ? $id : Session::getConnectedUserId();
+        $sql = 'SELECT * FROM user WHERE user.id = ' . (int)$id . '';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             $user = new User();
