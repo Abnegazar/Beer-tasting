@@ -15,6 +15,7 @@ require_once(CONFIG_FOLDER . 'init.php');
 @session_start();
 
 spl_autoload_register(function ($class) {
+    $class = strtolower($class);
     $sources = array(CONTROLLERS_FOLDER . "/$class.php", CLASS_FOLDER . "$class.php");
     foreach ($sources as $source) {
         if (file_exists($source)) {
@@ -43,6 +44,7 @@ $content = App::get_content(
         'content' => $content
     )
 );
+
 unset($controller);
 echo $content;
 // Db::getInstance()->close();
