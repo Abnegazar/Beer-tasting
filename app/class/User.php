@@ -59,4 +59,65 @@ class User
         }
         return $res;
     }
+
+    public static function logIn($email, $password)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $email = mysqli_real_escape_string($dbInstance, $email);
+        $password = mysqli_real_escape_string($dbInstance, $password);
+        $sql = 'SELECT id, first_name, last_name, email, password FROM user WHERE email=\'' . $email . '\'';
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            if (mysqli_num_rows($result) == 1) {
+                $row = mysqli_fetch_assoc($result);
+                if (password_verify($password, $row['password'])) {
+                    $user = new User();
+                    $user->__initFromDbObject($row);
+                    return $user;
+                }
+            }
+        }
+        return $res;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the value of firstName
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Get the value of lastName
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Get the value of email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Get the value of tastings
+     */
+    public function getTastings()
+    {
+        return $this->tastings;
+    }
 }
