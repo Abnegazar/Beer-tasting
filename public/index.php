@@ -34,17 +34,19 @@ if (isset($_GET['c']) and class_exists($_GET['c'])) {
 }
 
 $content =  $controller->render();
-$h1Controller = $controller->getH1();
-$titleController = $controller->getTitle();
-$content = App::get_content(
-    'layout.phtml',
-    array(
-        'title' => $titleController,
-        'h1' => $h1Controller,
-        'content' => $content
-    )
-);
 
+if ($controller->useLayout()) {
+    $h1Controller = $controller->getH1();
+    $titleController = $controller->getTitle();
+    $content = App::get_content(
+        'layout.phtml',
+        array(
+            'title' => $titleController,
+            'h1' => $h1Controller,
+            'content' => $content
+        )
+    );
+}
 unset($controller);
 echo $content;
 // Db::getInstance()->close();

@@ -5,6 +5,13 @@ class LoginController extends BaseController implements Controller
 
     const viewDirectory = 'login/';
 
+    public function __construct()
+    {
+        if (Session::getConnectedUser()) {
+            header('Location:' . PAGE_DASHBOARD);
+        }
+    }
+
     public function signIn()
     {
         $view = 'signin.phtml';
@@ -27,8 +34,6 @@ class LoginController extends BaseController implements Controller
                 $user = User::logIn($email, $password);
                 if ($user) {
                     Session::setConnectedUser($user);
-                    var_dump(Session::getConnectedUser());
-                    exit;
                     header("Location:" . PAGE_DASHBOARD);
                 } else {
                     $errors[] = "Les identifiants fournis sont incorrects.";
@@ -61,6 +66,9 @@ class LoginController extends BaseController implements Controller
 
     public function logOut()
     {
+        Session::deleteConnectedUser();
+        header('location:' . PAGE_HOME);
+        die();
     }
 
     public function render()
