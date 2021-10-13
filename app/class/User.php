@@ -41,6 +41,11 @@ class User
         $this->tastings = Tasting::getUserTastings($this->id);
     }
 
+    public function save()
+    {
+    }
+
+
     public static function getUserById($id = false)
     {
         $res = false;
@@ -81,6 +86,9 @@ class User
         return $res;
     }
 
+    public static function isUserExists($email)
+    {
+    }
     /**
      * Get the value of id
      */
