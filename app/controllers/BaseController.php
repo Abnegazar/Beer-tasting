@@ -1,14 +1,16 @@
 <?php
 abstract class BaseController
 {
-	public function __construct()
-	{
-	}
+
 	protected $title;
 	protected $description;
 	protected $h1;
-
+	protected $useLayout = true;
 	protected $breadCrumbs = array();
+
+	public function __construct()
+	{
+	}
 
 	function getTitle()
 	{
@@ -23,5 +25,10 @@ abstract class BaseController
 	function getH1()
 	{
 		return $this->h1;
+	}
+
+	function useLayout()
+	{
+		return $this->useLayout;
 	}
 }

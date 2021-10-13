@@ -8,4 +8,5 @@
 		function getTitle();
 		function getDescription();
 		function getH1();
+		function useLayout();
 	}
