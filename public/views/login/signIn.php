@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Tasting beer-Connexion</title>
-        <?php
-            include("../partials/link_1.php");
-        ?>
-    </head>
-    <body id="page-top">
-  <?php
-       include("../partials/nav_1.php");
-  ?>
+
        <!-- Section-->
    <div class="container">
     <div class="row">
@@ -49,10 +34,3 @@
     </div>
   </div>
 
-        <!-- Footer-->
-        <?php
-            include("../partials/footer.php");
-         ?>
-     
-    </body>
-</html>

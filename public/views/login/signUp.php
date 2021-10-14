@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Tasting beer-Inscription</title>
-        <?php  include('../partials/link_1.php'); ?>
-    </head>
-    <body id="page-top">
-    <?php  include('../partials/nav_1.php'); ?>
-        <div class="container">
+<div class="container">
            <div class="row">
               <div class="col-lg-10 col-xl-9 mx-auto">
                 <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
@@ -56,8 +44,6 @@
               </div>
            </div>
          </div>
-        </div>
-    <?php  include('../partials/footer.php'); ?>
-    </body>
-</html>
+</div>
+
 

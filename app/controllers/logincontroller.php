@@ -14,7 +14,7 @@ class LoginController extends BaseController implements Controller
 
     public function signIn()
     {
-        $view = 'signin.phtml';
+        $view = 'signIn.php';
         $errors = [];
         if (!empty($_POST)) {
 
@@ -59,7 +59,7 @@ class LoginController extends BaseController implements Controller
 
     public function signUp()
     {
-        $view = 'signup.phtml';
+        $view = 'signUp.php';
         $errors = [];
         $success = false;
         if (!empty($_POST)) {

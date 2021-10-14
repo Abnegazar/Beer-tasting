@@ -18,7 +18,7 @@ class HomeController extends BaseController implements Controller
         $this->description = "home";
         $this->title = "home";
 
-        $view = "index.phtml";
+        $view = "landing.php";
 
         $content = App::get_content(
             self::viewDirectory . $view,
