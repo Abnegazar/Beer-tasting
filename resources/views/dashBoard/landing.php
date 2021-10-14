@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Tasting beer</title>
-        <?php  include('partials/link_1.php'); ?>
-    </head>
-    <body id="page-top">
-    <?php  include('partials/nav_1.php'); ?>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
@@ -38,6 +26,3 @@
                 </div>
             </div>
         </section>  
-    <?php  include('partials/footer.php'); ?>
-    </body>
-</html>

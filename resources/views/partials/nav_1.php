@@ -6,7 +6,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                        <!-- <li class="nav-item"><a class="nav-link" href="#about">About</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="index.php">Degustations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Degustations</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.php">Se connecter</a></li>
                         <li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
                     </ul>
