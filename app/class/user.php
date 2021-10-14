@@ -29,7 +29,7 @@ class User
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->password = ($password) ? md5($password) : false;
+        $this->password = ($password) ? password_hash($password, PASSWORD_DEFAULT) : false;
     }
 
     public function __initFromDbObject($o)
@@ -40,6 +40,27 @@ class User
         $this->email = $o[self::EMAIL];
         $this->tastings = Tasting::getUserTastings($this->id);
     }
+
+    public function save()
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = 'INSERT INTO user (first_name, last_name, email, `password`)
+                    VALUES (
+                        \'' . mysqli_real_escape_string($dbInstance, $this->firstName) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->lastName) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->email) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->password) . '\'
+                    )';
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            return true;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
 
     public static function getUserById($id = false)
     {
@@ -66,7 +87,7 @@ class User
         $dbInstance = Db::getInstance()->getDbInstance();
         $email = mysqli_real_escape_string($dbInstance, $email);
         $password = mysqli_real_escape_string($dbInstance, $password);
-        $sql = 'SELECT id, first_name, last_name, email, password FROM user WHERE email=\'' . $email . '\'';
+        $sql = 'SELECT id, first_name, last_name, email, `password` FROM user WHERE email=\'' . $email . '\'';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             if (mysqli_num_rows($result) == 1) {
@@ -81,6 +102,9 @@ class User
         return $res;
     }
 
+    public static function isUserExists($email)
+    {
+    }
     /**
      * Get the value of id
      */

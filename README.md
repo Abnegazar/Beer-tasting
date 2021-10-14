@@ -6,14 +6,13 @@ Projet de mise en place d'une plateforme web permettant aux usagers (de la plate
 
 Projet étudiant de M1 MIAGE pour le module PDL.
 
-
 ### **Participants**
 
-- PADONOU Dieu-Donné Isidore
-- DJEDJEMEL Arnauld
 - ABDOU Ibouraima
-- LUBIN Fritzgy
 - BOULLE Louis
+- DJEDJEMEL Arnauld
+- LUBIN Fritzgy
+- PADONOU Dieu-Donné Isidore
 - PRENVEILLE Paul
 
 ## **Objectif du projet**
@@ -22,13 +21,13 @@ Créer une plateforme web permettant de réaliser des dégustations dans le « s
 
 ## Fonctionnalités
 
-♦ saisir des dégustations dans lesquelles on retrouve les mêmes 
+♦ saisir des dégustations dans lesquelles on retrouve les mêmes
 éléments que la feuille de score BJCP
 
-♦ disposer d’un compte utilisateur dans lequel l'utilisateur peut administrer ses 
+♦ disposer d’un compte utilisateur dans lequel l'utilisateur peut administrer ses
 dégustations
 
-♦ permettre à l'utilisateur d'accéder aux dégustations réalisées par les autres utilisateurs de 
+♦ permettre à l'utilisateur d'accéder aux dégustations réalisées par les autres utilisateurs de
 la plateforme
 
 ♦ pouvoir facilement visualiser les diverses informations du style de bière jugée
@@ -45,9 +44,6 @@ la plateforme
 
 **MySql** pour administrer la base de donnée du projet
 
-
-
 ## License
+
 [ GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
-
-
