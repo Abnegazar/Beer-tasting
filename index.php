@@ -1,10 +1,13 @@
 <?php
-DEFINE('APP_FOLDER', '../app/');
-DEFINE('CONFIG_FOLDER', '../config/');
-DEFINE('RESOURCES_FOLDER', '../resources/');
+DEFINE('APP_FOLDER', 'app/');
+DEFINE('CONFIG_FOLDER', 'config/');
+DEFINE('RESOURCES_FOLDER', 'public/');
 DEFINE('CONTROLLERS_FOLDER', APP_FOLDER . '/controllers/');
 DEFINE('CLASS_FOLDER', APP_FOLDER . '/class/');
 DEFINE('VIEWS_FOLDER', RESOURCES_FOLDER . '/views/');
+DEFINE('CSS_FOLDER', RESOURCES_FOLDER . '/css/');
+DEFINE('JS_FOLDER', RESOURCES_FOLDER . '/js/');
+DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . '/assets/');
 DEFINE('PARTIALS_SUBFOLDER', VIEWS_FOLDER . '/partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
 DEFINE('LOGS_FOLDER', '../logs/');
@@ -39,7 +42,7 @@ if ($controller->useLayout()) {
     $h1Controller = $controller->getH1();
     $titleController = $controller->getTitle();
     $content = App::get_content(
-        'layout.phtml',
+        'layout.php',
         array(
             'title' => $titleController,
             'h1' => $h1Controller,
