@@ -231,4 +231,47 @@ class Tasting
                 );
         }
     }
+<<<<<<< Updated upstream:app/class/Tasting.php
+=======
+
+    public static function getUserTastings($userId = false)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
+        $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . "";
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getAllTastings(){
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "SELECT * FROM tasting";
+        $result = mysqli_query($dbInstance, $sql);
+        if($result){
+            $tastings = [];
+            while($row = mysqli_fetch_assoc($result)){
+                $tasting = new Tasting();
+                $tasting -> __initFromDbObject($row);
+                array_push($tastings, $tasting); 
+            }
+            return $tastings;
+        }else{
+            App::logError(mysqli_error($dbInstance)."\r\n".$sql);
+        }
+        return $res;
+    }
+>>>>>>> Stashed changes:app/class/tasting.php
 }
