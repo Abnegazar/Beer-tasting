@@ -8,6 +8,8 @@ class Tasting
     const USER_ID = 'user_id';
     const BEER_ID = 'beer_id';
 
+    const CREATED_AT = 'created_at';
+
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
     const FLAVOR_COMMENT = 'flavor_comment';
@@ -57,6 +59,8 @@ class Tasting
     private $id;
     private $title;
 
+    private $creationDate;
+
     private $aromaComment;
     private $appearanceComment;
     private $flavorComment;
@@ -101,6 +105,7 @@ class Tasting
         $this->beerId = false;
         $this->id = false;
         $this->title = false;
+        $this->creationDate = false;
 
         $this->aromaComment = false;
         $this->appearanceComment = false;
@@ -150,6 +155,7 @@ class Tasting
         $this->title             = $o[self::TITLE];
         $this->userId            = (int)$o[self::USER_ID];
         $this->beerId            = (int)$o[self::BEER_ID];
+        $this->creationDate      = $o[self::CREATED_AT];
 
         $this->aromaComment      = $o[self::AROMA_COMMENT];
         $this->appearanceComment = $o[self::APPEARANCE_COMMENT];
