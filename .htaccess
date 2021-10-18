@@ -11,7 +11,8 @@
     RewriteRule ^home                 index.php?c=homeController [L]
 
     RewriteRule ^dashBoard            index.php?c=dashBoardController [L]
-
+    
+    RewriteRule ^test                 index.php?c=TestingController [L]
 
     RewriteRule ^signIn               index.php?c=loginController&operation=signIn [L]
     RewriteRule ^signUp               index.php?c=loginController&operation=signUp [L]
