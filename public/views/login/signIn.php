@@ -27,6 +27,9 @@
                   in</button>
               </div>
               <hr class="my-4">
+              <label class="text-center">
+                  <a href="">you don't have an account?</a> or <a href="">Forgot Password ?</a>
+                </label>
             </form>
           </div>
         </div>

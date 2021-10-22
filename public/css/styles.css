@@ -34,6 +34,7 @@
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
   --bs-primary: #f4623a;
+  --bs-primary2: #6df7b6;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -7798,7 +7799,6 @@ textarea.form-control-lg {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
-
 .bg-secondary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
@@ -11407,6 +11407,69 @@ header.masthead h1, header.masthead .h1 {
     font-size: 3.5rem;
   }
 }
+
+/* for beer content*/
+.masthead2 {
+  padding-top: calc(6rem + 74px);
+  padding-bottom: 6rem;
+  background-color: #20c997;
+}
+.masthead2 .masthead2-heading {
+  font-size: 2.75rem;
+  line-height: 2.75rem;
+}
+.masthead2 .masthead2-subheading {
+  font-size: 1.25rem;
+}
+.masthead2 .masthead2-avatar {
+  width: 15rem;
+}
+
+@media (min-width: 992px) {
+  .masthead2 {
+    padding-top: calc(6rem + 104px);
+    padding-bottom: 6rem;
+  }
+  .masthead2 .masthead2-heading {
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+  .masthead2 .masthead2-subheading {
+    font-size: 1.5rem;
+  }
+}
+.divider-custom {
+  margin: 1.25rem 0 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.divider-custom .divider-custom-line {
+  width: 100%;
+  max-width: 7rem;
+  height: 0.25rem;
+  background-color: #2c3e50;
+  border-radius: 1rem;
+  border-color: #2c3e50;
+}
+.divider-custom .divider-custom-line:first-child {
+  margin-right: 1rem;
+}
+.divider-custom .divider-custom-line:last-child {
+  margin-left: 1rem;
+}
+.divider-custom .divider-custom-icon {
+  color: #2c3e50;
+  font-size: 2rem;
+}
+.divider-custom.divider-light .divider-custom-line {
+  background-color: #fff;
+}
+.divider-custom.divider-light .divider-custom-icon {
+  color: #fff;
+}
+/**********************************/
 
 #portfolio .container-fluid, #portfolio .container-sm, #portfolio .container-md, #portfolio .container-lg, #portfolio .container-xl, #portfolio .container-xxl {
   max-width: 1920px;
