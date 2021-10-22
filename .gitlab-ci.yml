@@ -8,7 +8,7 @@ staging:
   only:
     - main-dev
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-staging.git
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-staging.git || true
     - git push -f heroku master
 
 production:
@@ -17,5 +17,5 @@ production:
   only:
     - main
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-production.git
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-production.git || true
     - git push -f heroku master
