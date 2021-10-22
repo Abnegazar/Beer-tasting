@@ -5,15 +5,17 @@ stages:
 staging:
   type: deploy
   stage: staging
-  script:
-    - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-staging.git HEAD:master
   only:
     - main-dev
+  script:
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-staging.git
+    - git push -f heroku master
 
 production:
   type: deploy
   stage: production
-  script:
-    - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-production.git HEAD:master
   only:
     - main
+  script:
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/beer-tasting-env-production.git
+    - git push -f heroku master
