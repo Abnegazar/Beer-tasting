@@ -1,5 +1,3 @@
-image: node:latest
-
 stages:
   - staging
   - production
@@ -9,8 +7,6 @@ staging:
   type: deploy
   stage: staging
   script:
-    - apt-get update -yq
-    - apt-get install -y ruby ruby-dev rubygems-integration
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
   only:
@@ -21,8 +17,6 @@ production:
   type: deploy
   stage: production
   script:
-    - apt-get update -yq
-    - apt-get install -y ruby ruby-dev rubygems-integration
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
