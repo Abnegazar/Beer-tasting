@@ -6,7 +6,6 @@ abstract class BaseController
 	protected $description;
 	protected $h1;
 	protected $useLayout = true;
-	protected $breadCrumbs = array();
 
 	public function __construct()
 	{
