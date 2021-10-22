@@ -14,7 +14,7 @@ stages:
 staging:
     type: deploy
     stage: staging
-    image: php:latest
+    image: ruby:latest
     script:
         - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
     only:
@@ -23,7 +23,7 @@ staging:
 production:
     type: deploy
     stage: production
-    image: php:latest
+    image: ruby:latest
     script:
         - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
     only:
