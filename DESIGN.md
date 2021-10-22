@@ -15,6 +15,10 @@ des jolis schémas
 des jolis schémas
 
 ## Architecture du front-end
-![alt text](public/assets/img/CaptureSignIn.PNG "login")
-Ci dessus la vue de connexion permettant de se connecter mais aussi de sauvegarder la session.
-De plus un lien y est pour se rendre à l'inscription.
+   ### Connexion et Inscription
+| La vue de connexion permettant de se connecter mais aussi de sauvegarder la session.De plus un lien y est pour se rendre à l'inscription, mais aussi un lien pour renitialiser le mot de passe si necessaire | La vue d'inscription permettant de s'inscrire en tant que nouveau degustateur, mais aussi un lien pour se connecter si on a deja un compte |
+| ------ | ------ |
+| ![alt text](public/assets/img/CaptureSignIn.PNG "login") | ![alt text](public/assets/img/CaptureSignUp.PNG "inscription") |
+  #### Renitialiser le mot de passe
+
+
