@@ -14,8 +14,9 @@ stages:
 staging:
     type: deploy
     stage: staging
-    image: ruby:latest
+    image: php:latest
     script:
+        - gem install dpl
         - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
     only:
         - staging
@@ -23,8 +24,9 @@ staging:
 production:
     type: deploy
     stage: production
-    image: ruby:latest
+    image: php:latest
     script:
+        - gem install dpl
         - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
     only:
         - main
