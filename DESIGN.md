@@ -15,5 +15,6 @@ des jolis schémas
 des jolis schémas
 
 ## Architecture du front-end
-
-des captures d'écrans avec des explications
+[](public/assets/img/CaptureSignIn.PNG "login")
+Ci dessus la vue de connexion permettant de se connecter mais aussi de sauvegarder la session.
+De plus un lien y est pour se rendre à l'inscription.
