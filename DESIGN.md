@@ -22,6 +22,7 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ![Class diagram](public/assets/img/DesignMd/Objet_Diagram.png "class diagram")
 
+|Diagramme de séquence qui montre le cheminement pour l'enregistrement d'une nouvelle dégustation par un uitlisateur|  
 ![Sequence diagram](public/assets/img/DesignMd/Sequence_Diagram_Degustation.png "sequence diagram")
 
 ## Architecture de la BDD
