@@ -22,7 +22,7 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ## Architecture de la BDD
 
-![Database diagram](public/assets/img/DesignMd/beer-tasting-app-database-v0-screenshot.png "database diagram")
+![Database diagram](public/assets/img/DesignMd/beer-tasting-app-database-v1-screenshot.png "database diagram")
 
 ## Architecture du front-end
 
