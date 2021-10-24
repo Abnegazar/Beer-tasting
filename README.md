@@ -4,6 +4,8 @@
 
 Projet de mise en place d'une plateforme web permettant aux usagers (de la plateforme) de laisser leurs avis et notes suite à une dégustation de Bière.
 
+Pour plus de détails: [www.beer-tasting-env-production.herokuapp.com/](https://beer-tasting-env-production.herokuapp.com/).
+
 ## **Contexte**
 
 Projet étudiant de M1 MIAGE pour le module PDL.
