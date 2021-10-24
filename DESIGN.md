@@ -20,6 +20,10 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ## Architecture back-end
 
+![Class diagram](public/assets/img/DesignMd/Objet_Diagram.png "class diagram")
+
+![Sequence diagram](public/assets/img/DesignMd/Sequence_Diagram_Degustation.png "sequence diagram")
+
 ## Architecture de la BDD
 
 ![Database diagram](public/assets/img/DesignMd/beer-tasting-app-database-v1-screenshot.png "database diagram")
