@@ -1,5 +1,7 @@
 # beer-tasting-app
 
+[![pipeline status](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/badges/main/pipeline.svg)](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/-/commits/main)
+
 Projet de mise en place d'une plateforme web permettant aux usagers (de la plateforme) de laisser leurs avis et notes suite à une dégustation de Bière.
 
 ## **Contexte**
