@@ -1,18 +1,28 @@
-# Architecture de "Project name"
-
-## Organisation des packages
+# Architecture de "Beer tasting app"
 
 ## Descriptions des classes principales
 
-décrire une classe = son rôle, ses attributs, ses méthodes publiques (une sorte de javadoc simplifié)
+Le back-end du projet est composé de 3 classes principales:
+
+### User
+
+User est la classe qui modélise un utilisateur inscrit à la plateforme et qui peut non seulement voir les différentes dégustations, mais aussi en ajouter. Elle a des méthodes permettant d'enregistrer un nouvel utilisateur dans la base de données et de récupérer les informations du profil de l'utilisateur.
+
+### Tasting
+
+Tasting est le model des dégustations, elle a pour attributs l'ensemble des données permettant de représenter une dégustation en respectant les principes du [BJCP scoresheet](https://www.bjcp.org/exam-certification/program/studying/sample-scoresheets/). Elle comporte aussi les méthodes permettant d'enregistrer une nouvelle dégustation et aussi d'accéder à toutes les dégustations enregistrées sur la plateforme, mais aussi à un ou toutes les dégustations d'un utilisateur (Classe User) en particulier.
+
+### BeerStyle
+
+BeerStyle est la classe qui représente tous les différents styles de bières pouvant être déguster. Elle permet de récupérer les informations enregistrées dans la base de données d'un style de bière selon le [guide de styles BJCP](https://www.brassageamateur.com/wiki/Guide_de_styles_BJCP).
+
+Voir le diagramme UML suivant pour plus de détails.
 
 ## Architecture back-end
 
-des jolis schémas
-
 ## Architecture de la BDD
 
-| ![Database diagram](public/assets/img/DesignMd/beer-tasting-app-database-v0-screenshot.png "database diagram")
+![Database diagram](public/assets/img/DesignMd/beer-tasting-app-database-v0-screenshot.png "database diagram")
 
 ## Architecture du front-end
 
