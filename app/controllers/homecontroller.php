@@ -16,7 +16,7 @@ class HomeController extends BaseController implements Controller
         $content = false;
         $this->h1 = "home";
         $this->description = "home";
-        $this->title = "home";
+        $this->title = "TasteMyBeer - Home";
 
         $view = "landing.php";
 
