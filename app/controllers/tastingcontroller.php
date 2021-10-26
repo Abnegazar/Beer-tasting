@@ -21,11 +21,23 @@
         }
 
         public function getSometastings($limit){
-            $view = "tastings/phtml";
+            $view = "tastings.phtml";
             $tastings = Tasting::getSometastings($limit);
 
             $content = App::get_content(
                 self::viewDirectory.$view,
+                array('tastings' => $tastings)
+            );
+
+            return $content;
+        }
+
+        public function getUserTastings($id){
+            $view = "tastings.phtml";
+            $tastings = Tasting::getUserTastings($id);
+
+            $content = App::get_content(
+                self::viewDirectory . $view,
                 array('tastings' => $tastings)
             );
 
