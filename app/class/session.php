@@ -3,17 +3,17 @@ class Session
 {
 
     const USER = 'user';
-    const USER_ID = 'user_id';
+    const USER_ID = 'userId';
 
-    private static function setConnectedUserId($user_id)
+    private static function setConnectedUserId($userId)
     {
-        $_SESSION[self::USER_ID] = $user_id;
+        $_SESSION[self::USER_ID] = $userId;
         return true;
     }
 
     public static function getConnectedUserId()
     {
-        $user_id = false;
+        $userId = false;
         if (isset($_SESSION[self::USER_ID])) {
             $user_id = $_SESSION[self::USER_ID];
         }
@@ -31,7 +31,7 @@ class Session
     {
         if ($user) {
             $_SESSION[self::USER] = serialize($user);
-            self::setConnectedUserId($user->id);
+            self::setConnectedUserId($user->getId());
         }
         return true;
     }

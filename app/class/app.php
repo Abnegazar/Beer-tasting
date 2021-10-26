@@ -73,7 +73,7 @@ class App
 
     public static function get_partial($partial, $tab = array())
     {
-        return self::get_content(PARTIALS_FOLDER . $partial . '.phtml', $tab);
+        return self::get_content(PARTIALS_SUBFOLDER . $partial . '.phtml', $tab);
     }
 
     public static function getVisitorIP()
