@@ -10,24 +10,29 @@
                    <form>
 
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus>
-                        <label for="floatingInputUsername">Username</label>
+                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="myfirstname" required autofocus name="firstName" >
+                        <label for="floatingInputUsername">First Name</label>
                       </div>
 
                       <div class="form-floating mb-3">
-                         <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com">
+                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="mylastname" required name="lastName"  >
+                        <label for="floatingInputUsername">Last Name</label>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                         <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" name="email">
                          <label for="floatingInputEmail">Email address</label>
                       </div>
 
                      <hr>
 
                       <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                         <label for="floatingPassword">Password</label>
                       </div>
 
                       <div class="form-floating mb-3">
-                         <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password">
+                         <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" name="confirmPassword">
                          <label for="floatingPasswordConfirm">Confirm Password</label>
                       </div>
 
