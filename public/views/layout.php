@@ -22,10 +22,10 @@ $connectedUser = Session::getConnectedUser();
 
 <body>
     <?php
-  if ($connectedUser == null) {
-    include(PARTIALS_SUBFOLDER . 'nav_1.php');
-  }
-  ?>
+    if ($connectedUser == null) {
+        include(PARTIALS_SUBFOLDER . 'nav_1.php');
+    }
+    ?>
 
     <?php echo $var->content ?>
     <!-- Footer-->
