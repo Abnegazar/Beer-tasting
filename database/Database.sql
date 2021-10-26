@@ -111,3 +111,5 @@ ALTER TABLE tasting CHANGE `total_score` total DECIMAL(3,1)
 ALTER TABLE `beer` CHANGE `idbiere` `id_beer` INT NOT NULL AUTO_INCREMENT; 
 
 ALTER TABLE `beer` CHANGE `created_time` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `update_time` `update_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP; 
+
+ALTER TABLE `tasting` CHANGE `aroma_score` `aroma_score` DECIMAL(3,1) NULL DEFAULT NULL, CHANGE `appearance_score` `appearance_score` DECIMAL(3,1) NULL DEFAULT NULL, CHANGE `flavor_score` `flavor_score` DECIMAL(3,1) NULL DEFAULT NULL, CHANGE `mouthfeel_score` `mouthfeel_score` DECIMAL(3,1) NULL DEFAULT NULL, CHANGE `overall_score` `overall_score` DECIMAL(3,1) NULL DEFAULT NULL, CHANGE `total_score` `total_score` DECIMAL(3,1) NULL DEFAULT NULL; 

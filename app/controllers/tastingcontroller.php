@@ -20,6 +20,18 @@
             return $content;
         }
 
+        public function getSometastings($limit){
+            $view = "tastings/phtml";
+            $tastings = Tasting::getSometastings($limit);
+
+            $content = App::get_content(
+                self::viewDirectory.$view,
+                array('tastings' => $tastings)
+            );
+
+            return $content;
+        }
+
         public function render()
         {
             $content = false;
