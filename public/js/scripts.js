@@ -55,5 +55,12 @@ window.addEventListener('DOMContentLoaded', event => {
     new SimpleLightbox({
         elements: '#portfolio a.portfolio-box'
     });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
 
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

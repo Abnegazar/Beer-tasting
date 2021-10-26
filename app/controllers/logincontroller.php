@@ -14,10 +14,12 @@ class LoginController extends BaseController implements Controller
 
     public function signIn()
     {
+        
         $view = 'signIn.php';
         $errors = [];
         if (!empty($_POST)) {
-
+            var_dump($_POST);
+            exit;
             //email validation
             if (!isset($_POST['email']) or empty(trim($_POST['email']))) {
                 $errors[] = 'L\'email est obligatoire.';

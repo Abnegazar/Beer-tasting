@@ -10,7 +10,7 @@
                    <form>
 
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus>
+                        <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus name="username">
                         <label for="floatingInputUsername">Username</label>
                       </div>
 
