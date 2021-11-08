@@ -6,6 +6,7 @@ class User
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
     const EMAIL = 'email';
+    const IS_VERIFIED = 'is_verified';
 
     private $id;
     private $firstName;
@@ -21,6 +22,7 @@ class User
         $this->lastName = false;
         $this->email = false;
         $this->password = false;
+        $this->isVerified = false;
     }
 
     public function initValue($id = false, $firstName, $lastName, $email, $password = false)
@@ -87,24 +89,23 @@ class User
         $dbInstance = Db::getInstance()->getDbInstance();
         $email = mysqli_real_escape_string($dbInstance, $email);
         $password = mysqli_real_escape_string($dbInstance, $password);
-        $sql = 'SELECT id, first_name, last_name, email, `password` FROM user WHERE email=\'' . $email . '\'';
+        $sql = 'SELECT * FROM user WHERE email=\'' . $email . '\'';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
-                if (password_verify($password, $row['password'])) {
-                    $user = new User();
-                    $user->__initFromDbObject($row);
-                    return $user;
+                if ($row[self::IS_VERIFIED] == 1) {
+                    if (password_verify($password, $row['password'])) {
+                        $user = new User();
+                        $user->__initFromDbObject($row);
+                        return $user;
+                    }
                 }
             }
         }
         return $res;
     }
 
-    public static function isUserExists($email)
-    {
-    }
     /**
      * Get the value of id
      */
