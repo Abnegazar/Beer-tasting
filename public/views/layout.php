@@ -6,7 +6,7 @@ $connectedUser = Session::getConnectedUser();
 
 <head>
     <!-- Favicon-->
-    <link rel="icon" href="<?php echo ASSET_FOLDER . "/favicon.ico" ?>?v=1" />
+    <link rel="icon" type="image/x-icon" href="<?php echo ASSET_FOLDER . "/favicon.ico" ?>?v=2" />
     <!-- Bootstrap Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Google fonts-->
