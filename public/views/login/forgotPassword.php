@@ -17,7 +17,7 @@
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Mot de passe oublié</h5>
-            <form action="<?php echo PAGE_FORGOT_PASSWORD; ?>" method="POST">
+            <form action="" method="POST">
 
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">

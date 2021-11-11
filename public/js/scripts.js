@@ -8,7 +8,9 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
-
+    //Tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+    
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');

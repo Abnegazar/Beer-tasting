@@ -23,14 +23,24 @@ $connectedUser = Session::getConnectedUser();
 </head>
 
 <body>
-    
-        <?php
-        if($connectedUser == null){
-        include(PARTIALS_SUBFOLDER.'nav_1.php');
-       }
-     ?>
-    
-    <?php echo $var->content ?>
+    <div class="container-fluid">
+          <div class="row flex-nowrap">
+          <?php
+          if($connectedUser == null){
+              include(PARTIALS_SUBFOLDER.'nav_2.php');
+             }else{
+              include(PARTIALS_SUBFOLDER.'nav_2.php');
+             }
+
+        ?>
+        <div class="col py-3">
+             <?php echo $var->content ?>
+        </div>
+             
+          </div>
+      
+    </div>
+       
       <!-- Footer-->
   <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2021 - Tasting Beer</div></div>
