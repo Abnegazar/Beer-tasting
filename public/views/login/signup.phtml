@@ -1,14 +1,3 @@
-<?php
-if (!empty($errors)) {
-    foreach ($errors as $error) {
-?>
-<div class="alert alert-danger" role="alert">
-    <?php echo $error; ?>
-</div>
-<?php
-    }
-}
-?>
 <!-- Alert-->
 <div class="container">
     <div class="row">
@@ -18,6 +7,17 @@ if (!empty($errors)) {
                     <!-- Background image for card set in CSS! -->
                 </div>
                 <div class="card-body p-4 p-sm-5">
+                    <?php
+                    if (!empty($errors)) {
+                        foreach ($errors as $error) {
+                    ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error; ?>
+                    </div>
+                    <?php
+                        }
+                    }
+                    ?>
                     <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
                     <form>
 
@@ -46,10 +46,10 @@ if (!empty($errors)) {
                             <label for="floatingPasswordConfirm">Confirm Password</label>
                         </div>
 
-						<div class="g-recaptcha offset-3" data-sitekey="6LcV_ysdAAAAAGWDDP703-b3WU7qiengcMI5aE7g"></div>
-						<!-- "6LcyDSwdAAAAAFT7QOdQTsZ4hTPnKC3DO-KTJANO" pour le site en prod -->
+                        <div class="g-recaptcha offset-3" data-sitekey="6LcV_ysdAAAAAGWDDP703-b3WU7qiengcMI5aE7g"></div>
+                        <!-- "6LcyDSwdAAAAAFT7QOdQTsZ4hTPnKC3DO-KTJANO" pour le site en prod -->
 
-						<br>
+                        <br>
 
                         <div class="d-grid mb-2">
                             <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
