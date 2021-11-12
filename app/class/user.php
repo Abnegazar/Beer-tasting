@@ -106,6 +106,21 @@ class User
         return $res;
     }
 
+    public static function isUserExists($email)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $email = mysqli_real_escape_string($dbInstance, $email);
+        $sql = 'SELECT * FROM user WHERE email=\'' . $email . '\'';
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            if (mysqli_num_rows($result) == 1) {
+                $res = true;
+            }
+        }
+        return $res;
+    }
+
     /**
      * Get the value of id
      */

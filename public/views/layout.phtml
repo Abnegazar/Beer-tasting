@@ -23,10 +23,9 @@ $connectedUser = Session::getConnectedUser();
 <body>
     <?php
     if ($connectedUser == null) {
-        include(PARTIALS_SUBFOLDER . 'nav_1.php');
+        include(PARTIALS_SUBFOLDER . 'nav_1.phtml');
     }
     ?>
-
     <?php echo $var->content ?>
     <!-- Footer-->
     <footer class="bg-light py-5">
