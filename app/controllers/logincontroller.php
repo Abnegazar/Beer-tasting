@@ -93,20 +93,20 @@ class LoginController extends BaseController implements Controller
                 $errors[] = "Le mot de passe n'est pas correct";
             }
 
-            
-            if(isset($_POST['g-recaptcha-response'])){
+
+            if (isset($_POST['g-recaptcha-response'])) {
                 $captchaResponse = $_POST['g-recaptcha-response'];
             }
 
-            if(!$captchaResponse || empty($captchaResponse)){
+            if (!$captchaResponse || empty($captchaResponse)) {
                 $errors[] = "recaptcha verification failed !";
-            }else{
-               if(!Captcha::isCaptchaOk($captchaResponse)){
+            } else {
+                if (!Captcha::isCaptchaOk($captchaResponse)) {
                     $errors[] = "Captcha unsolved.";
                     var_dump($captchaResponse);
-               }
+                }
             }
-            
+
             if (empty($errors)) {
                 $email = $_POST['email'];
                 //check if user already exists
@@ -126,7 +126,6 @@ class LoginController extends BaseController implements Controller
                     $errors[] = 'Cet email est déjà associé à un compte. Vous pouvez utiliser la fonction "mot de passe oublié".';
                 }
             }
-
         }
         $content = App::get_content(
             self::viewDirectory . $view,
