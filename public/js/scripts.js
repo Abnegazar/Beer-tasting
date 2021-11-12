@@ -8,7 +8,9 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
-
+    //Tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+    
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
@@ -56,3 +58,7 @@ window.addEventListener('DOMContentLoaded', event => {
         elements: '#portfolio a.portfolio-box'
     });
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

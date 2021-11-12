@@ -9,6 +9,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
 
     RewriteRule ^home                 index.php?c=homeController [L]
+    RewriteRule ^show_degust          index.php?c=degustController [L]
 
     RewriteRule ^dashBoard            index.php?c=dashBoardController [L]
 

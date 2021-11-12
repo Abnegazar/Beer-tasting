@@ -17,7 +17,8 @@ class LoginController extends BaseController implements Controller
         $view = 'signin.phtml';
         $errors = [];
         if (!empty($_POST)) {
-
+            var_dump($_POST);
+            exit;
             //email validation
             if (!isset($_POST['email']) or empty(trim($_POST['email']))) {
                 $errors[] = 'L\'email est obligatoire.';
@@ -86,7 +87,9 @@ class LoginController extends BaseController implements Controller
             //password validation
             if (!isset($_POST['password']) || empty(($_POST['password']))) {
                 $errors[] = "Le mot de passe est obligatoire";
-            } else if (!preg_match(PATTERN_PASSWORD, $_POST['password'])) {
+            } else if ($_POST['password'] != $_POST['confirmPassword']) {
+                $errors[] = "Les mots de passe doivent etre identique";
+            }else if (!preg_match(PATTERN_PASSWORD, $_POST['password'])) {
                 $errors[] = "Le mot de passe n'est pas correct";
             }
 
