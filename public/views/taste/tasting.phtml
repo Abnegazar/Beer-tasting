@@ -9,7 +9,7 @@
                     <!-- Test Page Genere en JS -->
                     
                     <script>
-                        
+                        /*
                         let elt = document.getElementById("cardboard");
                         var name = "";
 
@@ -80,7 +80,7 @@
 
                         function page2(){         
                             
-                            document.getElementById("cardboard").innerHTML = page2;
+                            elt.innerHTML = page2;
 
                             document.getElementById('page2next').addEventListener('click', function() {
                                 elt.innerHTML = page3;
@@ -105,17 +105,61 @@
                         });
 
                         document.getElementById('page1next').addEventListener('click', function() {
-                            page2();                
+                            //page2(); 
+                            elt.innerHTML = page2;
+
                         });
-                    /*
+                    */
+                    //<h5 class="card-title text-center mb-5 fw-light fs-5">New Tasting (1/5)</h5>
+
+                    var title = "z";
+                
+                    const h5 = document.createElement("h5");
+                    h5.setAttribute
                     const form1 = document.createElement("form");
+                    form1.setAttribute("id", "beer_form");
                     const div1 = document.createElement("div");
                     div1.setAttribute("class", "form-floating mb-3");
+
+                    const input1 = document.createElement("input");
+                    input1.setAttribute("type", "text");
+                    input1.setAttribute("class", "form-control");
+                    input1.setAttribute("id", "title");
+
+                    const label1 = document.createElement("label");
+                    label1.setAttribute("for", "title");
+                    label1.innerHTML = "Title";
+                    
+                    div1.appendChild(input1);
+                    div1.appendChild(label1);
                     form1.appendChild(div1);
-                    form1.setAttribute("id", "beer_form");
                     let elt = document.getElementById("cardboard");
+
+                    const div2 = document.createElement("div");
+                    div2.setAttribute("class", "form-floating mb-3");
+
+                    const button = document.createElement("input");
+                    button.setAttribute("class", "favorite styled");
+                    button.setAttribute("type", "button");
+                    button.setAttribute("id", "next");
+                    button.setAttribute("value", "Next");
+
+                    div2.appendChild(button);
+                    form1.appendChild(div2);
+
                     elt.appendChild(form1);
-                    */
+
+                    document.getElementById("title").addEventListener(
+                        "input", function(e) {
+                            title = e.target.value;
+                        }
+                    );                  
+
+                    document.getElementById("next").addEventListener('click', function() {
+                        input1.setAttribute("id", "bottle_inspection_comment    ");
+                        label1.innerHTML = "Bottle Inspection Comment";
+                    }); 
+                                       
                     </script>
                 </div>
             </div>
