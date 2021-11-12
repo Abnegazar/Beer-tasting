@@ -1,0 +1,124 @@
+<!-- Section-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body p-4 p-sm-5" id="cardboard">                  
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">Rate a beer</h5>
+                    
+                    <!-- Test Page Genere en JS -->
+                    
+                    <script>
+                        
+                        let elt = document.getElementById("cardboard");
+                        var name = "";
+
+                        page1 =
+                        '<h5 class="card-title text-center mb-5 fw-light fs-5">New Tasting (1/5)</h5>'+
+                        '<form id=beer_form>'+
+                            '<div class="form-floating mb-3">'+
+                                '<input type="text" class="form-control" id="title">'+
+                                '<label for="title">Tasting Title</label>'+
+                            '</div>'+
+                            '<div class="form-floating mb-3">'+
+                                '<input type="text" class="form-control" id="name">'+
+                                '<label for="name">Beer Name</label>'+
+                            '</div>'+
+                            '<div class="form-floating mb-3">'+
+                                '<input type="text" class="form-control" id="category">'+
+                                '<label for="category">Category</label>'+
+                            '</div>'+
+                            '<div>'+
+                                '<input class="favorite styled" id="page1next" type="button" value="Next">'+
+                            '</div>'+
+                        '</form>';
+
+                        page2 = 
+                        '<h5 class="card-title text-center mb-5 fw-light fs-5">New Tasting (2/5)</h5>'+
+                        '<form id=beer_form>'+
+                            '<div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="bottle_inspection">'+
+                                    '<label class="form-check-label" for="bottle_inspection">Bottle Inspection</label>'+
+                                '</div>'+
+                                '<div class="form-floating mb-3">'+
+                                    '<input type="text" class="form-control" id="botlle_inspection_comment">'+
+                                    '<label for="bottle_inspection_comment">Bottle Inspection Comment</label>'+
+                                '</div>'+
+                                '<div>'+
+                                    '<input class="favorite styled" id="page2prev" type="button" value="Previous">'+
+                                    '<input class="favorite styled" id="page2next" type="button" value="Next">'+
+                                '</div>'+
+                            '</div>'+
+                        '</form>';
+
+                        page3 = "";
+
+                        page4 = "";
+
+                        page5 = "";
+
+                        var title = "";
+                        var name = "";
+                        var category = "";
+
+                        function page1(){
+
+                            document.getElementById("title").addEventListener("input", function(e) {
+                                title = e.target.value;
+                            });
+                            document.getElementById("name").addEventListener("input", function(e) {
+                                name = e.target.value;
+                            });
+                            document.getElementById("category").addEventListener("input", function(e) {
+                                category = e.target.value;
+                            });
+
+                            document.getElementById('page1next').addEventListener('click', function() {
+                                elt.innerHTML = page2;                     
+                            });
+                        }
+
+                        function page2(){         
+                            
+                            document.getElementById("cardboard").innerHTML = page2;
+
+                            document.getElementById('page2next').addEventListener('click', function() {
+                                elt.innerHTML = page3;
+                            });
+
+                            document.getElementById('page2prev').addEventListener('click', function() {
+                                elt.innerHTML = page1;
+                            });
+                        }
+
+                                                
+                        elt.innerHTML = page1;
+
+                        document.getElementById("title").addEventListener("input", function(e) {
+                            title = e.target.value;
+                        });
+                        document.getElementById("name").addEventListener("input", function(e) {
+                            name = e.target.value;
+                        });
+                        document.getElementById("category").addEventListener("input", function(e) {
+                            category = e.target.value;
+                        });
+
+                        document.getElementById('page1next').addEventListener('click', function() {
+                            page2();                
+                        });
+                    /*
+                    const form1 = document.createElement("form");
+                    const div1 = document.createElement("div");
+                    div1.setAttribute("class", "form-floating mb-3");
+                    form1.appendChild(div1);
+                    form1.setAttribute("id", "beer_form");
+                    let elt = document.getElementById("cardboard");
+                    elt.appendChild(form1);
+                    */
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

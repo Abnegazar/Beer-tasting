@@ -12,6 +12,7 @@
 
     RewriteRule ^dashBoard            index.php?c=dashBoardController [L]
 
+    RewriteRule ^tasting              index.php?c=tasteController [L]
 
     RewriteRule ^signIn               index.php?c=loginController&operation=signIn [L]
     RewriteRule ^signUp               index.php?c=loginController&operation=signUp [L]
