@@ -9,3 +9,5 @@ DEFINE('PAGE_NEW_PASSWORD', '/newPassword/');
 DEFINE('PAGE_HOME', '/home/');
 
 DEFINE('PAGE_DASHBOARD', '/dashBoard/');
+DEFINE('PAGE_SHOW_TASTING', '/showTasting/#id#');
+DEFINE('PAGE_DISPLAY_TASTINGS', '/displayTastings/#numberPage#')
