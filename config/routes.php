@@ -1,13 +1,13 @@
 <?php
 
-DEFINE('PAGE_SIGNIN', './signIn');
-DEFINE('PAGE_SIGNUP', './signUp');
+DEFINE('PAGE_SIGNIN', './signin');
+DEFINE('PAGE_SIGNUP', './signup');
 DEFINE('PAGE_SIGNUP_SUCCES', './signUp');
-DEFINE('PAGE_LOGOUT', '/logOut');
-DEFINE('PAGE_NEW_PASSWORD', '/resetPassword');
-DEFINE('PAGE_FORGOT_PASSWORD', '/forgotPassword');
-DEFINE('PAGE_SHOW_DEGUSTATION', '/showDegustation');
+DEFINE('PAGE_LOGOUT', '/logout');
+DEFINE('PAGE_NEW_PASSWORD', './reset-password');
+DEFINE('PAGE_FORGOT_PASSWORD', './forgot-password');
+DEFINE('PAGE_SHOW_DEGUSTATION', './show-degustation');
 
 DEFINE('PAGE_HOME', './home');
 
-DEFINE('PAGE_DASHBOARD', '/dashBoard');
+DEFINE('PAGE_DASHBOARD', './dashboard');
