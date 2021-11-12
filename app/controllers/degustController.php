@@ -18,7 +18,7 @@ class degustController extends BaseController implements Controller
         $this->description = "Show particular degustation";
         $this->title = "degustation_show";
 
-        $view = "show.php";
+        $view = "show.phtml";
 
         $content = App::get_content(
             self::viewDirectory . $view,

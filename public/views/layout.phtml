@@ -26,17 +26,23 @@ $connectedUser = Session::getConnectedUser();
 
 <body>
     <?php
-    if ($connectedUser == null) {
+    if ($connectedUser != null) {
          /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
         include(PARTIALS_SUBFOLDER . 'nav_1.phtml');
         echo $var->content;
     }else{
+        ?>
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+        <?php 
         /* Cas ou l'utilisateur est connecté afficher le second menu et le content correspondant de la 
          manière correspondante*/
         include(PARTIALS_SUBFOLDER.'nav_2.phtml');
         ?>
-        <div class="col py-3">
-            <?php echo $var->content ?>
+            <div class="col py-3">
+               <?php echo $var->content ?>
+            </div>
+          </div>
         </div>
    <?php   }  ?>
     <!-- Footer-->
