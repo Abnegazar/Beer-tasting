@@ -18,6 +18,7 @@ $connectedUser = Session::getConnectedUser();
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<?php echo CSS_FOLDER . "/styles.css" ?>" rel="stylesheet" />
     <title><?php echo $var->title ?></title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -39,6 +40,7 @@ $connectedUser = Session::getConnectedUser();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="<?php echo JS_FOLDER . "/scripts.js" ?>"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</script>
 </body>
 
 </html>
