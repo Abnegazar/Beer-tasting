@@ -25,9 +25,11 @@ $connectedUser = Session::getConnectedUser();
     <?php
     if ($connectedUser == null) {
         include(PARTIALS_SUBFOLDER . 'nav_1.phtml');
+        echo $var->content;
     }
     ?>
-    <?php echo $var->content ?>
+    <?php //echo $var->content
+     ?>
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container px-4 px-lg-5">
