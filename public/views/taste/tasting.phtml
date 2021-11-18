@@ -12,7 +12,8 @@
                         //<h5 class="card-title text-center mb-5 fw-light fs-5">Rate a beer</h5>
 
                         var page = 1;
-                        var title = "z";
+                        var title = "";
+                        var title2 = "";
                         var onFirstPage = true;
                         let elt = document.getElementById("cardboard");
                         const h5 = document.createElement("h5");
@@ -43,6 +44,12 @@
                             div1.appendChild(input1);
                             div1.appendChild(label1);
                             form1.appendChild(div1);
+
+                            document.getElementById("title").addEventListener(
+                                "input", function(e) {
+                                    title = e.target.value;
+                                }
+                            );
                         }
 
                         function page2(){
@@ -52,15 +59,21 @@
                             const input1 = document.createElement("input");
                             input1.setAttribute("type", "text");
                             input1.setAttribute("class", "form-control");
-                            input1.setAttribute("id", "title");
+                            input1.setAttribute("id", "title2");
 
                             const label1 = document.createElement("label");
-                            label1.setAttribute("for", "title");
+                            label1.setAttribute("for", "title2");
                             label1.innerHTML = title;
                             
                             div1.appendChild(input1);
                             div1.appendChild(label1);
                             form1.appendChild(div1);
+
+                            document.getElementById("title2").addEventListener(
+                                "input", function(e) {
+                                    title2 = e.target.value;
+                                }
+                            ); 
                         }
 
                         function button(){
@@ -83,12 +96,6 @@
                             if(page!=5){button.appendChild(next);}
                             form1.appendChild(button);
                         }
-
-                        document.getElementById("title").addEventListener(
-                            "input", function(e) {
-                                title = e.target.value;
-                            }
-                        );
 
                         function listen(){
                             if(page!=5){
@@ -123,11 +130,10 @@
                                 form1.innerHTML = "";
                                 page2();
                                 button();  
-                                listen(); 
-                                
+                                listen();                      
                             }
                             if(page == 3){
-                                h5.innerHTML = "Rate a beer (3/5)";
+                                h5.innerHTML = "Rate a beer (3/5) " + title2;
                                 form1.innerHTML = "";
                                 page2();
                                 button();
@@ -145,8 +151,7 @@
                                 form1.innerHTML = "";
                                 page2();
                                 button();
-                                listen();
-                                
+                                listen();                  
                             }   
                         }
         
