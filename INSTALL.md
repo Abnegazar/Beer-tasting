@@ -51,17 +51,17 @@ Importer le fichier [init.sql]() dans PhpMyAdmin.
 2. Déplacer vous dans le dosier `/database` du projet
 3. Executer la commande suivante:
 
-##### Utilisateur sous Linux
+   ##### Utilisateur sous Linux
 
-    ```
-    mysql -u user -p < init.sql
-    ```
+   ```
+   mysql -u user -p < init.sql
+   ```
 
-##### Utilisateur sous Windows
+   ##### Utilisateur sous Windows
 
-    ```
-    sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
-    ```
+   ```
+   sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
+   ```
 
 ## Dépendences
 
