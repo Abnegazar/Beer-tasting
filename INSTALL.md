@@ -43,12 +43,12 @@ Télécharger WampServer à l'adresse suivante :[Télécharger Wamp](https://www
 
 #### Création manuellement
 
-Importer le fichier [init.sql]() dans PhpMyAdmin.
+Importer le fichier `./database/init.sql` via PhpMyAdmin.
 
 #### Création via le terminal
 
 1. Ouvrez un terminal
-2. Déplacer vous dans le dosier `/database` du projet
+2. Déplacer vous dans le dosier `./database` du projet
 3. Executer la commande suivante:
 
    ##### Utilisateur sous Linux
