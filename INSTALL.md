@@ -24,20 +24,20 @@ sudo apt install apache2 php libapache2-mod-php mysql-server php-mysql
 
 #### Utilisateur sous Windows
 
-Télécharger WampServer à l'adresse suivante:[Télécharger Wamp](https://www.wampserver.com/)
+Télécharger WampServer à l'adresse suivante: [Télécharger Wamp](https://www.wampserver.com/)
 
-### 4. Créer un virtual host
+### 3. Créer un virtual host
 
-### 5. Cloner le projet
+### 4. Cloner le projet
 
 1. Déplacer vous à la racine de votre virtual host
-2.
+2. Executer la commande suivante:
 
 ```
 git clone https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app.git
 ```
 
-### 6. Creér la base de données
+### 5. Creér la base de données
 
 #### Création manuellement
 
@@ -46,8 +46,8 @@ Importer le fichier [init.sql]() dans PhpMyAdmin.
 #### Création via le terminal
 
 1. Ouvrez un terminal
-2. Déplacer vous dans le dosier config du projet
-3.
+2. Déplacer vous dans le dosier `/database` du projet
+3. Executer la commande suivante:
 
 ##### Utilisateur sous Linux
 
@@ -58,7 +58,7 @@ mysql -u user -p < init.sql
 ##### Utilisateur sous Windows
 
 ```
-    sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
+sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
 ```
 
 ## Dépendences
