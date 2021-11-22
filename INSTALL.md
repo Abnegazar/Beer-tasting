@@ -35,9 +35,9 @@ Télécharger WampServer à l'adresse suivante :[Télécharger Wamp](https://www
 1. Déplacer vous à la racine de votre virtual host
 2. Exécuter la commande suivante :
 
-```
-git clone https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app.git
-```
+   ```
+   git clone https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app.git
+   ```
 
 ### 5. Créer la base de données
 
@@ -53,15 +53,15 @@ Importer le fichier [init.sql]() dans PhpMyAdmin.
 
 ##### Utilisateur sous Linux
 
-```
-mysql -u user -p < init.sql
-```
+    ```
+    mysql -u user -p < init.sql
+    ```
 
 ##### Utilisateur sous Windows
 
-```
-sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
-```
+    ```
+    sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
+    ```
 
 ## Dépendences
 
