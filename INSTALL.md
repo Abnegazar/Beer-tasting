@@ -2,7 +2,7 @@
 
 Ce document vous donne toutes les instructions pour installer TasteMyBeer avec toutes les dépendances nécessaires.
 
-## Etapes
+## Étapes
 
 ### 1. Installer Git
 
@@ -18,26 +18,28 @@ Télécharger la dernière version de Git à jour sur ce site : [Télécharger G
 
 #### Utilisateur sous Linux
 
+Exécuter la commande suivante :
+
 ```
 sudo apt install apache2 php libapache2-mod-php mysql-server php-mysql
 ```
 
 #### Utilisateur sous Windows
 
-Télécharger WampServer à l'adresse suivante: [Télécharger Wamp](https://www.wampserver.com/)
+Télécharger WampServer à l'adresse suivante :[Télécharger Wamp](https://www.wampserver.com/)
 
 ### 3. Créer un virtual host
 
 ### 4. Cloner le projet
 
 1. Déplacer vous à la racine de votre virtual host
-2. Executer la commande suivante:
+2. Exécuter la commande suivante :
 
 ```
 git clone https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app.git
 ```
 
-### 5. Creér la base de données
+### 5. Créer la base de données
 
 #### Création manuellement
 
