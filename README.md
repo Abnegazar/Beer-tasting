@@ -52,6 +52,10 @@ la plateforme
 
 **MySql** pour administrer la base de donnée du projet
 
+## Installations
+
+Voir [INSTALL.md](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/-/blob/main/INSTALL.md) pour toutes les instructions.
+
 ## License
 
 [ GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
