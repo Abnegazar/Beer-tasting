@@ -27,7 +27,7 @@ $connectedUser = Session::getConnectedUser();
 
 <body>
     <?php
-    if ($connectedUser != null) {
+    if ($connectedUser == null) {
         /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
         include(PARTIALS_SUBFOLDER . 'nav_1.phtml');
         echo $var->content;
