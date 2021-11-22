@@ -41,7 +41,7 @@ Télécharger WampServer à l'adresse suivante :[Télécharger Wamp](https://www
 
 ### 5. Créer la base de données
 
-#### Création manuellement
+#### Création manuellement (Recommandé)
 
 Importer le fichier `./database/init.sql` via PhpMyAdmin.
 
