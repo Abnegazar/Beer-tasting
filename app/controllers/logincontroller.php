@@ -9,14 +9,15 @@ class LoginController extends BaseController implements Controller
     {
         if (Session::getConnectedUser()) {
             header('Location:' . PAGE_DASHBOARD);
-        } else {
-            Session::deleteConnectedUser();
         }
     }
 
     public function signIn()
     {
         $view = 'signin.phtml';
+        $this->h1 = "Sign in";
+        $this->description = "Sign in";
+        $this->title = "TasteMyBeer - Sign in";
         $errors = [];
         if (!empty($_POST)) {
             //email validation
@@ -61,6 +62,9 @@ class LoginController extends BaseController implements Controller
     public function signUp()
     {
         $view = 'signup.phtml';
+        $this->h1 = "Sign up";
+        $this->description = "Sign up";
+        $this->title = "TasteMyBeer - Sign up";
         $errors = [];
         $success = false;
         if (!empty($_POST)) {
