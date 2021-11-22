@@ -10,7 +10,7 @@ class Captcha
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
-        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) . '&response=' . urlencode($captchaResponse);
+        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) . '&response=' . urlencode($response);
         $response = file_get_contents($url);
         $responseKeys = json_decode($response, true);
 
