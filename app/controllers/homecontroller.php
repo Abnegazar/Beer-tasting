@@ -27,3 +27,5 @@ class HomeController extends BaseController implements Controller
         return $content;
     }
 }
+
+?>

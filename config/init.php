@@ -14,4 +14,6 @@ DEFINE('PATTERN_PASSWORD_EXPL', '');
 DEFINE('PATTERN_NAME', '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{3,50}$/i');
 DEFINE('PATTERN_NAME_EXPL', 'Votre nom et prénom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
 
+DEFINE('DEFAULT_PAGINATION', 2);
+
 require_once(CONFIG_FOLDER . 'routes.php');

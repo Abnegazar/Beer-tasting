@@ -30,6 +30,7 @@ spl_autoload_register(function ($class) {
 
 $controller = false;
 if (isset($_GET['c']) and class_exists($_GET['c'])) {
+
     $controller = new $_GET['c']();
 } else {
     header('HTTP/1.1 401 Unauthorized');

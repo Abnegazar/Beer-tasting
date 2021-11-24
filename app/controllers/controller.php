@@ -10,3 +10,5 @@
 		function getH1();
 		function useLayout();
 	}
+
+?>

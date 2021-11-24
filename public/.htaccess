@@ -1,6 +1,5 @@
-<<<<<<< Updated upstream
-=======
 <IfModule mod_rewrite.c>
+
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
@@ -10,18 +9,23 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
-    RewriteRule ^home                 index.php?c=homeController [L]
+    RewriteRule ^home                                 index.php?c=homeController [L]
 
-    RewriteRule ^dashBoard            index.php?c=dashBoardController [L]
+    RewriteRule ^dashBoard                            index.php?c=dashBoardController [L]
 
 
-    RewriteRule ^signIn               index.php?c=loginController&operation=signIn [L]
-    RewriteRule ^signUp               index.php?c=loginController&operation=signUp [L]
-    RewriteRule ^logOut               index.php?c=loginController&operation=logOut [L]
+    RewriteRule ^signIn                               index.php?c=loginController&operation=signIn [L]
+    RewriteRule ^signUp                               index.php?c=loginController&operation=signUp [L]
+    RewriteRule ^logOut                               index.php?c=loginController&operation=logOut [L]
 
-    RewriteRule ^$                    index.php?c=homeController [L]
+    RewriteRule ^tastings                             index.php?c=tastingController&operation=getAllTastings [L]
+    RewriteRule ^tasting/(.*)$                        index.php?c=tastingController&operation=getTastingById&id=$1 [L]
+    RewriteRule ^tastings/(.*)$                       index.php?c=tastingController&operation=getAllTastings&page=$1 [L]
+    RewriteRule ^tastings/user/(.*)$                  index.php?c=tastingController&operation=getUserTastings&userId=$1 [L]
+    RewriteRule ^tastings/user/(.*)/(.*)$             index.php?c=tastingController&operation=getUserTastings&userId=$1&page=$2 [L]
+    
+    RewriteRule ^$                                    index.php?c=homeController [L]
 
-    RewriteRule ^getTastings          index.php?c=tastingController&operation=showTastings [L]
 </IfModule>
 
 
@@ -34,4 +38,3 @@ SetEnv database beer_tasting_app
 
 
 
->>>>>>> Stashed changes
