@@ -1,0 +1,32 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    RewriteRule ^home                 index.php?c=homeController [L]
+
+    RewriteRule ^dashboard            index.php?c=dashBoardController [L]
+
+
+    RewriteRule ^signin               index.php?c=loginController&operation=signIn [L]
+    RewriteRule ^signup               index.php?c=loginController&operation=signUp [L]
+    RewriteRule ^logout               index.php?c=loginController&operation=logOut [L]
+
+    RewriteRule ^$                    index.php?c=homeController [L]
+</IfModule>
+
+
+
+SetEnv host localhost
+SetEnv user root
+SetEnv password 
+SetEnv database beer_tasting_app
+
+
+
+

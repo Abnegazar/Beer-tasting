@@ -16,9 +16,9 @@ class HomeController extends BaseController implements Controller
         $content = false;
         $this->h1 = "home";
         $this->description = "home";
-        $this->title = "home";
+        $this->title = "TasteMyBeer - Home";
 
-        $view = "index.phtml";
+        $view = "landing.phtml";
 
         $content = App::get_content(
             self::viewDirectory . $view,
@@ -27,3 +27,5 @@ class HomeController extends BaseController implements Controller
         return $content;
     }
 }
+
+?>

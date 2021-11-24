@@ -6,7 +6,7 @@ class Tasting
     const TITLE = 'title';
 
     const USER_ID = 'user_id';
-    const BEER_ID = 'beer_id';
+    const BEER_STYLE_ID = 'beer_style_id';
 
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
@@ -149,7 +149,7 @@ class Tasting
         $this->id                = (int)$o[self::ID];
         $this->title             = $o[self::TITLE];
         $this->userId            = (int)$o[self::USER_ID];
-        $this->beerId            = (int)$o[self::BEER_ID];
+        $this->beerId            = (int)$o[self::BEER_STYLE_ID];
 
         $this->aromaComment      = $o[self::AROMA_COMMENT];
         $this->appearanceComment = $o[self::APPEARANCE_COMMENT];
@@ -232,12 +232,81 @@ class Tasting
         }
     }
 
-    public static function getUserTastings($userId = false)
+    public static function getUserTastings($userId, $offset = false, $limit = false)
     {
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
         $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
         $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . "";
+        if ($limit) {
+            $sql .= ' LIMIT ' . $offset . ', ' . $limit;
+        }
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getAllTastings($offset = false, $limit = false)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+
+        $offset = ($offset) ? $offset : 0;
+        $sql = "SELECT * FROM tasting";
+        if ($limit) {
+            $sql .= ' LIMIT ' . $offset . ', ' . $limit;
+        }
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getSomeTastings($limit)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "SELECT * FROM tasting ORDER BY created_time DESC limit" . $limit . "";
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getSomeUserTastings($userId = false, $limit)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
+        $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . " LIMIT " . $limit . "";
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             $tastings = [];

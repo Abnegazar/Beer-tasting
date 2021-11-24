@@ -1,10 +1,18 @@
-# beer-tasting-app
+# TasteMyBeer
+
+[![pipeline status](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/badges/main/pipeline.svg)](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/-/commits/main)
 
 Projet de mise en place d'une plateforme web permettant aux usagers (de la plateforme) de laisser leurs avis et notes suite à une dégustation de Bière.
+
+Pour plus de détails: [www.beer-tasting-env-production.herokuapp.com/](https://beer-tasting-env-production.herokuapp.com/).
 
 ## **Contexte**
 
 Projet étudiant de M1 MIAGE pour le module PDL.
+
+Un peu partout dans le monde, des concours sont organisés afin de définir la meilleure bière d’une région voir d’un pays. À cet effet, des styles de bières ont été définis, pour comparer ce qui est comparable.
+
+Ce projet intervient donc dans ce contexte afin de mettre à disposition des dégustateurs, professionnels comme amateurs, une plateforme leur permettant de recenser leurs avis sur chaque style de bière qu'ils auraient goûté, et de pouvoir partager ces impressions avec des passionnées de la bière.
 
 ### **Participants**
 
@@ -17,7 +25,7 @@ Projet étudiant de M1 MIAGE pour le module PDL.
 
 ## **Objectif du projet**
 
-Créer une plateforme web permettant de réaliser des dégustations dans le « style BJCP » afin de faciliter le partage des impressions sur les bières entre passionnées du sujet.
+Créer une plateforme web permettant de d'enregistrer des dégustations dans le « style BJCP » afin de faciliter la sauvegarde et le partage des impressions sur les bières entre passionnées du sujet.
 
 ## Fonctionnalités
 
@@ -43,6 +51,10 @@ la plateforme
 **SQL** pour le langage côté server
 
 **MySql** pour administrer la base de donnée du projet
+
+## Installations
+
+Voir [INSTALL.md](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/-/blob/main/INSTALL.md) pour toutes les instructions.
 
 ## License
 

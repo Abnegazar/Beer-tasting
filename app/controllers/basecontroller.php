@@ -1,34 +1,33 @@
 <?php
-abstract class BaseController
-{
-
-	protected $title;
-	protected $description;
-	protected $h1;
-	protected $useLayout = true;
-	protected $breadCrumbs = array();
-
-	public function __construct()
+	abstract class BaseController
 	{
-	}
 
-	function getTitle()
-	{
-		return $this->title;
-	}
+		protected $title;
+		protected $description;
+		protected $h1;
+		protected $useLayout = true;
 
-	function getDescription()
-	{
-		return $this->description;
-	}
+		public function __construct()
+		{
+		}
 
-	function getH1()
-	{
-		return $this->h1;
-	}
+		function getTitle()
+		{
+			return $this->title;
+		}
 
-	function useLayout()
-	{
-		return $this->useLayout;
+		function getDescription()
+		{
+			return $this->description;
+		}
+
+		function getH1()
+		{
+			return $this->h1;
+		}
+
+		function useLayout()
+		{
+			return $this->useLayout;
+		}
 	}
-}

@@ -1,10 +1,13 @@
 <?php
-DEFINE('APP_FOLDER', '../app/');
-DEFINE('CONFIG_FOLDER', '../config/');
-DEFINE('RESOURCES_FOLDER', '../resources/');
+DEFINE('APP_FOLDER', 'app/');
+DEFINE('CONFIG_FOLDER', 'config/');
+DEFINE('RESOURCES_FOLDER', 'public/');
 DEFINE('CONTROLLERS_FOLDER', APP_FOLDER . '/controllers/');
 DEFINE('CLASS_FOLDER', APP_FOLDER . '/class/');
 DEFINE('VIEWS_FOLDER', RESOURCES_FOLDER . '/views/');
+DEFINE('CSS_FOLDER', RESOURCES_FOLDER . '/css/');
+DEFINE('JS_FOLDER', RESOURCES_FOLDER . '/js/');
+DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . '/assets/');
 DEFINE('PARTIALS_SUBFOLDER', VIEWS_FOLDER . '/partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
 DEFINE('LOGS_FOLDER', '../logs/');
@@ -27,6 +30,7 @@ spl_autoload_register(function ($class) {
 
 $controller = false;
 if (isset($_GET['c']) and class_exists($_GET['c'])) {
+
     $controller = new $_GET['c']();
 } else {
     header('HTTP/1.1 401 Unauthorized');
