@@ -1,7 +1,6 @@
   <?php
 	interface Controller
 	{
-
 		function __construct();
 
 		function render();
@@ -10,5 +9,3 @@
 		function getH1();
 		function useLayout();
 	}
-
-?>

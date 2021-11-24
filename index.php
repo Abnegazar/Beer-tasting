@@ -43,7 +43,7 @@ if ($controller->useLayout()) {
     $h1Controller = $controller->getH1();
     $titleController = $controller->getTitle();
     $content = App::get_content(
-        'layout.php',
+        'layout.phtml',
         array(
             'title' => $titleController,
             'h1' => $h1Controller,
