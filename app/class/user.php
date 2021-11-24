@@ -8,12 +8,12 @@ class User
     const EMAIL = 'email';
     const IS_VERIFIED = 'is_verified';
 
-    private $id;
-    private $firstName;
-    private $lastName;
-    private $email;
-    private $password;
-    private $tastings;
+    public $id;
+    public $firstName;
+    public $lastName;
+    public $email;
+    public $password;
+    public $tastings;
 
     public function __construct()
     {

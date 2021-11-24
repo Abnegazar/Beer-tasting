@@ -8,12 +8,12 @@ DEFINE('PAGE_NEW_PASSWORD', './reset-password');
 DEFINE('PAGE_FORGOT_PASSWORD', './forgot-password');
 DEFINE('PAGE_SHOW_DEGUSTATION', './show-degustation');
 
-DEFINE('PAGE_TASTING', '/tasting/#id#');
-DEFINE('PAGE_TASTINGS', '/tastings');
-DEFINE('PAGE_TASTINGS_BY_PAGE', '/tastings/#page#');
+DEFINE('PAGE_TASTING', './tasting/#id#');
+DEFINE('PAGE_TASTINGS', './tastings');
+DEFINE('PAGE_TASTINGS_BY_PAGE', './tastings/#page#');
 
-DEFINE('PAGE_USER_TASTINGS', '/tastings/user/#userId#');
-DEFINE('PAGE_USER_TASTINGS_BY_PAGE', '/tastings/user/#userId#/#page#');
+DEFINE('PAGE_USER_TASTINGS', './tastings/user/#userId#');
+DEFINE('PAGE_USER_TASTINGS_BY_PAGE', './tastings/user/#userId#/#page#');
 
 DEFINE('PAGE_HOME', './home');
 

@@ -14,18 +14,18 @@ class Beer
     const STYLECOMPARISON = "style_comparison";
     const COMMERCIALEXAMPLE = "commercial_example";
 
-    private $idBeer;
-    private $style;
-    private $beerAroma;
-    private $beerAppearance;
-    private $beerFlavor;
-    private $comments;
-    private $corps;
-    private $ingredients;
-    private $styleComparison;
-    private $commercialExemple;
-    private $createdAt;
-    private $updateAt;
+    public $idBeer;
+    public $style;
+    public $beerAroma;
+    public $beerAppearance;
+    public $beerFlavor;
+    public $comments;
+    public $corps;
+    public $ingredients;
+    public $styleComparison;
+    public $commercialExemple;
+    public $createdAt;
+    public $updateAt;
 
     public function __construct()
     {
