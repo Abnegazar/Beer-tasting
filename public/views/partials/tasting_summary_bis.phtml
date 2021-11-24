@@ -13,17 +13,19 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder" id="beerCategory"><?php $lastTasting->category ?></h5>
-                                <h4 class="fw-bolder" id="beerName"><?php $lastTasting->beerName ?></h4>
-                                <h4 class="fw-bolder" id="userName"><?php $lastTasting->userName ?></h4>
-                                <div class="rating_stars" data_rating="<?php $lastTasting->score ?>"></div>
-                                <h4 class="fw-bolder" id="date"><?php $lastTasting->creationDate ?></h4>
+                                <h5 class="fw-bolder" id="beerCategory"><?php echo $lastTasting->beerStyleId ?></h5>
+                                <h4 class="fw-bolder" id="beerName"><?php echo $lastTasting->beerName ?></h4>
+                                <h4 class="fw-bolder" id="userName"><?php echo $lastTasting->userId ?></h4>
+                                <div class="rating_stars" data_rating="<?php echo $lastTasting->score['score'] ?>">
+                                </div>
+                                <h4 class="fw-bolder" id="date"><?php echo $lastTasting->createdAt ?></h4>
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" id="boutonShowMore">
                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" id="boutonText"
-                                    href="<?php str_replace("#id#", $lastTasting->id, PAGE_TASTING) ?>">SHOW</a></div>
+                                    href="<?php echo str_replace("#id#", $lastTasting->id, PAGE_TASTING) ?>">SHOW</a>
+                            </div>
                         </div>
                     </div>
                 </div>
