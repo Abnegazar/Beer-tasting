@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        <h4>YOUR LAST TASTINGS</h4>
+    </div>
+    <div class="card-body">
+        <div id="displayUserTastings">
+            <?php
+            foreach ($var->userTastings as $userTasting) {
+                echo App::get_partial(PARTIAL_TASTING, $userTasting);
+            }
+            ?>
+        </div>
+        <a class="change_page" href="<?php str_replace("#userId#", Session::getConnectedUserId(), PAGE_USER_TASTINGS) ?>">SHOW</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4>THE NEW TASTINGS</h4>
+    </div>
+    <div class="card-body">
+        <div id="blockUsersTastings">
+            <div id="setOf4UsersTastings">
+                <?php
+                foreach ($var->lastTastings as $lastTasting) {
+                    echo App::get_partial(PARTIAL_ALL_TASTINGS, $lastTasting);
+                }
+                ?>
+            </div>
+            <a class="change_page" href="<?php echo PAGE_TASTINGS ?>">SHOW</a>
+        </div>
+    </div>
+</div>

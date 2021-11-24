@@ -46,6 +46,7 @@ class TastingController extends BaseController implements Controller
         );
         return $content;
     }
+    
 
     //TODO METHOD getTastingById
 
