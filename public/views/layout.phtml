@@ -29,7 +29,7 @@ $connectedUser = Session::getConnectedUser();
     <?php
     if ($connectedUser == null) {
         /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
-        include(PARTIALS_SUBFOLDER . 'nav_1.phtml');
+        echo App::get_partial('nav_1', array());
         echo $var->content;
     } else {
     ?>
@@ -38,7 +38,7 @@ $connectedUser = Session::getConnectedUser();
             <?php
                 /* Cas ou l'utilisateur est connecté afficher le second menu et le content correspondant de la 
          manière correspondante*/
-                include(PARTIALS_SUBFOLDER . 'nav_2.phtml');
+                echo App::get_partial('nav_2', array());
                 ?>
             <div class="col py-3">
                 <?php echo $var->content ?>

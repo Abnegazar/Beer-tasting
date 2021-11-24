@@ -19,5 +19,5 @@ DEFINE('PAGE_HOME', './home');
 
 DEFINE('PAGE_DASHBOARD', './dashboard');
 
-DEFINE('PARTIAL_TASTING', './views/partials/tastingssummary.phtml');
-DEFINE('PARTIAL_ALL_TASTINGS', './views/partials/tastingssummarybis.phtml');
+DEFINE('PARTIAL_TASTING', 'tasting_summary');
+DEFINE('PARTIAL_ALL_TASTINGS', 'tasting_summary_bis');

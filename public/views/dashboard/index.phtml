@@ -5,12 +5,13 @@
     <div class="card-body">
         <div id="displayUserTastings">
             <?php
-            foreach ($var->userTastings as $userTasting) {
-                echo App::get_partial(PARTIAL_TASTING, $userTasting);
+            foreach ($var->lastUserTastings as $userTasting) {
+                echo App::get_partial(PARTIAL_TASTING, array("userTasting" => $userTasting));
             }
             ?>
         </div>
-        <a class="change_page" href="<?php str_replace("#userId#", Session::getConnectedUserId(), PAGE_USER_TASTINGS) ?>">SHOW</a>
+        <a class="change_page"
+            href="<?php str_replace("#userId#", Session::getConnectedUserId(), PAGE_USER_TASTINGS) ?>">SHOW</a>
     </div>
 </div>
 
@@ -23,7 +24,7 @@
             <div id="setOf4UsersTastings">
                 <?php
                 foreach ($var->lastTastings as $lastTasting) {
-                    echo App::get_partial(PARTIAL_ALL_TASTINGS, $lastTasting);
+                    echo App::get_partial(PARTIAL_ALL_TASTINGS, array("lastTasting" => $lastTasting));
                 }
                 ?>
             </div>
