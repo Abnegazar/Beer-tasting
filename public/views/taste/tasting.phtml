@@ -10,7 +10,7 @@
                         var title = "";
                         var name = "";
                         var category = "";
-                        var bottle_inspection = 0;
+                        var bottle_inspection = false;
                         var bottle_inspection_comment = "";
                         var aroma = 0;
                         var aroma_comment = "";
@@ -22,6 +22,23 @@
                         var mouthfeel_comment = "";
                         var overall_impression = 0;
                         var overall_impression_comment = "";
+                        var acetaldehyde = false;
+                        var alcoholic = false;
+                        var astringent = false;
+                        var diacetyl = false;
+                        var dimethyl = false;
+                        var estery = false;
+                        var grassy = false;
+                        var light = false;
+                        var metallic = false;
+                        var musty = false;
+                        var oxidizied = false;
+                        var phenolic = false;
+                        var solvent = false;
+                        var sour = false;
+                        var sulfur = false;
+                        var vegetal  = false;
+                        var yeasty = false;
 
                         let elt = document.getElementById("cardboard");
                         const h5 = document.createElement("h5");
@@ -66,7 +83,7 @@
                             form1.innerHTML =    
                                 '<div class="form-check mb-3">'+
                                     '<input class="form-check-input" type="checkbox" value="" id="bottle_inspection">'+
-                                    '<label class="form-check-label" for="bottle_inspection">Bottle InspectionS</label>'+
+                                    '<label class="form-check-label" for="bottle_inspection">Bottle Inspection</label>'+
                                 '</div>'+
                                 '<div class="form-floating mb-3">'+
                                     '<input type="text" class="form-control" id="bottle_inspection_comment">'+
@@ -216,7 +233,133 @@
                             document.getElementById("overall_impression_comment").addEventListener(
                                 "input", function(e) { overall_impression_comment = e.target.value;}
                             );
-                    
+                        }
+
+                        
+                        function page4(){                           
+                            form1.innerHTML =
+                                '<table>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="acetaldehyde">'+
+                                    '<label class="form-check-label" for="acetaldehyde">Acetaldehyde</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="alcoholic">'+
+                                    '<label class="form-check-label" for="alcoholic">Alcoholic</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="astringent">'+
+                                    '<label class="form-check-label" for="astringent">Astringent</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="diacetyl">'+
+                                    '<label class="form-check-label" for="diacetyl">Diacetyl</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="dimethyl">'+
+                                    '<label class="form-check-label" for="dimethylt">Dimethyl Sulfide</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="estery">'+
+                                    '<label class="form-check-label" for="estery">Estery</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="grassy">'+
+                                    '<label class="form-check-label" for="grassy">Grassy</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="light">'+
+                                    '<label class="form-check-label" for="light">Light-Struck</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="metallic">'+
+                                    '<label class="form-check-label" for="metallic">Metallic</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="musty">'+
+                                    '<label class="form-check-label" for="musty">Musty</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="oxidizied">'+
+                                    '<label class="form-check-label" for="oxidizied">Oxidizied</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="phenolic">'+
+                                    '<label class="form-check-label" for="phenolic">Phenolic</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="solvent">'+
+                                    '<label class="form-check-label" for="solvent">Solvent</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="sour">'+
+                                    '<label class="form-check-label" for="sour">Sour / Acidic</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="sulfur">'+
+                                    '<label class="form-check-label" for="sulfur">Sulfur</label>'+
+                                '</div></td>'+
+                                '<td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="vegetal">'+
+                                    '<label class="form-check-label" for="vegetal">Vegetal</label>'+
+                                '</div></td></tr>'+
+                                '<tr><td><div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="yeasty">'+
+                                    '<label class="form-check-label" for="yeasty">Yeasty</label>'+
+                                '</div></td></tr>'+
+                                '</table>';
+
+                            document.getElementById("acetaldehyde").addEventListener(
+                                "input", function(e) {acetaldehyde = e.target.value;}
+                            );
+                            document.getElementById("alcoholic").addEventListener(
+                                "input", function(e) {alcoholic = e.target.value;}
+                            );
+                            document.getElementById("astringent").addEventListener(
+                                "input", function(e) {astrigent = e.target.value;}
+                            );
+                            document.getElementById("diacetyl").addEventListener(
+                                "input", function(e) {diacetyl = e.target.value;}
+                            );
+                            document.getElementById("dimethyl").addEventListener(
+                                "input", function(e) {dimethyl = e.target.value;}
+                            );
+                            document.getElementById("estery").addEventListener(
+                                "input", function(e) {estery = e.target.value;}
+                            );
+                            document.getElementById("grassy").addEventListener(
+                                "input", function(e) {grassy = e.target.value;}
+                            );
+                            document.getElementById("light").addEventListener(
+                                "input", function(e) {light = e.target.value;}
+                            );
+                            document.getElementById("metallic").addEventListener(
+                                "input", function(e) {metallic = e.target.value;}
+                            );
+                            document.getElementById("musty").addEventListener(
+                                "input", function(e) {musty = e.target.value;}
+                            );
+                            document.getElementById("oxidizied").addEventListener(
+                                "input", function(e) {oxidizied = e.target.value;}
+                            );
+                            document.getElementById("phenolic").addEventListener(
+                                "input", function(e) {phenolic = e.target.value;}
+                            );
+                            document.getElementById("solvent").addEventListener(
+                                "input", function(e) {solvent = e.target.value;}
+                            );
+                            document.getElementById("sour").addEventListener(
+                                "input", function(e) {sour = e.target.value;}
+                            );
+                            document.getElementById("sulfur").addEventListener(
+                                "input", function(e) {sulfur = e.target.value;}
+                            );
+                            document.getElementById("vegetal").addEventListener(
+                                "input", function(e) {vegetal = e.target.value;}
+                            );
+                            document.getElementById("yeasty").addEventListener(
+                                "input", function(e) {yeasty = e.target.value;}
+                            );
                         }
 
                         function button(){
@@ -238,25 +381,6 @@
                             if(page!=1){button.appendChild(prev);}
                             if(page!=5){button.appendChild(next);}
                             form1.appendChild(button);
-                        }
-
-                        function page4(){                           
-                            form1.innerHTML =    
-                                '<div class="form-check mb-3">'+
-                                    '<input class="form-check-input" type="checkbox" value="" id="bottle_inspection">'+
-                                    '<label class="form-check-label" for="bottle_inspection">Bottle InspectionS</label>'+
-                                '</div>'+
-                                '<div class="form-floating mb-3">'+
-                                    '<input type="text" class="form-control" id="bottle_inspection_comment">'+
-                                    '<label for="bottle_inspection_comment">Bottle Inspection Comment</label>'+
-                                '</div>';
-
-                            document.getElementById("bottle_inspection").addEventListener(
-                                "input", function(e) {bottle_inspection = e.target.value;}
-                            );
-                            document.getElementById("bottle_inspection_comment").addEventListener(
-                                "input", function(e) {bottle_inspection_comment = e.target.value;}
-                            );
                         }
 
                         function listen(){
@@ -304,7 +428,7 @@
                             if(page == 4){
                                 h5.innerHTML = "Rate a beer (4/5)";
                                 form1.innerHTML = "";
-                                page2();
+                                page4();
                                 button();
                                 listen();
                             }
