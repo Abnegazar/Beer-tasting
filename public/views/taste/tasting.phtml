@@ -4,18 +4,24 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5" id="cardboard">                 
-                    
-                    <!-- Test Page Genere en JS -->
-                    
                     <script>
-
-                        //<h5 class="card-title text-center mb-5 fw-light fs-5">Rate a beer</h5>
-
                         var page = 1;
 
                         var title = "";
                         var name = "";
                         var category = "";
+                        var bottle_inspection = 0;
+                        var bottle_inspection_comment = "";
+                        var aroma = 0;
+                        var aroma_comment = "";
+                        var appearance = 0;
+                        var appearance_comment = "";
+                        var flavor = 0;
+                        var flavor_comment = "";
+                        var mouthfeel = 0;
+                        var mouthfeel_comment = "";
+                        var overall_impression = 0;
+                        var overall_impression_comment = "";
 
                         let elt = document.getElementById("cardboard");
                         const h5 = document.createElement("h5");
@@ -53,40 +59,37 @@
                             );
                             document.getElementById("category").addEventListener(
                                 "input", function(e) {category = e.target.value;}
-                            );
-
-                        
+                            );                        
                         }
 
-                        function page2(){
-                            
+                        function page2(){                           
                             form1.innerHTML =    
                                 '<div class="form-check mb-3">'+
                                     '<input class="form-check-input" type="checkbox" value="" id="bottle_inspection">'+
-                                    '<label class="form-check-label" for="bottle_inspection">Bottle Inspection</label>'+
+                                    '<label class="form-check-label" for="bottle_inspection">Bottle InspectionS</label>'+
                                 '</div>'+
                                 '<div class="form-floating mb-3">'+
-                                    '<input type="text" class="form-control" id="botlle_inspection_comment">'+
+                                    '<input type="text" class="form-control" id="bottle_inspection_comment">'+
                                     '<label for="bottle_inspection_comment">Bottle Inspection Comment</label>'+
                                 '</div>';
+
                             document.getElementById("bottle_inspection").addEventListener(
-                                "input", function(e) {
-                                    title2 = e.target.value;
-                                }
-                            ); 
+                                "input", function(e) {bottle_inspection = e.target.value;}
+                            );
+                            document.getElementById("bottle_inspection_comment").addEventListener(
+                                "input", function(e) {bottle_inspection_comment = e.target.value;}
+                            );
                         }
 
                         function page3(){
-
-
                             form1.innerHTML =
                             '<table><tr><td>Aroma</td><td>Rating</td></tr><tr><td>' +        
                             '<div class="form-floating mb-3">'+
-                                '<input type="text" class="form-control" id="bottle_inspection_comment">'+
-                                '<label for="bottle_inspection_comment">Bottle Inspection Comment</label>'+
+                                '<input type="text" class="form-control" id="aroma_comment">'+
+                                '<label for="aroma_comment">Comment</label>'+
                             '</div></td>'+
                             '<td><div class="form-floating mb-3">'+
-                                '<select class="form-control" id="bottle_inpection">'+
+                                '<select class="form-control" id="aroma">'+
                                     '<option value=0>0' +
                                     '<option value=1>1' +
                                     '<option value=2>2' +
@@ -105,17 +108,115 @@
                             '<tr><td>Appearance</td><td>Rating</td></tr><tr><td>' +
                             '<div class="form-floating mb-3">'+
                                 '<input type="text" class="form-control" id="appearance_comment">'+
-                                '<label for="bottle_inspection_comment">Comment</label>'+
+                                '<label for="appearance_comment">Comment</label>'+
                             '</div></td>'+
                             '<td><div class="form-floating mb-3">'+
-                                '<select class="form-control" id="bottle_inpection">'+
+                                '<select class="form-control" id="appearance">'+
                                     '<option value=0>0' +
                                     '<option value=1>1' +
                                     '<option value=2>2' +
                                     '<option value=3>3' +                             
                                 '</select>' +
                             '</div></td></tr>' +
+                            '<tr><td>Flavor</td><td>Rating</td></tr><tr><td>' +
+                            '<div class="form-floating mb-3">'+
+                                '<input type="text" class="form-control" id="flavor_comment">'+
+                                '<label for="flavor_comment">Comment</label>'+
+                            '</div></td>'+
+                            '<td><div class="form-floating mb-3">'+
+                                '<select class="form-control" id="flavor">'+
+                                    '<option value=0>0' +
+                                    '<option value=1>1' +
+                                    '<option value=2>2' +
+                                    '<option value=3>3' +
+                                    '<option value=4>4' +
+                                    '<option value=5>5' +
+                                    '<option value=6>6' +
+                                    '<option value=7>7' +
+                                    '<option value=8>8' +
+                                    '<option value=9>9' +
+                                    '<option value=10>10' +
+                                    '<option value=11>11' +
+                                    '<option value=12>12' +
+                                    '<option value=13>13' +
+                                    '<option value=14>14' +
+                                    '<option value=15>15' +
+                                    '<option value=16>16' +
+                                    '<option value=17>17' + 
+                                    '<option value=18>18' +  
+                                    '<option value=19>19' +
+                                    '<option value=20>20' +                                                                                                            
+                                '</select>' +
+                            '</div></td></tr>' +
+                            '<tr><td>Mouth Feel</td><td>Rating</td></tr><tr><td>' +
+                            '<div class="form-floating mb-3">'+
+                                '<input type="text" class="form-control" id="mouthfeel_comment">'+
+                                '<label for="mouthfeel_comment">Comment</label>'+
+                            '</div></td>'+
+                            '<td><div class="form-floating mb-3">'+
+                                '<select class="form-control" id="mouthfeel">'+
+                                    '<option value=0>0' +
+                                    '<option value=1>1' +
+                                    '<option value=2>2' +
+                                    '<option value=3>3' +
+                                    '<option value=4>4' +
+                                    '<option value=5>5' +                                                                                                    
+                                '</select>' +
+                            '</div></td></tr>' +
+                            '<tr><td>Overall Impression</td><td>Rating</td></tr><tr><td>' +
+                            '<div class="form-floating mb-3">'+
+                                '<input type="text" class="form-control" id="overall_impression_comment">'+
+                                '<label for="overall_impression_comment">Comment</label>'+
+                            '</div></td>'+
+                            '<td><div class="form-floating mb-3">'+
+                                '<select class="form-control" id="overall_impression">'+
+                                    '<option value=0>0' +
+                                    '<option value=1>1' +
+                                    '<option value=2>2' +
+                                    '<option value=3>3' +
+                                    '<option value=4>4' +
+                                    '<option value=5>5' +
+                                    '<option value=6>6' +
+                                    '<option value=7>7' +
+                                    '<option value=8>8' +
+                                    '<option value=9>9' +
+                                    '<option value=10>10' +                                                                                                        
+                                '</select>' +
+                            '</div></td></tr>' +
                             '</table>';
+                            
+                            document.getElementById("aroma").addEventListener(
+                                "input", function(e) {aroma = e.target.value;}
+                            );
+                            document.getElementById("aroma_comment").addEventListener(
+                                "input", function(e) { aroma_comment = e.target.value;}
+                            );
+                            document.getElementById("appearance").addEventListener(
+                                "input", function(e) { appearance = e.target.value;}
+                            );
+                            
+                            document.getElementById("appearance_comment").addEventListener(
+                                "input", function(e) { appearance_comment = e.target.value;}
+                            );
+                            document.getElementById("flavor").addEventListener(
+                                "input", function(e) { flavor = e.target.value;}
+                            );
+                            document.getElementById("flavor_comment").addEventListener(
+                                "input", function(e) { flavor_comment = e.target.value;}
+                            ); 
+                            document.getElementById("mouthfeel").addEventListener(
+                                "input", function(e) { mouthfeel = e.target.value;}
+                            ); 
+                            document.getElementById("mouthfeel_comment").addEventListener(
+                                "input", function(e) { mouthfeel_comment = e.target.value;}
+                            ); 
+                            document.getElementById("overall_impression").addEventListener(
+                                "input", function(e) { overall_impression = e.target.value;}
+                            );
+                            document.getElementById("overall_impression_comment").addEventListener(
+                                "input", function(e) { overall_impression_comment = e.target.value;}
+                            );
+                    
                         }
 
                         function button(){
@@ -137,6 +238,25 @@
                             if(page!=1){button.appendChild(prev);}
                             if(page!=5){button.appendChild(next);}
                             form1.appendChild(button);
+                        }
+
+                        function page4(){                           
+                            form1.innerHTML =    
+                                '<div class="form-check mb-3">'+
+                                    '<input class="form-check-input" type="checkbox" value="" id="bottle_inspection">'+
+                                    '<label class="form-check-label" for="bottle_inspection">Bottle InspectionS</label>'+
+                                '</div>'+
+                                '<div class="form-floating mb-3">'+
+                                    '<input type="text" class="form-control" id="bottle_inspection_comment">'+
+                                    '<label for="bottle_inspection_comment">Bottle Inspection Comment</label>'+
+                                '</div>';
+
+                            document.getElementById("bottle_inspection").addEventListener(
+                                "input", function(e) {bottle_inspection = e.target.value;}
+                            );
+                            document.getElementById("bottle_inspection_comment").addEventListener(
+                                "input", function(e) {bottle_inspection_comment = e.target.value;}
+                            );
                         }
 
                         function listen(){
@@ -175,7 +295,7 @@
                                 listen();                      
                             }
                             if(page == 3){
-                                h5.innerHTML = "Rate a beer (3/5) " + title2;
+                                h5.innerHTML = "Rate a beer (3/5) ";
                                 form1.innerHTML = "";
                                 page3();
                                 button();
