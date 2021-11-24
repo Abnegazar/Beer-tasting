@@ -1,4 +1,4 @@
-# beer-tasting-app
+# TasteMyBeer
 
 [![pipeline status](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/badges/main/pipeline.svg)](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/-/commits/main)
 
@@ -51,6 +51,10 @@ la plateforme
 **SQL** pour le langage côté server
 
 **MySql** pour administrer la base de donnée du projet
+
+## Installations
+
+Voir [INSTALL.md](https://gitlab.istic.univ-rennes1.fr/pdl-g4/beer-tasting-app/-/blob/main/INSTALL.md) pour toutes les instructions.
 
 ## License
 
