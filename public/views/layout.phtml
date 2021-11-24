@@ -22,29 +22,30 @@ $connectedUser = Session::getConnectedUser();
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<?php echo CSS_FOLDER . "/styles.css" ?>" rel="stylesheet" />
     <title><?php echo $var->title ?></title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
     <?php
-    if ($connectedUser != null) {
-         /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
+    if ($connectedUser == null) {
+        /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
         include(PARTIALS_SUBFOLDER . 'nav_1.phtml');
         echo $var->content;
-    }else{
-        ?>
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
-        <?php 
-        /* Cas ou l'utilisateur est connecté afficher le second menu et le content correspondant de la 
+    } else {
+    ?>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <?php
+                /* Cas ou l'utilisateur est connecté afficher le second menu et le content correspondant de la 
          manière correspondante*/
-        include(PARTIALS_SUBFOLDER.'nav_2.phtml');
-        ?>
+                include(PARTIALS_SUBFOLDER . 'nav_2.phtml');
+                ?>
             <div class="col py-3">
-               <?php echo $var->content ?>
+                <?php echo $var->content ?>
             </div>
-          </div>
         </div>
-   <?php   }  ?>
+    </div>
+    <?php   }  ?>
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container px-4 px-lg-5">
@@ -56,6 +57,7 @@ $connectedUser = Session::getConnectedUser();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="<?php echo JS_FOLDER . "/scripts.js" ?>"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </script>
 </body>
 
 </html>
