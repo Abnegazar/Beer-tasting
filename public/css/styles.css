@@ -42,7 +42,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-beer:#CF5C36;
+  --bs-beer: #cf5c36;
   --bs-primary-rgb: 244, 98, 58;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
@@ -5382,11 +5382,11 @@ fieldset:disabled .btn {
   z-index: 1;
   color: #495057;
   text-decoration: none;
-  background-color: #CF5C36;
+  background-color: #cf5c36;
 }
 .list-group-item-action:active {
   color: #212529;
-  background-color: #CF5C36;
+  background-color: #cf5c36;
 }
 
 .list-group-item {
@@ -5395,7 +5395,7 @@ fieldset:disabled .btn {
   padding: 0.5rem 1rem;
   color: #212529;
   text-decoration: none;
-  background-color: #CF5C36;
+  background-color: #cf5c36;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .list-group-item:first-child {
@@ -5415,7 +5415,7 @@ fieldset:disabled .btn {
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #CF5C36;
+  background-color: #cf5c36;
   border-color: #f4623a;
 }
 .list-group-item + .list-group-item {
@@ -5671,7 +5671,7 @@ fieldset:disabled .btn {
 
 .list-group-item-light {
   color: #636464;
-  background-color: #CF5C36;
+  background-color: #cf5c36;
 }
 .list-group-item-light.list-group-item-action:hover,
 .list-group-item-light.list-group-item-action:focus {
@@ -5680,7 +5680,7 @@ fieldset:disabled .btn {
 }
 .list-group-item-light.list-group-item-action.active {
   color: #fff;
-  background-color: #CF5C36;
+  background-color: #cf5c36;
   border-color: #636464;
 }
 
@@ -11669,7 +11669,7 @@ body {
 }
 
 .page-section {
-  padding: 8rem 0;
+  padding: 0px;
 }
 
 .text-white-75 {
@@ -11806,7 +11806,7 @@ header.masthead .h1 {
 
 /* for beer content*/
 .content_show {
- padding:40px;
+  padding: 40px;
   background-color: #20c997;
 }
 .masthead2-heading {
@@ -11862,7 +11862,12 @@ header.masthead .h1 {
 }
 /**********************************/
 
-#portfolio .container-fluid, #portfolio .container-sm, #portfolio .container-md, #portfolio .container-lg, #portfolio .container-xl, #portfolio .container-xxl {
+#portfolio .container-fluid,
+#portfolio .container-sm,
+#portfolio .container-md,
+#portfolio .container-lg,
+#portfolio .container-xl,
+#portfolio .container-xxl {
   max-width: 1920px;
 }
 #portfolio .container-fluid .portfolio-box,
