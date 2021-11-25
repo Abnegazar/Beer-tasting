@@ -1,34 +1,53 @@
-<div class="card">
-    <div class="card-header">
-        <h4>YOUR LAST TASTINGS</h4>
-    </div>
-    <div class="card-body">
-        <div id="displayUserTastings">
-            <?php
-            foreach ($var->lastUserTastings as $userTasting) {
-                echo App::get_partial(PARTIAL_TASTING, array("userTasting" => $userTasting));
-            }
-            ?>
+<div class="dashboard">
+    <h1 class="text-center">Tasting beer</h1>
+    <div class="rectangle ">
+        <h4 class="text-center">YOUR LAST TASTINGS</h4>
+        <div class="card-body">
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <?php
+                        if (empty($var->lastUserTastings) || !isset($var->lastUserTastings)) {
+                            echo "<p>Aucunes d&eacute;gustations </p>";
+                        } else {
+                            foreach ($var->lastUserTastings as $userTasting) {
+                                echo App::get_partial(PARTIAL_TASTING, array("userTasting" => $userTasting));
+                            }
+                        ?>
+                            <a class="change_page" href="<?php echo str_replace("#userId#", Session::getConnectedUserId(), PAGE_USER_TASTINGS) ?>">
+                                <img src="public/assets/img/arrow-right.ico">
+                            </a>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </Section>
         </div>
-        <a class="change_page"
-            href="<?php str_replace("#userId#", Session::getConnectedUserId(), PAGE_USER_TASTINGS) ?>">SHOW</a>
     </div>
-</div>
-
-<div class="card">
-    <div class="card-header">
-        <h4>THE NEW TASTINGS</h4>
-    </div>
-    <div class="card-body">
-        <div id="blockUsersTastings">
-            <div id="setOf4UsersTastings">
-                <?php
-                foreach ($var->lastTastings as $lastTasting) {
-                    echo App::get_partial(PARTIAL_ALL_TASTINGS, array("lastTasting" => $lastTasting));
-                }
-                ?>
-            </div>
-            <a class="change_page" href="<?php echo PAGE_TASTINGS ?>">SHOW</a>
+    <div class="rectangle">
+        <h4 class="text-center">THE NEW TASTINGS</h4>
+        <div class="card-body">
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <?php
+                        if (empty($var->lastTastings) || !isset($var->lastTastings)) {
+                            echo "<p>Aucunes d&eacute;gustations </p>";
+                        } else {
+                            foreach ($var->lastTastings as $lastTasting) {
+                                echo App::get_partial(PARTIAL_ALL_TASTINGS, array("lastTasting" => $lastTasting));
+                            }
+                        ?>
+                            <a class="change_page" href="<?php echo PAGE_TASTINGS ?>">
+                                <img src="public/assets/img/arrow-right.ico">
+                            </a>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </Section>
         </div>
     </div>
 </div>

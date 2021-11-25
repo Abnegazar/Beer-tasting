@@ -1,4 +1,67 @@
-<?php
-if (isset($var->tastings)) {
-    var_dump($var->tastings);
-}
+<h1 class="text-center">Tasting beer</h1>
+<div class="rectangle">
+    <div>
+        <!-- filtre -->
+        <input id="myInput" type="text" placeholder="Search..">
+        <select id="typefiltre">
+            <option value="noFiltrer" selected>Filter</option>
+            <option value="recent">more recent</option>
+            <option value="older">older</option>
+            <option value="bestscore">best score</option>
+            <option value="worstscore">worst score</option>
+        </select>
+        <script>
+            var selectElmt = document.getElementById("typeFilter");
+            var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+            str_replace("#filter#", valeurselectionee, PAGE_DISPLAY_TASTINGS)
+        </script>
+    </div>
+
+    <h4 class="text-center">TASTINGS</h4>
+    <div class="card-body">
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <?php
+                    if (empty($var->tastings) || !isset($var->tastings)) {
+                        echo "<p>Aucunes d&eacute;gustations </p>";
+                    } else {
+                        foreach ($var->tastings as $tasting) {
+                            if (isset($_GET["userId"])) {
+                                echo App::get_partial(PARTIAL_TASTING, array("userTasting" => $tasting));
+                            } else {
+                                echo App::get_partial(PARTIAL_ALL_TASTINGS, array("lastTasting" => $tasting));
+                            }
+                        }
+                    }
+
+                    ?>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <?php
+            $valuePrevious = 0;
+            $valueNext = 0;
+            if (isset($_GET['page'])) {
+                $valueNext = $_GET['page'] + 1;
+                if ($_GET['page'] > 2) {
+                    $valuePrevious = $_GET['page'] - 1;
+                }
+            } else {
+                $valuePrevious =  1;
+            }
+            ?>
+            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", $valuePrevious, PAGE_TASTINGS_BY_PAGE) ?>">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 1, PAGE_TASTINGS_BY_PAGE) ?>">1</a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 2, PAGE_TASTINGS_BY_PAGE) ?>">2</a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 3, PAGE_TASTINGS_BY_PAGE) ?>">3</a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 4, PAGE_TASTINGS_BY_PAGE) ?>">4</a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", $valueNext, PAGE_TASTINGS_BY_PAGE) ?>">Next</a></li>
+        </ul>
+    </nav>
+
+</div>
