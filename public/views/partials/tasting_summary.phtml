@@ -5,25 +5,24 @@
         if (isset($var->userTasting)) {
             $userTasting = $var->userTasting;
         ?>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Product details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Product name-->
-                        <h5 class="fw-bolder"><?php echo $userTasting->beerStyleId ?></h5>
-                        <h4 class="fw-bolder"><?php echo $userTasting->beerName ?></h4>
-                        <div class="rating_stars" data_rating="<?php $userTasting->score['score'] ?>"></div>
-                        <h4 class="fw-bolder"><?php echo $userTasting->createdAt ?></h4>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder"><?php echo $userTasting->beerStyleId ?></h5>
+                            <h4 class="fw-bolder"><?php echo $userTasting->beerName ?></h4>
+                            <div class="stars" data-rating="<?php echo $userTasting->score['score'] / 10 ?>" data-num-stars="5"><?php echo $userTasting->score['score'] ?></div>
+                            <h4 class="fw-bolder"><?php echo $userTasting->createdAt ?></h4>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<?php echo str_replace("#id#", $userTasting->id, PAGE_TASTING) ?>">SHOW</a></div>
                     </div>
                 </div>
-                <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                            href="<?php echo str_replace("#id#", $userTasting->id, PAGE_TASTING) ?>">SHOW</a></div>
-                </div>
             </div>
-        </div>
         <?php
         }
         ?>
