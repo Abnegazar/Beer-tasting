@@ -1,11 +1,11 @@
 <?php
 
 // include require files
-include_once(__DIR__.'/vendor/autoload.php'); 
+include_once(__DIR__ . '/vendor/autoload.php');
 
-include_once(__DIR__.'\vendor\phpmailer\phpmailer\src\PHPMailer.php'); 
-include_once(__DIR__.'\vendor\phpmailer\phpmailer\src\Exception.php'); 
-include_once(__DIR__.'\vendor\phpmailer\phpmailer\src\SMTP.php'); 
+include_once(__DIR__ . '\vendor\phpmailer\phpmailer\src\PHPMailer.php');
+include_once(__DIR__ . '\vendor\phpmailer\phpmailer\src\Exception.php');
+include_once(__DIR__ . '\vendor\phpmailer\phpmailer\src\SMTP.php');
 
 
 
@@ -22,10 +22,10 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-class MailSender
+class Mailer
 {
 
-    static function sendMail($user, $message, $subject) 
+    static function sendMail($user, $message, $subject)
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -59,7 +59,6 @@ class MailSender
             $mail->Subject = $subject;
             $mail->Body    = $message;
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
             $mail->send();
             echo 'Message envoyé';
         } catch (Exception $e) {
@@ -67,5 +66,4 @@ class MailSender
         }
         $mail->smtpClose();
     }
-
 }
