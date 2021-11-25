@@ -11,9 +11,9 @@
             <option value="worstscore">worst score</option>
         </select>
         <script>
-            var selectElmt = document.getElementById("typeFilter");
-            var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
-            str_replace("#filter#", valeurselectionee, PAGE_DISPLAY_TASTINGS)
+        var selectElmt = document.getElementById("typeFilter");
+        var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+        str_replace("#filter#", valeurselectionee, PAGE_DISPLAY_TASTINGS)
         </script>
     </div>
 
@@ -24,7 +24,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <?php
                     if (empty($var->tastings) || !isset($var->tastings)) {
-                        echo "<p>Aucunes d&eacute;gustations </p>";
+                        echo "<p>Aucunes dégustations </p>";
                     } else {
                         foreach ($var->tastings as $tasting) {
                             if (isset($_GET["userId"])) {
@@ -55,12 +55,18 @@
                 $valuePrevious =  1;
             }
             ?>
-            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", $valuePrevious, PAGE_TASTINGS_BY_PAGE) ?>">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 1, PAGE_TASTINGS_BY_PAGE) ?>">1</a></li>
-            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 2, PAGE_TASTINGS_BY_PAGE) ?>">2</a></li>
-            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 3, PAGE_TASTINGS_BY_PAGE) ?>">3</a></li>
-            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", 4, PAGE_TASTINGS_BY_PAGE) ?>">4</a></li>
-            <li class="page-item"><a class="page-link" href="<?php echo str_replace("#page#", $valueNext, PAGE_TASTINGS_BY_PAGE) ?>">Next</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="<?php echo str_replace("#page#", $valuePrevious, PAGE_TASTINGS_BY_PAGE) ?>">Previous</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="<?php echo str_replace("#page#", 1, PAGE_TASTINGS_BY_PAGE) ?>">1</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="<?php echo str_replace("#page#", 2, PAGE_TASTINGS_BY_PAGE) ?>">2</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="<?php echo str_replace("#page#", 3, PAGE_TASTINGS_BY_PAGE) ?>">3</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="<?php echo str_replace("#page#", 4, PAGE_TASTINGS_BY_PAGE) ?>">4</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="<?php echo str_replace("#page#", $valueNext, PAGE_TASTINGS_BY_PAGE) ?>">Next</a></li>
         </ul>
     </nav>
 
