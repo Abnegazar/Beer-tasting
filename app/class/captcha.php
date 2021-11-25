@@ -2,7 +2,6 @@
 
 class Captcha
 {
-
     public static function isCaptchaOk($response)
     {
         $secretKey = "6LcV_ysdAAAAAF9l1j_Li5Smzr0dBu-xA1qbB2O_";

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d80e255-a0a7-4dcc-8ea9-482b882552cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/class/Beer.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/class/Beer.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/class/captcha.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/class/captcha.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/class/tasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/class/tasting.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tastingcontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tastingcontroller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/init.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,13 +27,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReaderModeSettings">
     <option name="showLigatures" value="false" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7d80e255-a0a7-4dcc-8ea9-482b882552cd" name="Changes" comment="" />
@@ -38,10 +46,20 @@
       <updated>1633250588746</updated>
       <workItem from="1633250591404" duration="146000" />
       <workItem from="1633250772004" duration="4759000" />
+      <workItem from="1637830377950" duration="12000" />
+      <workItem from="1637830498999" duration="569000" />
+      <workItem from="1637831487436" duration="86000" />
+      <workItem from="1637831583866" duration="306000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="277" y="92" key="SettingsEditor" timestamp="1637831831684">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="277" y="92" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1637831831684" />
   </component>
 </project>
