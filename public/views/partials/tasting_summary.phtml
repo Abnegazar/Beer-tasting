@@ -13,8 +13,9 @@
                         <!-- Product name-->
                         <h5 class="fw-bolder"><?php echo $userTasting->beerStyleId ?></h5>
                         <h4 class="fw-bolder"><?php echo $userTasting->beerName ?></h4>
-                        <div class="rating_stars" data_rating="<?php $userTasting->score['score'] ?>"></div>
-                        <h4 class="fw-bolder"><?php echo $userTasting->createdAt ?></h4>
+                        <div class="stars" data-rating="<?php echo $userTasting->score['score'] / 10 ?>"
+                            data-num-stars="5"></div>
+                        <h4 class=" fw-bolder"><?php echo $userTasting->createdAt ?></h4>
                     </div>
                 </div>
                 <!-- Product actions-->
