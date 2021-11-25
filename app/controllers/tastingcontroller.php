@@ -2,8 +2,18 @@
 
 class TastingController extends BaseController implements Controller
 {
-
     const viewDirectory = 'tastings/';
+
+    public function __construct()
+    {
+        if ((isset($_GET['mode']))) {
+            if (($_GET['mode'] != "visitor")) {
+                header("Location:" . PAGE_SIGNIN);
+            }
+        } else if (!Session::getConnectedUser()) {
+            header("Location:" . PAGE_SIGNIN);
+        }
+    }
 
     public function getAllTastings()
     {
@@ -46,7 +56,7 @@ class TastingController extends BaseController implements Controller
         );
         return $content;
     }
-    
+
 
     //TODO METHOD getTastingById
 
