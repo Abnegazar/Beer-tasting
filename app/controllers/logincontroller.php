@@ -1,4 +1,5 @@
-<?php
+ <?php
+
 
 class LoginController extends BaseController implements Controller
 {
@@ -119,10 +120,15 @@ class LoginController extends BaseController implements Controller
                     $firstName = $_POST['firstName'];
                     $lastName = $_POST['firstName'];
                     $password = $_POST['password'];
+                    $email = $_POST['email'];
                     $user = new User();
+                    die(var_dump($user));
                     $user->initValue(false, $firstName, $lastName, $email, $password);
                     if ($user->save()) {
-                        $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
+                        $subject = "Bienvenue";
+                        $message = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
+                        MailSender::sendMail($email, $message, $subject);
+                        exit;
                     } else {
                         $errors[] = "Une erreur s'est produite lors de la création du compte";
                     }
