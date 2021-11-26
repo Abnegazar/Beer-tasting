@@ -20,7 +20,7 @@ $connectedUser = Session::getConnectedUser();
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="<?php echo SITE_URL . CSS_FOLDER . "/styles.css" ?>" rel="stylesheet" />
+    <link href="<?php echo SITE_URL . CSS_FOLDER . "styles.css" ?>" rel="stylesheet" />
     <title><?php echo $var->title ?></title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@ $connectedUser = Session::getConnectedUser();
     <?php
     if ($connectedUser == null) {
         /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
-        echo App::get_partial('nav_1', array());
+        echo App::get_partial('nav_2', array());
         echo $var->content;
     } else {
     ?>

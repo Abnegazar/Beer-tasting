@@ -58,10 +58,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
-
 $.fn.stars = function () {
   return $(this).each(function () {
     var rating = $(this).data("rating");
