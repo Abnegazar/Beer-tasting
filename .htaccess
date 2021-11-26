@@ -17,11 +17,14 @@
     RewriteRule ^signup                               index.php?c=loginController&operation=signUp [L]
     RewriteRule ^logout                               index.php?c=loginController&operation=logOut [L]
 
+
     RewriteRule ^tastings/user/(.*)/(.*)$             index.php?c=tastingController&operation=getUserTastings&userId=$1&page=$2 [L]
 
     RewriteRule ^tastings/user/(.*)$                  index.php?c=tastingController&operation=getUserTastings&userId=$1 [L]
 
     RewriteRule ^tastings/visitor/(.*)$               index.php?c=tastingController&operation=getAllTastings&mode=visitor&page=$1 [L]
+    
+    RewriteRule ^tastings/add                         index.php?c=tastingController&operation=addTasting [L]
 
     RewriteRule ^tastings/visitor                     index.php?c=tastingController&operation=getAllTastings&mode=visitor [L]
     

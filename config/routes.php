@@ -15,13 +15,16 @@ DEFINE('PAGE_TASTINGS_BY_PAGE', './tastings/#page#');
 DEFINE('PAGE_TASTINGS_VISITOR', './tastings/visitor');
 DEFINE('PAGE_TASTINGS_VISITOR_BY_PAGE', './tastings/visitor/#page#');
 
+DEFINE('PAGE_TASTINGS_ADD', './tastings/add');
+
+
 
 DEFINE('PAGE_USER_TASTINGS', './tastings/user/#userId#');
 DEFINE('PAGE_USER_TASTINGS_BY_PAGE', './tastings/user/#userId#/#page#');
 
 DEFINE('PAGE_HOME', './home');
 
-DEFINE('PAGE_DASHBOARD', './dashboard');
+DEFINE('PAGE_DASHBOARD', SITE_URL . 'dashboard');
 
 DEFINE('PARTIAL_TASTING', 'tasting_summary');
 DEFINE('PARTIAL_ALL_TASTINGS', 'tasting_summary_bis');

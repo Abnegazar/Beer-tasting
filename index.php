@@ -12,6 +12,13 @@ DEFINE('PARTIALS_SUBFOLDER', 'partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
 DEFINE('LOGS_FOLDER', '../logs/');
 
+if (isset($_SERVER['SERVER_NAME'])) {
+    $serverName = $_SERVER['SERVER_NAME'];
+} else {
+    die(); // pas le $_SERVER['SERVER_NAME'] du mode web ni le $_GET['brand'] des crons
+}
+
+DEFINE('SERVER_NAME', $serverName);
 
 require_once(CONFIG_FOLDER . 'init.php');
 
