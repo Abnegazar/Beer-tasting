@@ -2,16 +2,23 @@
 DEFINE('APP_FOLDER', 'app/');
 DEFINE('CONFIG_FOLDER', 'config/');
 DEFINE('RESOURCES_FOLDER', 'public/');
-DEFINE('CONTROLLERS_FOLDER', APP_FOLDER . '/controllers/');
-DEFINE('CLASS_FOLDER', APP_FOLDER . '/class/');
-DEFINE('VIEWS_FOLDER', RESOURCES_FOLDER . '/views/');
-DEFINE('CSS_FOLDER', RESOURCES_FOLDER . '/css/');
-DEFINE('JS_FOLDER', RESOURCES_FOLDER . '/js/');
+DEFINE('CONTROLLERS_FOLDER', APP_FOLDER . 'controllers/');
+DEFINE('CLASS_FOLDER', APP_FOLDER . 'class/');
+DEFINE('VIEWS_FOLDER', RESOURCES_FOLDER . 'views/');
+DEFINE('CSS_FOLDER', RESOURCES_FOLDER . 'css/');
+DEFINE('JS_FOLDER', RESOURCES_FOLDER . 'js/');
 DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . '/assets/');
-DEFINE('PARTIALS_SUBFOLDER', VIEWS_FOLDER . '/partials/');
+DEFINE('PARTIALS_SUBFOLDER', 'partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
 DEFINE('LOGS_FOLDER', '../logs/');
 
+if (isset($_SERVER['SERVER_NAME'])) {
+    $serverName = $_SERVER['SERVER_NAME'];
+} else {
+    die(); // pas le $_SERVER['SERVER_NAME'] du mode web ni le $_GET['brand'] des crons
+}
+
+DEFINE('SERVER_NAME', $serverName);
 
 require_once(CONFIG_FOLDER . 'init.php');
 
@@ -30,7 +37,6 @@ spl_autoload_register(function ($class) {
 
 $controller = false;
 if (isset($_GET['c']) and class_exists($_GET['c'])) {
-
     $controller = new $_GET['c']();
 } else {
     header('HTTP/1.1 401 Unauthorized');

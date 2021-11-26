@@ -1,8 +1,8 @@
 <?php
 
-class HomeController extends BaseController implements Controller
+class TasteController extends BaseController implements Controller
 {
-    const viewDirectory = "home/";
+    const viewDirectory = "taste/";
 
     public function __construct()
     {
@@ -13,16 +13,12 @@ class HomeController extends BaseController implements Controller
 
     public function render()
     {
-        //$subject = "Bienvenue";
-        //$message = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-        //MailSender::sendMail('kudux01@gmail.com', $message, $subject);
-        //exit;
         $content = false;
         $this->h1 = "home";
         $this->description = "home";
-        $this->title = "TasteMyBeer - Home";
+        $this->title = "home";
 
-        $view = "index.phtml";
+        $view = "tasting.phtml";
 
         $content = App::get_content(
             self::viewDirectory . $view,

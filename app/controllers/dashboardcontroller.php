@@ -20,8 +20,8 @@ class DashboardController extends BaseController implements Controller
 
         $view = "show.phtml";
 
-        $lastUserTastings = ["hey" => 56];
-        $lastTastings = [];
+        $lastUserTastings = Tasting::getUserTastings(Session::getConnectedUserId(), 0, 3);
+        $lastTastings = Tasting::getAllTastings(0, 3);
 
         $content = App::get_content(
             self::viewDirectory . $view,

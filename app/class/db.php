@@ -2,11 +2,11 @@
 
 class Db
 {
-    private static $instance;
-    private static $dbInstance;
+    public static $instance;
+    public static $dbInstance;
 
     // Un constructeur prive empece la création directe d'objet
-    private function __construct()
+    public function __construct()
     {
         self::$dbInstance = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if (!self::$dbInstance) {
