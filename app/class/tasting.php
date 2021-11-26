@@ -14,6 +14,8 @@ class Tasting
     const FLAVOR_COMMENT = 'flavor_comment';
     const MOUTHFEEL_COMMENT = 'mouthfeel_comment';
     const OVERALL_COMMENT = 'flavor_comment';
+    const BOTTLE_INSPECTION_COMMENT = 'bottle_inspection_comment';
+
 
     const AROMA_SCORE = 'aroma_score';
     const APPEARANCE_SCORE = 'appearance_score';
