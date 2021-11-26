@@ -6,7 +6,6 @@
                 <div class="card-body p-4 p-sm-5" id="cardboard">                 
                     <script>
                         var page = 1;
-
                         var title = "";
                         var name = "";
                         var category = "";
@@ -43,7 +42,7 @@
                         let elt = document.getElementById("cardboard");
                         const h5 = document.createElement("h5");
                         h5.setAttribute("class", "card-title text-center mb-5 fw-light fs-5");
-                        h5.innerHTML = "Rate a beer (1/5)";
+                        h5.innerHTML = "New Tasting (1/5)";
                         elt.appendChild(h5);                 
                         const form1 = document.createElement("form");                       
                         form1.setAttribute("id", "beer_form");
@@ -362,10 +361,25 @@
                             );
                         }
 
+                        function page5(){
+                            var sum = Number(mouthfeel) + Number(overall_impression)
+                            + Number(flavor) + Number(appearance) + Number(aroma);
+                            form1.innerHTML =                       
+                            '<div class="form-floating mb-3">'+
+                                'Your tasting has been registered with a grade of '+
+                                sum +'/50'+
+                            '</div>'+
+                            '<div class="form-floating mb-3">'+
+                            '<form action="https://google.com">'+
+                            '<input type="submit" value="Show Tasting" />'+
+                            '</form>'+
+                            '</div>';
+                        }
+
                         function button(){
                             const button = document.createElement("div");
                             button.setAttribute("class", "form-floating mb-3");
-                                                     
+                                                      
                             const next = document.createElement("input");
                             next.setAttribute("class", "favorite styled");
                             next.setAttribute("type", "button");
@@ -404,7 +418,7 @@
 
                         function pageChange(page){
                             if(page == 1){ 
-                                h5.innerHTML = "Rate a beer (1/5)";
+                                h5.innerHTML = "New Tasting (1/5)";
                                 form1.innerHTML = "";
                                 page1();
                                 button();
@@ -412,30 +426,30 @@
                                 
                             }
                             if(page == 2){
-                                h5.innerHTML = "Rate a beer (2/5)";
+                                h5.innerHTML = "New Tasting (2/5)";
                                 form1.innerHTML = "";
                                 page2();
                                 button();  
                                 listen();                      
                             }
                             if(page == 3){
-                                h5.innerHTML = "Rate a beer (3/5) ";
+                                h5.innerHTML = "New Tasting (3/5) ";
                                 form1.innerHTML = "";
                                 page3();
                                 button();
                                 listen();
                             }
                             if(page == 4){
-                                h5.innerHTML = "Rate a beer (4/5)";
+                                h5.innerHTML = "New Tasting (4/5)";
                                 form1.innerHTML = "";
                                 page4();
                                 button();
                                 listen();
                             }
                             if(page == 5){
-                                h5.innerHTML = "Rate a beer (5/5)";
+                                h5.innerHTML = "New Tasting (5/5)";
                                 form1.innerHTML = "";
-                                page2();
+                                page5();
                                 button();
                                 listen();                  
                             }   
