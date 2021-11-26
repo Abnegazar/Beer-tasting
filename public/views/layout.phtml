@@ -37,7 +37,7 @@ $connectedUser = Session::getConnectedUser();
     <?php
     if ($connectedUser != null) {
         /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
-        echo App::get_partial('nav_2', array());
+        echo App::get_partial('nav_1', array());
         echo $var->content;
     } else {
     ?>
