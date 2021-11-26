@@ -18,7 +18,7 @@ class TastingController extends BaseController implements Controller
     public function getAllTastings()
     {
 
-        $view = "tastings.phtml";
+        $view = "viewTastings.phtml";
 
         $limit = DEFAULT_PAGINATION;
 
@@ -40,7 +40,7 @@ class TastingController extends BaseController implements Controller
 
     public function getUserTastings($userId)
     {
-        $view = "tastings.phtml";
+        $view = "viewTastings.phtml";
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
@@ -57,7 +57,6 @@ class TastingController extends BaseController implements Controller
         return $content;
     }
 
-
     //TODO METHOD getTastingById
 
     //TODO METHOD FOR SAVING A NEW USER TASTINGS
@@ -73,6 +72,7 @@ class TastingController extends BaseController implements Controller
             case 'getAllTastings':
             default:
                 $content = $this->getAllTastings();
+                break;
         }
         return $content;
     }

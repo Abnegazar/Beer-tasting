@@ -1,21 +1,6 @@
 <h1 class="text-center">Tasting beer</h1>
+
 <div class="rectangle">
-    <div>
-        <!-- filtre -->
-        <input id="myInput" type="text" placeholder="Search..">
-        <select id="typefiltre">
-            <option value="noFiltrer" selected>Filter</option>
-            <option value="recent">more recent</option>
-            <option value="older">older</option>
-            <option value="bestscore">best score</option>
-            <option value="worstscore">worst score</option>
-        </select>
-        <script>
-        var selectElmt = document.getElementById("typeFilter");
-        var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
-        str_replace("#filter#", valeurselectionee, PAGE_DISPLAY_TASTINGS)
-        </script>
-    </div>
 
     <h4 class="text-center">TASTINGS</h4>
     <div class="card-body">

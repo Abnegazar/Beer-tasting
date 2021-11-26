@@ -12,7 +12,6 @@
 
     RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
 
-
     RewriteRule ^signin                               index.php?c=loginController&operation=signIn [L]
     RewriteRule ^signup                               index.php?c=loginController&operation=signUp [L]
     RewriteRule ^logout                               index.php?c=loginController&operation=logOut [L]
@@ -39,7 +38,7 @@
 
     RewriteRule ^tastings                             index.php?c=tastingController&operation=getAllTastings [L]
 
-    RewriteRule ^$                    index.php?c=homeController [L]
+    RewriteRule ^$                                    index.php?c=homeController [L]
 </IfModule>
 
 
