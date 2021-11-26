@@ -16,8 +16,7 @@ DEFINE('PATTERN_NAME', '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõú
 DEFINE('PATTERN_NAME_EXPL', 'Votre nom et prénom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
 
 if (
-    !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'
-    || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
+    !empty($_SERVER['HTTPS'])
 ) {
     DEFINE('SITE_PROTOCOL', 'https');
 } else {
