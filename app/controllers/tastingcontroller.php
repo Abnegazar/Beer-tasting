@@ -2,7 +2,7 @@
 
 class TastingController extends BaseController implements Controller
 {
-    const viewDirectory = 'tastings/';
+    const viewDirectory = 'tasting/';
 
     public function __construct()
     {
@@ -67,14 +67,12 @@ class TastingController extends BaseController implements Controller
         $content = false;
         $operation = $_GET['operation'];
         switch ($operation) {
-            case 'getAllTastings':
-                $content = $this->getAllTastings();
-                break;
             case 'getUserTastings':
                 $content = $this->getUserTastings($_GET['userId']);
                 break;
+            case 'getAllTastings':
             default:
-                break;
+                $content = $this->getAllTastings();
         }
         return $content;
     }
