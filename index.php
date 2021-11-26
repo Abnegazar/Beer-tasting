@@ -8,10 +8,17 @@ DEFINE('VIEWS_FOLDER', RESOURCES_FOLDER . '/views/');
 DEFINE('CSS_FOLDER', RESOURCES_FOLDER . '/css/');
 DEFINE('JS_FOLDER', RESOURCES_FOLDER . '/js/');
 DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . '/assets/');
-DEFINE('PARTIALS_SUBFOLDER', VIEWS_FOLDER . '/partials/');
+DEFINE('PARTIALS_SUBFOLDER', 'partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
 DEFINE('LOGS_FOLDER', '../logs/');
 
+if (isset($_SERVER['SERVER_NAME'])) {
+    $serverName = $_SERVER['SERVER_NAME'];
+} else {
+    die(); // pas le $_SERVER['SERVER_NAME'] du mode web ni le $_GET['brand'] des crons
+}
+
+DEFINE('SERVER_NAME', $serverName);
 
 require_once(CONFIG_FOLDER . 'init.php');
 
@@ -42,7 +49,7 @@ if ($controller->useLayout()) {
     $h1Controller = $controller->getH1();
     $titleController = $controller->getTitle();
     $content = App::get_content(
-        'layout.php',
+        'layout.phtml',
         array(
             'title' => $titleController,
             'h1' => $h1Controller,

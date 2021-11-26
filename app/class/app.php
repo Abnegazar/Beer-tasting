@@ -80,4 +80,10 @@ class App
     {
         return (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
     }
+
+    public static function test()
+    {   
+        var_dump("hey");
+    }
+    
 }

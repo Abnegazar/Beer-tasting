@@ -6,7 +6,8 @@ class Tasting
     const TITLE = 'title';
 
     const USER_ID = 'user_id';
-    const BEER_ID = 'beer_id';
+    const BEER_STYLE_ID = 'beer_style_id';
+    const BEER_NAME = 'beer_name';
 
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
@@ -50,55 +51,61 @@ class Tasting
     const GOOD = array('label' => 'Good', 'range' => array('start' => 21, 'end' => 29));
     const FAIR = array('label' => 'Fair', 'range' => array('start' => 14, 'end' => 20));
     const PROBLEMATIC = array('label' => 'Problematic', 'range' => array('start' => 0, 'end' => 13));
+    const CREATED_AT = 'created_at';
 
-    private $userId;
-    private $beerId;
 
-    private $id;
-    private $title;
+    public $userId;
+    public $beerStyleId;
+    public $beerName;
 
-    private $aromaComment;
-    private $appearanceComment;
-    private $flavorComment;
-    private $mouthfeelComment;
-    private $overallComment;
+    public $id;
+    public $title;
 
-    private $aromaScore;
-    private $appearanceScore;
-    private $flavorScore;
-    private $mouthfeelScore;
-    private $overallScore;
-    private $total;
-    private $score;
+    public $aromaComment;
+    public $appearanceComment;
+    public $flavorComment;
+    public $mouthfeelComment;
+    public $overallComment;
 
-    private $isAcetaldehyde;
-    private $isAlcoholic;
-    private $isAstringent;
-    private $isDiacetyl;
-    private $isDms;
-    private $isEstery;
-    private $isGrassy;
-    private $isLightStruck;
-    private $isMetallic;
-    private $isMusty;
-    private $isOxidized;
-    private $isPhenolic;
-    private $isSolvent;
-    private $isAcidic;
-    private $isSulfur;
-    private $isVegetal;
-    private $isBottleOk;
-    private $isYeasty;
+    public $aromaScore;
+    public $appearanceScore;
+    public $flavorScore;
+    public $mouthfeelScore;
+    public $overallScore;
+    public $total;
+    public $score;
 
-    private $stylisticAccuracy;
-    private $intangibles;
-    private $technicalMerit;
+    public $isAcetaldehyde;
+    public $isAlcoholic;
+    public $isAstringent;
+    public $isDiacetyl;
+    public $isDms;
+    public $isEstery;
+    public $isGrassy;
+    public $isLightStruck;
+    public $isMetallic;
+    public $isMusty;
+    public $isOxidized;
+    public $isPhenolic;
+    public $isSolvent;
+    public $isAcidic;
+    public $isSulfur;
+    public $isVegetal;
+    public $isBottleOk;
+    public $isYeasty;
+
+    public $stylisticAccuracy;
+    public $intangibles;
+    public $technicalMerit;
+
+    public $createdAt;
 
 
     public function __construct()
     {
         $this->userId = false;
-        $this->beerId = false;
+        $this->beerStyleId = false;
+        $this->beerName = false;
         $this->id = false;
         $this->title = false;
 
@@ -137,6 +144,7 @@ class Tasting
         $this->stylisticAccuracy = false;
         $this->intangibles = false;
         $this->technicalMerit = false;
+        $this->createdAt = false;
     }
 
 
@@ -149,7 +157,8 @@ class Tasting
         $this->id                = (int)$o[self::ID];
         $this->title             = $o[self::TITLE];
         $this->userId            = (int)$o[self::USER_ID];
-        $this->beerId            = (int)$o[self::BEER_ID];
+        $this->beerStyleId       = (int)$o[self::BEER_STYLE_ID];
+        $this->beerName          = $o[self::BEER_NAME];
 
         $this->aromaComment      = $o[self::AROMA_COMMENT];
         $this->appearanceComment = $o[self::APPEARANCE_COMMENT];
@@ -188,6 +197,7 @@ class Tasting
         $this->stylisticAccuracy = (int)$o[self::STYLISTIC_ACCURACY];
         $this->intangibles       = (int)$o[self::INTANGIBLES];
         $this->technicalMerit    = (int)$o[self::TECHNICAL_MERIT];
+        $this->createdAt         = $o[self::CREATED_AT];
     }
 
     public function calculateScore()
@@ -232,12 +242,81 @@ class Tasting
         }
     }
 
-    public static function getUserTastings($userId = false)
+    public static function getUserTastings($userId, $offset = false, $limit = false)
     {
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
         $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
         $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . "";
+        if ($limit) {
+            $sql .= ' LIMIT ' . $offset . ', ' . $limit;
+        }
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getAllTastings($offset = false, $limit = false)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+
+        $offset = ($offset) ? $offset : 0;
+        $sql = "SELECT * FROM tasting";
+        if ($limit) {
+            $sql .= ' LIMIT ' . $offset . ', ' . $limit;
+        }
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getSomeTastings($limit)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "SELECT * FROM tasting ORDER BY created_time DESC limit" . $limit . "";
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $tastings = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tasting = new Tasting();
+                $tasting->__initFromDbObject($row);
+                array_push($tastings, $tasting);
+            }
+            return $tastings;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function getSomeUserTastings($userId = false, $limit)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
+        $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . " LIMIT " . $limit . "";
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             $tastings = [];

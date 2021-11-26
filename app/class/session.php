@@ -5,7 +5,7 @@ class Session
     const USER = 'user';
     const USER_ID = 'userId';
 
-    private static function setConnectedUserId($userId)
+    public static function setConnectedUserId($userId)
     {
         $_SESSION[self::USER_ID] = $userId;
         return true;
@@ -21,7 +21,7 @@ class Session
         return $user_id;
     }
 
-    private static function deleteConnectedUserId()
+    public static function deleteConnectedUserId()
     {
         unset($_SESSION[self::USER_ID]);
     }
