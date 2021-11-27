@@ -8,7 +8,6 @@ class Tasting
 
     const USER_ID = 'user_id';
     const BEER_STYLE_ID = 'beer_style_id';
-    const BEER_NAME = 'beer_name';
 
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
@@ -154,7 +153,7 @@ class Tasting
     public function initValue(
         $id = false,
         $userId,
-        $beerId,
+        $beerStyleId,
         $beerName,
         $title = '',
 
@@ -189,12 +188,12 @@ class Tasting
         $isBottleOk = 0,
         $isYeasty = 0,
 
-        $stylisticAccuracy,
-        $intangibles,
-        $technicalMerit
+        $stylisticAccuracy = 0,
+        $intangibles = 0,
+        $technicalMerit = 0
     ) {
         $this->userId = $userId;
-        $this->beerId = $beerId;
+        $this->beerStyleId = $beerStyleId;
         $this->beerName = $beerName;
         $this->id = ($id) ? $id : false;
         $this->title = $title;
@@ -384,9 +383,9 @@ class Tasting
                     `technical_merit`
                 )VALUES (
                     \'' . mysqli_real_escape_string($dbInstance, $this->title) . '\',
-                    \'' . mysqli_real_escape_string($dbInstance, $this->beerId) . '\',
+                    ' . (int)$this->beerStyleId . ',
                     \'' . mysqli_real_escape_string($dbInstance, $this->beerName) . '\',
-                    \'' . mysqli_real_escape_string($dbInstance, $this->userId) . '\',
+                    ' . (int) $this->userId . ',
                     \'' . mysqli_real_escape_string($dbInstance, $this->aromaComment) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->aromaScore) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->appearanceComment) . '\',
@@ -459,7 +458,7 @@ class Tasting
         $dbInstance = Db::getInstance()->getDbInstance();
 
         $offset = ($offset) ? $offset : 0;
-        $sql = "SELECT * FROM tasting";
+        $sql = "SELECT * FROM tasting ORDER BY created_at DESC";
         if ($limit) {
             $sql .= ' LIMIT ' . $offset . ', ' . $limit;
         }

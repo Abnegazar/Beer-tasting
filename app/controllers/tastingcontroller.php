@@ -57,7 +57,7 @@ class TastingController extends BaseController implements Controller
 
     public function getTastingById($id)
     {
-        $view = "tastings.phtml";
+        $view = "viewTasting.phtml";
 
         $tastings = Tasting::getTastingById($id);
 
@@ -69,78 +69,44 @@ class TastingController extends BaseController implements Controller
 
     public function addNew()
     {
-        $view = 'addtasting.phtml';
+        $view = 'addTasting.phtml';
         $errors = [];
         $success = false;
         if (!empty($_POST)) {
+
             //sélection de la bière dégustée
-            if (!isset($_POST['beerId'])) {
+            if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
                 $errors[] = 'Aucune Bière n\'a été sélectionnée.';
             }
 
             //nom de la bière
-            if (!isset($_POST['beerName']) || empty($_POST['beerName'])) {
+            if (!isset($_POST['' . Tasting::BEER_NAME . '']) || empty($_POST['' . Tasting::BEER_NAME . ''])) {
                 $errors[] = 'Le nom de la bière est obligatoire.';
             }
 
-            //score donné à l'arôme
-            if (!isset($_POST['aromaSore']) || empty($_POST['aromaScore'])) {
-                $errors[] = 'Le score donné à l\'arôme est obligatoire.';
-            } else if (!preg_match($_POST['aromaScore'], PATERN_TWO_DECIMAL_DIGIT_NUMBER)) {
-                $errors[] = PATERN_TWO_DECIMAL_DIGIT_NUMBER_EXPL;
-            } else if ((tasting::getFloat($_POST['aromaScore'])) > 10) {
-                $errors[] = 'Le score donné à l\'arôme doit être inférieur ou égal à 10';
+            $values = array($_POST['' . Tasting::AROMA_SCORE . ''], $_POST['' . Tasting::APPEARANCE_SCORE . ''], $_POST['' . Tasting::FLAVOR_SCORE . ''], $_POST['' . Tasting::MOUTHFEEL_SCORE . ''], $_POST['' . Tasting::OVERALL_SCORE . '']);
+            $res = App::checkValue($values);
+            if ($res != false) {
+                $errors[] = $res;
             }
-
-            //score donné à l'apparance
-            if (!isset($_POST['appearanceScore']) || empty($_POST['appearanceScore'])) {
-                $errors[] = 'Le score donné à l\'apparance est obligatoire.';
-            } else if (!preg_match($_POST['appearanceScore'], PATERN_TWO_DECIMAL_DIGIT_NUMBER)) {
-                $errors[] = PATERN_TWO_DECIMAL_DIGIT_NUMBER_EXPL;
-            } else if ((tasting::getFloat($_POST['appearanceScore'])) > 10) {
-                $errors[] = 'Le score donné à l\'apparance doit être inférieur ou égal à 10';
-            }
-
-            //score donné à la saveur
-            if (!isset($_POST['flavorScore']) || empty($_POST['flavorScore'])) {
-                $errors[] = 'Le score donné à la saveur est obligatoire.';
-            } else if (!preg_match($_POST['flavorScore'], PATERN_TWO_DECIMAL_DIGIT_NUMBER)) {
-                $errors[] = PATERN_TWO_DECIMAL_DIGIT_NUMBER_EXPL;
-            } else if ((tasting::getFloat($_POST['flavorScore'])) > 10) {
-                $errors[] = 'Le score donné à lla saveur doit être inférieur ou égal à 10';
-            }
-
-            //score donné à la sensation en bouche
-            if (!isset($_POST['mouthfeelScore']) || empty($_POST['mouthfeelScore'])) {
-                $errors[] = 'Le score donné à la sensation en bouche est obligatoire.';
-            } else if (!preg_match($_POST['mouthfeelScore'], PATERN_TWO_DECIMAL_DIGIT_NUMBER)) {
-                $errors[] = PATERN_TWO_DECIMAL_DIGIT_NUMBER_EXPL;
-            } else if ((tasting::getFloat($_POST['mouthfeelScore'])) > 10) {
-                $errors[] = 'Le score donné à la sensation en bouche doit être inférieur ou égal à 10';
-            }
-
-            //score général
-            if (!isset($_POST['overallScore']) || empty($_POST['overallScore'])) {
-                $errors[] = 'Le score donné à la bière en général est obligatoire.';
-            } else if (!preg_match($_POST['overallScore'], PATERN_TWO_DECIMAL_DIGIT_NUMBER)) {
-                $errors[] = PATERN_TWO_DECIMAL_DIGIT_NUMBER_EXPL;
-            } else if ((tasting::getFloat($_POST['overallScore'])) > 10) {
-                $errors[] = 'Le score donné à la bière en général doit être inférieur ou égal à 10';
-            }
-
             //Précision stylistique
-            if (!isset($_POST['stylisticAccuracy']) || empty($_POST['stylisticAccuracy'])) {
+            /*if (!isset($_POST['stylisticAccuracy']) || empty($_POST['stylisticAccuracy'])) {
                 $errors[] = 'La précision stylistique est obligatoire.';
             } else if (!preg_match($_POST['stylisticAccuracy'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
                 $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
+            }*/
+
 
             //Intangibilité
+            /*
             if (!isset($_POST['intangibles']) || empty($_POST['intangibles'])) {
                 $errors[] = 'L\'intangibilité est obligatoire.';
             } else if (!preg_match($_POST['intangibles'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
                 $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
             }
+            */
+
+            /*
 
             //Mérite thechinique
             if (!isset($_POST['technicalMerit']) || empty($_POST['technicalMerit'])) {
@@ -148,51 +114,57 @@ class TastingController extends BaseController implements Controller
             } else if (!preg_match($_POST['technicalMerit'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
                 $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
             }
+            */
 
             if (empty($errors)) {
-                $userId = Session::getConnectedUser()->id;
-                $beerId = $_POST['beer'];
-                $beerName = Tasting::clearComments($_POST['beerName']);
-                $title = $_POST['title'];
-                $aromaComment = Tasting::clearComments($_POST['aromaComment']);
-                $appearanceComment = Tasting::clearComments($_POST['appearanceComment']);
-                $flavorComment = Tasting::clearComments($_POST['flavorComment']);
-                $mouthfeelComment = Tasting::clearComments($_POST['mouthfeelComment']);
-                $overallComment = Tasting::clearComments($_POST['overallComment']);
-                $aromaScore = tasting::getFloat($_POST['aromaScore']);
-                $appearanceScore = tasting::getFloat($_POST['appearanceScore']);
-                $flavorScore = tasting::getFloat($_POST['flavorScore']);
-                $mouthfeelScore = tasting::getFloat($_POST['mouthfeelScore']);
-                $overallScore = tasting::getFloat($_POST['overallScore']);
-                $total = Tasting::calculateTotal($aromaScore, $appearanceScore, $flavorScore, $mouthfeelScore, $overallScore);
-                $isAcetaldehyde = $_POST['isAcetaldehyde'];
-                $isAlcoholic = $_POST['isAlcoholic'];
-                $isAstringent = $_POST['isAstringent'];
-                $isDiacetyl = $_POST['isDiacetyl'];
-                $isDms = $_POST['isDms'];
-                $isEstery = $_POST['isEstery'];
-                $isGrassy = $_POST['isGrassy'];
-                $isLightStruck = $_POST['isLightStruck'];
-                $isMetallic = $_POST['isMetallic'];
-                $isMusty = $_POST['isMusty'];
-                $isOxidized = $_POST['isOxidized'];
-                $isPhenolic = $_POST['isPhenolic'];
-                $isSolvent = $_POST['isSolvent'];
-                $isAcidic = $_POST['isAcidic'];
-                $isSulfur = $_POST['isSulfur'];
-                $isVegetal = $_POST['isVegetal'];
-                $isBottleOk = $_POST['isBottleOk'];
-                $isYeasty = $_POST['isYeasty'];
 
+                $userId = Session::getConnectedUser()->id;
+                $beerStyleId = $_POST['' . Tasting::BEER_STYLE_ID . ''];
+                $beerName = Tasting::clearComments($_POST['' . Tasting::BEER_NAME . '']);
+                $title = $_POST['' . Tasting::TITLE . ''];
+                $aromaComment = Tasting::clearComments($_POST['' . Tasting::AROMA_COMMENT . '']);
+                $appearanceComment = Tasting::clearComments($_POST['' . Tasting::APPEARANCE_COMMENT . '']);
+                $flavorComment = Tasting::clearComments($_POST['' . Tasting::FLAVOR_COMMENT . '']);
+                $mouthfeelComment = Tasting::clearComments($_POST['' . Tasting::MOUTHFEEL_COMMENT . '']);
+                $overallComment = Tasting::clearComments($_POST['' . Tasting::OVERALL_COMMENT . '']);
+                $aromaScore = tasting::getFloat($_POST['' . Tasting::AROMA_SCORE . '']);
+                $appearanceScore = tasting::getFloat($_POST['' . Tasting::APPEARANCE_SCORE . '']);
+                $flavorScore = tasting::getFloat($_POST['' . Tasting::FLAVOR_SCORE . '']);
+                $mouthfeelScore = tasting::getFloat($_POST['' . Tasting::MOUTHFEEL_SCORE . '']);
+                $overallScore = tasting::getFloat($_POST['' . Tasting::OVERALL_SCORE . '']);
+                $total = Tasting::calculateTotal($aromaScore, $appearanceScore, $flavorScore, $mouthfeelScore, $overallScore);
+
+                $isAcetaldehyde = isset($_POST['' . Tasting::IS_ACETALDEHYDE . '']) ? 1 : 0;
+
+                $isAlcoholic = isset($_POST['' . Tasting::IS_ALCOHOLIC . '']) ? 1 : 0;
+                $isAstringent = isset($_POST['' . Tasting::IS_ASTRINGENT . '']) ? 1 : 0;
+                $isDiacetyl = isset($_POST['' . Tasting::IS_DIACETYL . '']) ? 1 : 0;
+                $isDms = isset($_POST['' . Tasting::IS_DMS . '']) ? 1 : 0;
+                $isEstery = isset($_POST['' . Tasting::IS_ESTERY . '']) ? 1 : 0;
+                $isGrassy = isset($_POST['' . Tasting::IS_GRASSY . '']) ? 1 : 0;
+                $isLightStruck = isset($_POST['' . Tasting::IS_LIGHT_STRUCK . '']) ? 1 : 0;
+                $isMetallic = isset($_POST['' . Tasting::IS_METALLIC . '']) ? 1 : 0;
+                $isMusty = isset($_POST['' . Tasting::IS_MUSTY . '']) ? 1 : 0;
+                $isOxidized = isset($_POST['' . Tasting::IS_OXIDIZED . '']) ? 1 : 0;
+                $isPhenolic = isset($_POST['' . Tasting::IS_PHENOLIC . '']) ? 1 : 0;
+                $isSolvent = isset($_POST['' . Tasting::IS_SOLVENT . '']) ? 1 : 0;
+                $isAcidic = isset($_POST['' . Tasting::IS_ACIDIC . '']) ? 1 : 0;
+                $isSulfur = isset($_POST['' . Tasting::IS_SULFUR . '']) ? 1 : 0;
+                $isVegetal = isset($_POST['' . Tasting::IS_VEGETAL . '']) ? 1 : 0;
+                $isBottleOk = isset($_POST['' . Tasting::IS_BOTTLE_OK . '']) ? 1 : 0;
+                $isYeasty = isset($_POST['' . Tasting::IS_YEASTY . '']) ? 1 : 0;
+
+                /*
                 $stylisticAccuracy = $_POST['isYeasty'];
                 $intangibles = $_POST['intangibles'];
                 $technicalMerit = $_POST['technicalMerit'];
+                */
 
                 $tasting = new Tasting();
                 $tasting->initValue(
                     $id = false,
                     $userId,
-                    $beerId,
+                    $beerStyleId,
                     $beerName,
                     $title,
                     $aromaComment,
@@ -223,10 +195,7 @@ class TastingController extends BaseController implements Controller
                     $isSulfur,
                     $isVegetal,
                     $isBottleOk,
-                    $isYeasty,
-                    $stylisticAccuracy,
-                    $intangibles,
-                    $technicalMerit
+                    $isYeasty
                 );
                 if ($tasting->save()) {
                     $success = "La dégustation a été enregistré avec succès.";
@@ -249,8 +218,14 @@ class TastingController extends BaseController implements Controller
         $content = false;
         $operation = $_GET['operation'];
         switch ($operation) {
+            case 'addTasting':
+                $content = $this->addNew();
+                break;
             case 'getUserTastings':
                 $content = $this->getUserTastings($_GET['userId']);
+                break;
+            case 'getTastingById':
+                $content = $this->getTastingById($_GET['id']);
                 break;
             case 'getAllTastings':
             default:

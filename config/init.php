@@ -12,7 +12,7 @@ DEFINE('DEFAULT_PAGINATION', '2');
 DEFINE('PATTERN_PASSWORD', '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/');
 DEFINE('PATTERN_PASSWORD_EXPL', '');
 
-DEFINE('PATERN_TWO_DECIMAL_DIGIT_NUMBER', '/^([0-9]{1,2}\.)?[0-9]{1,2}$/');
+DEFINE('PATERN_TWO_DECIMAL_DIGIT_NUMBER', '/^([0-9]{1,2}\.)?[0-9]{1,2}$/i');
 DEFINE('PATERN_TWO_DECIMAL_DIGIT_NUMBER_EXPL', 'Veuillez entre une valeur décimale de deux chiffre au plus après la virgule.');
 
 DEFINE('PATERN_ONE_DIGIT_BETWEEN_1_AND_5', '/^[1-5]$/');

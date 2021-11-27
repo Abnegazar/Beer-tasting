@@ -21,6 +21,7 @@
             $this->title = "TasteMyBeer - Sign in";
             $errors = [];
             if (!empty($_POST)) {
+
                 //email validation
                 if (!isset($_POST['email']) or empty(trim($_POST['email']))) {
                     $errors[] = 'L\'email est obligatoire.';
@@ -69,6 +70,7 @@
             $errors = [];
             $success = false;
             if (!empty($_POST)) {
+
                 //name validation
                 if (!isset($_POST['firstName'])) {
                     $errors[] = 'Le prénom est obligatoire. ';
@@ -76,7 +78,7 @@
                     $errors[] = PATTERN_NAME_EXPL;
                 }
 
-                if (!isset($_POST['lastName'])) {
+                if (!isset($_POST['name'])) {
                     $errors[] = 'Le nom est obligatoire. ';
                 } else if (!preg_match(PATTERN_NAME, $_POST['name'])) {
                     $errors[] = PATTERN_NAME_EXPL;
@@ -99,35 +101,22 @@
                 }
 
 
-                if (isset($_POST['g-recaptcha-response'])) {
-                    $captchaResponse = $_POST['g-recaptcha-response'];
-                }
-
-                if (!$captchaResponse || empty($captchaResponse)) {
-                    $errors[] = "recaptcha verification failed !";
-                } else {
-                    if (!Captcha::isCaptchaOk($captchaResponse)) {
-                        $errors[] = "Captcha unsolved.";
-                        var_dump($captchaResponse);
-                    }
-                }
-
                 if (empty($errors)) {
                     $email = $_POST['email'];
                     //check if user already exists
                     if (!User::isUserExists($email)) {
                         //if not saving the user in the database
                         $firstName = $_POST['firstName'];
-                        $lastName = $_POST['firstName'];
+                        $lastName = $_POST['name'];
                         $password = $_POST['password'];
                         $email = $_POST['email'];
                         $user = new User();
-                        die(var_dump($user));
                         $user->initValue(false, $firstName, $lastName, $email, $password);
                         if ($user->save()) {
-                            $subject = "Bienvenue";
-                            $message = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-                            Mailer::sendMail($email, $message, $subject);
+                            $subject = "Confirmation";
+                            $message = "Confirmation ";
+                            $succes = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
+                            //Mailer::sendMail($email, $message, $subject);
                         } else {
                             $errors[] = "Une erreur s'est produite lors de la création du compte";
                         }

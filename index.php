@@ -1,4 +1,5 @@
 <?php
+
 DEFINE('APP_FOLDER', 'app/');
 DEFINE('CONFIG_FOLDER', 'config/');
 DEFINE('RESOURCES_FOLDER', 'public/');

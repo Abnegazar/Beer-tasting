@@ -41,9 +41,7 @@
     RewriteRule ^$                                    index.php?c=homeController [L]
 </IfModule>
 
-</IfModule>
 
-#^(\d*)$ -- Pour les chiffres uniquement
 
 SetEnv host localhost
 SetEnv user root

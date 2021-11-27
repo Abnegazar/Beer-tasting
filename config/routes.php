@@ -1,12 +1,12 @@
 <?php
 
-DEFINE('PAGE_SIGNIN', './signin');
-DEFINE('PAGE_SIGNUP', './signup');
-DEFINE('PAGE_SIGNUP_SUCCES', './signUp');
-DEFINE('PAGE_LOGOUT', './logout');
-DEFINE('PAGE_NEW_PASSWORD', './reset-password');
-DEFINE('PAGE_FORGOT_PASSWORD', './forgot-password');
-DEFINE('PAGE_SHOW_DEGUSTATION', './show-degustation');
+DEFINE('PAGE_SIGNIN', SITE_URL . 'signin');
+DEFINE('PAGE_SIGNUP', SITE_URL . 'signup');
+DEFINE('PAGE_SIGNUP_SUCCES', SITE_URL . 'signUp');
+DEFINE('PAGE_LOGOUT', SITE_URL . 'logout');
+DEFINE('PAGE_NEW_PASSWORD', SITE_URL . 'reset-password');
+DEFINE('PAGE_FORGOT_PASSWORD', SITE_URL . 'forgot-password');
+DEFINE('PAGE_SHOW_DEGUSTATION', SITE_URL . 'show-degustation');
 
 DEFINE('PAGE_TASTING', SITE_URL . 'tasting/#id#');
 DEFINE('PAGE_TASTINGS', SITE_URL . 'tastings');
