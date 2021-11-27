@@ -65,13 +65,13 @@ class Tasting
     private $mouthfeelComment;
     private $overallComment;
 
-    private $aromaScore;
-    private $appearanceScore;
-    private $flavorScore;
-    private $mouthfeelScore;
-    private $overallScore;
-    private $total;
-    private $score;
+    private float $aromaScore;
+    private float $appearanceScore;
+    private float $flavorScore;
+    private float $mouthfeelScore;
+    private float $overallScore;
+    private float $total;
+    private float $score;
 
     private $isAcetaldehyde;
     private $isAlcoholic;
@@ -83,18 +83,18 @@ class Tasting
     private $isLightStruck;
     private $isMetallic;
     private $isMusty;
-    private $isOxidized;
-    private $isPhenolic;
-    private $isSolvent;
-    private $isAcidic;
-    private $isSulfur;
-    private $isVegetal;
-    private $isBottleOk;
-    private $isYeasty;
+    private bool $isOxidized;
+    private bool $isPhenolic;
+    private bool $isSolvent;
+    private bool $isAcidic;
+    private bool $isSulfur;
+    private bool $isVegetal;
+    private bool $isBottleOk;
+    private bool $isYeasty;
 
-    private $stylisticAccuracy;
-    private $intangibles;
-    private $technicalMerit;
+    private bool $stylisticAccuracy;
+    private bool $intangibles;
+    private bool $technicalMerit;
 
 
     public function __construct()

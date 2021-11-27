@@ -2,20 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d80e255-a0a7-4dcc-8ea9-482b882552cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/class/captcha.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/class/captcha.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/class/tasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/class/tasting.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/beercontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/beercontroller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/tastingcontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tastingcontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/init.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../bin/php/php7.3.21/php.ini" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP_7.3.21">
+    <include_path>
+      <path value="$PROJECT_DIR$/../../../php/pear" />
+      <path value="$PROJECT_DIR$/../../bin/php/php7.3.21" />
+      <path value="$PROJECT_DIR$/../../bin/php/php7.4.9" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1yzNiRRre0zQJSvUHxlCsCJJ07W" />
   <component name="ProjectViewState">
@@ -23,17 +34,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../bin/php/php7.4.9/php.exe" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReaderModeSettings">
     <option name="showLigatures" value="false" />
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -50,16 +63,16 @@
       <workItem from="1637830498999" duration="569000" />
       <workItem from="1637831487436" duration="86000" />
       <workItem from="1637831583866" duration="306000" />
+      <workItem from="1637913931837" duration="577000" />
+      <workItem from="1637914526716" duration="1814000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="277" y="92" key="SettingsEditor" timestamp="1637831831684">
-      <screen x="0" y="30" width="1536" height="834" />
-    </state>
-    <state x="277" y="92" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1637831831684" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

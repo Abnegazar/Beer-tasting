@@ -7,7 +7,6 @@ class TastingController extends BaseController implements Controller
 
     public function getAllTastings()
     {
-
         $view = "tastings.phtml";
 
         $limit = DEFAULT_PAGINATION;
@@ -18,13 +17,12 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getAllTastings($offset, $limit);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array(
                 'tastings' => $tastings
             )
         );
-        return $content;
     }
 
 
@@ -40,11 +38,10 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getUserTastings($userId, $offset, $limit);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array('tastings' => $tastings)
         );
-        return $content;
     }
 
     public function getTastingById($id)
@@ -53,11 +50,10 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getTastingById($id);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array('tastings' => $tastings)
         );
-        return $content;
     }
 
     public function addNew()
@@ -143,7 +139,6 @@ class TastingController extends BaseController implements Controller
             }
 
             if (empty($errors)) {
-
                 $userId = Session::getConnectedUser()->id;
                 $beerId = $_POST['beer'];
                 $beerName = Tasting::clearComments($_POST['beerName']);
@@ -229,14 +224,13 @@ class TastingController extends BaseController implements Controller
                 }
             }
         }
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array(
                 'errors'             => $errors,
                 'success'            => $success
             )
         );
-        return $content;
     }
 
     public function render()

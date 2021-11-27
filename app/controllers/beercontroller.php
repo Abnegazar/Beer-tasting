@@ -8,11 +8,10 @@ class BeerController extends BaseController implements Controller
         $view = "beer.phtml";
         $beers = Beer::getSomeBeers($limit);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array('beers' => $beers)
         );
-        return $content;
     }
 
     public function getAllBeers()
@@ -20,11 +19,10 @@ class BeerController extends BaseController implements Controller
         $view = "beer.phtml";
         $beers = Beer::getAllBeers();
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array('beers' => $beers)
         );
-        return $content;
     }
 
     public function getBeerById($id)
@@ -32,13 +30,15 @@ class BeerController extends BaseController implements Controller
         $view = "beer.phtml";
         $beers = Beer::getBeerById($id);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array('beers' => $beers)
         );
-        return $content;
     }
 
+    /**
+     * @return false|string
+     */
     public function render()
     {
         $content = false;
