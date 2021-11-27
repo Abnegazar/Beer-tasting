@@ -109,7 +109,7 @@ ALTER TABLE user MODIFY user.password CHAR(60);
 
 ALTER table tasting Add column beer_name varchar(250) NULL AFTER beer_id;
 
-RENAME TABLE  `beer` TO  `beer_style`
+RENAME TABLE  `beer` TO  `beer_style` ;
 ALTER TABLE tasting CHANGE beer_id beer_style_id int(11);
 
 ALTER table user add column is_verified tinyint(1) DEFAULT 0 NOT NULL after created_at;

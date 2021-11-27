@@ -2,13 +2,13 @@
 
 class DashboardController extends BaseController implements Controller
 {
-    const viewDirectory = "dashboard/";
+    const viewDirectory = "beer-test/";
 
     public function __construct()
     {
-        if (!Session::getConnectedUser()) {
+       /* if (!Session::getConnectedUser()) {
             header("Location:" . PAGE_SIGNIN);
-        }
+        }*/
     }
 
     public function render()
@@ -18,10 +18,10 @@ class DashboardController extends BaseController implements Controller
         $this->description = "dashboard";
         $this->title = "TasteMyBeer - Dashboard";
 
-        $view = "index.phtml";
+        $view = "show.phtml";
 
-        $lastUserTastings = ["hey" => 56];
-        $lastTastings = [];
+        $lastUserTastings = Tasting::getUserTastings(Session::getConnectedUserId(), 0, 3);
+        $lastTastings = Tasting::getAllTastings(0, 3);
 
         $content = App::get_content(
             self::viewDirectory . $view,

@@ -1,0 +1,95 @@
+<style>
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.warning {
+    border: 1px solid red;
+}
+</style>
+<div class="card">
+    <div class="card-header">
+        <h1>New tasting</h1>
+    </div>
+    <div class="card-body">
+        <form id="form" action="" method="post">
+            <!--step 1-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_1, array()); ?>
+            <!--step 2-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_2, array()); ?>
+            <!--step 3-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
+            <!--step 4-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
+            <div class="card-footer">
+                <div class="buttons">
+                    <button class="btn btn-secondary btnPrev hidden">Previous</button>
+                    <button class="btn btn-secondary btnNext">Next</button>
+                    <input type="submit" value="Save" class="btn btn-primary btnSubmit hidden" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+    var $fieldsets = $('form fieldset');
+    $('.btnNext').click(function(e) {
+        e.preventDefault();
+        $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
+
+    });
+    $('.btnPrev').click(function(e) {
+        e.preventDefault();
+        $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
+
+    });
+
+    function shButtons() {
+        console.log($fieldsets.filter(':visible').index());
+        if ($fieldsets.filter(':visible').index() > 0) {
+            $('.btnPrev').show();
+        } else {
+            $('.btnPrev').hide();
+        }
+        console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
+        if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
+            $('.btnSubmit').show();
+            $('.btnNext').hide();
+        } else {
+            $('.btnSubmit').hide();
+            $('.btnNext').show();
+        }
+    }
+
+    $(".btnSubmit").click(function(e) {
+        e.preventDefault();
+        var isFormValid = true;
+        $(".required").each(function() {
+            if ($.trim($(this).val()).length == 0) {
+                $(this).addClass("warning");
+                isFormValid = false;
+            } else {
+                $(this).removeClass("warning");
+            }
+        });
+        if (!isFormValid) {
+            alert("Please fill in all the required fields (indicated by *)");
+        } else {
+            $("#form").submit();
+        }
+    });
+});
+</script>

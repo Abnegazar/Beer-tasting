@@ -13,12 +13,16 @@ class HomeController extends BaseController implements Controller
 
     public function render()
     {
+        //$subject = "Bienvenue";
+        //$message = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
+        //MailSender::sendMail('kudux01@gmail.com', $message, $subject);
+        //exit;
         $content = false;
         $this->h1 = "home";
         $this->description = "home";
         $this->title = "TasteMyBeer - Home";
 
-        $view = "landing.phtml";
+        $view = "index.phtml";
 
         $content = App::get_content(
             self::viewDirectory . $view,
@@ -27,5 +31,3 @@ class HomeController extends BaseController implements Controller
         return $content;
     }
 }
-
-?>

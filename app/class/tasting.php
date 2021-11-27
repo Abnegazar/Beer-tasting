@@ -8,12 +8,15 @@ class Tasting
 
     const USER_ID = 'user_id';
     const BEER_STYLE_ID = 'beer_style_id';
+    const BEER_NAME = 'beer_name';
 
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
     const FLAVOR_COMMENT = 'flavor_comment';
     const MOUTHFEEL_COMMENT = 'mouthfeel_comment';
     const OVERALL_COMMENT = 'flavor_comment';
+    const BOTTLE_INSPECTION_COMMENT = 'bottle_inspection_comment';
+
 
     const AROMA_SCORE = 'aroma_score';
     const APPEARANCE_SCORE = 'appearance_score';
@@ -51,56 +54,61 @@ class Tasting
     const GOOD = array('label' => 'Good', 'range' => array('start' => 21, 'end' => 29));
     const FAIR = array('label' => 'Fair', 'range' => array('start' => 14, 'end' => 20));
     const PROBLEMATIC = array('label' => 'Problematic', 'range' => array('start' => 0, 'end' => 13));
+    const CREATED_AT = 'created_at';
 
-    private $userId;
-    private $beerId;
-    private $beerName;
 
-    private $id;
-    private $title;
+    public $userId;
+    public $beerStyleId;
+    public $beerName;
 
-    private $aromaComment;
-    private $appearanceComment;
-    private $flavorComment;
-    private $mouthfeelComment;
-    private $overallComment;
+    public $id;
+    public $title;
 
-    private float $aromaScore;
-    private float $appearanceScore;
-    private float $flavorScore;
-    private float $mouthfeelScore;
-    private float $overallScore;
-    private float $total;
-    private float $score;
+    public $aromaComment;
+    public $appearanceComment;
+    public $flavorComment;
+    public $mouthfeelComment;
+    public $overallComment;
 
-    private $isAcetaldehyde;
-    private $isAlcoholic;
-    private $isAstringent;
-    private $isDiacetyl;
-    private $isDms;
-    private $isEstery;
-    private $isGrassy;
-    private $isLightStruck;
-    private $isMetallic;
-    private $isMusty;
-    private bool $isOxidized;
-    private bool $isPhenolic;
-    private bool $isSolvent;
-    private bool $isAcidic;
-    private bool $isSulfur;
-    private bool $isVegetal;
-    private bool $isBottleOk;
-    private bool $isYeasty;
+    public $aromaScore;
+    public $appearanceScore;
+    public $flavorScore;
+    public $mouthfeelScore;
+    public $overallScore;
+    public $total;
+    public $score;
 
-    private bool $stylisticAccuracy;
-    private bool $intangibles;
-    private bool $technicalMerit;
+    public $isAcetaldehyde;
+    public $isAlcoholic;
+    public $isAstringent;
+    public $isDiacetyl;
+    public $isDms;
+    public $isEstery;
+    public $isGrassy;
+    public $isLightStruck;
+    public $isMetallic;
+    public $isMusty;
+    public $isOxidized;
+    public $isPhenolic;
+    public $isSolvent;
+    public $isAcidic;
+    public $isSulfur;
+    public $isVegetal;
+    public $isBottleOk;
+    public $isYeasty;
+
+    public $stylisticAccuracy;
+    public $intangibles;
+    public $technicalMerit;
+
+    public $createdAt;
 
 
     public function __construct()
     {
         $this->userId = false;
-        $this->beerId = false;
+        $this->beerStyleId = false;
+        $this->beerName = false;
         $this->id = false;
         $this->title = false;
 
@@ -139,6 +147,7 @@ class Tasting
         $this->stylisticAccuracy = false;
         $this->intangibles = false;
         $this->technicalMerit = false;
+        $this->createdAt = false;
     }
 
 
@@ -230,8 +239,8 @@ class Tasting
         $this->id                = (int)$o[self::ID];
         $this->title             = $o[self::TITLE];
         $this->userId            = (int)$o[self::USER_ID];
-        $this->beerId            = (int)$o[self::BEER_STYLE_ID];
-        $this->beerName          = (int)$o[self::BEER_NAME];
+        $this->beerStyleId       = (int)$o[self::BEER_STYLE_ID];
+        $this->beerName          = $o[self::BEER_NAME];
 
         $this->aromaComment      = $o[self::AROMA_COMMENT];
         $this->appearanceComment = $o[self::APPEARANCE_COMMENT];
@@ -270,6 +279,7 @@ class Tasting
         $this->stylisticAccuracy = (int)$o[self::STYLISTIC_ACCURACY];
         $this->intangibles       = (int)$o[self::INTANGIBLES];
         $this->technicalMerit    = (int)$o[self::TECHNICAL_MERIT];
+        $this->createdAt         = $o[self::CREATED_AT];
     }
 
     public function calculateScore()

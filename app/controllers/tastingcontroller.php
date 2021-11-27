@@ -2,12 +2,23 @@
 
 class TastingController extends BaseController implements Controller
 {
+    const viewDirectory = 'tasting/';
 
-    const viewDirectory = 'tastings/';
+    public function __construct()
+    {
+        if ((isset($_GET['mode']))) {
+            if (($_GET['mode'] != "visitor")) {
+                header("Location:" . PAGE_SIGNIN);
+            }
+        } else if (!Session::getConnectedUser()) {
+            header("Location:" . PAGE_SIGNIN);
+        }
+    }
 
     public function getAllTastings()
     {
-        $view = "tastings.phtml";
+
+        $view = "viewTastings.phtml";
 
         $limit = DEFAULT_PAGINATION;
 
@@ -28,7 +39,7 @@ class TastingController extends BaseController implements Controller
 
     public function getUserTastings($userId)
     {
-        $view = "tastings.phtml";
+        $view = "viewTastings.phtml";
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
@@ -238,19 +249,12 @@ class TastingController extends BaseController implements Controller
         $content = false;
         $operation = $_GET['operation'];
         switch ($operation) {
-            case 'getAllTastings':
-                $content = $this->getAllTastings();
-                break;
             case 'getUserTastings':
                 $content = $this->getUserTastings($_GET['userId']);
                 break;
-            case 'getTastingById':
-                $content = $this->getTastingById($_GET['id']);
-                break;
-            case 'addTasting':
-                $content = $this->addNew();
-                break;
+            case 'getAllTastings':
             default:
+                $content = $this->getAllTastings();
                 break;
         }
         return $content;

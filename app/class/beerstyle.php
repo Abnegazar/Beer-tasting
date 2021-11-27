@@ -15,17 +15,17 @@ class BeerStyle
     const COMMERCIAL_EXAMPLES = 'commercial_examples';
 
 
-    private $id;
-    private $title;
-    private $aroma;
-    private $appearance;
-    private $flavor;
-    private $body;
-    private $comments;
-    private $story;
-    private $ingredients;
-    private $stylesComparison;
-    private $commercialExamples;
+    public $id;
+    public $title;
+    public $aroma;
+    public $appearance;
+    public $flavor;
+    public $body;
+    public $comments;
+    public $story;
+    public $ingredients;
+    public $stylesComparison;
+    public $commercialExamples;
 
 
     public function __construct()
