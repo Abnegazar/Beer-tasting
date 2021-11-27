@@ -28,13 +28,12 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getAllTastings($offset, $limit);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array(
                 'tastings' => $tastings
             )
         );
-        return $content;
     }
 
 
@@ -50,24 +49,183 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getUserTastings($userId, $offset, $limit);
 
-        $content = App::get_content(
+        return App::get_content(
             self::viewDirectory . $view,
             array('tastings' => $tastings)
         );
-        return $content;
     }
 
-    //TODO METHOD getTastingById
+    public function getTastingById($id)
+    {
+        $view = "viewTasting.phtml";
 
-    //TODO METHOD FOR SAVING A NEW USER TASTINGS
+        $tastings = Tasting::getTastingById($id);
+
+        return App::get_content(
+            self::viewDirectory . $view,
+            array('tastings' => $tastings)
+        );
+    }
+
+    public function addNew()
+    {
+        $view = 'addTasting.phtml';
+        $errors = [];
+        $success = false;
+        if (!empty($_POST)) {
+
+            //sélection de la bière dégustée
+            if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
+                $errors[] = 'Aucune Bière n\'a été sélectionnée.';
+            }
+
+            //nom de la bière
+            if (!isset($_POST['' . Tasting::BEER_NAME . '']) || empty($_POST['' . Tasting::BEER_NAME . ''])) {
+                $errors[] = 'Le nom de la bière est obligatoire.';
+            }
+
+            $values = array($_POST['' . Tasting::AROMA_SCORE . ''], $_POST['' . Tasting::APPEARANCE_SCORE . ''], $_POST['' . Tasting::FLAVOR_SCORE . ''], $_POST['' . Tasting::MOUTHFEEL_SCORE . ''], $_POST['' . Tasting::OVERALL_SCORE . '']);
+            $res = App::checkValue($values);
+            if ($res != false) {
+                $errors[] = $res;
+            }
+            //Précision stylistique
+            /*if (!isset($_POST['stylisticAccuracy']) || empty($_POST['stylisticAccuracy'])) {
+                $errors[] = 'La précision stylistique est obligatoire.';
+            } else if (!preg_match($_POST['stylisticAccuracy'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
+                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
+            }*/
+
+
+            //Intangibilité
+            /*
+            if (!isset($_POST['intangibles']) || empty($_POST['intangibles'])) {
+                $errors[] = 'L\'intangibilité est obligatoire.';
+            } else if (!preg_match($_POST['intangibles'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
+                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
+            }
+            */
+
+            /*
+
+            //Mérite thechinique
+            if (!isset($_POST['technicalMerit']) || empty($_POST['technicalMerit'])) {
+                $errors[] = 'Le mérite thechinique est obligatoire.';
+            } else if (!preg_match($_POST['technicalMerit'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
+                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
+            }
+            */
+
+            if (empty($errors)) {
+
+                $userId = Session::getConnectedUser()->id;
+                $beerStyleId = $_POST['' . Tasting::BEER_STYLE_ID . ''];
+                $beerName = Tasting::clearComments($_POST['' . Tasting::BEER_NAME . '']);
+                $title = $_POST['' . Tasting::TITLE . ''];
+                $aromaComment = Tasting::clearComments($_POST['' . Tasting::AROMA_COMMENT . '']);
+                $appearanceComment = Tasting::clearComments($_POST['' . Tasting::APPEARANCE_COMMENT . '']);
+                $flavorComment = Tasting::clearComments($_POST['' . Tasting::FLAVOR_COMMENT . '']);
+                $mouthfeelComment = Tasting::clearComments($_POST['' . Tasting::MOUTHFEEL_COMMENT . '']);
+                $overallComment = Tasting::clearComments($_POST['' . Tasting::OVERALL_COMMENT . '']);
+                $aromaScore = tasting::getFloat($_POST['' . Tasting::AROMA_SCORE . '']);
+                $appearanceScore = tasting::getFloat($_POST['' . Tasting::APPEARANCE_SCORE . '']);
+                $flavorScore = tasting::getFloat($_POST['' . Tasting::FLAVOR_SCORE . '']);
+                $mouthfeelScore = tasting::getFloat($_POST['' . Tasting::MOUTHFEEL_SCORE . '']);
+                $overallScore = tasting::getFloat($_POST['' . Tasting::OVERALL_SCORE . '']);
+                $total = Tasting::calculateTotal($aromaScore, $appearanceScore, $flavorScore, $mouthfeelScore, $overallScore);
+
+                $isAcetaldehyde = isset($_POST['' . Tasting::IS_ACETALDEHYDE . '']) ? 1 : 0;
+
+                $isAlcoholic = isset($_POST['' . Tasting::IS_ALCOHOLIC . '']) ? 1 : 0;
+                $isAstringent = isset($_POST['' . Tasting::IS_ASTRINGENT . '']) ? 1 : 0;
+                $isDiacetyl = isset($_POST['' . Tasting::IS_DIACETYL . '']) ? 1 : 0;
+                $isDms = isset($_POST['' . Tasting::IS_DMS . '']) ? 1 : 0;
+                $isEstery = isset($_POST['' . Tasting::IS_ESTERY . '']) ? 1 : 0;
+                $isGrassy = isset($_POST['' . Tasting::IS_GRASSY . '']) ? 1 : 0;
+                $isLightStruck = isset($_POST['' . Tasting::IS_LIGHT_STRUCK . '']) ? 1 : 0;
+                $isMetallic = isset($_POST['' . Tasting::IS_METALLIC . '']) ? 1 : 0;
+                $isMusty = isset($_POST['' . Tasting::IS_MUSTY . '']) ? 1 : 0;
+                $isOxidized = isset($_POST['' . Tasting::IS_OXIDIZED . '']) ? 1 : 0;
+                $isPhenolic = isset($_POST['' . Tasting::IS_PHENOLIC . '']) ? 1 : 0;
+                $isSolvent = isset($_POST['' . Tasting::IS_SOLVENT . '']) ? 1 : 0;
+                $isAcidic = isset($_POST['' . Tasting::IS_ACIDIC . '']) ? 1 : 0;
+                $isSulfur = isset($_POST['' . Tasting::IS_SULFUR . '']) ? 1 : 0;
+                $isVegetal = isset($_POST['' . Tasting::IS_VEGETAL . '']) ? 1 : 0;
+                $isBottleOk = isset($_POST['' . Tasting::IS_BOTTLE_OK . '']) ? 1 : 0;
+                $isYeasty = isset($_POST['' . Tasting::IS_YEASTY . '']) ? 1 : 0;
+
+                /*
+                $stylisticAccuracy = $_POST['isYeasty'];
+                $intangibles = $_POST['intangibles'];
+                $technicalMerit = $_POST['technicalMerit'];
+                */
+
+                $tasting = new Tasting();
+                $tasting->initValue(
+                    $id = false,
+                    $userId,
+                    $beerStyleId,
+                    $beerName,
+                    $title,
+                    $aromaComment,
+                    $appearanceComment,
+                    $flavorComment,
+                    $mouthfeelComment,
+                    $overallComment,
+                    $aromaScore,
+                    $appearanceScore,
+                    $flavorScore,
+                    $mouthfeelScore,
+                    $overallScore,
+                    $total,
+                    $isAcetaldehyde,
+                    $isAlcoholic,
+                    $isAstringent,
+                    $isDiacetyl,
+                    $isDms,
+                    $isEstery,
+                    $isGrassy,
+                    $isLightStruck,
+                    $isMetallic,
+                    $isMusty,
+                    $isOxidized,
+                    $isPhenolic,
+                    $isSolvent,
+                    $isAcidic,
+                    $isSulfur,
+                    $isVegetal,
+                    $isBottleOk,
+                    $isYeasty
+                );
+                if ($tasting->save()) {
+                    $success = "La dégustation a été enregistré avec succès.";
+                } else {
+                    $errors[] = "Une erreur s'est produite lors de l'ajout de cette dégustation.";
+                }
+            }
+        }
+        return App::get_content(
+            self::viewDirectory . $view,
+            array(
+                'errors'             => $errors,
+                'success'            => $success
+            )
+        );
+    }
 
     public function render()
     {
         $content = false;
         $operation = $_GET['operation'];
         switch ($operation) {
+            case 'addTasting':
+                $content = $this->addNew();
+                break;
             case 'getUserTastings':
                 $content = $this->getUserTastings($_GET['userId']);
+                break;
+            case 'getTastingById':
+                $content = $this->getTastingById($_GET['id']);
                 break;
             case 'getAllTastings':
             default:
