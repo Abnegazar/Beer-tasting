@@ -32,7 +32,7 @@ Télécharger WampServer à l'adresse suivante :[Télécharger Wamp](https://www
 
 #### Utilisateur sous Linux
 
-Voir : [Créer un virtual host LAMP](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-18-04-quickstart-fr)
+Voir : [Créer un virtual host LAMP](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-18-04-quickstart-fr). Remplacez bien le nom de domaine d'exemple par tastemybeer.
 
 #### Utilisateur sous Windows
 
@@ -42,15 +42,15 @@ Voir : [Créer un virtual host LAMP](https://www.digitalocean.com/community/tuto
    127.0.0.1	tastemybeer
    ```
 
-2.Depuis l'interface de Wamp, ouvrez le fichier httpd.conf d'Apache.
-Ajouter les lignes suivantes à la fin du fichier en prenant soin de modifier le chemin local vers votre site ainsi que le nom de domaine.
+2. Depuis l'interface de Wamp, ouvrez le fichier httpd.conf d'Apache.
+   Ajouter les lignes suivantes à la fin du fichier en prenant soin de modifier le chemin local vers votre site ainsi que le nom de domaine.
 
-```
-<VirtualHost 127.0.0.1>
-DocumentRoot C:\wamp\www\tastemybeer
-ServerName monsite.dev
-</VirtualHost>
-```
+   ```
+   <VirtualHost 127.0.0.1>
+   DocumentRoot C:\wamp\www\tastemybeer
+   ServerName monsite.dev
+   </VirtualHost>
+   ```
 
 3.Rédémarrez ensuite Apache pour que les modifications soient prises en compte.
 
@@ -96,7 +96,3 @@ sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
 Les librairies suivantes sont nécéssaires:
 
 1. PhpMailer
-
-```
-
-```
