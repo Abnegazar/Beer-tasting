@@ -53,19 +53,19 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ### Formulaire de dégustation
 
-| Cette vue permet à l'utilisateur de commencer à rentrer des informations sur sa nouvelle dégustation. Il commencera par nommer sa dégustation, indiquer le nom et la catégorie de la bière dégustée. Ensuite, il devra cliquer sur la flèche pour continuer. | Cette vue permet à l'utilisateur d'indiquer ces remarques concernant la bouteille. L'utilisateur peut soit retourner sur la page précédente pour corriger des erreurs, soit passer à la suivante en cliquant sur la flèche adéquate. |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![login image](public/assets/img/DesignMd/FormulairePart1.png "formulairePart1")                                                                                                                                                                             | ![register image](public/assets/img/DesignMd/FormulairePart2.png "FormulairePart3")                                                                                                                                                  |
+| Première étape de l'enregistrement d'une nouvelle dégustation. L'utilisateur commence par nommer sa dégustation, indiquer le nom et la catégorie de la bière dégustée. Ensuite, il devra cliquer sur la flèche pour continuer. | Cette vue permet à l'utilisateur d'indiquer ces remarques concernant la bouteille. L'utilisateur peut soit retourner sur la page précédente pour corriger des erreurs, soit passer à la suivante en cliquant sur la flèche adéquate. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ![login image](public/assets/img/DesignMd/FormulairePart1.png "formulairePart1")                                                                                                                                               | ![register image](public/assets/img/DesignMd/FormulairePart2.png "FormulairePart3")                                                                                                                                                  |
 
 ### Formulaire de dégustation
 
-| Cette vue permet à l'utilisateur de rentrer les informations qu'il souhaite donner concernant la dégustation. | Cette vue est permet à l'utilisateur d'indiquer les faux-goût qu'il aurait trouvé pendant la dégustation. |
-| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| ![login image](public/assets/img/DesignMd/FormulairePart3.png "formulairePart3")                              | ![register image](public/assets/img/DesignMd/FormulairePart4.png "FormulairePart4")                       |
+| Cette vue permet à l'utilisateur de rentrer les informations de sa dégustation.  | Dernière étape de l'enregistrement d'une nouvelle dégustation.                      |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| ![login image](public/assets/img/DesignMd/FormulairePart3.png "formulairePart3") | ![register image](public/assets/img/DesignMd/FormulairePart4.png "FormulairePart4") |
 
 ### Formulaire de dégustation
 
-| Cette vue indique à l'utilisateur que sa dégustation a bien été enregistré.      |
+| Cette vue indique à l'utilisateur que sa dégustation a bien été enregistrée.     |
 | -------------------------------------------------------------------------------- |
 | ![login image](public/assets/img/DesignMd/FormulairePart5.png "formulairePart5") |
 |                                                                                  |
