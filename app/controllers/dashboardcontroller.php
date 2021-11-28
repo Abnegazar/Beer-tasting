@@ -2,11 +2,7 @@
 
 class DashboardController extends BaseController implements Controller
 {
-<<<<<<< Updated upstream
-    const viewDirectory = "dashboard/";
-=======
     const viewDirectory = "tasting/";
->>>>>>> Stashed changes
 
     public function __construct()
     {
@@ -22,11 +18,7 @@ class DashboardController extends BaseController implements Controller
         $this->description = "dashboard";
         $this->title = "TasteMyBeer - Dashboard";
 
-<<<<<<< Updated upstream
-        $view = "index.phtml";
-=======
         $view = "addTasting.phtml";
->>>>>>> Stashed changes
 
         $lastUserTastings = Tasting::getUserTastings(Session::getConnectedUserId(), 0, 3);
         $lastTastings = Tasting::getAllTastings(0, 3);
