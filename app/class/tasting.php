@@ -4,16 +4,18 @@ class Tasting
 {
     const ID = 'id';
     const TITLE = 'title';
+    const BEER_NAME = 'beer_name';
 
     const USER_ID = 'user_id';
     const BEER_STYLE_ID = 'beer_style_id';
-    const BEER_NAME = 'beer_name';
 
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
     const FLAVOR_COMMENT = 'flavor_comment';
     const MOUTHFEEL_COMMENT = 'mouthfeel_comment';
     const OVERALL_COMMENT = 'flavor_comment';
+    const BOTTLE_INSPECTION_COMMENT = 'bottle_inspection_comment';
+
 
     const AROMA_SCORE = 'aroma_score';
     const APPEARANCE_SCORE = 'appearance_score';
@@ -148,8 +150,87 @@ class Tasting
     }
 
 
-    public function __initValues()
-    {
+    public function initValue(
+        $id = false,
+        $userId,
+        $beerStyleId,
+        $beerName,
+        $title = '',
+
+        $aromaComment = '',
+        $appearanceComment = '',
+        $flavorComment = '',
+        $mouthfeelComment = '',
+        $overallComment = '',
+        $aromaScore,
+        $appearanceScore,
+        $flavorScore,
+        $mouthfeelScore,
+        $overallScore,
+        $total,
+
+        $isAcetaldehyde = 0,
+        $isAlcoholic = 0,
+        $isAstringent = 0,
+        $isDiacetyl = 0,
+        $isDms = 0,
+        $isEstery = 0,
+        $isGrassy = 0,
+        $isLightStruck = 0,
+        $isMetallic = 0,
+        $isMusty = 0,
+        $isOxidized = 0,
+        $isPhenolic = 0,
+        $isSolvent = 0,
+        $isAcidic = 0,
+        $isSulfur = 0,
+        $isVegetal = 0,
+        $isBottleOk = 0,
+        $isYeasty = 0,
+
+        $stylisticAccuracy = 0,
+        $intangibles = 0,
+        $technicalMerit = 0
+    ) {
+        $this->userId = $userId;
+        $this->beerStyleId = $beerStyleId;
+        $this->beerName = $beerName;
+        $this->id = ($id) ? $id : false;
+        $this->title = $title;
+
+        $this->aromaComment = $aromaComment;
+        $this->appearanceComment = $appearanceComment;
+        $this->flavorComment = $flavorComment;
+        $this->mouthfeelComment = $mouthfeelComment;
+        $this->overallComment = $overallComment;
+        $this->aromaScore = $aromaScore;
+        $this->appearanceScore = $appearanceScore;
+        $this->flavorScore = $flavorScore;
+        $this->mouthfeelScore = $mouthfeelScore;
+        $this->overallScore = $overallScore;
+        $this->total = $total;
+        $this->isAcetaldehyde = $isAcetaldehyde;
+        $this->isAlcoholic = $isAlcoholic;
+        $this->isAstringent = $isAstringent;
+        $this->isDiacetyl = $isDiacetyl;
+        $this->isDms = $isDms;
+        $this->isEstery = $isEstery;
+        $this->isGrassy = $isGrassy;
+        $this->isLightStruck = $isLightStruck;
+        $this->isMetallic = $isMetallic;
+        $this->isMusty = $isMusty;
+        $this->isOxidized = $isOxidized;
+        $this->isPhenolic = $isPhenolic;
+        $this->isSolvent = $isSolvent;
+        $this->isAcidic = $isAcidic;
+        $this->isSulfur = $isSulfur;
+        $this->isVegetal = $isVegetal;
+        $this->isBottleOk = $isBottleOk;
+        $this->isYeasty = $isYeasty;
+
+        $this->stylisticAccuracy = $stylisticAccuracy;
+        $this->intangibles = $intangibles;
+        $this->technicalMerit = $technicalMerit;
     }
 
     public function __initFromDbObject($o)
@@ -242,6 +323,111 @@ class Tasting
         }
     }
 
+    //Devrait être calculé et afficher en temps réel au front
+    public static function calculateTotal($arS, $appS, $flS, $mthfS, $ovS)
+    {
+        return $arS + $appS + $flS + $mthfS + $ovS;
+    }
+
+    public static function clearComments($comment)
+    {
+        return filter_var($comment, FILTER_SANITIZE_STRING);
+    }
+
+    public static function getFloat($value)
+    {
+        $result = filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        return floatval($result);
+    }
+
+    public function save()
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = 'INSERT INTO `tasting`(
+                    `title`,
+                    `beer_style_id`,
+                    `beer_name`,
+                    `user_id`,
+                    `aroma_comment`,
+                    `aroma_score`,
+                    `appearance_comment`,
+                    `appearance_score`,
+                    `flavor_comment`,
+                    `flavor_score`,
+                    `mouthfeel_comment`,
+                    `mouthfeel_score`,
+                    `overall_comment`,
+                    `overall_score`,
+                    `total`,
+                    `is_acetaldehyde`,
+                    `is_alcoholic`,
+                    `is_astringent`,
+                    `is_diacetyl`,
+                    `is_dms`,
+                    `is_estery`,
+                    `is_grassy`,
+                    `is_light_struck`,
+                    `is_metallic`,
+                    `is_musty`,
+                    `is_oxidized`,
+                    `is_phenolic`,
+                    `is_solvent`,
+                    `is_acidic`,
+                    `is_sulfur`,
+                    `is_vegetal`,
+                    `is_bottle_ok`,
+                    `is_yeasty`,
+                    `stylistic_accuracy`,
+                    `intangibles`,
+                    `technical_merit`
+                )VALUES (
+                    \'' . mysqli_real_escape_string($dbInstance, $this->title) . '\',
+                    ' . (int)$this->beerStyleId . ',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->beerName) . '\',
+                    ' . (int) $this->userId . ',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->aromaComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->aromaScore) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->appearanceComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->appearanceScore) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->flavorComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->flavorScore) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->mouthfeelComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->mouthfeelScore) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->overallComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->overallScore) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->total) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isAcetaldehyde) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isAlcoholic) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isAstringent) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isDiacetyl) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isDms) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isEstery) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isGrassy) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isLightStruck) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isMetallic) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isMusty) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isOxidized) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isPhenolic) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isSolvent) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isAcidic) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isSulfur) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isVegetal) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isBottleOk) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->isYeasty) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->stylisticAccuracy) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->intangibles) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->technicalMerit) . '\'
+                )';
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            return true;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
     public static function getUserTastings($userId, $offset = false, $limit = false)
     {
         $res = false;
@@ -272,7 +458,7 @@ class Tasting
         $dbInstance = Db::getInstance()->getDbInstance();
 
         $offset = ($offset) ? $offset : 0;
-        $sql = "SELECT * FROM tasting";
+        $sql = "SELECT * FROM tasting ORDER BY created_at DESC";
         if ($limit) {
             $sql .= ' LIMIT ' . $offset . ', ' . $limit;
         }
@@ -291,32 +477,11 @@ class Tasting
         return $res;
     }
 
-    public static function getSomeTastings($limit)
+    public static function getTastingById($id)
     {
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
-        $sql = "SELECT * FROM tasting ORDER BY created_time DESC limit" . $limit . "";
-        $result = mysqli_query($dbInstance, $sql);
-        if ($result) {
-            $tastings = [];
-            while ($row = mysqli_fetch_assoc($result)) {
-                $tasting = new Tasting();
-                $tasting->__initFromDbObject($row);
-                array_push($tastings, $tasting);
-            }
-            return $tastings;
-        } else {
-            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
-        }
-        return $res;
-    }
-
-    public static function getSomeUserTastings($userId = false, $limit)
-    {
-        $res = false;
-        $dbInstance = Db::getInstance()->getDbInstance();
-        $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
-        $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . " LIMIT " . $limit . "";
+        $sql = "SELECT * FROM tasting WHERE tasting.id = " . $id . "";
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             $tastings = [];

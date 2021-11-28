@@ -1,113 +1,112 @@
 <style>
-article,
-aside,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
+    article,
+    aside,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
 
-.hidden {
-    display: none;
-}
+    .hidden {
+        display: none;
+    }
+
+    .warning {
+        border: 1px solid red;
+    }
 </style>
 <div class="card">
+    <?php
+    if (!empty($var->errors)) {
+        foreach ($var->errors as $error) {
+    ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $error; ?>
+            </div>
+        <?php
+        }
+    } else if (!empty($var->success) and $var->success != false) {
+        ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $var->success; ?>
+        </div>
+    <?php
+    }
+    ?>
     <div class="card-header">
         <h1>New tasting</h1>
     </div>
     <div class="card-body">
         <form id="form" action="" method="post">
-            <fieldset>
-                <div class="form-group">
-                    <label for="tastingTitle">Title:</label>
-                    <input type="text" placeholder="Title" class="form-control requiredInput" id="tastingTitle"
-                        name=" tastingTitle" /><br />
-                </div>
-                <div class="form-group">
-                    <label for="beerName">Beer name:</label>
-                    <input type="text" placeholder="Beer name" class="form-control" id="beerName"
-                        name="beerName" /><br />
-                </div>
-                <div class="form-group">
-                    <label for="beerStyleId">Category:</label>
-                    <select class="form-control" id="beerStyleId" name="beerStyleId">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </fieldset>
-            <fieldset class="hidden">
-                <div class="form-check">
-                    <label class="form-check-label" for="isBottleOk">Bottle inspection</label>
-                    <input type="checkbox" class="form-check-input" id="isBottleOk" name="isBottleOk">
-                </div>
-                <div class="form-group">
-                    <label for="bottleInspectionComment">Comments:</label>
-                    <textarea class="form-control" id="bottleInspectionComment" name="bottleInspectionComment"
-                        rows="3"></textarea>
-                </div>
-            </fieldset>
-            <fieldset class="hidden">
-                <legend>Step 3</legend>
-                <input /><br />
-            </fieldset>
-            <fieldset class="hidden">
-                <legend>Step 4</legend>
-                <input /><br />
-            </fieldset>
-            <fieldset class="hidden">
-                <legend>Step 5</legend>
-                <input /><br />
-            </fieldset>
+            <!--step 1-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_1, array()); ?>
+            <!--step 2-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_2, array()); ?>
+            <!--step 3-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
+            <!--step 4-->
+            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
             <div class="card-footer">
                 <div class="buttons">
-                    <button class="btn btn-secondary btnPrev hidden">Previous</button><button
-                        class="btn btn-secondary btnNext">Next</button><input type="submit"
-                        class="btn btn-primary btnSubmit hidden" />
+                    <button class="btn btn-secondary btnPrev hidden">Previous</button>
+                    <button class="btn btn-secondary btnNext">Next</button>
+                    <input type="submit" value="Save" class="btn btn-primary btnSubmit hidden" />
                 </div>
             </div>
         </form>
-
     </div>
 </div>
-
-
 <script>
-$(document).ready(function() {
-    var $fieldsets = $('form fieldset');
-    $('.btnNext').click(function(e) {
-        e.preventDefault();
-        $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
+    $(document).ready(function() {
+        var $fieldsets = $('form fieldset');
+        $('.btnNext').click(function(e) {
+            e.preventDefault();
+            $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
 
-    });
-    $('.btnPrev').click(function(e) {
-        e.preventDefault();
-        $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
+        });
+        $('.btnPrev').click(function(e) {
+            e.preventDefault();
+            $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
 
-    });
+        });
 
-    function shButtons() {
-        console.log($fieldsets.filter(':visible').index());
-        if ($fieldsets.filter(':visible').index() > 0) {
-            $('.btnPrev').show();
-        } else {
-            $('.btnPrev').hide();
+        function shButtons() {
+            console.log($fieldsets.filter(':visible').index());
+            if ($fieldsets.filter(':visible').index() > 0) {
+                $('.btnPrev').show();
+            } else {
+                $('.btnPrev').hide();
+            }
+            console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
+            if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
+                $('.btnSubmit').show();
+                $('.btnNext').hide();
+            } else {
+                $('.btnSubmit').hide();
+                $('.btnNext').show();
+            }
         }
-        console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
-        if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
-            $('.btnSubmit').show();
-            $('.btnNext').hide();
-        } else {
-            $('.btnSubmit').hide();
-            $('.btnNext').show();
-        }
-    }
-});
+
+        $(".btnSubmit").click(function(e) {
+            e.preventDefault();
+            var isFormValid = true;
+            $(".required").each(function() {
+                if ($.trim($(this).val()).length == 0) {
+                    $(this).addClass("warning");
+                    isFormValid = false;
+                } else {
+                    $(this).removeClass("warning");
+                }
+            });
+            if (!isFormValid) {
+                alert("Please fill in all the required fields (indicated by *)");
+            } else {
+                $("#form").submit();
+            }
+        });
+    });
 </script>
