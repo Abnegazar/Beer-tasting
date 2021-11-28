@@ -1,63 +1,49 @@
 <style>
-    article,
-    aside,
-    figure,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    section {
-        display: block;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .warning {
-        border: 1px solid red;
-    }
+.hidden {
+    display: none;
+}
+button{
+    width: 100%;
+    margin:5px;
+}
+.buttons > input{
+    width: 100%;
+    margin:5px;
+}
+.card{
+    width: 100%;
+}
+textarea{
+    height: 100px;
+}
 </style>
-<div class="card">
-    <?php
-    if (!empty($var->errors)) {
-        foreach ($var->errors as $error) {
-    ?>
-            <div class="alert alert-danger" role="alert">
-                <?php echo $error; ?>
-            </div>
-        <?php
-        }
-    } else if (!empty($var->success) and $var->success != false) {
-        ?>
-        <div class="alert alert-success" role="alert">
-            <?php echo $var->success; ?>
-        </div>
-    <?php
-    }
-    ?>
-    <div class="card-header">
-        <h1>New tasting</h1>
-    </div>
-    <div class="card-body">
-        <form id="form" action="" method="post">
-            <!--step 1-->
-            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_1, array()); ?>
-            <!--step 2-->
-            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_2, array()); ?>
-            <!--step 3-->
-            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
-            <!--step 4-->
-            <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
-            <div class="card-footer">
-                <div class="buttons">
-                    <button class="btn btn-secondary btnPrev hidden">Previous</button>
-                    <button class="btn btn-secondary btnNext">Next</button>
-                    <input type="submit" value="Save" class="btn btn-primary btnSubmit hidden" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body p-4 p-sm-5">
+                   <h3 class="card-title text-center mb-5 fw-light fs-5">New tasting</h3>
+                     <form id="form" action="" method="post">
+                       <!--step 1-->
+                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_1, array()); ?>
+                       <!--step 2-->
+                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_2, array()); ?>
+                       <!--step 3-->
+                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
+                       <!--step 4-->
+                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
+                        <div class="d-grid mb-2">
+                          <div class="buttons">
+                              <button class="btn btn-secondary btnPrev hidden">Previous</button>
+                              <button class="btn btn-secondary btnNext">Next</button>
+                              <input type="submit" value="Save" class="btn btn-primary btnSubmit hidden" />
+                          </div>
+                        </div>
+                     </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 <script>
