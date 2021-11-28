@@ -22,8 +22,8 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ![Class diagram](public/assets/img/DesignMd/Objet_Diagram.png "class diagram")
 
-| Diagramme de séquence qui montre le cheminement pour l'enregistrement d'une nouvelle dégustation par un uitilisateur |
-| -------------------------------------------------------------------------------------------------------------------- |
+| Diagramme de séquence qui montre le cheminement de l'enregistrement d'une nouvelle dégustation par un utilisateur |
+| ----------------------------------------------------------------------------------------------------------------- |
 
 ![Sequence diagram](public/assets/img/DesignMd/Sequence_Diagram_Degustation.png "sequence diagram")
 
@@ -35,27 +35,27 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ### Connexion et Inscription
 
-| La vue de connexion permettant de se connecter mais aussi de sauvegarder la session. De plus un lien y est pour se rendre à l'inscription, mais aussi un lien pour renitialiser le mot de passe si necessaire | La vue d'inscription permettant de s'inscrire en tant que nouveau degustateur, mais aussi un lien pour se connecter si on a deja un compte |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![login image](public/assets/img/DesignMd/CaptureSignIn.PNG "login")                                                                                                                                          | ![register image](public/assets/img/DesignMd/CaptureSignUp.PNG "inscription")                                                              |
+| La vue qui permet de se connecter, sur laquelle est inscrit un lien pour se rendre à la page d'inscription, réinitialiser le mot de passe si besoin | La vue d'inscription permettant de s'inscrire, on y retrouve aussi un lien qui rédirige vers la page de connexion. |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| ![login image](public/assets/img/DesignMd/CaptureSignIn.PNG "login")                                                                                | ![register image](public/assets/img/DesignMd/CaptureSignUp.PNG "inscription")                                      |
 
 #### Renitialiser le mot de passe
 
-| Cette vue permet de verifier grace à l'email que l'utilisateur souhaitant renitialiser son de mot de passe, possède un compte.Si oui le ramener vers la page permettant de renitialiser ce mot de passe. | Cette vue permet de renitialiser le mot de passe.                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| ![forgot password image](public/assets/img/DesignMd/CaptureforgotPassword.PNG "login")                                                                                                                   | ![reset password image](public/assets/img/DesignMd/CaptureResetPassword.PNG "inscription") |
+| Cette vue permet de vérifier que l'utilisateur qui souhaite réinitialiser son de mot de passe, possède un compte. Si oui le ramener vers la page correspondante. | Cette vue permet de réinitialiser le mot de passe.                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| ![forgot password image](public/assets/img/DesignMd/CaptureforgotPassword.PNG "login")                                                                           | ![reset password image](public/assets/img/DesignMd/CaptureResetPassword.PNG "inscription") |
 
 ### Page d'accueil et Page des dégustations
 
-| Cette vue présente l'interface accessible une fois l'utilisateur connecté. L'utilisateur peut ainsi voir ses anciennes dégustations, voir les nouvelles dégustations du site, créer de nouvelles dégustations et il peut se déconnecter. | Cette vue présente une liste de dégustation à l'utilisateur. Si l'utilisateur souhaite en savoir plus sur la dégustation, alors il lui suffira de cliquer sur le bouton "SHOW". |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![home page image](public/assets/img/DesignMd/HomePage.png "homePage")                                                                                                                                                                   | ![tastings page image](public/assets/img/DesignMd/TastingsPage.png "tastingsPage")                                                                                              |
+| Cette vue présente l'interface accessible à l'utilisateur après la connexion. L'utilisateur peut ainsi voir ses anciennes dégustations, voir les dernières dégustations du site, créer de nouvelles dégustations et il peut se déconnecter. | Cette vue présente une liste de dégustations à l'utilisateur. Si l'utilisateur souhaite en savoir plus sur la dégustation, alors il lui suffira de cliquer sur le bouton "SHOW". |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![home page image](public/assets/img/DesignMd/HomePage.png "homePage")                                                                                                                                                                      | ![tastings page image](public/assets/img/DesignMd/TastingsPage.png "tastingsPage")                                                                                               |
 
 ### Formulaire de dégustation
 
-| Cette vue permet à l'utilisateur de commencer à rentrer des informations sur sa nouvelle dégustation. Il commencera par entrer un nom pour sa dégustation, le nom de la bière et sa catégorie. Ensuite il devra cliquer sur la flèche pour continuer. | Cette vue est permet à l'utilisateur d'indiquer ce qu'il a remarqué concernant la bouteille. L'utilisateur peut soit retourner sur l'ancienne page pour corriger des erreurs, soit passer à la page suivante en cliquant sur la flèche adéquate. |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![login image](public/assets/img/DesignMd/FormulairePart1.png "formulairePart1")                                                                                                                                                                      | ![register image](public/assets/img/DesignMd/FormulairePart2.png "FormulairePart3")                                                                                                                                                              |
+| Cette vue permet à l'utilisateur de commencer à rentrer des informations sur sa nouvelle dégustation. Il commencera par nommer sa dégustation, indiquer le nom et la catégorie de la bière dégustée. Ensuite, il devra cliquer sur la flèche pour continuer. | Cette vue permet à l'utilisateur d'indiquer ces remarques concernant la bouteille. L'utilisateur peut soit retourner sur la page précédente pour corriger des erreurs, soit passer à la suivante en cliquant sur la flèche adéquate. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ![login image](public/assets/img/DesignMd/FormulairePart1.png "formulairePart1")                                                                                                                                                                             | ![register image](public/assets/img/DesignMd/FormulairePart2.png "FormulairePart3")                                                                                                                                                  |
 
 ### Formulaire de dégustation
 
@@ -65,7 +65,7 @@ Voir le diagramme UML suivant pour plus de détails.
 
 ### Formulaire de dégustation
 
-| Cette vue indique à l'utilisateur que sa dégustation a bien été enregistrée.     |
+| Cette vue indique à l'utilisateur que sa dégustation a bien été enregistré.      |
 | -------------------------------------------------------------------------------- |
 | ![login image](public/assets/img/DesignMd/FormulairePart5.png "formulairePart5") |
 |                                                                                  |

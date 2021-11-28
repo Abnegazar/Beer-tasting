@@ -18,6 +18,10 @@ class TastingController extends BaseController implements Controller
     public function getAllTastings()
     {
 
+        $this->h1 = "Tastings";
+        $this->description = "All tastings";
+        $this->title = "TasteMyBeer - All tastings";
+
         $view = "viewTastings.phtml";
 
         $limit = DEFAULT_PAGINATION;
@@ -28,10 +32,17 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getAllTastings($offset, $limit);
 
+        $tastingsCount = Tasting::count();
+
+        $pages = ceil($tastingsCount / $limit);
+
         return App::get_content(
             self::viewDirectory . $view,
             array(
-                'tastings' => $tastings
+                'tastings' => $tastings,
+                'pages' => $pages,
+                'count' => $tastingsCount,
+                'page' => $page
             )
         );
     }
@@ -39,6 +50,10 @@ class TastingController extends BaseController implements Controller
 
     public function getUserTastings($userId)
     {
+        $this->h1 = "My tastings";
+        $this->description = "My tastings";
+        $this->title = "TasteMyBeer - My tastings";
+
         $view = "viewTastings.phtml";
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -49,29 +64,47 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getUserTastings($userId, $offset, $limit);
 
+        $tastingsCount = Tasting::count(true);
+
+        $pages = ceil($tastingsCount / $limit);
+
         return App::get_content(
             self::viewDirectory . $view,
-            array('tastings' => $tastings)
+            array(
+                'tastings' => $tastings,
+                'pages' => $pages,
+                'count' => $tastingsCount,
+                'page' => $page
+            )
         );
     }
 
     public function getTastingById($id)
     {
+        $this->h1 = "Tasting " . $id;
+        $this->description = "Tasting " . $id;
+        $this->title = "TasteMyBeer -" . "Tasting " . $id;
+
         $view = "viewTasting.phtml";
 
-        $tastings = Tasting::getTastingById($id);
+        $tasting = Tasting::getTastingById($id);
 
         return App::get_content(
             self::viewDirectory . $view,
-            array('tastings' => $tastings)
+            array('tasting' => $tasting)
         );
     }
 
     public function addNew()
     {
+        $this->h1 = "Add tasting";
+        $this->description = "Add tasting";
+        $this->title = "TasteMyBeer - Add";
+
         $view = 'addTasting.phtml';
         $errors = [];
         $success = false;
+        $beerStyles = BeerStyle::getBeerStyles();
         if (!empty($_POST)) {
 
             //sélection de la bière dégustée
@@ -118,6 +151,7 @@ class TastingController extends BaseController implements Controller
 
             if (empty($errors)) {
 
+
                 $userId = Session::getConnectedUser()->id;
                 $beerStyleId = $_POST['' . Tasting::BEER_STYLE_ID . ''];
                 $beerName = Tasting::clearComments($_POST['' . Tasting::BEER_NAME . '']);
@@ -127,6 +161,7 @@ class TastingController extends BaseController implements Controller
                 $flavorComment = Tasting::clearComments($_POST['' . Tasting::FLAVOR_COMMENT . '']);
                 $mouthfeelComment = Tasting::clearComments($_POST['' . Tasting::MOUTHFEEL_COMMENT . '']);
                 $overallComment = Tasting::clearComments($_POST['' . Tasting::OVERALL_COMMENT . '']);
+                $bottleInspectionComment = Tasting::clearComments($_POST['' . Tasting::BOTTLE_INSPECTION_COMMENT . '']);
                 $aromaScore = tasting::getFloat($_POST['' . Tasting::AROMA_SCORE . '']);
                 $appearanceScore = tasting::getFloat($_POST['' . Tasting::APPEARANCE_SCORE . '']);
                 $flavorScore = tasting::getFloat($_POST['' . Tasting::FLAVOR_SCORE . '']);
@@ -172,6 +207,7 @@ class TastingController extends BaseController implements Controller
                     $flavorComment,
                     $mouthfeelComment,
                     $overallComment,
+                    $bottleInspectionComment,
                     $aromaScore,
                     $appearanceScore,
                     $flavorScore,
@@ -207,6 +243,7 @@ class TastingController extends BaseController implements Controller
         return App::get_content(
             self::viewDirectory . $view,
             array(
+                'beerStyles'         => $beerStyles,
                 'errors'             => $errors,
                 'success'            => $success
             )

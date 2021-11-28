@@ -1,15 +1,14 @@
 <fieldset class="hidden">
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::AROMA_COMMENT ?>">Aroma</label>
+            <div class="form-floating mb-3">
                 <textarea class="form-control" id="<?php echo Tasting::AROMA_COMMENT ?>"
-                    name="<?php echo Tasting::AROMA_COMMENT ?>" rows="2">Comments</textarea>
+                    name="<?php echo Tasting::AROMA_COMMENT ?>" rows="2"></textarea>
+                <label for="<?php echo Tasting::AROMA_COMMENT ?>">Aroma</label>    
             </div>
         </div>
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::AROMA_SCORE ?>">Rating</label>
+            <div class="form-floating mb-3">
                 <select class="form-control required" id="<?php echo Tasting::AROMA_SCORE ?>"
                     name="<?php echo Tasting::AROMA_SCORE ?>">
                     <option value=0>0</option>
@@ -26,20 +25,20 @@
                     <option value=11>11</option>
                     <option value=12>12</option>
                 </select>
+                <label for="<?php echo Tasting::AROMA_SCORE ?>">Rating</label>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::APPEARANCE_COMMENT ?>">Appearance</label>
+            <div class="form-floating mb-3">
                 <textarea class="form-control" id="<?php echo Tasting::APPEARANCE_COMMENT ?>"
-                    name="<?php echo Tasting::APPEARANCE_COMMENT ?>" rows="2">Comments</textarea>
+                    name="<?php echo Tasting::APPEARANCE_COMMENT ?>" rows="2"></textarea>
+                <label for="<?php echo Tasting::APPEARANCE_COMMENT ?>">Appearance</label>    
             </div>
         </div>
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::APPEARANCE_SCORE ?>">Rating</label>
+            <div class="form-floating mb-3">
                 <select class="form-control required" id="<?php echo Tasting::APPEARANCE_SCORE ?>"
                     name="<?php echo Tasting::APPEARANCE_SCORE ?>">
                     <option value=0>0</option>
@@ -47,20 +46,20 @@
                     <option value=2>2</option>
                     <option value=3>3</option>
                 </select>
+                <label for="<?php echo Tasting::APPEARANCE_SCORE ?>">Rating</label>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::FLAVOR_COMMENT ?>">Flavor</label>
+            <div class="form-floating mb-3">
                 <textarea class="form-control " id="<?php echo Tasting::FLAVOR_COMMENT ?>"
-                    name="<?php echo Tasting::FLAVOR_COMMENT ?>" rows="2">Comments</textarea>
+                    name="<?php echo Tasting::FLAVOR_COMMENT ?>" rows="2"></textarea>
+                <label for="<?php echo Tasting::FLAVOR_COMMENT ?>">Flavor</label>
             </div>
         </div>
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::FLAVOR_SCORE ?>">Rating</label>
+            <div class="form-floating mb-3">
                 <select class="form-control required" id="<?php echo Tasting::FLAVOR_SCORE ?>"
                     name="<?php echo Tasting::FLAVOR_SCORE ?>">
                     <option value=0>0</option>
@@ -85,20 +84,20 @@
                     <option value=19>19</option>
                     <option value=20>20</option>
                 </select>
+                <label for="<?php echo Tasting::FLAVOR_SCORE ?>">Rating</label>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::MOUTHFEEL_COMMENT ?>">Mouthfeel</label>
+            <div class="form-floating mb-3">
                 <textarea class="form-control" id="<?php echo Tasting::MOUTHFEEL_COMMENT ?>"
-                    name="<?php echo Tasting::MOUTHFEEL_COMMENT ?>" rows="2">Comments</textarea>
+                    name="<?php echo Tasting::MOUTHFEEL_COMMENT ?>" rows="2"></textarea>
+                <label for="<?php echo Tasting::MOUTHFEEL_COMMENT ?>">Mouthfeel</label>       
             </div>
         </div>
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::MOUTHFEEL_SCORE ?>">Rating</label>
+            <div class="form-floating mb-3">
                 <select class="form-control required" id="<?php echo Tasting::MOUTHFEEL_SCORE ?>"
                     name="<?php echo Tasting::MOUTHFEEL_SCORE ?>">
                     <option value=0>0</option>
@@ -108,21 +107,21 @@
                     <option value=4>4</option>
                     <option value=5>5</option>
                 </select>
+                <label for="<?php echo Tasting::MOUTHFEEL_SCORE ?>">Rating</label>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::OVERALL_COMMENT ?>">Overall Impression</label>
+            <div class="form-floating mb-3">
                 <textarea class="form-control" id="<?php echo Tasting::OVERALL_COMMENT ?>"
-                    name="<?php echo Tasting::OVERALL_COMMENT ?>" rows="2">Comments</textarea>
+                    name="<?php echo Tasting::OVERALL_COMMENT ?>" rows="2"></textarea>
+                <label for="<?php echo Tasting::OVERALL_COMMENT ?>">Overall Impression</label>     
             </div>
         </div>
         <div class="col">
-            <div class="form-group">
-                <label for="<?php echo Tasting::OVERALL_SCORE ?>">Rating</label>
+            <div class="form-floating mb-3">
                 <select class="form-control required" id="<?php echo Tasting::OVERALL_SCORE ?>"
                     name="<?php echo Tasting::OVERALL_SCORE ?>">
                     <option value=0>0</option>
@@ -137,6 +136,7 @@
                     <option value=9>9</option>
                     <option value=10>10</option>
                 </select>
+                <label for="<?php echo Tasting::OVERALL_SCORE ?>">Rating</label>
             </div>
         </div>
     </div>

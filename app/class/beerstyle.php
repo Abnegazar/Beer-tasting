@@ -2,8 +2,8 @@
 
 class BeerStyle
 {
-    const ID = 'id';
-    const TITLE = 'title';
+    const ID = 'beer_style_id';
+    const TITLE = 'style';
     const AROMA = 'aroma';
     const APPEARANCE = 'appearance';
     const FLAVOR = 'flavor';
@@ -47,7 +47,7 @@ class BeerStyle
         $this->commercialExamples = $o[self::COMMERCIAL_EXAMPLES];
     }
 
-    public function getBeerStyles()
+    public static function getBeerStyles()
     {
         $res = array();
         $dbInstance = Db::getInstance()->getDbInstance();

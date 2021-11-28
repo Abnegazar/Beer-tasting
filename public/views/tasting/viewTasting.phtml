@@ -1,174 +1,152 @@
+<?php
+if (isset($var->tasting)) {
+    $tasting = $var->tasting;
+} else {
+    http_response_code(404);
+    die();
+}
+?>
+<style>
+.card {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+</style>
+
 <div class="container-fluid d-flex align-items-center flex-column bg-secondary" style=" padding:40px;">
-   <!-- Titre de la degustation-->
-   <h1 class="masthead2-heading text-uppercase mb-0">Titre de la degustation</h1>
-   <!-- Icon Divider-->
-   <div class="divider-custom divider-light">
-      <div class="divider-custom-line"></div>
-      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-      <div class="divider-custom-line"></div>
-   </div>
-   <!-- Nom du degustateur-->
-   <p class="masthead2-subheading font-weight-light mb-0">Nom du degustateur - Titre de la bière - Type de la bière</p>
+    <!-- Titre de la degustation-->
+    <h1 class="masthead2-heading text-uppercase mb-0"><?php echo $tasting->title ?></h1>
+    <!-- Icon Divider-->
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <!-- Nom du degustateur-->
+    <p class="masthead2-subheading font-weight-light mb-0">
+        <?php echo $tasting->userName . " - " . $tasting->beerName . " - " . $tasting->beerStyleTitle ?>
+    </p>
 </div>
 <!-- Content Section-->
 <section class="">
-   <div class="container">
-      <div class="card" style="padding: 20px;">
-         <style>
-            .card {
-               margin-bottom: 15px;
-               margin-top: 10px;
-            }
-         </style>
-         <!-- Content section -->
-         <!-- Bottle Inspection -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Bottle Inspection </h3>
-                  <span class="col-4">Appreciation ou note</span>
-               </div>
+    <div class="container">
+        <div class="card" style="padding: 20px;">
+            <!-- Content section -->
+            <!-- Bottle Inspection -->
+            <div class="row">
+                <div class="row">
+                    <div class="col-12">
+                        <p><?php echo $tasting->total ?> / 50</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="stars" data-rating="<?php echo $tasting->total / 10 ?>" data-num-stars="5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <h3 class="col-8">Bottle Inspection </h3>
+                                <span class="col-4">
+                                    <?php
+                                    if ($tasting->isBottleOk == 1) {
+                                    ?>
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <?php
+                                    } else {
+                                    ?>
+                                    <i class="fas fa-thumbs-down"></i>
+                                    <?php
+                                    }
+                                    ?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <?php echo $tasting->bottleInspectionComment ?>
+                        </div>
+                    </div>
 
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-
-         </div>
-         <!-- Aroma -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Arome </h3>
-                  <strong class="col-4">
-                     <!-- Valeur --> /12
-                  </strong>
-               </div>
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-         </div>
-         <!-- Appearance -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Apparence </h3>
-                  <strong class="col-4">
-                     <!-- Valeur --> /3
-                  </strong>
-               </div>
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-         </div>
-         <!-- Flavor -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Saveur </h3>
-                  <strong class="col-4">
-                     <!-- Valeur --> /20
-                  </strong>
-               </div>
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-         </div>
-         <!-- MouthFeel -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8"> Sensation en bouche</h3>
-                  <strong class="col-4">
-                     <!-- Valeur --> /5
-                  </strong>
-               </div>
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-         </div>
-         <!-- Overall Impression -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Impression génerale </h3>
-                  <strong class="col-4">
-                     <!-- Valeur --> /10
-                  </strong>
-               </div>
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-         </div>
-         <!-- Descriptor definitions -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Description de la saveur</h3>
-               </div>
-               <p class="card-text">
-                  <!-- Commentaires -->
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam iusto totam id, perferendis blanditiis porro fugiat quia aperiam a quaerat ipsa, enim dignissimos. Iusto id excepturi iure quos commodi explicabo!
-               </p>
-            </div>
-         </div>
-         <!-- Stylistic Accuracy -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Precision stylistique </h3>
-                  <strong class="col-4">
-                     <!-- Valeur -->
-                  </strong>
-               </div>
-            </div>
-         </div>
-         <!-- Technical Merit -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Merite technique </h3>
-                  <strong class="col-4">
-                     <!-- Valeur -->
-                  </strong>
-               </div>
-            </div>
-         </div>
-         <!-- Intangibles -->
-         <div class="card">
-            <div class="card-body">
-               <div class="row card-title">
-                  <h3 class="col-8">Intagibles </h3>
-                  <strong class="col-4">
-                     <!-- Valeur -->
-                  </strong>
-               </div>
-            </div>
-         </div>
-         <!-- Note Total -->
-         <div class="card">
-            <div class="row card-header">
-               <h3 class="col-8">Note totale</h3>
-               <strong class="col-4">
-                  <!-- Valeur --> /50
-               </strong>
+                </div>
             </div>
 
-         </div>
-
-
-
-      </div>
-   </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped table-hover table-condensed alignLeft">
+                        <thead>
+                            <th>Criteria</th>
+                            <th>Score</th>
+                            <th>Comment</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aroma</td>
+                                <td><?php echo $tasting->aromaScore ?> /12</td>
+                                <td><?php echo $tasting->aromaComment ?></td>
+                            </tr>
+                            <tr>
+                                <td>Appearance</td>
+                                <td><?php echo $tasting->appearanceScore ?> /3</td>
+                                <td><?php echo $tasting->appearanceComment ?></td>
+                            </tr>
+                            <tr>
+                                <td>Flavor</td>
+                                <td><?php echo $tasting->flavorScore ?> /20</td>
+                                <td><?php echo $tasting->flavorComment ?></td>
+                            </tr>
+                            <tr>
+                                <td>Mouthfeel</td>
+                                <td><?php echo $tasting->mouthfeelScore ?> /5</td>
+                                <td><?php echo $tasting->mouthfeelComment ?></td>
+                            </tr>
+                            <tr>
+                                <td>Overall impression</td>
+                                <td><?php echo $tasting->overallScore ?> /10</td>
+                                <td><?php echo $tasting->overallComment ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <!-- Stylistic Accuracy -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Stylistic Accuracy </h3>
+                        </div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <!-- Technical Merit -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Technical Merit </h3>
+                        </div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <!-- Intangibles -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Intangibles </h3>
+                        </div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

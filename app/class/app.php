@@ -100,4 +100,19 @@ class App
         }
         return $errors;
     }
+
+    public static function dateUsOnlyDate($this_date)
+    {
+        return substr($this_date, 0, 10);
+    }
+
+    public static function dateSqlToUs($this_date, $display_hour = false)
+    {
+        $return_date = false;
+        if ($this_date != null) {
+
+            return substr($this_date, 0, 10);
+        }
+        return $return_date; //exit function and return string
+    } //end of function
 }

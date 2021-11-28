@@ -14,8 +14,8 @@ class DashboardController extends BaseController implements Controller
     public function render()
     {
         $content = false;
-        $this->h1 = "dashboard";
-        $this->description = "dashboard";
+        $this->h1 = "Dashboard";
+        $this->description = "Dashboard";
         $this->title = "TasteMyBeer - Dashboard";
 
         $view = "index.phtml";

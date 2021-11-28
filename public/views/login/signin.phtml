@@ -9,32 +9,29 @@
                     if (!empty($var->errors)) {
                         foreach ($var->errors as $error) {
                     ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo $error; ?>
-                            </div>
-                        <?php
-                        }
-                    } else if (!empty($var->success) and $var->succes != false) {
-                        ?>
-                        <div class="alert alert-success" role="alert">
-                            <?php echo $var->success; ?>
-                        </div>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error; ?>
+                    </div>
                     <?php
+                        }
                     }
                     ?>
                     <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
                     <form action="" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                name="email">
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                name="password">
                             <label for="floatingPassword">Password</label>
                         </div>
 
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="true" id="rememberPasswordCheck" name="remenberMe">
+                            <input class="form-check-input" type="checkbox" value="true" id="rememberPasswordCheck"
+                                name="remenberMe">
                             <label class="form-check-label" for="rememberPasswordCheck">
                                 Remember password
                             </label>
@@ -47,7 +44,8 @@
                         </div>
                         <hr class="my-4">
                         <label class="text-center">
-                            <a href="">you don't have an account?</a> or <a href="">Forgot Password ?</a>
+                            <a href="<?php echo PAGE_SIGNUP ?>">you don't have an account?</a> or <a href="">Forgot
+                                Password ?</a>
                         </label>
                     </form>
                 </div>
