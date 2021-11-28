@@ -2,7 +2,7 @@
 
 class User
 {
-    const ID = 'id';
+    const ID = 'user_id';
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
     const EMAIL = 'email';
@@ -94,7 +94,7 @@ class User
         if ($result) {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
-                if ($row[self::IS_VERIFIED] == 1) {
+                if ($row[self::IS_VERIFIED] == 0) {
                     if (password_verify($password, $row['password'])) {
                         $user = new User();
                         $user->__initFromDbObject($row);

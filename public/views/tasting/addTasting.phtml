@@ -2,18 +2,22 @@
 .hidden {
     display: none;
 }
-button{
+
+button {
     width: 100%;
-    margin:5px;
+    margin: 5px;
 }
-.buttons > input{
+
+.buttons>input {
     width: 100%;
-    margin:5px;
+    margin: 5px;
 }
-.card{
+
+.card {
     width: 100%;
 }
-textarea{
+
+textarea {
     height: 100px;
 }
 </style>
@@ -23,76 +27,93 @@ textarea{
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
-                   <h3 class="card-title text-center mb-5 fw-light fs-5">New tasting</h3>
-                     <form id="form" action="" method="post">
-                       <!--step 1-->
-                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_1, array()); ?>
-                       <!--step 2-->
-                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_2, array()); ?>
-                       <!--step 3-->
-                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
-                       <!--step 4-->
-                       <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
+                    <?php
+                    if (!empty($var->errors)) {
+                        foreach ($var->errors as $error) {
+                    ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error; ?>
+                    </div>
+                    <?php
+                        }
+                    } else if (!empty($var->success) and $var->success != false) {
+                        ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $var->success; ?>
+                    </div>
+                    <?php
+                    }
+                    ?>
+                    <h3 class="card-title text-center mb-5 fw-light fs-5">New tasting</h3>
+                    <form id="form" action="" method="post">
+                        <!--step 1-->
+                        <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_1, array("beerStyles" => $var->beerStyles)); ?>
+                        <!--step 2-->
+                        <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_2, array()); ?>
+                        <!--step 3-->
+                        <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
+                        <!--step 4-->
+                        <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
                         <div class="d-grid mb-2">
-                          <div class="buttons">
-                              <button class="btn btn-secondary btnPrev hidden">Previous</button>
-                              <button class="btn btn-secondary btnNext">Next</button>
-                              <input type="submit" value="Save" class="btn btn-primary btnSubmit hidden" />
-                          </div>
+                            <div class="buttons">
+                                <button class="btn btn-secondary btnPrev hidden">Previous</button>
+                                <button class="btn btn-secondary btnNext">Next</button>
+                                <input type="submit" value="Save" class="btn btn-primary btnSubmit hidden" />
+                            </div>
                         </div>
-                     </form>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        var $fieldsets = $('form fieldset');
-        $('.btnNext').click(function(e) {
-            e.preventDefault();
-            $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
+$(document).ready(function() {
+    var $fieldsets = $('form fieldset');
+    $('.btnNext').click(function(e) {
+        e.preventDefault();
+        $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
 
-        });
-        $('.btnPrev').click(function(e) {
-            e.preventDefault();
-            $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
-
-        });
-
-        function shButtons() {
-            console.log($fieldsets.filter(':visible').index());
-            if ($fieldsets.filter(':visible').index() > 0) {
-                $('.btnPrev').show();
-            } else {
-                $('.btnPrev').hide();
-            }
-            console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
-            if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
-                $('.btnSubmit').show();
-                $('.btnNext').hide();
-            } else {
-                $('.btnSubmit').hide();
-                $('.btnNext').show();
-            }
-        }
-
-        $(".btnSubmit").click(function(e) {
-            e.preventDefault();
-            var isFormValid = true;
-            $(".required").each(function() {
-                if ($.trim($(this).val()).length == 0) {
-                    $(this).addClass("warning");
-                    isFormValid = false;
-                } else {
-                    $(this).removeClass("warning");
-                }
-            });
-            if (!isFormValid) {
-                alert("Please fill in all the required fields (indicated by *)");
-            } else {
-                $("#form").submit();
-            }
-        });
     });
+    $('.btnPrev').click(function(e) {
+        e.preventDefault();
+        $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
+
+    });
+
+    function shButtons() {
+        console.log($fieldsets.filter(':visible').index());
+        if ($fieldsets.filter(':visible').index() > 0) {
+            $('.btnPrev').show();
+        } else {
+            $('.btnPrev').hide();
+        }
+        console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
+        if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
+            $('.btnSubmit').show();
+            $('.btnNext').hide();
+        } else {
+            $('.btnSubmit').hide();
+            $('.btnNext').show();
+        }
+    }
+
+    $(".btnSubmit").click(function(e) {
+        e.preventDefault();
+        var isFormValid = true;
+        $(".required").each(function() {
+            if ($.trim($(this).val()).length == 0) {
+                $(this).addClass("warning");
+                isFormValid = false;
+            } else {
+                $(this).removeClass("warning");
+            }
+        });
+        if (!isFormValid) {
+            alert("Please fill in all the required fields (indicated by *)");
+        } else {
+            $("#form").submit();
+        }
+    });
+});
 </script>

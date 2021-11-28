@@ -18,8 +18,8 @@ class HomeController extends BaseController implements Controller
         //MailSender::sendMail('kudux01@gmail.com', $message, $subject);
         //exit;
         $content = false;
-        $this->h1 = "home";
-        $this->description = "home";
+        $this->h1 = "Home";
+        $this->description = "Home";
         $this->title = "TasteMyBeer - Home";
 
         $view = "index.phtml";

@@ -1,3 +1,6 @@
+
+CREATE SCHEMA IF NOT EXISTS `beer_tasting_app` DEFAULT CHARACTER SET latin1 ;
+USE `beer_tasting_app` ;
 -- -----------------------------------------------------
 -- Table `beer_tasting_app`.`beer`
 -- -----------------------------------------------------
@@ -119,5 +122,20 @@ ALTER TABLE user MODIFY user.password CHAR(60) NOT NULL;
 ALTER TABLE tasting MODIFY tasting.appearance_score DECIMAL(2,1) NOT NULL;
 ALTER TABLE tasting MODIFY tasting.mouthfeel_score DECIMAL(2,1) NOT NULL;
 ALTER TABLE tasting MODIFY tasting.overall_score  DECIMAL(2,1) NOT NULL;
+ALTER table tasting add column bottle_inspection_comment VARCHAR(2000) NULL after overall_comment;
+
+ALTER TABLE beer_style CHANGE `style` title VARCHAR(255) NOT NULL;
+ALTER TABLE user CHANGE `id` user_id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE beer_style CHANGE `id` beer_style_id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE tasting CHANGE `id` tasting_id INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE tasting CHANGE `user_id` u_id INT NOT NULL ;
+ALTER TABLE tasting CHANGE `beer_style_id` bs_id INT NOT NULL;
+ALTER TABLE beer_style CHANGE `title` style VARCHAR(255) NOT NULL;
+ALTER TABLE tasting CHANGE `created_at` t_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+INSERT INTO `beer_style` (`beer_style_id`, `style`, `aroma`, `appearance`, `flavor`, `body`, `comments`, `story`, `ingredients`, `styles_comparison`, `commercial_examples`, `created_at`, `updated_at`) VALUES (NULL, 'Lager Américaine Légère', 'Peu ou pas d\'arômes maltés. S\'ils existent, ils peuvent être perçus comme des arômes de céréales, doux ou similaires à ceux du maïs. L\'arôme des houblons peut être absent ou léger, épicé ou floral s\'il est décelable. Si l\'absence d\'arôme lié aux levures est souhaitable, un faible taux (en particulier un léger arôme fruité de pomme verte) n\'est pas un défaut. Un faible taux de DMS (diméthylsulfure) est également acceptable.', 'Couleur blond paille très claire à jaune pâle. Col de mousse blanche, rarement persistante. Limpide.', 'Palais relativement neutre avec une saveur en fin de bouche fraîche et sèche, de faibles saveurs de malts ou de maïs qui peuvent être perçues comme un goût sucré du fait de la faible amertume. Les saveurs de houblons sont soit absentes, soit de faible intensité et peuvent être florales, épicées ou présenter des notes végétales (bien que rarement assez fortes pour être détectées). L\'amertume est faible à très faible. L\'équilibre peut varier de légèrement malté à légèrement amer, mais doit être relativement proche de l\'équilibre. De hauts niveaux de carbonatation peuvent accentuer la sensation de fraîcheur et de sécheresse en fin de bouche.', 'Corps très léger lié à l\'utilisation d\'un pourcentage important de céréales additionnelles comme le riz ou le maïs. Forte carbonatation avec une légère sensation de piquant sur la langue. Le corps peut sembler aqueux.', 'Une bière dont la densité initiale et la teneur en calories sont inférieures à celles des bières lager \"internationales\". Des saveurs fortes sont un défaut pour ce type de bières. Elles sont conçues pour plaire au plus grand nombre.', 'La Brasserie Coors a brièvement brassé une lager légère au début des années 1940. Les versions modernes ont été en premier lieu produites par la brasserie Rheingold en 1967 pour satisfaire les consommateurs soucieux de leur régime alimentaire. Elles ne sont devenues populaires qu\'à partir de 1973, après que la compagnie Miller Brewing ait acquis la recette et ait fortement promu la bière aux fans de sport via une campagne publicitaire dont le slogan était \"tastes great, less filling\" soit \"pleine de goût, plus légère\". Les bières de ce genre sont devenues les plus vendues aux États-Unis dans les années 1990.', '\r\nMalt d\'orge 2 rangs ou 6 rangs avec un important pourcentage de riz ou de maïs comme compléments (jusqu\'à 40%).', 'Une version plus fine en bouche, légère en alcool et en calories que la Lager Américaine, avec moins d\'arôme et d\'amertume des houblons qu\'une Leichtbier.\r\n\r\n', 'Bud Light, Coors Light, Keystone Light, Michelob Light, Miller Lite, Old Milwaukee Light\r\n\r\n', CURRENT_TIMESTAMP, NULL);
+
+
 
 

@@ -2,12 +2,12 @@
 
 class Tasting
 {
-    const ID = 'id';
+    const ID = 'tasting_id';
     const TITLE = 'title';
     const BEER_NAME = 'beer_name';
 
-    const USER_ID = 'user_id';
-    const BEER_STYLE_ID = 'beer_style_id';
+    const USER_ID = 'u_id';
+    const BEER_STYLE_ID = 'bs_id';
 
     const AROMA_COMMENT = 'aroma_comment';
     const APPEARANCE_COMMENT = 'appearance_comment';
@@ -53,7 +53,7 @@ class Tasting
     const GOOD = array('label' => 'Good', 'range' => array('start' => 21, 'end' => 29));
     const FAIR = array('label' => 'Fair', 'range' => array('start' => 14, 'end' => 20));
     const PROBLEMATIC = array('label' => 'Problematic', 'range' => array('start' => 0, 'end' => 13));
-    const CREATED_AT = 'created_at';
+    const CREATED_AT = 't_created_at';
 
 
     public $userId;
@@ -68,6 +68,8 @@ class Tasting
     public $flavorComment;
     public $mouthfeelComment;
     public $overallComment;
+    public $bottleInspectionComment;
+
 
     public $aromaScore;
     public $appearanceScore;
@@ -101,6 +103,8 @@ class Tasting
     public $technicalMerit;
 
     public $createdAt;
+    public $beerStyleTitle;
+    public $userName;
 
 
     public function __construct()
@@ -116,6 +120,8 @@ class Tasting
         $this->flavorComment = false;
         $this->mouthfeelComment = false;
         $this->overallComment = false;
+        $this->bottleInspectionComment = false;
+
         $this->aromaScore = false;
         $this->appearanceScore = false;
         $this->flavorScore = false;
@@ -147,6 +153,8 @@ class Tasting
         $this->intangibles = false;
         $this->technicalMerit = false;
         $this->createdAt = false;
+        $this->beerStyleTitle = false;
+        $this->userName = false;
     }
 
 
@@ -156,19 +164,18 @@ class Tasting
         $beerStyleId,
         $beerName,
         $title = '',
-
         $aromaComment = '',
         $appearanceComment = '',
         $flavorComment = '',
         $mouthfeelComment = '',
         $overallComment = '',
+        $bottleInspectionComment = '',
         $aromaScore,
         $appearanceScore,
         $flavorScore,
         $mouthfeelScore,
         $overallScore,
         $total,
-
         $isAcetaldehyde = 0,
         $isAlcoholic = 0,
         $isAstringent = 0,
@@ -187,7 +194,6 @@ class Tasting
         $isVegetal = 0,
         $isBottleOk = 0,
         $isYeasty = 0,
-
         $stylisticAccuracy = 0,
         $intangibles = 0,
         $technicalMerit = 0
@@ -203,6 +209,8 @@ class Tasting
         $this->flavorComment = $flavorComment;
         $this->mouthfeelComment = $mouthfeelComment;
         $this->overallComment = $overallComment;
+        $this->bottleInspectionComment = $bottleInspectionComment;
+
         $this->aromaScore = $aromaScore;
         $this->appearanceScore = $appearanceScore;
         $this->flavorScore = $flavorScore;
@@ -233,7 +241,7 @@ class Tasting
         $this->technicalMerit = $technicalMerit;
     }
 
-    public function __initFromDbObject($o)
+    public function __initFromDbObject($o, $tastingById = false)
     {
         $this->id                = (int)$o[self::ID];
         $this->title             = $o[self::TITLE];
@@ -246,6 +254,8 @@ class Tasting
         $this->flavorComment     = $o[self::APPEARANCE_COMMENT];
         $this->mouthfeelComment  = $o[self::MOUTHFEEL_COMMENT];
         $this->overallComment    = $o[self::OVERALL_COMMENT];
+        $this->bottleInspectionComment    = $o[self::BOTTLE_INSPECTION_COMMENT];
+
 
         $this->aromaScore        = (float)$o[self::AROMA_SCORE];
         $this->appearanceScore   = (float)$o[self::APPEARANCE_SCORE];
@@ -279,9 +289,13 @@ class Tasting
         $this->intangibles       = (int)$o[self::INTANGIBLES];
         $this->technicalMerit    = (int)$o[self::TECHNICAL_MERIT];
         $this->createdAt         = $o[self::CREATED_AT];
+        if (!$tastingById) {
+            $this->userName          = $o[User::FIRST_NAME] . " " . $o[User::LAST_NAME];
+            $this->beerStyleTitle    = $o[BeerStyle::TITLE];
+        }
     }
 
-    public function calculateScore()
+    private function calculateScore()
     {
         switch (true) {
             case in_array($this->total, range(self::OUTSTANDING['range']['start'], self::OUTSTANDING['range']['end'])):
@@ -346,9 +360,9 @@ class Tasting
         $dbInstance = Db::getInstance()->getDbInstance();
         $sql = 'INSERT INTO `tasting`(
                     `title`,
-                    `beer_style_id`,
+                    `bs_id`,
                     `beer_name`,
-                    `user_id`,
+                    `u_id`,
                     `aroma_comment`,
                     `aroma_score`,
                     `appearance_comment`,
@@ -433,7 +447,7 @@ class Tasting
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
         $userId = ($userId) ? (int)$userId : Session::getConnectedUserId();
-        $sql = "SELECT * FROM tasting WHERE tasting.user_id = " . $userId . "";
+        $sql = "SELECT * FROM tasting t join user u on t.u_id = u.user_id join beer_style b on t.bs_id = b.beer_style_id where u.user_id = " . $userId . " ORDER BY t.t_created_at DESC";
         if ($limit) {
             $sql .= ' LIMIT ' . $offset . ', ' . $limit;
         }
@@ -441,6 +455,7 @@ class Tasting
         if ($result) {
             $tastings = [];
             while ($row = mysqli_fetch_assoc($result)) {
+
                 $tasting = new Tasting();
                 $tasting->__initFromDbObject($row);
                 array_push($tastings, $tasting);
@@ -458,12 +473,13 @@ class Tasting
         $dbInstance = Db::getInstance()->getDbInstance();
 
         $offset = ($offset) ? $offset : 0;
-        $sql = "SELECT * FROM tasting ORDER BY created_at DESC";
+        $sql = "SELECT * FROM tasting t join user u on t.u_id = u.user_id join beer_style b on t.bs_id = b.beer_style_id  ORDER BY t.t_created_at DESC";
         if ($limit) {
             $sql .= ' LIMIT ' . $offset . ', ' . $limit;
         }
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
+
             $tastings = [];
             while ($row = mysqli_fetch_assoc($result)) {
                 $tasting = new Tasting();
@@ -481,16 +497,35 @@ class Tasting
     {
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
-        $sql = "SELECT * FROM tasting WHERE tasting.id = " . $id . "";
+        $sql = "SELECT * FROM tasting t join user u on t.u_id = u.user_id join beer_style b on t.bs_id = b.beer_style_id WHERE t.tasting_id = " . $id . "  ORDER BY t.t_created_at DESC";
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
-            $tastings = [];
-            while ($row = mysqli_fetch_assoc($result)) {
-                $tasting = new Tasting();
-                $tasting->__initFromDbObject($row);
-                array_push($tastings, $tasting);
-            }
-            return $tastings;
+            $row = mysqli_fetch_assoc($result);
+            $tasting = new Tasting();
+            $tasting->__initFromDbObject($row);
+            return $tasting;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function count($user = false)
+    {
+        $res = false;
+
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = 'SELECT count(tasting_id) AS total FROM `tasting`';
+
+        if ($user) {
+            $sql .= " WHERE `u_id`=" . Session::getConnectedUserId();
+        }
+
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $tastingsCount = mysqli_fetch_array($result);
+            $total = $tastingsCount['total'];
+            return $total;
         } else {
             App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
         }

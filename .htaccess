@@ -32,6 +32,9 @@
     
     RewriteRule ^tastings                             index.php?c=tastingController&operation=getAllTastings [L]
 
+
+    RewriteRule ^tasting/visitor/(.*)$                index.php?c=tastingController&operation=getTastingById&id=$1&mode=visitor [L]
+
     RewriteRule ^tasting/(.*)$                        index.php?c=tastingController&operation=getTastingById&id=$1 [L]
 
 

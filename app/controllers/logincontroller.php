@@ -115,7 +115,7 @@
                         if ($user->save()) {
                             $subject = "Confirmation";
                             $message = "Confirmation ";
-                            $succes = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
+                            $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
                             //Mailer::sendMail($email, $message, $subject);
                         } else {
                             $errors[] = "Une erreur s'est produite lors de la création du compte";

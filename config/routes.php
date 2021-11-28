@@ -9,6 +9,8 @@ DEFINE('PAGE_FORGOT_PASSWORD', SITE_URL . 'forgot-password');
 DEFINE('PAGE_SHOW_DEGUSTATION', SITE_URL . 'show-degustation');
 
 DEFINE('PAGE_TASTING', SITE_URL . 'tasting/#id#');
+DEFINE('PAGE_TASTING_VISITOR', SITE_URL . 'tasting/visitor/#id#');
+
 DEFINE('PAGE_TASTINGS', SITE_URL . 'tastings');
 DEFINE('PAGE_TASTINGS_BY_PAGE', SITE_URL . 'tastings/#page#');
 
@@ -32,3 +34,6 @@ DEFINE('PARTIAL_ADD_TASTING_FORM_1', 'add_tasting_form_1');
 DEFINE('PARTIAL_ADD_TASTING_FORM_2', 'add_tasting_form_2');
 DEFINE('PARTIAL_ADD_TASTING_FORM_3', 'add_tasting_form_3');
 DEFINE('PARTIAL_ADD_TASTING_FORM_4', 'add_tasting_form_4');
+DEFINE('PARTIAL_PAGINATION_V1', 'pagination_v1');
+DEFINE('PARTIAL_PAGINATION_V2', 'pagination_v2');
+DEFINE('PARTIAL_PAGINATION_V3', 'pagination_v3');

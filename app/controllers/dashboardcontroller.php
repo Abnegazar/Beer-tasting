@@ -2,7 +2,7 @@
 
 class DashboardController extends BaseController implements Controller
 {
-    const viewDirectory = "tasting/";
+    const viewDirectory = "dashboard/";
 
     public function __construct()
     {
@@ -14,11 +14,11 @@ class DashboardController extends BaseController implements Controller
     public function render()
     {
         $content = false;
-        $this->h1 = "dashboard";
-        $this->description = "dashboard";
+        $this->h1 = "Dashboard";
+        $this->description = "Dashboard";
         $this->title = "TasteMyBeer - Dashboard";
 
-        $view = "addTasting.phtml";
+        $view = "index.phtml";
 
         $lastUserTastings = Tasting::getUserTastings(Session::getConnectedUserId(), 0, 3);
         $lastTastings = Tasting::getAllTastings(0, 3);
