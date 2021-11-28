@@ -82,8 +82,22 @@ class App
     }
 
     public static function test()
-    {   
+    {
         var_dump("hey");
     }
-    
+
+
+    public static function checkValue($values)
+    {
+        $errors = false;
+        //score général
+        foreach ($values as $testValue) {
+            if (empty($testValue) && $testValue !== '0') {
+                $errors[] = 'Veuillez renseigner tous les champs obligatoires.';
+            } else if ((tasting::getFloat($testValue)) > 10) {
+                $errors[] = 'Tous les scores donnés à la bière en général doivent être inférieurs ou égaux à 10.';
+            }
+        }
+        return $errors;
+    }
 }

@@ -1,59 +1,51 @@
 <!-- Alert-->
+<style>
+    .card{
+    width: 100%;
+}
+</style>
 <div class="container">
     <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
-            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-                <div class="card-img-left d-none d-md-flex">
-                    <!-- Background image for card set in CSS! -->
-                </div>
-                <div class="card-body p-4 p-sm-5">
-                    <?php
-                    if (!empty($errors)) {
-                        foreach ($errors as $error) {
+            <div class="card border-0 shadow rounded-3 my-5">
+                <?php
+                    if (!empty($var->errors)) {
+                        foreach ($var->errors as $error) {
                     ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $error; ?>
-                    </div>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $error; ?>
+                            </div>
                     <?php
                         }
-                    }
+                      }
                     ?>
+                <div class="card-body p-4 p-sm-5">
                     <h5 class="card-title text-center mb-5 fw-light fs-5">SIGN UP</h5>
-                    <form>
-
+                    <form action="" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername"
-                                required autofocus name="username">
-                            <label for="floatingInputUsername">Username</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Doe" required>
+                            <label for="floatingInputLastName">Last name</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInputEmail"
-                                placeholder="name@example.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                             <label for="floatingInputEmail">Email address</label>
                         </div>
-
-                        <hr>
-
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                             <label for="floatingPassword">Password</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPasswordConfirm"
-                                placeholder="Confirm Password">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
                             <label for="floatingPasswordConfirm">Confirm Password</label>
-                        </div>
-
-                        <br>
+                        </div> <br>
 
                         <div class="d-grid mb-2">
-                            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
-                                type="submit">Register</button>
+                            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Register</button>
                         </div>
 
-                        <a class="d-block text-center mt-2 small" href="#">Have an account? Sign In</a>
+                        <a class="d-block text-center mt-2 small" href="<?php echo PAGE_SIGNIN ?>">Have an account? Sign In</a>
 
                         <hr class="my-4">
 
@@ -62,4 +54,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> 

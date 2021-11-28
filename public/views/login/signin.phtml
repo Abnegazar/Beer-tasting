@@ -12,8 +12,14 @@
                             <div class="alert alert-danger" role="alert">
                                 <?php echo $error; ?>
                             </div>
-                    <?php
+                        <?php
                         }
+                    } else if (!empty($var->success) and $var->succes != false) {
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $var->success; ?>
+                        </div>
+                    <?php
                     }
                     ?>
                     <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
