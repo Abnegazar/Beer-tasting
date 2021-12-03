@@ -1,3 +1,6 @@
+
+CREATE SCHEMA IF NOT EXISTS `beer_tasting_app` DEFAULT CHARACTER SET latin1 ;
+USE `beer_tasting_app` ;
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
