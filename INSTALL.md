@@ -32,7 +32,10 @@ Télécharger WampServer à l'adresse suivante :[Télécharger Wamp](https://www
 
 #### Utilisateur sous Linux
 
-Voir : [Créer un virtual host LAMP](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-18-04-quickstart-fr). Remplacez bien le nom de domaine d'exemple par tastemybeer.
+1. Verifiez que vous travaillez sur le apache de votre serveur et utilisez tasteMyBeer comme nom de domaine partout.
+
+2. Voir : [Créer un virtual host LAMP](http://elisabeth.pointal.org/doc/code/server/lamp/creer_des_virtualhosts).
+   Remplacez bien le nom de domaine d'exemple par tastemybeer.
 
 #### Utilisateur sous Windows
 
