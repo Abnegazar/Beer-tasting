@@ -19,7 +19,8 @@ DEFINE('PATERN_ONE_DIGIT_BETWEEN_1_AND_5', '/^[1-5]$/');
 DEFINE('PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL', 'Veuillez entre un chiffre compris entre 1 et 5.');
 
 DEFINE('PATTERN_NAME', '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{3,50}$/i');
-DEFINE('PATTERN_NAME_EXPL', 'Votre nom et prénom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
+DEFINE('PATTERN_NAME_EXPL', 'Votre nom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
+DEFINE('PATTERN_FIRST_NAME_EXPL', str_replace('nom', 'prénom', PATTERN_NAME_EXPL));
 
 if (
     !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'
