@@ -90,15 +90,19 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function(feedback) {
-                setupMessagesContainer();
-                if (feedback.status === "success") {
-                    $('#successContainer').show();
-                    $('#successContainer').append(feedback.message);
 
-                } else {
+                setupMessagesContainer();
+                if (feedback.status == "success") {
+                    $('#successContainer').show();
+                    $('#errorContainer').append("<ul>");
+
+                    $('#successContainer').append(feedback.message);
+                    $('#errorContainer').append("</ul>");
+
+                } else if (feedback.status == "error") {
                     $('#errorContainer').show();
                     $('#errorContainer').append("<ul>");
-                    jQuery.each(feedback, function(index, item) {
+                    jQuery.each(feedback.message, function(index, item) {
                         $('#errorContainer').append("<li>" + item + "</li>");
                     });
                     $('#errorContainer').append("</ul>");

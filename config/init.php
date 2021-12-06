@@ -32,4 +32,7 @@ if (
 }
 
 DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/');
+DEFINE('VENDOR_DIR', '../vendor/');
+
+
 require_once(CONFIG_FOLDER . 'routes.php');

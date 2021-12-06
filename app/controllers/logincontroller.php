@@ -102,18 +102,17 @@
                     $user->initValue(false, $firstName, $lastName, $email, $password);
                     if ($user->save()) {
                         $subject = "Confirmation";
-                        $message = "Confirmation ";
                         $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-                        return json_encode(['status' => 'success', 'message' => $success]);
-                        //Mailer::sendMail($email, $message, $subject);
-                    } else {
-                        $errors[] = "Une erreur s'est produite lors de la création du compte";
+                        if (Mailer::sendMail($email, $success, $subject)) {
+                            return json_encode(['status' => 'success', 'message' => $success]);
+                        }
                     }
+                    $errors[] = "Une erreur s'est produite lors de la création du compte";
                 } else {
                     $errors[] = 'Cet email est déjà associé à un compte. Vous pouvez utiliser la fonction "mot de passe oublié".';
                 }
             }
-            return json_encode($errors);
+            return json_encode(['status' => 'error', 'message' => $errors]);
         }
 
         public function signUp()
@@ -122,8 +121,6 @@
             $this->h1 = "Sign up";
             $this->description = "Sign up";
             $this->title = "TasteMyBeer - Sign up";
-            $errors = [];
-            $success = false;
             if (!empty($_POST)) {
                 echo $this->signUpAjaxProcessing();
                 exit;
