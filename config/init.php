@@ -30,5 +30,5 @@ if (
     DEFINE('SITE_PROTOCOL', 'http');
 }
 
-DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME .'/');
+DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/');
 require_once(CONFIG_FOLDER . 'routes.php');
