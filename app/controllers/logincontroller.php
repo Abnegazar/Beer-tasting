@@ -15,54 +15,61 @@
 
         public function signIn()
         {
+            if (!empty($_POST)) {
+                return $this->signInAjaxProcessing();
+            }
+
             $view = 'signin.phtml';
             $this->h1 = "Sign in";
             $this->description = "Sign in";
-            $this->title = "TasteMyBeer - Sign in";
-            $errors = [];
-            if (!empty($_POST)) {
+            $this->title = "Login | TasteMyBeer";
 
-                //email validation
-                if (!isset($_POST['email']) or empty(trim($_POST['email']))) {
-                    $errors[] = 'L\'email est obligatoire.';
-                } else if (!filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL)) {
-                    $errors[] = 'L\'email saisi n\'est pas correct.';
-                }
-
-                //password validation
-                if (!isset($_POST['password']) or empty(trim($_POST['password']))) {
-                    $errors[] = 'Le mot de passe est obligatoire.';
-                }
-
-                if (empty($errors)) {
-                    $email = $_POST['email'];
-                    $password = $_POST['password'];
-                    $user = false;
-                    $email = trim($_POST['email']);
-                    $password = trim($_POST['password']);
-
-                    //check if user exists
-                    $user = User::logIn($email, $password);
-                    if ($user) {
-                        //if the user exists, create the session variable and do the redirection
-                        Session::setConnectedUser($user);
-                        header("Location:" . PAGE_DASHBOARD);
-                    } else {
-                        $errors[] = "Les identifiants fournis sont incorrects.";
-                    }
-                }
-            }
             $content = App::get_content(
                 self::viewDirectory . $view,
-                array(
-                    'errors'             => $errors
-                )
+                array()
             );
             return $content;
         }
 
+        public function signInAjaxProcessing()
+        {
+            $this->useLayout = false;
+            //email validation
+            if (!isset($_POST['email']) or empty(trim($_POST['email']))) {
+                $errors[] = 'L\'email est obligatoire.';
+            } else if (!filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL)) {
+                $errors[] = 'L\'email saisi n\'est pas correct.';
+            }
+
+            //password validation
+            if (!isset($_POST['password']) or empty(trim($_POST['password']))) {
+                $errors[] = 'Le mot de passe est obligatoire.';
+            }
+
+            if (empty($errors)) {
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $user = false;
+                $email = trim($_POST['email']);
+                $password = trim($_POST['password']);
+
+                //check if user exists
+                $user = User::logIn($email, $password);
+                if ($user) {
+                    //if the user exists, create the session variable and do the redirection
+                    Session::setConnectedUser($user);
+                    return json_encode(["status" => "success"]);
+                    header("Location:" . PAGE_DASHBOARD);
+                } else {
+                    $errors[] = "Les identifiants fournis sont incorrects.";
+                }
+            }
+            return json_encode(["status" => "error", "message" => $errors]);
+        }
+
         public function signUpAjaxProcessing()
         {
+            $this->useLayout = false;
             //name validation
             if (!isset($_POST['firstName'])) {
                 $errors[] = 'Le prénom est obligatoire. ';
@@ -117,14 +124,13 @@
 
         public function signUp()
         {
+            if (!empty($_POST)) {
+                return $this->signUpAjaxProcessing();
+            }
             $view = 'signup.phtml';
             $this->h1 = "Sign up";
             $this->description = "Sign up";
-            $this->title = "TasteMyBeer - Sign up";
-            if (!empty($_POST)) {
-                echo $this->signUpAjaxProcessing();
-                exit;
-            }
+            $this->title = "Sign Up | TasteMyBeer";
             $content = App::get_content(
                 self::viewDirectory . $view,
                 array()

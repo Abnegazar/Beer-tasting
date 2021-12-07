@@ -16,7 +16,7 @@ class DashboardController extends BaseController implements Controller
         $content = false;
         $this->h1 = "Dashboard";
         $this->description = "Dashboard";
-        $this->title = "TasteMyBeer - Dashboard";
+        $this->title = "Dashboard | TasteMyBeer";
 
         $view = "index.phtml";
 

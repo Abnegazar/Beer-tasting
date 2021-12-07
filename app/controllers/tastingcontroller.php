@@ -20,7 +20,7 @@ class TastingController extends BaseController implements Controller
 
         $this->h1 = "Tastings";
         $this->description = "All tastings";
-        $this->title = "TasteMyBeer - All tastings";
+        $this->title = "All Tastings | TasteMyBeer ";
 
         $view = "viewTastings.phtml";
 
@@ -52,7 +52,7 @@ class TastingController extends BaseController implements Controller
     {
         $this->h1 = "My tastings";
         $this->description = "My tastings";
-        $this->title = "TasteMyBeer - My tastings";
+        $this->title = "My tastings | TasteMyBeer";
 
         $view = "viewTastings.phtml";
 
@@ -83,7 +83,7 @@ class TastingController extends BaseController implements Controller
     {
         $this->h1 = "Tasting " . $id;
         $this->description = "Tasting " . $id;
-        $this->title = "TasteMyBeer -" . "Tasting " . $id;
+        $this->title = "Tasting " . $id . " | TasteMyBeer";
 
         $view = "viewTasting.phtml";
 
@@ -99,7 +99,7 @@ class TastingController extends BaseController implements Controller
     {
         $this->h1 = "Add tasting";
         $this->description = "Add tasting";
-        $this->title = "TasteMyBeer - Add";
+        $this->title = "Add | TasteMyBeer";
 
         $view = 'addTasting.phtml';
         $errors = [];
