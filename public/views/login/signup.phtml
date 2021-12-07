@@ -3,31 +3,23 @@
 .card {
     width: 100%;
 }
+
+.hidden {
+    display: none;
+}
 </style>
 <div class="container">
     <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
-                <?php
-                if (!empty($var->errors)) {
-                    foreach ($var->errors as $error) {
-                ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $error; ?>
+                <div class="alert alert-danger hidden" id="errorContainer" role="alert">
                 </div>
-                <?php
-                    }
-                } else if (!empty($var->success) and $var->success != false) {
-                    ?>
-                <div class="alert alert-success" role="alert">
-                    <?php echo $var->success; ?>
+
+                <div class="alert alert-success hidden" id="successContainer" role="alert">
                 </div>
-                <?php
-                }
-                ?>
                 <div class="card-body p-4 p-sm-5">
                     <h5 class="card-title text-center mb-5 fw-light fs-5">SIGN UP</h5>
-                    <form action="" method="POST">
+                    <form id="signupForm" action="" method="POST">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John"
                                 required>
@@ -50,7 +42,7 @@
                         </div>
 
                         <div class="d-grid mb-2">
-                            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
+                            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" id="submitBtn"
                                 type="submit">Register</button>
                         </div>
 
@@ -67,12 +59,62 @@
 </div>
 <script>
 $(document).ready(function() {
+    function setupMessagesContainer() {
+        $('#successContainer').empty();
+        $('#successContainer').hide();
+        $('#errorContainer').empty();
+        $('#errorContainer').hide();
+    }
+    setupMessagesContainer();
     $(".pr-password").passwordRequirements({
         numCharacters: 8,
         useLowercase: true,
         useUppercase: true,
         useNumbers: true,
         useSpecial: true
+    });
+    $("#signupForm").submit(function(e) {
+        e.preventDefault();
+        const firstName = $("#firstName").val();
+        const name = $("#name").val();
+        const email = $("#email").val();
+        const password = $("#password").val();
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: {
+                "firstName": firstName,
+                "name": name,
+                "email": email,
+                'password': password
+            },
+            dataType: 'json',
+            success: function(feedback) {
+
+                setupMessagesContainer();
+                if (feedback.status == "success") {
+                    $('#successContainer').show();
+                    $('#errorContainer').append("<ul>");
+
+                    $('#successContainer').append(feedback.message);
+                    $('#errorContainer').append("</ul>");
+
+                } else if (feedback.status == "error") {
+                    $('#errorContainer').show();
+                    $('#errorContainer').append("<ul>");
+                    jQuery.each(feedback.message, function(index, item) {
+                        $('#errorContainer').append("<li>" + item + "</li>");
+                    });
+                    $('#errorContainer').append("</ul>");
+                }
+            }
+            /*,
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Status: " + textStatus);
+                            alert("Error: " + errorThrown);
+                        }
+                        */
+        })
     });
 });
 </script>

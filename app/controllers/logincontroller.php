@@ -61,74 +61,73 @@
             return $content;
         }
 
+        public function signUpAjaxProcessing()
+        {
+            //name validation
+            if (!isset($_POST['firstName'])) {
+                $errors[] = 'Le prénom est obligatoire. ';
+            } else if (!preg_match(PATTERN_NAME, $_POST['firstName'])) {
+                $errors[] = PATTERN_FIRST_NAME_EXPL;
+            }
+
+            if (!isset($_POST['name'])) {
+                $errors[] = 'Le nom est obligatoire. ';
+            } else if (!preg_match(PATTERN_NAME, $_POST['name'])) {
+                $errors[] = PATTERN_NAME_EXPL;
+            }
+
+            //email validation
+            if (!isset($_POST['email']) || empty($_POST['email'])) {
+                $errors[] = 'L\'email est obligatoire. ';
+            } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors[] = 'L\'email saisi n\'est pas correct. ';
+            }
+
+            //password validation
+            if (!isset($_POST['password']) || empty(($_POST['password']))) {
+                $errors[] = "Le mot de passe est obligatoire";
+            } else if (!preg_match(PATTERN_PASSWORD, $_POST['password'])) {
+                $errors[] = "Le mot de passe n'est pas correct";
+            }
+            if (empty($errors)) {
+                $email = $_POST['email'];
+                //check if user already exists
+                if (!User::isUserExists($email)) {
+                    //if not saving the user in the database
+                    $firstName = $_POST['firstName'];
+                    $lastName = $_POST['name'];
+                    $password = $_POST['password'];
+                    $email = $_POST['email'];
+                    $user = new User();
+                    $user->initValue(false, $firstName, $lastName, $email, $password);
+                    if ($user->save()) {
+                        $subject = "Confirmation";
+                        $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
+                        if (Mailer::sendMail($email, $success, $subject)) {
+                            return json_encode(['status' => 'success', 'message' => $success]);
+                        }
+                    }
+                    $errors[] = "Une erreur s'est produite lors de la création du compte";
+                } else {
+                    $errors[] = 'Cet email est déjà associé à un compte. Vous pouvez utiliser la fonction "mot de passe oublié".';
+                }
+            }
+            return json_encode(['status' => 'error', 'message' => $errors]);
+        }
+
         public function signUp()
         {
             $view = 'signup.phtml';
             $this->h1 = "Sign up";
             $this->description = "Sign up";
             $this->title = "TasteMyBeer - Sign up";
-            $errors = [];
-            $success = false;
             if (!empty($_POST)) {
-
-                //name validation
-                if (!isset($_POST['firstName'])) {
-                    $errors[] = 'Le prénom est obligatoire. ';
-                } else if (!preg_match(PATTERN_NAME, $_POST['firstName'])) {
-                    $errors[] = PATTERN_NAME_EXPL;
-                }
-
-                if (!isset($_POST['name'])) {
-                    $errors[] = 'Le nom est obligatoire. ';
-                } else if (!preg_match(PATTERN_NAME, $_POST['name'])) {
-                    $errors[] = PATTERN_NAME_EXPL;
-                }
-
-                //email validation
-                if (!isset($_POST['email']) || empty($_POST['email'])) {
-                    $errors[] = 'L\'email est obligatoire. ';
-                } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                    $errors[] = 'L\'email saisi n\'est pas correct. ';
-                }
-
-                //password validation
-                if (!isset($_POST['password']) || empty(($_POST['password']))) {
-                    $errors[] = "Le mot de passe est obligatoire";
-                } else if (!preg_match(PATTERN_PASSWORD, $_POST['password'])) {
-                    $errors[] = "Le mot de passe n'est pas correct";
-                }
-
-
-                if (empty($errors)) {
-                    $email = $_POST['email'];
-                    //check if user already exists
-                    if (!User::isUserExists($email)) {
-                        //if not saving the user in the database
-                        $firstName = $_POST['firstName'];
-                        $lastName = $_POST['name'];
-                        $password = $_POST['password'];
-                        $email = $_POST['email'];
-                        $user = new User();
-                        $user->initValue(false, $firstName, $lastName, $email, $password);
-                        if ($user->save()) {
-                            $subject = "Confirmation";
-                            $message = "Confirmation ";
-                            $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-                            //Mailer::sendMail($email, $message, $subject);
-                        } else {
-                            $errors[] = "Une erreur s'est produite lors de la création du compte";
-                        }
-                    } else {
-                        $errors[] = 'Cet email est déjà associé à un compte. Vous pouvez utiliser la fonction "mot de passe oublié".';
-                    }
-                }
+                echo $this->signUpAjaxProcessing();
+                exit;
             }
             $content = App::get_content(
                 self::viewDirectory . $view,
-                array(
-                    'errors'             => $errors,
-                    'success'            => $success
-                )
+                array()
             );
             return $content;
         }

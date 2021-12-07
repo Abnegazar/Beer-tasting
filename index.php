@@ -1,5 +1,4 @@
 <?php
-
 DEFINE('APP_FOLDER', 'app/');
 DEFINE('CONFIG_FOLDER', 'config/');
 DEFINE('RESOURCES_FOLDER', 'public/');
@@ -19,6 +18,8 @@ if (isset($_SERVER['SERVER_NAME'])) {
     die(); // pas le $_SERVER['SERVER_NAME'] du mode web ni le $_GET['brand'] des crons
 }
 
+DEFINE('APP_ROOT', __DIR__);
+
 DEFINE('SERVER_NAME', $serverName);
 
 require_once(CONFIG_FOLDER . 'init.php');
@@ -35,7 +36,6 @@ spl_autoload_register(function ($class) {
         }
     }
 });
-
 $controller = false;
 if (isset($_GET['c']) and class_exists($_GET['c'])) {
     $controller = new $_GET['c']();
