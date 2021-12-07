@@ -1,6 +1,8 @@
 <?php
 
 DEFINE('APP_VERSION', '0.0.0.1');
+DEFINE('APP_NAME', 'TasteMyBeer');
+
 
 DEFINE('DB_HOST', $_SERVER['host']);
 DEFINE('DB_USER', $_SERVER['user']);
@@ -33,6 +35,9 @@ if (
 
 DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/');
 DEFINE('VENDOR_DIR', '../vendor/');
+
+DEFINE('EMAIL_FROM',             'no-reply@tastemybeer.com');
+DEFINE('EMAIL_FROM_NAME',         APP_NAME);
 
 
 require_once(CONFIG_FOLDER . 'routes.php');

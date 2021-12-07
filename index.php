@@ -10,7 +10,15 @@ DEFINE('JS_FOLDER', RESOURCES_FOLDER . 'js/');
 DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . 'assets/');
 DEFINE('PARTIALS_SUBFOLDER', 'partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
-DEFINE('LOGS_FOLDER', '../logs/');
+DEFINE('LOGS_FOLDER', 'logs/');
+DEFINE('LANG_FOLDER', RESOURCES_FOLDER . 'lang/');
+
+
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$acceptLang = ['fr', 'en'];
+$lang = in_array($lang, $acceptLang) ? $lang : 'en';
+require_once LANG_FOLDER . "{$lang}.php";
+
 
 if (isset($_SERVER['SERVER_NAME'])) {
     $serverName = $_SERVER['SERVER_NAME'];

@@ -7,39 +7,30 @@
                 <div class="card-body p-4 p-sm-5">
                     <div class="alert alert-danger hidden" id="errorContainer" role="alert">
                     </div>
-                    <h5 class="card-title text-center mb-5 fw-light fs-5">SIGN IN</h5>
+                    <h5 class="card-title text-center mb-5 fw-light fs-5"><?php echo signIn ?></h5>
                     <form id="signinForm" action="" method="POST">
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="email" placeholder="name@example.com"
                                 name="email" required>
-                            <label for="email">Email address</label>
+                            <label for="email"><?php echo email ?></label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" id="password" placeholder="Password"
                                 name="password" required>
-                            <label for="password">Password</label>
-                            <a href="">Forgot
-                                Password ?</a>
+                            <label for="password"><?php echo password ?></label>
                         </div>
-
-
-                        <!--
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="true" id="rememberPasswordCheck"
-                                name="remenberMe">
-                            <label class="form-check-label" for="rememberPasswordCheck">
-                                Remember password
-                            </label>
-                        </div>-->
                         <div class="g-recaptcha offset-3" data-sitekey="6LcV_ysdAAAAAGWDDP703-b3WU7qiengcMI5aE7g"></div>
                         <!-- "6LcyDSwdAAAAAFT7QOdQTsZ4hTPnKC3DO-KTJANO" pour le site en prod -->
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
-                                in</button>
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold"
+                                type="submit"><?php echo signIn ?></button>
                         </div>
+
+                        <a href=""><?php echo forgotPassword ?></a>
+
                         <hr class="my-4">
                         <label class="text-center">
-                            <a href="<?php echo PAGE_SIGNUP ?>">You don't have an account?</a>
+                            <a href="<?php echo PAGE_SIGNUP ?>"><?php echo koAccount ?></a>
                         </label>
                     </form>
                 </div>
