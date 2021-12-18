@@ -530,4 +530,17 @@ class Tasting
         }
         return $res;
     }
+
+    public static function deleteTasting($tastingId)
+    {
+        $res = false;
+
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "DELETE FROM tasting WHERE tasting_id= " . $tastingId . " AND u_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $res = true;;
+        }
+        return $res;
+    }
 }

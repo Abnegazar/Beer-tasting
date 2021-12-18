@@ -31,8 +31,7 @@
                             </td>
                             <td><Strong> <a
                                         href="<?php echo str_replace("#id#", $tasting->id, PAGE_TASTING) ?>">View</a>
-                                    |<a
-                                        href="<?php echo str_replace("#id#", $tasting->id, PAGE_DELETE_TASTING) ?>">Delete</a></Strong>
+                                    |<a class="del" href="">Delete</a></Strong>
                             </td>
                         </tr>
                         <?php
@@ -60,3 +59,17 @@
 
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $(".del").click(function(e) {
+        e.preventDefault();
+        if (!confirm("Do you want to delete")) {
+            return false;
+        } else {
+            window.location.href =
+                "<?php echo str_replace("#id#", $tasting->id, PAGE_DELETE_TASTING) ?>";
+        }
+    });
+});
+</script>
