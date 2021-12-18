@@ -48,13 +48,14 @@ class TastingController extends BaseController implements Controller
     }
 
 
-    public function getUserTastings($userId)
+    public function getUserTastings($userId, $manage = false)
     {
         $this->h1 = "My tastings";
         $this->description = "My tastings";
         $this->title = "My tastings | TasteMyBeer";
 
-        $view = "viewTastings.phtml";
+
+        $view = ($manage) ? "manageTastings.phtml" : "viewTastings.phtml";
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
@@ -95,21 +96,7 @@ class TastingController extends BaseController implements Controller
         );
     }
 
-    public function manageTastings()
-    {
-        $this->h1 = "My tastings | TasteMyBeer";
-        $this->description = "My tastings | TasteMyBeer";
-        $this->title = "My tastings | TasteMyBeer";
 
-        $view = "manageTastings.phtml";
-
-        $tastings = Tasting::getUserTastings(Session::getConnectedUserId());
-
-        return App::get_content(
-            self::viewDirectory . $view,
-            array('tastings' => $tastings)
-        );
-    }
 
     public function addNew()
     {
@@ -267,7 +254,7 @@ class TastingController extends BaseController implements Controller
                 $content = $this->getTastingById($_GET['id']);
                 break;
             case 'manageTastings':
-                $content = $this->manageTastings();
+                $content = $this->getUserTastings(Session::getConnectedUserId(), true);
                 break;
             case 'getAllTastings':
             default:

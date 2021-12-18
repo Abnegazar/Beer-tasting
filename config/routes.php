@@ -19,10 +19,15 @@ DEFINE('PAGE_TASTINGS_VISITOR_BY_PAGE', SITE_URL . 'tastings/visitor/#page#');
 
 DEFINE('PAGE_TASTINGS_ADD', SITE_URL . 'tastings/add');
 
+DEFINE('PAGE_DELETE_TASTING', SITE_URL . 'tasting/delete/#id#');
+
+
 
 DEFINE('PAGE_USER_TASTINGS', SITE_URL . 'tastings/user/#userId#');
 DEFINE('PAGE_USER_TASTINGS_BY_PAGE', SITE_URL . 'tastings/user/#userId#/#page#');
 DEFINE('PAGE_USER_TASTINGS_MANAGEMENT', SITE_URL . 'my-tastings');
+DEFINE('PAGE_USER_TASTINGS_MANAGEMENT_PAGE', SITE_URL . 'my-tastings/#page#');
+
 
 
 DEFINE('PAGE_HOME', SITE_URL . 'home');
@@ -42,3 +47,4 @@ DEFINE('PARTIAL_ADD_TASTING_FORM_5', 'add_tasting_form_5');
 DEFINE('PARTIAL_PAGINATION_V1', 'pagination_v1');
 DEFINE('PARTIAL_PAGINATION_V2', 'pagination_v2');
 DEFINE('PARTIAL_PAGINATION_V3', 'pagination_v3');
+DEFINE('PARTIAL_PAGINATION_V4', 'pagination_v4');
