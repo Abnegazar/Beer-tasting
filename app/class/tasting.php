@@ -371,6 +371,7 @@ class Tasting
                     `mouthfeel_comment`,
                     `mouthfeel_score`,
                     `overall_comment`,
+                    `bottle_inspection_comment`,
                     `overall_score`,
                     `total`,
                     `is_acetaldehyde`,
@@ -408,6 +409,7 @@ class Tasting
                     \'' . mysqli_real_escape_string($dbInstance, $this->mouthfeelComment) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->mouthfeelScore) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->overallComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->bottleInspectionComment) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->overallScore) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->total) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->isAcetaldehyde) . '\',
@@ -527,6 +529,19 @@ class Tasting
             return $total;
         } else {
             App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function deleteTasting($tastingId)
+    {
+        $res = false;
+
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "DELETE FROM tasting WHERE tasting_id= " . $tastingId . " AND u_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $res = true;;
         }
         return $res;
     }

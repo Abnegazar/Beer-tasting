@@ -120,6 +120,7 @@ class TastingController extends BaseController implements Controller
         if (!empty($_POST)) {
 
 
+
             //sélection de la bière dégustée
             if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
                 $errors[] = 'Aucune Bière n\'a été sélectionnée.';
@@ -133,14 +134,9 @@ class TastingController extends BaseController implements Controller
             $values = array($_POST['' . Tasting::AROMA_SCORE . ''], $_POST['' . Tasting::APPEARANCE_SCORE . ''], $_POST['' . Tasting::FLAVOR_SCORE . ''], $_POST['' . Tasting::MOUTHFEEL_SCORE . ''], $_POST['' . Tasting::OVERALL_SCORE . '']);
             $res = App::checkValue($values);
             if ($res != false) {
-                $errors[] = $res;
+                $errors = array_merge($errors, $res);
             }
-            //Précision stylistique
-            /*if (!isset($_POST['stylisticAccuracy']) || empty($_POST['stylisticAccuracy'])) {
-                $errors[] = 'La précision stylistique est obligatoire.';
-            } else if (!preg_match($_POST['stylisticAccuracy'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }*/
+
 
             if (empty($errors)) {
 
