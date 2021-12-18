@@ -22,6 +22,8 @@ DEFINE('PAGE_TASTINGS_ADD', SITE_URL . 'tastings/add');
 
 DEFINE('PAGE_USER_TASTINGS', SITE_URL . 'tastings/user/#userId#');
 DEFINE('PAGE_USER_TASTINGS_BY_PAGE', SITE_URL . 'tastings/user/#userId#/#page#');
+DEFINE('PAGE_USER_TASTINGS_MANAGEMENT', SITE_URL . 'my-tastings');
+
 
 DEFINE('PAGE_HOME', SITE_URL . 'home');
 
@@ -29,6 +31,8 @@ DEFINE('PAGE_DASHBOARD', SITE_URL . 'dashboard');
 
 DEFINE('PARTIAL_TASTING', 'tasting_summary');
 DEFINE('PARTIAL_ALL_TASTINGS', 'tasting_summary_bis');
+
+DEFINE('PAGE_PROFILE', SITE_URL . 'account');
 
 DEFINE('PARTIAL_ADD_TASTING_FORM_1', 'add_tasting_form_1');
 DEFINE('PARTIAL_ADD_TASTING_FORM_2', 'add_tasting_form_2');

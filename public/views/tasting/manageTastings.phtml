@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        <h1>My tastings</h1>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover table-condensed alignLeft">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Beer Name</th>
+                            <th scope="col">Beer Style</th>
+                            <th scope="col">Total Score</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($var->tastings as $tasting) {
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $tasting->id ?></th>
+                            <td><?php echo $tasting->id ?></td>
+                            <td><?php echo $tasting->beerName ?></td>
+                            <td><?php echo $tasting->beerStyleTitle ?></td>
+                            <td><?php echo $tasting->total ?></td>
+                            <td><Strong> <a
+                                        href="<?php echo str_replace("#id#", $tasting->id, PAGE_TASTING) ?>">View</a>
+                                    |<a href="#">Delete</a></Strong>
+                            </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

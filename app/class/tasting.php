@@ -241,7 +241,7 @@ class Tasting
         $this->technicalMerit = $technicalMerit;
     }
 
-    public function __initFromDbObject($o, $tastingById = false)
+    public function __initFromDbObject($o)
     {
         $this->id                = (int)$o[self::ID];
         $this->title             = $o[self::TITLE];
@@ -289,10 +289,9 @@ class Tasting
         $this->intangibles       = (int)$o[self::INTANGIBLES];
         $this->technicalMerit    = (int)$o[self::TECHNICAL_MERIT];
         $this->createdAt         = $o[self::CREATED_AT];
-        if (!$tastingById) {
-            $this->userName          = $o[User::FIRST_NAME] . " " . $o[User::LAST_NAME];
-            $this->beerStyleTitle    = $o[BeerStyle::TITLE];
-        }
+
+        $this->userName          = $o[User::FIRST_NAME] . " " . $o[User::LAST_NAME];
+        $this->beerStyleTitle    = $o[BeerStyle::TITLE];
     }
 
     private function calculateScore()

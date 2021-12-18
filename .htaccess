@@ -8,6 +8,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
+    RewriteRule ^account                             index.php?c=profileController [L]
+
+
     RewriteRule ^home                                 index.php?c=homeController [L]
 
     RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
@@ -40,6 +43,9 @@
 
 
     RewriteRule ^tastings                             index.php?c=tastingController&operation=getAllTastings [L]
+
+    RewriteRule ^my-tastings                          index.php?c=tastingController&operation=manageTastings [L]
+
 
     RewriteRule ^$                                    index.php?c=homeController [L]
 </IfModule>

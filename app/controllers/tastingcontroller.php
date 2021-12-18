@@ -95,6 +95,22 @@ class TastingController extends BaseController implements Controller
         );
     }
 
+    public function manageTastings()
+    {
+        $this->h1 = "My tastings | TasteMyBeer";
+        $this->description = "My tastings | TasteMyBeer";
+        $this->title = "My tastings | TasteMyBeer";
+
+        $view = "manageTastings.phtml";
+
+        $tastings = Tasting::getUserTastings(Session::getConnectedUserId());
+
+        return App::get_content(
+            self::viewDirectory . $view,
+            array('tastings' => $tastings)
+        );
+    }
+
     public function addNew()
     {
         $this->h1 = "Add tasting";
@@ -249,6 +265,9 @@ class TastingController extends BaseController implements Controller
                 break;
             case 'getTastingById':
                 $content = $this->getTastingById($_GET['id']);
+                break;
+            case 'manageTastings':
+                $content = $this->manageTastings();
                 break;
             case 'getAllTastings':
             default:
