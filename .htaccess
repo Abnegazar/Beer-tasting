@@ -47,6 +47,8 @@
 
     RewriteRule ^tastings                             index.php?c=tastingController&operation=getAllTastings [L]
 
+    RewriteRule ^my-tastings/(.*)$                    index.php?c=tastingController&operation=manageTastings&page=$1 [L]
+
     RewriteRule ^my-tastings                          index.php?c=tastingController&operation=manageTastings [L]
 
 
