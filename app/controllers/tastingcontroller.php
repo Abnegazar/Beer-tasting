@@ -120,6 +120,7 @@ class TastingController extends BaseController implements Controller
         if (!empty($_POST)) {
 
 
+
             //sélection de la bière dégustée
             if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
                 $errors[] = 'Aucune Bière n\'a été sélectionnée.';
