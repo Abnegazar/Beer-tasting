@@ -20,7 +20,7 @@ class TastingController extends BaseController implements Controller
 
         $this->h1 = "Tastings";
         $this->description = "All tastings";
-        $this->title = "TasteMyBeer - All tastings";
+        $this->title = "All Tastings | TasteMyBeer ";
 
         $view = "viewTastings.phtml";
 
@@ -48,13 +48,14 @@ class TastingController extends BaseController implements Controller
     }
 
 
-    public function getUserTastings($userId)
+    public function getUserTastings($userId, $manage = false)
     {
         $this->h1 = "My tastings";
         $this->description = "My tastings";
-        $this->title = "TasteMyBeer - My tastings";
+        $this->title = "My tastings | TasteMyBeer";
 
-        $view = "viewTastings.phtml";
+
+        $view = ($manage) ? "manageTastings.phtml" : "viewTastings.phtml";
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
@@ -83,7 +84,7 @@ class TastingController extends BaseController implements Controller
     {
         $this->h1 = "Tasting " . $id;
         $this->description = "Tasting " . $id;
-        $this->title = "TasteMyBeer -" . "Tasting " . $id;
+        $this->title = "Tasting " . $id . " | TasteMyBeer";
 
         $view = "viewTasting.phtml";
 
@@ -95,17 +96,30 @@ class TastingController extends BaseController implements Controller
         );
     }
 
+    public function deleteTasting($id)
+    {
+        $this->useLayout = false;
+
+        if (Tasting::deleteTasting($id)) {
+            header("Location:" . PAGE_USER_TASTINGS_MANAGEMENT);
+        }
+    }
+
+
+
     public function addNew()
     {
         $this->h1 = "Add tasting";
         $this->description = "Add tasting";
-        $this->title = "TasteMyBeer - Add";
+        $this->title = "Add | TasteMyBeer";
 
         $view = 'addTasting.phtml';
         $errors = [];
         $success = false;
         $beerStyles = BeerStyle::getBeerStyles();
         if (!empty($_POST)) {
+
+
 
             //sélection de la bière dégustée
             if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
@@ -120,34 +134,9 @@ class TastingController extends BaseController implements Controller
             $values = array($_POST['' . Tasting::AROMA_SCORE . ''], $_POST['' . Tasting::APPEARANCE_SCORE . ''], $_POST['' . Tasting::FLAVOR_SCORE . ''], $_POST['' . Tasting::MOUTHFEEL_SCORE . ''], $_POST['' . Tasting::OVERALL_SCORE . '']);
             $res = App::checkValue($values);
             if ($res != false) {
-                $errors[] = $res;
+                $errors = array_merge($errors, $res);
             }
-            //Précision stylistique
-            /*if (!isset($_POST['stylisticAccuracy']) || empty($_POST['stylisticAccuracy'])) {
-                $errors[] = 'La précision stylistique est obligatoire.';
-            } else if (!preg_match($_POST['stylisticAccuracy'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }*/
 
-
-            //Intangibilité
-            /*
-            if (!isset($_POST['intangibles']) || empty($_POST['intangibles'])) {
-                $errors[] = 'L\'intangibilité est obligatoire.';
-            } else if (!preg_match($_POST['intangibles'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
-            */
-
-            /*
-
-            //Mérite thechinique
-            if (!isset($_POST['technicalMerit']) || empty($_POST['technicalMerit'])) {
-                $errors[] = 'Le mérite thechinique est obligatoire.';
-            } else if (!preg_match($_POST['technicalMerit'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
-            */
 
             if (empty($errors)) {
 
@@ -189,11 +178,13 @@ class TastingController extends BaseController implements Controller
                 $isBottleOk = isset($_POST['' . Tasting::IS_BOTTLE_OK . '']) ? 1 : 0;
                 $isYeasty = isset($_POST['' . Tasting::IS_YEASTY . '']) ? 1 : 0;
 
-                /*
-                $stylisticAccuracy = $_POST['isYeasty'];
-                $intangibles = $_POST['intangibles'];
-                $technicalMerit = $_POST['technicalMerit'];
-                */
+
+                $stylisticAccuracy = (int)$_POST['' . Tasting::STYLISTIC_ACCURACY . ''];
+                $intangibles =
+                    (int)$_POST['' . Tasting::INTANGIBLES . ''];
+                $technicalMerit =
+                    (int)$_POST['' . Tasting::TECHNICAL_MERIT . ''];
+
 
                 $tasting = new Tasting();
                 $tasting->initValue(
@@ -231,7 +222,10 @@ class TastingController extends BaseController implements Controller
                     $isSulfur,
                     $isVegetal,
                     $isBottleOk,
-                    $isYeasty
+                    $isYeasty,
+                    $stylisticAccuracy,
+                    $intangibles,
+                    $technicalMerit
                 );
                 if ($tasting->save()) {
                     $success = "La dégustation a été enregistré avec succès.";
@@ -263,6 +257,12 @@ class TastingController extends BaseController implements Controller
                 break;
             case 'getTastingById':
                 $content = $this->getTastingById($_GET['id']);
+                break;
+            case 'manageTastings':
+                $content = $this->getUserTastings(Session::getConnectedUserId(), true);
+                break;
+            case 'deleteTasting':
+                $content = $this->deleteTasting($_GET['id']);
                 break;
             case 'getAllTastings':
             default:

@@ -76,7 +76,6 @@ if (isset($var->tasting)) {
 
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12">
                     <table class="table table-striped table-hover table-condensed alignLeft">
@@ -116,6 +115,22 @@ if (isset($var->tasting)) {
                 </div>
             </div>
             <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="">False tastes</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <strong class="col-4">Alcoholic</strong>
+                                <strong class="col-4">Esteric</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-4">
                     <!-- Stylistic Accuracy -->
                     <div class="card">
@@ -123,6 +138,9 @@ if (isset($var->tasting)) {
                             <h3>Stylistic Accuracy </h3>
                         </div>
                         <div class="card-body">
+                            <div class="stars" data-rating="<?php echo ($tasting->stylisticAccuracy * 5) / 4 ?>"
+                                data-num-stars="5">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,6 +151,9 @@ if (isset($var->tasting)) {
                             <h3>Technical Merit </h3>
                         </div>
                         <div class="card-body">
+                            <div class="stars" data-rating="<?php echo ($tasting->technicalMerit * 5) / 4 ?>"
+                                data-num-stars="5">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,10 +164,12 @@ if (isset($var->tasting)) {
                             <h3>Intangibles </h3>
                         </div>
                         <div class="card-body">
+                            <div class="stars" data-rating="<?php echo ($tasting->intangibles * 5) / 4 ?>"
+                                data-num-stars="5">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>

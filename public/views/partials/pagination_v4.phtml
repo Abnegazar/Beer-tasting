@@ -2,7 +2,6 @@
 $count = $var->count;
 $page = $var->page;
 $pages = $var->pages;
-$id = Session::getConnectedUserId();
 ?>
 <div class="">
     <strong><?php echo (int)$count ?> résultat<?php echo ((int)$count > 1) ? 's' : '' ?></strong>
@@ -12,11 +11,11 @@ if ($count > 0) {
 ?>
 <div class="col-lg-6 offset-lg-3 mt-2 d-flex">
 <ul class="pagination mx-auto">
-    <?php
+         <?php
         if ($page !== 1) {
         ?>
     <li class="page-item"><a class="page-link"
-            href="<?php echo str_replace(array("#userId#", "#page#"), array($id, $page - 1), PAGE_USER_TASTINGS_BY_PAGE) ?>">Précédent</a>
+            href="<?php echo str_replace("#page#", $page - 1, PAGE_USER_TASTINGS_MANAGEMENT_PAGE) ?>">Précédent</a>
     </li>
     <?php
         }
@@ -27,14 +26,14 @@ if ($count > 0) {
             }
         ?>
     <li class="page-item"><a class="page-link"
-            href="<?php echo str_replace(array("#userId#", "#page#"), array($id, $i), PAGE_USER_TASTINGS_BY_PAGE) ?>"><?php echo $i ?></a>
+            href="<?php echo str_replace("#page#", $i, PAGE_USER_TASTINGS_MANAGEMENT_PAGE) ?>"><?php echo $i ?></a>
     </li>
     <?php endfor; ?>
     <?php
         if ($page != $pages) {
         ?>
     <li class="page-item"><a class="page-link"
-            href="<?php echo str_replace(array("#userId#", "#page#"), array($id, $page + 1), PAGE_USER_TASTINGS_BY_PAGE) ?>">Suivant</a>
+            href="<?php echo str_replace("#page#", $page + 1, PAGE_USER_TASTINGS_MANAGEMENT_PAGE) ?>">Suivant</a>
     </li>
     <?php
         }
@@ -43,4 +42,5 @@ if ($count > 0) {
 <?php
 }
 ?>
+</div>
 </div>

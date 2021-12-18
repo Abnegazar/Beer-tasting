@@ -119,9 +119,9 @@ ALTER table user add column is_verified tinyint(1) DEFAULT 0 NOT NULL after crea
 
 ALTER TABLE user MODIFY user.password CHAR(60) NOT NULL;
 
-ALTER TABLE tasting MODIFY tasting.appearance_score DECIMAL(2,1) NOT NULL;
-ALTER TABLE tasting MODIFY tasting.mouthfeel_score DECIMAL(2,1) NOT NULL;
-ALTER TABLE tasting MODIFY tasting.overall_score  DECIMAL(2,1) NOT NULL;
+ALTER TABLE tasting MODIFY tasting.flavor_score DECIMAL(3,1) NOT NULL;
+ALTER TABLE tasting MODIFY tasting.aroma_score DECIMAL(3,1) NOT NULL;
+ALTER TABLE tasting MODIFY tasting.overall_score  DECIMAL(3,1) NOT NULL;
 ALTER table tasting add column bottle_inspection_comment VARCHAR(2000) NULL after overall_comment;
 
 ALTER TABLE beer_style CHANGE `style` title VARCHAR(255) NOT NULL;

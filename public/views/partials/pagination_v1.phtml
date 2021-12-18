@@ -4,13 +4,14 @@ $page = $var->page;
 $pages = $var->pages;
 ?>
 
-<div class="inline-block">
+<div class="">
     <strong><?php echo (int)$count ?> résultat<?php echo ((int)$count > 1) ? 's' : '' ?></strong>
 </div>
 <?php
 if ($count > 0) {
 ?>
-<ul class="pagination inline-block">
+<div class="col-lg-6 offset-lg-3 mt-2 d-flex">
+<ul class="pagination mx-auto">
     <?php
         if ($page !== 1) {
         ?>

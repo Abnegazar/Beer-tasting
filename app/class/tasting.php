@@ -194,9 +194,9 @@ class Tasting
         $isVegetal = 0,
         $isBottleOk = 0,
         $isYeasty = 0,
-        $stylisticAccuracy = 0,
-        $intangibles = 0,
-        $technicalMerit = 0
+        $stylisticAccuracy = 1,
+        $intangibles = 1,
+        $technicalMerit = 1
     ) {
         $this->userId = $userId;
         $this->beerStyleId = $beerStyleId;
@@ -241,7 +241,7 @@ class Tasting
         $this->technicalMerit = $technicalMerit;
     }
 
-    public function __initFromDbObject($o, $tastingById = false)
+    public function __initFromDbObject($o)
     {
         $this->id                = (int)$o[self::ID];
         $this->title             = $o[self::TITLE];
@@ -289,10 +289,9 @@ class Tasting
         $this->intangibles       = (int)$o[self::INTANGIBLES];
         $this->technicalMerit    = (int)$o[self::TECHNICAL_MERIT];
         $this->createdAt         = $o[self::CREATED_AT];
-        if (!$tastingById) {
-            $this->userName          = $o[User::FIRST_NAME] . " " . $o[User::LAST_NAME];
-            $this->beerStyleTitle    = $o[BeerStyle::TITLE];
-        }
+
+        $this->userName          = $o[User::FIRST_NAME] . " " . $o[User::LAST_NAME];
+        $this->beerStyleTitle    = $o[BeerStyle::TITLE];
     }
 
     private function calculateScore()
@@ -372,6 +371,7 @@ class Tasting
                     `mouthfeel_comment`,
                     `mouthfeel_score`,
                     `overall_comment`,
+                    `bottle_inspection_comment`,
                     `overall_score`,
                     `total`,
                     `is_acetaldehyde`,
@@ -409,6 +409,7 @@ class Tasting
                     \'' . mysqli_real_escape_string($dbInstance, $this->mouthfeelComment) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->mouthfeelScore) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->overallComment) . '\',
+                    \'' . mysqli_real_escape_string($dbInstance, $this->bottleInspectionComment) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->overallScore) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->total) . '\',
                     \'' . mysqli_real_escape_string($dbInstance, $this->isAcetaldehyde) . '\',
@@ -528,6 +529,19 @@ class Tasting
             return $total;
         } else {
             App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function deleteTasting($tastingId)
+    {
+        $res = false;
+
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "DELETE FROM tasting WHERE tasting_id= " . $tastingId . " AND u_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $res = true;;
         }
         return $res;
     }

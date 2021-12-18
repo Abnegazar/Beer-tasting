@@ -1,5 +1,4 @@
 <?php
-
 DEFINE('APP_FOLDER', 'app/');
 DEFINE('CONFIG_FOLDER', 'config/');
 DEFINE('RESOURCES_FOLDER', 'public/');
@@ -11,13 +10,23 @@ DEFINE('JS_FOLDER', RESOURCES_FOLDER . 'js/');
 DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . 'assets/');
 DEFINE('PARTIALS_SUBFOLDER', 'partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
-DEFINE('LOGS_FOLDER', '../logs/');
+DEFINE('LOGS_FOLDER', 'logs/');
+DEFINE('LANG_FOLDER', RESOURCES_FOLDER . 'lang/');
+
+
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$acceptLang = ['fr', 'en'];
+$lang = in_array($lang, $acceptLang) ? $lang : 'en';
+require_once LANG_FOLDER . "{$lang}.php";
+
 
 if (isset($_SERVER['SERVER_NAME'])) {
     $serverName = $_SERVER['SERVER_NAME'];
 } else {
     die(); // pas le $_SERVER['SERVER_NAME'] du mode web ni le $_GET['brand'] des crons
 }
+
+DEFINE('APP_ROOT', __DIR__);
 
 DEFINE('SERVER_NAME', $serverName);
 
@@ -35,7 +44,6 @@ spl_autoload_register(function ($class) {
         }
     }
 });
-
 $controller = false;
 if (isset($_GET['c']) and class_exists($_GET['c'])) {
     $controller = new $_GET['c']();

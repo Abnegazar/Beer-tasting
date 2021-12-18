@@ -20,7 +20,7 @@ class HomeController extends BaseController implements Controller
         $content = false;
         $this->h1 = "Home";
         $this->description = "Home";
-        $this->title = "TasteMyBeer - Home";
+        $this->title = "Home | TasteMyBeer";
 
         $view = "index.phtml";
 

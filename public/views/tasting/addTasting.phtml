@@ -21,12 +21,12 @@ textarea {
     height: 100px;
 }
 </style>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
+
                     <?php
                     if (!empty($var->errors)) {
                         foreach ($var->errors as $error) {
@@ -54,6 +54,8 @@ textarea {
                         <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_3, array()); ?>
                         <!--step 4-->
                         <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_4, array()); ?>
+                        <!--step 5-->
+                        <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_5, array()); ?>
                         <div class="d-grid mb-2">
                             <div class="buttons">
                                 <button class="btn btn-secondary btnPrev hidden">Previous</button>
