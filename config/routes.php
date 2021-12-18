@@ -34,6 +34,7 @@ DEFINE('PARTIAL_ADD_TASTING_FORM_1', 'add_tasting_form_1');
 DEFINE('PARTIAL_ADD_TASTING_FORM_2', 'add_tasting_form_2');
 DEFINE('PARTIAL_ADD_TASTING_FORM_3', 'add_tasting_form_3');
 DEFINE('PARTIAL_ADD_TASTING_FORM_4', 'add_tasting_form_4');
+DEFINE('PARTIAL_ADD_TASTING_FORM_5', 'add_tasting_form_5');
 DEFINE('PARTIAL_PAGINATION_V1', 'pagination_v1');
 DEFINE('PARTIAL_PAGINATION_V2', 'pagination_v2');
 DEFINE('PARTIAL_PAGINATION_V3', 'pagination_v3');
@@ -70,3 +71,6 @@ DEFINE('SULFUR_MESSAGE','The aroma of rotten eggs or burning matches');
 DEFINE('VEGETAL_MESSAGE','– Cooked, canned, or rotten vegetable aroma and
 flavor (cabbage, onion, celery, asparagus, etc.)');
 DEFINE('YEASTY_MESSAGE','– A bready, sulfury or yeast-like aroma or flavor');
+DEFINE('STYLISTIC_MESSAGE','The first rating is for NOT STYLE and the rating increases to CLASSIC EXAMPLE(rating 4)');
+DEFINE('TECHNICALMERIT_MESSAGE','The first rating is for SIGNIFICANT FLAWS and the rating increases to FLAWLESS(rating 4)');
+DEFINE('INTANGIBLES_MESSAGE','The first rating is for LIFELESS and the rating increases to WONDERFUL(rating 4)');
