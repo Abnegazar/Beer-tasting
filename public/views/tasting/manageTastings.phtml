@@ -25,17 +25,36 @@
                             <td><?php echo $tasting->id ?></td>
                             <td><?php echo $tasting->beerName ?></td>
                             <td><?php echo $tasting->beerStyleTitle ?></td>
-                            <td><?php echo $tasting->total ?></td>
+                            <td>
+                                <div class="stars" data-rating="<?php echo $tasting->total / 10 ?>" data-num-stars="5">
+                                </div>
+                            </td>
                             <td><Strong> <a
                                         href="<?php echo str_replace("#id#", $tasting->id, PAGE_TASTING) ?>">View</a>
-                                    |<a href="#">Delete</a></Strong>
+                                    |<a
+                                        href="<?php echo str_replace("#id#", $tasting->id, PAGE_DELETE_TASTING) ?>">Delete</a></Strong>
                             </td>
                         </tr>
                         <?php
                         }
                         ?>
                     </tbody>
+
                 </table>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <?php
+                echo App::get_partial(
+                    PARTIAL_PAGINATION_V4,
+                    array(
+                        'pages' => $var->pages,
+                        'count' => $var->count,
+                        'page' => $var->page,
+                    )
+                );
+                ?>
             </div>
         </div>
 
