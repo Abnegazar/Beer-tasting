@@ -14,6 +14,8 @@
     RewriteRule ^home                                 index.php?c=homeController [L]
 
     RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
+    RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
+
 
     RewriteRule ^signin                               index.php?c=loginController&operation=signIn [L]
     RewriteRule ^signup                               index.php?c=loginController&operation=signUp [L]
@@ -35,6 +37,7 @@
     
     RewriteRule ^tastings                             index.php?c=tastingController&operation=getAllTastings [L]
 
+    RewriteRule ^tasting/delete/(.*)$                 index.php?c=tastingController&operation=deleteTasting&id=$1 [L]
 
     RewriteRule ^tasting/visitor/(.*)$                index.php?c=tastingController&operation=getTastingById&id=$1&mode=visitor [L]
 

@@ -96,6 +96,15 @@ class TastingController extends BaseController implements Controller
         );
     }
 
+    public function deleteTasting($id)
+    {
+        $this->useLayout = false;
+
+        if (Tasting::deleteTasting($id)) {
+            header("Location:" . PAGE_USER_TASTINGS_MANAGEMENT);
+        }
+    }
+
 
 
     public function addNew()
@@ -255,6 +264,9 @@ class TastingController extends BaseController implements Controller
                 break;
             case 'manageTastings':
                 $content = $this->getUserTastings(Session::getConnectedUserId(), true);
+                break;
+            case 'deleteTasting':
+                $content = $this->deleteTasting($_GET['id']);
                 break;
             case 'getAllTastings':
             default:
