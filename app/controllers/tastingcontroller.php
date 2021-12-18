@@ -107,6 +107,7 @@ class TastingController extends BaseController implements Controller
         $beerStyles = BeerStyle::getBeerStyles();
         if (!empty($_POST)) {
 
+
             //sélection de la bière dégustée
             if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
                 $errors[] = 'Aucune Bière n\'a été sélectionnée.';
@@ -128,26 +129,6 @@ class TastingController extends BaseController implements Controller
             } else if (!preg_match($_POST['stylisticAccuracy'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
                 $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
             }*/
-
-
-            //Intangibilité
-            /*
-            if (!isset($_POST['intangibles']) || empty($_POST['intangibles'])) {
-                $errors[] = 'L\'intangibilité est obligatoire.';
-            } else if (!preg_match($_POST['intangibles'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
-            */
-
-            /*
-
-            //Mérite thechinique
-            if (!isset($_POST['technicalMerit']) || empty($_POST['technicalMerit'])) {
-                $errors[] = 'Le mérite thechinique est obligatoire.';
-            } else if (!preg_match($_POST['technicalMerit'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
-            */
 
             if (empty($errors)) {
 
@@ -189,11 +170,13 @@ class TastingController extends BaseController implements Controller
                 $isBottleOk = isset($_POST['' . Tasting::IS_BOTTLE_OK . '']) ? 1 : 0;
                 $isYeasty = isset($_POST['' . Tasting::IS_YEASTY . '']) ? 1 : 0;
 
-                /*
-                $stylisticAccuracy = $_POST['isYeasty'];
-                $intangibles = $_POST['intangibles'];
-                $technicalMerit = $_POST['technicalMerit'];
-                */
+
+                $stylisticAccuracy = (int)$_POST['' . Tasting::STYLISTIC_ACCURACY . ''];
+                $intangibles =
+                    (int)$_POST['' . Tasting::INTANGIBLES . ''];
+                $technicalMerit =
+                    (int)$_POST['' . Tasting::TECHNICAL_MERIT . ''];
+
 
                 $tasting = new Tasting();
                 $tasting->initValue(
@@ -231,7 +214,10 @@ class TastingController extends BaseController implements Controller
                     $isSulfur,
                     $isVegetal,
                     $isBottleOk,
-                    $isYeasty
+                    $isYeasty,
+                    $stylisticAccuracy,
+                    $intangibles,
+                    $technicalMerit
                 );
                 if ($tasting->save()) {
                     $success = "La dégustation a été enregistré avec succès.";

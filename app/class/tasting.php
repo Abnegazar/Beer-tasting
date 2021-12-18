@@ -194,9 +194,9 @@ class Tasting
         $isVegetal = 0,
         $isBottleOk = 0,
         $isYeasty = 0,
-        $stylisticAccuracy = 0,
-        $intangibles = 0,
-        $technicalMerit = 0
+        $stylisticAccuracy = 1,
+        $intangibles = 1,
+        $technicalMerit = 1
     ) {
         $this->userId = $userId;
         $this->beerStyleId = $beerStyleId;

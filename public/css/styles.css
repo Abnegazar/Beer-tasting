@@ -11994,9 +11994,32 @@ span.stars span {
 }
 
 .card {
-    width: 100%;
+  width: 100%;
 }
 
 .hidden {
-    display: none;
+  display: none;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px * 2;
+}
+
+.tick {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 1px;
+  background: gray;
+  height: 10px;
+  line-height: 10px * 5;
+  margin-bottom: 10px * 2;
 }
