@@ -43,17 +43,9 @@ $connectedUser = Session::getConnectedUser();
 </head>
 
 <body>
-    <?php
-    if ($connectedUser == null) {
-        /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
-        echo App::get_partial('nav_1', array());
-        echo $var->content;
-        echo App::get_partial('footer', array());
-    } else {
-    ?>
     <div class="container-fluid overflow-hidden">
         <div class="row vh-100 overflow-auto">
-            <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0  d-flex bg-beer sticky-top">
+            <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0  d-flex sticky-top">
                 <?php echo  App::get_partial('nav_2', array()) ?>
             </div>
             <div class="col d-flex flex-column h-sm-100">
@@ -66,7 +58,6 @@ $connectedUser = Session::getConnectedUser();
             </div>
         </div>
     </div>
-    <?php   }  ?>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>

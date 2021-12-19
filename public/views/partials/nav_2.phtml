@@ -1,5 +1,4 @@
-<style>
-</style>
+<!--
 <nav id="mainNav" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-beer">
     <div
         class="d-flexbis clearflix flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -48,3 +47,35 @@
         </ul>
     </div>
 </nav>
+-->
+<div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+    <a href="<?php echo PAGE_DASHBOARD ?>"
+        class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-5">B<span class="d-none d-sm-inline">rand</span></span>
+    </a>
+    <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
+        id="menu">
+        <li class="nav-item">
+            <a href="<?php echo PAGE_PROFILE ?>" class="nav-link px-sm-0 px-2  text-white">
+                <i class="bi bi-person-circle"></i><span class="ms-1 d-none d-sm-inline">Profile</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="<?php echo PAGE_TASTINGS_ADD ?>" class="nav-link px-sm-0 px-2  text-white">
+                <i class="fs-5 bi-file-plus"></i><span class="ms-1 d-none d-sm-inline">Add</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo PAGE_TASTINGS ?>" class="nav-link px-sm-0 px-2 text-white">
+                <i class="fs-5 bi bi-eye"></i><span class="ms-1 d-none d-sm-inline">View</span></a>
+        </li>
+        <li>
+            <a href="<?php echo PAGE_USER_TASTINGS_MANAGEMENT ?>" class="nav-link px-sm-0 px-2 text-white">
+                <i class="fs-5 bi bi-gear"></i><span class="ms-1 d-none d-sm-inline">Manage</span></a>
+        </li>
+        <li>
+            <a href="<?php echo PAGE_LOGOUT ?>" class="nav-link px-sm-0 px-2 text-white">
+                <i class="fs-5 bi bi-box-arrow-right"></i><span class="ms-1 d-none d-sm-inline">Logout</span></a>
+        </li>
+    </ul>
+</div>
