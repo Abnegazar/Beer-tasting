@@ -113,4 +113,60 @@ class App
         }
         return $return_date; //exit function and return string
     } //end of function
+
+
+    public static function renameOffFlavor($value)
+    {
+        switch ($value) {
+            case OffFlavor::IS_ACETALDEHYDE:
+                return 'Acetaldehyde';
+                break;
+            case OffFlavor::IS_ACIDIC:
+                return 'Acidic';
+                break;
+            case OffFlavor::IS_ASTRINGENT:
+                return 'Astringent';
+                break;
+            case OffFlavor::IS_DIACETYL:
+                return 'Diacetyl';
+                break;
+            case OffFlavor::IS_DMS:
+                return 'DMS';
+                break;
+            case OffFlavor::IS_ESTERY:
+                return 'Estery';
+                break;
+            case OffFlavor::IS_GRASSY:
+                return 'Grassy';
+                break;
+            case OffFlavor::IS_LIGHT_STRUCK:
+                return 'Light struck';
+                break;
+            case OffFlavor::IS_METALLIC:
+                return 'Metallic';
+                break;
+            case OffFlavor::IS_MUSTY:
+                return 'Musty';
+                break;
+            case OffFlavor::IS_OXIDIZED:
+                return 'Oxidized';
+                break;
+            case OffFlavor::IS_PHENOLIC:
+                return 'Phenolic';
+                break;
+            case OffFlavor::IS_SOLVENT:
+                return 'Solvent';
+                break;
+            case OffFlavor::IS_SULFUR:
+                return 'Sulfur';
+                break;
+            case OffFlavor::IS_VEGETAL:
+                return 'Vegetal';
+                break;
+            case OffFlavor::IS_YEASTY:
+            default:
+                return 'Yeasty';
+                break;
+        }
+    }
 }

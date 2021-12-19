@@ -64,7 +64,7 @@
     rgba(255, 255, 255, 0.15),
     rgba(255, 255, 255, 0)
   );
-  --bs-body-font-family: Merriweather, -apple-system, BlinkMacSystemFont,
+  --bs-body-font-family: "Sora", Merriweather, -apple-system, BlinkMacSystemFont,
     Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --bs-body-font-size: 1rem;
@@ -127,7 +127,7 @@ h1,
 .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "Maiden Orange", "Merriweather Sans", -apple-system,
+  font-family: "Sora", "Maiden Orange", "Merriweather Sans", -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
@@ -3101,7 +3101,7 @@ textarea.form-control.is-invalid {
 
 .btn {
   display: inline-block;
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont,
+  font-family: "Sora", "Merriweather Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 400;
@@ -4810,7 +4810,6 @@ fieldset:disabled .btn {
   word-wrap: break-word;
   background-color: var(--bs-card-bg);
   background-clip: border-box;
-  border-radius: 1rem;
   display: inline-block;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -5427,7 +5426,6 @@ fieldset:disabled .btn {
   padding: 0.5rem 1rem;
   color: #212529;
   text-decoration: none;
-  background-color: #cf5c36;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .list-group-item:first-child {
@@ -6105,8 +6103,8 @@ fieldset:disabled .btn {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  font-family: "Sora", "Merriweather", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-style: normal;
   font-weight: 400;
@@ -6221,8 +6219,8 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  font-family: "Sora", "Merriweather", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-style: normal;
   font-weight: 400;
@@ -11735,7 +11733,7 @@ hr.divider-light {
   transition: background-color 0.2s ease;
 }
 #mainNav .navbar-brand {
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont,
+  font-family: "Sora", "Merriweather Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
@@ -11743,7 +11741,7 @@ hr.divider-light {
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #6c757d;
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont,
+  font-family: "Sora", "Merriweather Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
@@ -11962,7 +11960,7 @@ header.masthead .h1 {
   .portfolio-box
   .portfolio-box-caption
   .project-category {
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont,
+  font-family: "Sora", "Merriweather Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.85rem;
@@ -12027,4 +12025,36 @@ input[type="range"] {
   height: 10px;
   line-height: 10px * 5;
   margin-bottom: 10px * 2;
+}
+
+.top {
+  margin-top: 2rem;
+}
+
+.maj {
+  text-transform: uppercase;
+}
+.background {
+  background: url("../assets/img/beer.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.bg-card {
+  background: linear-gradient(
+      to bottom,
+      rgba(92, 77, 66, 0.8) 0%,
+      rgba(92, 77, 66, 0.8) 100%
+    ),
+    url("../assets/img/tap-craft-beertasting_0.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+.fa-star,
+.fa-star-half-alt {
+  color: #ffd700;
 }

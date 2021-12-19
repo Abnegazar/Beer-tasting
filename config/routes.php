@@ -35,9 +35,15 @@ DEFINE('PAGE_HOME', SITE_URL . 'home');
 DEFINE('PAGE_DASHBOARD', SITE_URL . 'dashboard');
 
 DEFINE('PARTIAL_TASTING', 'tasting_summary');
+DEFINE('PARTIAL_TASTING_CARD', 'tasting');
 DEFINE('PARTIAL_ALL_TASTINGS', 'tasting_summary_bis');
 
 DEFINE('PAGE_PROFILE', SITE_URL . 'account');
+
+DEFINE('PAGE_BEER_STYLE', SITE_URL . 'beer-style/#id#');
+DEFINE('PAGE_BEER_STYLES', SITE_URL . 'beer-styles');
+DEFINE('PAGE_BEER_STYLES_PAGE', SITE_URL . 'beer-styles/#page#');
+
 
 DEFINE('PARTIAL_ADD_TASTING_FORM_1', 'add_tasting_form_1');
 DEFINE('PARTIAL_ADD_TASTING_FORM_2', 'add_tasting_form_2');
@@ -48,3 +54,4 @@ DEFINE('PARTIAL_PAGINATION_V1', 'pagination_v1');
 DEFINE('PARTIAL_PAGINATION_V2', 'pagination_v2');
 DEFINE('PARTIAL_PAGINATION_V3', 'pagination_v3');
 DEFINE('PARTIAL_PAGINATION_V4', 'pagination_v4');
+DEFINE('PARTIAL_PAGINATION_V5', 'pagination_v5');

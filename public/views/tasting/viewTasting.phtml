@@ -5,6 +5,7 @@ if (isset($var->tasting)) {
     http_response_code(404);
     die();
 }
+
 ?>
 <style>
 .card {
@@ -45,6 +46,9 @@ if (isset($var->tasting)) {
                     <div class="col-12">
                         <div class="stars" data-rating="<?php echo $tasting->total / 10 ?>" data-num-stars="5">
                         </div>
+                        <div>
+                            <?php echo $tasting->score['label'] ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,16 +57,16 @@ if (isset($var->tasting)) {
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h3 class="col-8">Bottle Inspection </h3>
+                                <h3 class="col-8"><?php echo bottleInspection ?></h3>
                                 <span class="col-4">
                                     <?php
                                     if ($tasting->isBottleOk == 1) {
                                     ?>
-                                    <i class="fas fa-thumbs-up"></i>
+                                    <i class="fas fa-thumbs-up" style="color: green;"></i>
                                     <?php
                                     } else {
                                     ?>
-                                    <i class="fas fa-thumbs-down"></i>
+                                    <i class="fas fa-thumbs-down" style="color: red;"></i>
                                     <?php
                                     }
                                     ?>
@@ -78,98 +82,114 @@ if (isset($var->tasting)) {
             </div>
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-striped table-hover table-condensed alignLeft">
-                        <thead>
-                            <th>Criteria</th>
-                            <th>Score</th>
-                            <th>Comment</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Aroma</td>
-                                <td><?php echo $tasting->aromaScore ?> /12</td>
-                                <td><?php echo $tasting->aromaComment ?></td>
-                            </tr>
-                            <tr>
-                                <td>Appearance</td>
-                                <td><?php echo $tasting->appearanceScore ?> /3</td>
-                                <td><?php echo $tasting->appearanceComment ?></td>
-                            </tr>
-                            <tr>
-                                <td>Flavor</td>
-                                <td><?php echo $tasting->flavorScore ?> /20</td>
-                                <td><?php echo $tasting->flavorComment ?></td>
-                            </tr>
-                            <tr>
-                                <td>Mouthfeel</td>
-                                <td><?php echo $tasting->mouthfeelScore ?> /5</td>
-                                <td><?php echo $tasting->mouthfeelComment ?></td>
-                            </tr>
-                            <tr>
-                                <td>Overall impression</td>
-                                <td><?php echo $tasting->overallScore ?> /10</td>
-                                <td><?php echo $tasting->overallComment ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-condensed alignLeft">
+                            <thead>
+                                <th><?php echo criteria ?></th>
+                                <th><?php echo score ?></th>
+                                <th><?php echo comments ?></th>
+                            </thead>
+                            <tbody>
+                                <tr class="score" data-score="<?php echo ($tasting->aromaScore * 10) / 10 ?>">
+                                    <td><?php echo aroma ?></td>
+                                    <td><?php echo $tasting->aromaScore ?> /12</td>
+                                    <td><?php echo $tasting->aromaComment ?></td>
+                                </tr>
+                                <tr class="score" data-score="<?php echo ($tasting->appearanceScore * 10) / 3 ?>">
+                                    <td><?php echo appearance ?></td>
+                                    <td><?php echo $tasting->appearanceScore ?> /3</td>
+                                    <td><?php echo $tasting->appearanceComment ?></td>
+                                </tr>
+                                <tr class="score" data-score="<?php echo $tasting->flavorScore / 2  ?>">
+                                    <td><?php echo flavor ?></td>
+                                    <td><?php echo $tasting->flavorScore ?> /20</td>
+                                    <td><?php echo $tasting->flavorComment ?></td>
+                                </tr>
+                                <tr class="score" data-score="<?php echo ($tasting->mouthfeelScore * 10) / 5 ?>">
+                                    <td><?php echo mouthfeel ?></td>
+                                    <td><?php echo $tasting->mouthfeelScore ?> /5</td>
+                                    <td><?php echo $tasting->mouthfeelComment ?></td>
+                                </tr>
+                                <tr class="score" data-score="<?php echo $tasting->overallScore ?>">
+                                    <td><?php echo overallImpression ?></td>
+                                    <td><?php echo $tasting->overallScore ?> /10</td>
+                                    <td><?php echo $tasting->overallComment ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class=" row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="">False tastes</h3>
+                            <h3 class=""><?php echo offFlavors ?></h3>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <strong class="col-4">Alcoholic</strong>
-                                <strong class="col-4">Esteric</strong>
-                            </div>
+                            <?php
+                            if (!empty($tasting->offFlavors->getOffFlavors())) {
+                            ?>
+                            <ul class="list-group">
+                                <?php
+                                    foreach ($tasting->offFlavors->getOffFlavors() as $offFlavor) {
+                                    ?>
+                                <li class="list-group-item">
+                                    <?php echo App::renameOffFlavor($offFlavor) ?>
+                                </li>
+                                <?php
+                                    }
+                                    ?>
+                            </ul>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
+                </div>
 
+            </div>
+        </div>
+        <div class=" row">
+            <div class="col-4">
+                <!-- Stylistic Accuracy -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><?php echo stylisticAccuracy ?></h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="stars" data-rating="<?php echo ($tasting->stylisticAccuracy * 5) / 4 ?>"
+                            data-num-stars="5">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-4">
-                    <!-- Stylistic Accuracy -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Stylistic Accuracy</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="stars" data-rating="<?php echo ($tasting->stylisticAccuracy * 5) / 4 ?>"
-                                data-num-stars="5">
-                            </div>
+            <div class="col-4">
+                <!-- Technical Merit -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><?php echo technicalMerit ?> </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="stars" data-rating="<?php echo ($tasting->technicalMerit * 5) / 4 ?>"
+                            data-num-stars="5">
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <!-- Technical Merit -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Technical Merit </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="stars" data-rating="<?php echo ($tasting->technicalMerit * 5) / 4 ?>"
-                                data-num-stars="5">
-                            </div>
-                        </div>
+            </div>
+            <div class="col-4">
+                <!-- Intangibles -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><?php echo intangibles ?></h3>
                     </div>
-                </div>
-                <div class="col-4">
-                    <!-- Intangibles -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Intangibles </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="stars" data-rating="<?php echo ($tasting->intangibles * 5) / 4 ?>"
-                                data-num-stars="5">
-                            </div>
+                    <div class="card-body">
+                        <div class="stars" data-rating="<?php echo ($tasting->intangibles * 5) / 4 ?>"
+                            data-num-stars="5">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>

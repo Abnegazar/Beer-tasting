@@ -8,8 +8,11 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
-    RewriteRule ^account                             index.php?c=profileController [L]
+    RewriteRule ^account                              index.php?c=profileController [L]
 
+    RewriteRule ^beer-styles/(.*)$                    index.php?c=beerStyleController&operation=getAll&page=$1 [L]
+    RewriteRule ^beer-styles                          index.php?c=beerStyleController&operation=getAll [L]
+    RewriteRule ^beer-style/(.*)$                     index.php?c=beerStyleController&operation=getBeerStyle&id=$1 [L]
 
     RewriteRule ^home                                 index.php?c=homeController [L]
 
