@@ -1,43 +1,45 @@
-<div class="rectangle">
-    <h4 class="text-center">TASTINGS</h4>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
+<div class="row">
+    <div class="col-12">
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="text-center"><?php echo tastings ?></h4>
+            </div>
+            <div class="card-body bg-card">
                 <?php
-                if (empty($var->tastings) || !isset($var->tastings)) {
+                if (empty($var->tastings)) {
                     echo "<p>No tastings </p>";
                 } else {
                 ?>
-                <div class="row">
+                <div class="row mx-0">
                     <?php
                         foreach ($var->tastings as $tasting) {
-                            echo App::get_partial(PARTIAL_ALL_TASTINGS, array("lastTasting" => $tasting));
-                        }
-
                         ?>
-                </div>
-
-                <div class="row text-center">
-                    <div class="col-12">
-                        <?php
-                            if (isset($_GET['mode'])) {
-                                $link = PARTIAL_PAGINATION_V3;
-                            } else {
-                                $link = (isset($_GET['userId'])) ? PARTIAL_PAGINATION_V2 : PARTIAL_PAGINATION_V1;
-                            }
-                            echo App::get_partial(
-                                $link,
-                                array(
-                                    'pages' => $var->pages,
-                                    'count' => $var->count,
-                                    'page' => $var->page,
-                                )
-                            );
-                            ?>
+                    <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                        <?php echo App::get_partial(PARTIAL_TASTING_CARD, array('tasting' => $tasting)) ?>
                     </div>
+                    <?php
+                        }
+                        ?>
                 </div>
                 <?php
                 }
+                ?>
+            </div>
+            <div class="mx-auto">
+                <?php
+                if (isset($_GET['mode'])) {
+                    $link = PARTIAL_PAGINATION_V3;
+                } else {
+                    $link = (isset($_GET['userId'])) ? PARTIAL_PAGINATION_V2 : PARTIAL_PAGINATION_V1;
+                }
+                echo App::get_partial(
+                    $link,
+                    array(
+                        'pages' => $var->pages,
+                        'count' => $var->count,
+                        'page' => $var->page,
+                    )
+                );
                 ?>
             </div>
         </div>

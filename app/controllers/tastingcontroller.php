@@ -65,6 +65,7 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getUserTastings($userId, $offset, $limit);
 
+
         $tastingsCount = Tasting::count(true);
 
         $pages = ceil($tastingsCount / $limit);

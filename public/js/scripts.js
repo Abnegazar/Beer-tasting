@@ -72,3 +72,22 @@ $.fn.stars = function () {
     $(this).html(fullStar + halfStar + noStar);
   });
 };
+
+
+$.fn.score = function () {
+  return $(this).each(function () {
+    var color = "";
+    var score = $(this).data("score");
+    if(score>=8){
+        color = 'table-success';
+    }
+    else if(score>=5){
+        color = 'table-warning';
+    }
+    else{
+        color= 'table-danger';
+    }
+    $(this).addClass(color);
+  });
+};
+

@@ -1,33 +1,30 @@
 <!-- exemple affichage carte -->
-<?php
-if (isset($var->lastTasting)) {
-    $lastTasting = $var->lastTasting;
-?>
-<div class="col mb-5">
-    <div class="card h-100">
-        <!-- Product details-->
-        <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder" id="beerCategory"><?php echo $lastTasting->beerStyleTitle ?></h5>
-                <h4 class="fw-bolder" id="beerName"><?php echo $lastTasting->beerName ?></h4>
-                <h4 class="fw-bolder" id="userName">Par: <?php echo $lastTasting->userName ?></h4>
-                <div class="stars" data-rating="<?php echo $lastTasting->score['score'] / 10 ?>" data-num-stars="5">
-                </div>
-                <h4 class="fw-bolder" id="date"><?php echo App::dateUsOnlyDate($lastTasting->createdAt) ?></h4>
-            </div>
-        </div>
-        <!-- Product actions-->
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" id="boutonShowMore">
+<div class="row justify-content-center align-items-center">
+    <?php
+    if (isset($var->lastTastings)) {
+        $tastings = $var->lastTastings;
+    ?>
+    <!-- columns for  tasting cards -->
+    <div class="col-md-10 col-xs-12">
+        <div class="row">
             <?php
-                $link = (isset($_GET['mode'])) ? PAGE_TASTING_VISITOR : PAGE_TASTING;
+                foreach ($tastings as $tasting) {
                 ?>
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" id="boutonText"
-                    href="<?php echo str_replace("#id#", $lastTasting->id, $link) ?>">SHOW</a>
+            <div class="col-md-3 col-xs-12 top">
+                <?php echo App::get_partial(PARTIAL_TASTING_CARD, array('tasting' => $tasting)) ?>
             </div>
+            <?php
+                }
+                ?>
         </div>
     </div>
+    <!-- columns for  the arrow -->
+    <div class="col-md-2 col-xs-12 justify-content-center">
+        <a class="change_page" href="<?php echo PAGE_TASTINGS ?>">
+            <i class=" bi bi-arrow-right-circle-fill fa-6x"></i>
+        </a>
+    </div>
+    <?php
+    }
+    ?>
 </div>
-<?php
-}
-?>
