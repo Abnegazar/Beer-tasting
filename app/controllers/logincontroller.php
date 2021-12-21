@@ -111,7 +111,7 @@
                         $subject = "Confirmation";
                         $success = "Votre compte utilisateur a été créé. Vous pouvez vous connecter ";
 
-                        //Mailer::sendMail($email, $success, $subject);
+                        Mailer::sendMail($email, $success, $subject);
 
                         return json_encode(['status' => 'success', 'message' => $success]);
                     }

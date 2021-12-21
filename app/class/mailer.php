@@ -27,23 +27,27 @@ class Mailer
 
     static function sendMail($userEmail, $message, $subject)
     {
-        //Create an instance; passing `true` enables exceptions
-        $mail = new PHPMailer(true);
-
         try {
+
+            //Create an instance; passing `true` enables exceptions
+            $mail = new PHPMailer(true);
+
+
             //Server settings
-            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            //$mail->SMTPDebug = 0;                      //Enable verbose debug output
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
+            $mail->Host       = ENV['MAILGUN_SMTP_SERVER'];                       //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'pdlgroup4@gmail.com';                  //SMTP username     //gmail username
-            $mail->Password   = 'Hello world !!!';  //Hello world !!!            //SMTP password     //gmail password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465; //587;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Username   = ENV['MAILGUN_SMTP_LOGIN'];                  //SMTP username     //gmail username
+            $mail->Password   = ENV['MAILGUN_SMTP_PASSWORD'];  //Hello world !!!            //SMTP password     //gmail password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = ENV['MAILGUN_SMTP_PORT']; //587;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($mail->Username, EMAIL_FROM);
+            $mail->From = EMAIL_FROM;
+            $mail->FromName = APP_NAME;
+            //$mail->setFrom($mail->Username, EMAIL_FROM);
             //$mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
             $mail->addAddress($userEmail);               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
@@ -62,10 +66,21 @@ class Mailer
             if (!$mail->send()) {
                 return false;
             }
+            if (!$mail->send()) {
+                echo "Message hasn't been sent.";
+                App::logError('Mailer Error: ' . $mail->ErrorInfo . "n");
+                $mail->smtpClose();
+
+                return false;
+            } else {
+                echo "Message has been sent  n";
+                $mail->smtpClose();
+                return true;
+            }
         } catch (Exception $e) {
-            echo "Message echoué. Mailer Error: {$mail->ErrorInfo}";
+            $mail->smtpClose();
+            App::logError('Mailer Error: ' . $e . "n");
+            return false;
         }
-        $mail->smtpClose();
-        return true;
     }
 }
