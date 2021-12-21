@@ -30,10 +30,12 @@ $connectedUser = Session::getConnectedUser();
     <title><?php echo $var->title ?></title>
     <script src=" https://www.google.com/recaptcha/api.js" async defer>
     </script>
-    <!-- sora font -->
+    <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue&display=swap" rel="stylesheet">
+
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--  Load jQuery password complexity check plugin-->
@@ -66,6 +68,27 @@ $connectedUser = Session::getConnectedUser();
             <div class="col d-flex flex-column h-sm-100 background">
                 <main class="row overflow-auto">
                     <div class="col pt-4">
+                        <?php
+                            if ($var->breadCrumbs) {
+                            ?>
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <?php
+                                        foreach ($var->breadCrumbs as $key => $link) {
+                                            if ($link) {
+                                                echo '<li class="breadcrumb-item"><a href=' . $link . '>' . $key . '</a></li>';
+                                            } else {
+                                                echo '<li class="breadcrumb-item active aria-current="page">' . $key . '</li>';
+                                            }
+                                        }
+                                        ?>
+                            </ol>
+                        </nav>
+
+                        <?php
+                            }
+                            ?>
                         <?php echo $var->content ?>
                     </div>
                 </main>

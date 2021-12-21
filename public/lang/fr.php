@@ -75,3 +75,35 @@ define("story", "Histoire");
 define("ingredients", "Ingrédients");
 define("stylesComparison", "Comparaison de styles");
 define("commercialExamples", "Exemples commerciales");
+
+define("sort", "Trier par:");
+define("newest", "Les plus récentes");
+define("oldest", "Les plus anciennes");
+define("bestScore", "Note: par ordre décroissant");
+define("lowestScore", "Note: par ordre croissant");
+
+define("creationDate", "Date de création");
+
+define("update", "Mettre à jour");
+define("changePassword", "Changer le mot de passe");
+
+define("currentPassword", "Mot de passe courant");
+define("newPassword", "Nouveau mot de passe");
+define("confirmNewPassword", "Nouveau mot de passe confirmation");
+
+define("dashboard", "Tableau de bord");
+define("tasting", "Dégustation");
+
+define("myTastings", "Mes dégustations");
+
+define("personalInformation", "Information personnelle");
+
+define("accountDeletion", "Suppression de compte");
+define("deleteMyAccount", "Supprimer mon compte");
+define("accountDeletionText", "Une fois que vous avez supprimé votre compte, vous ne pouvez plus revenir en arrière. Soyez certain.");
+
+define("textNewTasting", "J'ajoute une nouvelle dégustation");
+define("textTastings", "Lister toutes les dégustations");
+define("textMyTastings", "Voir ou supprimer vos dégustations");
+define("textBeerStyles", "Lister tous les styles de bières disponibles");
+define("textAccount", "Mettre à jour votre profil, changer votre mot de passe ou supprimer votre compte");

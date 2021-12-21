@@ -21,10 +21,6 @@ DEFINE('PAGE_TASTINGS_ADD', SITE_URL . 'tastings/add');
 
 DEFINE('PAGE_DELETE_TASTING', SITE_URL . 'tasting/delete/#id#');
 
-
-
-DEFINE('PAGE_USER_TASTINGS', SITE_URL . 'tastings/user/#userId#');
-DEFINE('PAGE_USER_TASTINGS_BY_PAGE', SITE_URL . 'tastings/user/#userId#/#page#');
 DEFINE('PAGE_USER_TASTINGS_MANAGEMENT', SITE_URL . 'my-tastings');
 DEFINE('PAGE_USER_TASTINGS_MANAGEMENT_PAGE', SITE_URL . 'my-tastings/#page#');
 
@@ -55,3 +51,5 @@ DEFINE('PARTIAL_PAGINATION_V2', 'pagination_v2');
 DEFINE('PARTIAL_PAGINATION_V3', 'pagination_v3');
 DEFINE('PARTIAL_PAGINATION_V4', 'pagination_v4');
 DEFINE('PARTIAL_PAGINATION_V5', 'pagination_v5');
+
+DEFINE('PARTIAL_FILTER', 'filter');

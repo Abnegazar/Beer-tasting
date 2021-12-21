@@ -13,6 +13,8 @@ class ProfileController extends BaseController implements Controller
 
     public function render()
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[account] = "";
         $content = false;
         $this->h1 = "My account";
         $this->description = "My account";

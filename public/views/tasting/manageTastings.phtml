@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card no-border">
             <div class="card-header">
-                <h2 class="maj">My tastings</h2>
+                <h2><?php echo myTastings ?></h2>
+                <p><?php echo textMyTastings ?></p>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -13,6 +14,7 @@
                                 <th scope="col"><?php echo beerName ?></th>
                                 <th scope="col"><?php echo beerStyle ?></th>
                                 <th scope="col"><?php echo score ?></th>
+                                <th scope="col"><?php echo creationDate ?></th>
                                 <th scope="col"><?php echo actions ?></th>
                             </tr>
                         </thead>
@@ -20,7 +22,7 @@
                             <?php
                             foreach ($var->tastings as $tasting) {
                             ?>
-                            <tr class="score" data-score="<?php echo ($tasting->total * 10) / 50 ?>">
+                            <tr class="score" data-type="table" data-score="<?php echo ($tasting->total * 10) / 50 ?>">
                                 <td><?php echo $tasting->title ?></td>
                                 <td><?php echo $tasting->beerName ?></td>
                                 <td><?php echo $tasting->beerStyleTitle ?></td>
@@ -29,6 +31,7 @@
                                         data-num-stars="5">
                                     </div>
                                 </td>
+                                <td><?php echo App::dateUsOnlyDate($tasting->createdAt) ?></td>
                                 <td><Strong> <a
                                             href="<?php echo str_replace("#id#", $tasting->id, PAGE_TASTING) ?>"><?php echo view ?></a>
                                         |<a class="del" href=""><?php echo delete ?></a></Strong>

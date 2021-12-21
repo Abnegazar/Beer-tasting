@@ -1,13 +1,19 @@
+<?php
+$mode = (isset($_GET['mode'])) ? 'visitor' : 'user';
+$filter = (isset($_GET['filter'])) ? $_GET['filter'] : '';
+?>
 <div class="row">
     <div class="col-12">
-        <div class="card ">
+        <div class="card no-border">
             <div class="card-header">
-                <h4 class="text-center"><?php echo tastings ?></h4>
+                <h2 class="text-center"><?php echo tastings ?></h2>
+                <p><?php echo textTastings ?></p>
+                <?php echo App::get_partial(PARTIAL_FILTER, array('page' => $var->page, 'mode' => $mode)) ?>
             </div>
             <div class="card-body bg-card">
                 <?php
                 if (empty($var->tastings)) {
-                    echo "<p>No tastings </p>";
+                    //echo "<p>No tastings </p>";
                 } else {
                 ?>
                 <div class="row mx-0">
@@ -27,17 +33,14 @@
             </div>
             <div class="mx-auto">
                 <?php
-                if (isset($_GET['mode'])) {
-                    $link = PARTIAL_PAGINATION_V3;
-                } else {
-                    $link = (isset($_GET['userId'])) ? PARTIAL_PAGINATION_V2 : PARTIAL_PAGINATION_V1;
-                }
                 echo App::get_partial(
-                    $link,
+                    PARTIAL_PAGINATION_V1,
                     array(
                         'pages' => $var->pages,
                         'count' => $var->count,
                         'page' => $var->page,
+                        'mode' => $mode,
+                        'filter' => $filter
                     )
                 );
                 ?>
@@ -45,3 +48,22 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    var $filter = "<?php echo $filter ?>"
+    var $num = 0;
+    switch ($filter) {
+        case "oldest":
+            $num = 1;
+            break;
+        case "best-score":
+            $num = 2;
+            break;
+        case "lowest-score":
+            $num = 3;
+            break;
+        default:
+    }
+    $(".sort option:eq(" + $num + ")").prop('selected', true)
+});
+</script>

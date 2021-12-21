@@ -147,6 +147,7 @@
 
         public function render()
         {
+            $this->breadCrumbs[""] = "";
             $content = false;
             $operation = $_GET['operation'];
             switch ($operation) {
