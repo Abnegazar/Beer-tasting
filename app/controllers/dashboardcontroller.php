@@ -13,7 +13,7 @@ class DashboardController extends BaseController implements Controller
 
     public function render()
     {
-        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[dashboard] = "";
         $content = false;
         $this->h1 = "Dashboard";
         $this->description = "Dashboard";
