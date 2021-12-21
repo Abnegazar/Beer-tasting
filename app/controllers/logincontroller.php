@@ -110,11 +110,9 @@
                     if ($user->save()) {
                         $subject = "Confirmation";
                         $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-                        /*
-                        if (Mailer::sendMail($email, $success, $subject)) {
-                            return json_encode(['status' => 'success', 'message' => $success]);
-                        }
-                        */
+
+                        Mailer::sendMail($email, $success, $subject);
+
                         return json_encode(['status' => 'success', 'message' => $success]);
                     }
                     $errors[] = "Une erreur s'est produite lors de la création du compte";
