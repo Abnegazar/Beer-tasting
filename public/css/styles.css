@@ -5115,12 +5115,18 @@ fieldset:disabled .btn {
 .breadcrumb-item + .breadcrumb-item::before {
   float: left;
   padding-right: 0.5rem;
-  color: #6c757d;
+  color: var(--bs-beer);
   content: var(--bs-breadcrumb-divider, "/")
     /* rtl: var(--bs-breadcrumb-divider, "/") */;
 }
 .breadcrumb-item.active {
-  color: #6c757d;
+  color: var(--bs-beer);
+}
+.breadcrumb-item a {
+  color: rgba(0, 0, 0, 0.5);
+}
+.breadcrumb-item a:hover {
+  color: var(--bs-beer);
 }
 
 .pagination {
