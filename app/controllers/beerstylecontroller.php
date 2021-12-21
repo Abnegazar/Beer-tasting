@@ -17,6 +17,9 @@ class BeerStyleController extends BaseController implements Controller
 
     public function getAllBeerStyles()
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[beerStyles] = PAGE_BEER_STYLES;
+
         $content = false;
         $this->h1 = "Beer styles";
         $this->description = "Beer styles";
@@ -51,6 +54,9 @@ class BeerStyleController extends BaseController implements Controller
 
     public function getBeerStyleById($id)
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[beerStyles] = PAGE_BEER_STYLES;
+
         $this->h1 = "BeerStyle " . $id;
         $this->description = "BeerStyle " . $id;
         $this->title = "BeerStyle " . $id . " | TasteMyBeer";
@@ -58,6 +64,8 @@ class BeerStyleController extends BaseController implements Controller
         $view = "viewBeerStyle.phtml";
 
         $beerStyle = BeerStyle::getBeerStyle($id);
+
+        $this->breadCrumbs[$beerStyle->title] = str_replace("#id#", $id, PAGE_BEER_STYLE);
 
         return App::get_content(
             self::viewDirectory . $view,

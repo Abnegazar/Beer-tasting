@@ -57,12 +57,14 @@ $content =  $controller->render();
 if ($controller->useLayout()) {
     $h1Controller = $controller->getH1();
     $titleController = $controller->getTitle();
+    $breadCrumbs = $controller->getBreadCrumbs();
     $content = App::get_content(
         'layout.phtml',
         array(
             'title' => $titleController,
             'h1' => $h1Controller,
-            'content' => $content
+            'content' => $content,
+            'breadCrumbs' => $breadCrumbs,
         )
     );
 }

@@ -73,3 +73,35 @@ define("story", "Story");
 define("ingredients", "Ingredients");
 define("stylesComparison", "Styles comparison");
 define("commercialExamples", "Commercial examples");
+
+define("sort", "Sort by: ");
+define("newest", "Newest");
+define("bestScore", "Score: from high to low");
+define("lowestScore", "Score: from low to high");
+define("oldest", "Oldest");
+
+define("creationDate", "Created at");
+
+define("update", "Update");
+define("changePassword", "Change password");
+
+define("currentPassword", "Current password");
+define("newPassword", "New password");
+define("confirmNewPassword", "Confirm new password");
+
+define("dashboard", "Dashboard");
+define("tasting", "Tasting");
+
+define("myTastings", "User tastings");
+
+define("personalInformation", "Personal information");
+define("accountDeletion", "Account deletion");
+define("deleteMyAccount", "Delete my account");
+
+define("accountDeletionText", "Once you delete your account, there is no going back. Please be certain.");
+
+define("textNewTasting", "Add a new tasting");
+define("textTastings", "List all the tastings");
+define("textMyTastings", "View or delete your tastings");
+define("textBeerStyles", "List all the available beer styles");
+define("textAccount", "Update your profile, change password, or delete your account");

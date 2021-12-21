@@ -17,7 +17,8 @@ class TastingController extends BaseController implements Controller
 
     public function getAllTastings()
     {
-
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[tastings] = PAGE_TASTINGS;
         $this->h1 = "Tastings";
         $this->description = "All tastings";
         $this->title = "All Tastings | TasteMyBeer ";
@@ -30,7 +31,9 @@ class TastingController extends BaseController implements Controller
 
         $offset = ($page - 1) * $limit;
 
-        $tastings = Tasting::getAllTastings($offset, $limit);
+        $filter = (isset($_GET['filter'])) ? $_GET['filter'] : "";
+
+        $tastings = Tasting::getAllTastings($offset, $limit, $filter);
 
         $tastingsCount = Tasting::count();
 
@@ -50,6 +53,8 @@ class TastingController extends BaseController implements Controller
 
     public function getUserTastings($userId, $manage = false)
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[myTastings] = PAGE_USER_TASTINGS_MANAGEMENT;
         $this->h1 = "My tastings";
         $this->description = "My tastings";
         $this->title = "My tastings | TasteMyBeer";
@@ -83,6 +88,9 @@ class TastingController extends BaseController implements Controller
 
     public function getTastingById($id)
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[tastings] = PAGE_TASTINGS;
+        $this->breadCrumbs[tasting] = str_replace("#id", $id, PAGE_TASTING);
         $this->h1 = "Tasting " . $id;
         $this->description = "Tasting " . $id;
         $this->title = "Tasting " . $id . " | TasteMyBeer";
@@ -110,6 +118,9 @@ class TastingController extends BaseController implements Controller
 
     public function addNew()
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[add] = PAGE_TASTINGS_ADD;
+
         $this->h1 = "Add tasting";
         $this->description = "Add tasting";
         $this->title = "Add | TasteMyBeer";

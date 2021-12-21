@@ -3,62 +3,137 @@ input {
     padding: 3px;
 }
 </style>
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-2 border-right">
-        </div>
-        <div class="col-md-8 border-right">
-            <div class="p-3 py-5">
-                <div class="justify-content-between align-items-center mb-1">
-                    <h4 class="text-center">Profile Informations</h4>
-                </div>
-                <!-- Action pour modifier le nom ou le prenom -->
-                <form action="#" method="post">
-                    <div class="row mt-2">
-                        <div class="form-floating col-md-12 mb-4">
-                            <input type="text" class="form-control" placeholder="first name" value=""
-                                id="floatingInput">
-                            <label for="floatingInput">Name</label>
-                        </div>
-                        <div class="form-floating col-md-12 mb-4">
-                            <input type="text" class="form-control" value="" placeholder="surname" id="floatingInput">
-                            <label for="floatingInput">Surname</label>
-                        </div>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
-                                Profile</button>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h2><?php echo account ?></h2>
+                <p> <?php echo textAccount  ?></p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="p-3 py-5">
+                            <div class="justify-content-between align-items-center mb-1">
+                                <h4 class="text-center"><?php echo personalInformation ?></h4>
+                            </div>
+                            <!-- Action pour modifier le nom ou le prenom -->
+                            <form action="#" method="post">
+                                <div class="row mt-2">
+                                    <div class="form-floating col-md-12 mb-4">
+                                        <input type="text" class="form-control" placeholder="<?php echo firstName ?>"
+                                            value="<?php echo Session::getConnectedUser()->firstName ?>" id="firstName"
+                                            name="<?php echo User::FIRST_NAME ?>">
+                                        <label for="floatingInput"><?php echo firstName ?></label>
+                                    </div>
+                                    <div class="form-floating col-md-12 mb-4">
+                                        <input type="text" class="form-control"
+                                            value="<?php echo Session::getConnectedUser()->lastName ?>"
+                                            placeholder="<?php echo lastName ?>" id="lastName"
+                                            name="<?php echo User::LAST_NAME ?>">
+                                        <label for="floatingInput"><?php echo lastName ?></label>
+                                    </div>
+                                    <div class="mt-5 text-center"><button
+                                            class="btn btn-primary profile-button btn-update"
+                                            type="button"><?php echo update ?></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 border-right">
-            </div>
-            <div class="col-md-8">
-                <!-- Action pour modifier le password -->
-                <form action="" method="post">
-                    <div class="p-3 py-5">
-                        <div class="justify-content-between align-items-center experience">
-                            <h4 class="text-center">Edit Password</h4>
-                        </div><br>
-                        <div class="row">
-                            <div class="form-floating mb-4 col-md-12">
-                                <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="name@example.com" name="password">
-                                <label for="floatingInput">Nouveau mot de passe</label>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Action pour modifier le password -->
+                        <form action="" method="post">
+                            <div class="p-3 py-5">
+                                <div class="justify-content-between align-items-center experience">
+                                    <h4 class="text-center"><?php echo changePassword ?></h4>
+                                </div><br>
+                                <div class="row">
+                                    <div class="form-floating mb-4 col-md-12">
+                                        <input type="password" class="form-control" id="floatingInput"
+                                            name="oldPassword">
+                                        <label for="floatingInput"><?php echo currentPassword ?></label>
+                                    </div>
+                                    <div class="form-floating mb-4 col-md-12">
+                                        <input type="password" class="form-control pr-password" id="floatingInput"
+                                            name="password">
+                                        <label for="floatingInput"><?php echo newPassword ?></label>
+                                    </div>
+                                    <div class="form-floating mb-4 col-md-12">
+                                        <input type="password" class="form-control pr-password" id="floatingInput"
+                                            name="confirmPassword">
+                                        <label for="floatingInput"><?php echo confirmNewPassword ?></label>
+                                    </div>
+                                </div>
+                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                        type="button"><?php echo changePassword ?></button></div>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <form action="" method="post">
+                        <div class="p-3 py-5">
+                            <div class="justify-content-between align-items-center experience">
+                                <h4 class="text-center"><?php echo accountDeletion ?></h4>
+                            </div><br>
+                            <div class="row">
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo accountDeletionText ?>
+                                </div>
                             </div>
-                            <div class="form-floating mb-4 col-md-12">
-                                <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="name@example.com" name="confirmPassword">
-                                <label for="floatingInput">Confirmer le mot de passe</label>
-                            </div>
-                        </div>
-
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
-                                Password</button></div>
-                </form>
+                            <div class="mt-5 text-center"><button class="btn btn-danger profile-button"
+                                    type="button"><?php echo deleteMyAccount ?></button></div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+<script>
+$(document).ready(function() {
+    $(".pr-password").passwordRequirements({
+        numCharacters: 8,
+        useLowercase: true,
+        useUppercase: true,
+        useNumbers: true,
+        useSpecial: true
+    });
+    $('.btn-update').attr('disabled', true);
+    $("#firstName").on('change', function() {
+        var firstName = $(this).val();
+        $currentFirstName = "<?php echo Session::getConnectedUser()->firstName ?>"
+        if (firstName != $currentFirstName) {
+            $('.btn-update').attr('disabled', false);
+        } else {
+            $('.btn-update').attr('disabled', true);
+        }
+    });
+    $("#lastName").on('change', function() {
+        var lastName = $(this).val();
+        $currentLastName = "<?php echo Session::getConnectedUser()->lastName ?>"
+        if (lastName != $currentLastName) {
+            $('.btn-update').attr('disabled', false);
+        } else {
+            $('.btn-update').attr('disabled', true);
+        }
+    });
+});
+$(document).on('keyup', '#firstName', function() {
+    var newText = $('#firstName').val();
+    if (newText != "") {
+        $('#firstName').val(newText)
+        $('#firstName').val(newText).trigger('change');
+    }
+});
+$(document).on('keyup', '#lastName', function() {
+    var newText = $('#lastName').val();
+    if (newText != "") {
+        $('#lastName').val(newText)
+        $('#lastName').val(newText).trigger('change');
+    }
+});
+</script>

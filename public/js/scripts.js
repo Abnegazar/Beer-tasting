@@ -78,16 +78,29 @@ $.fn.score = function () {
   return $(this).each(function () {
     var color = "";
     var score = $(this).data("score");
-    if(score>=8){
-        color = 'table-success';
+    var type = $(this).data("type");
+    $component = "border-";
+    if(type == "table"){
+      $component = "table-";
     }
-    else if(score>=5){
-        color = 'table-warning';
+    if(score>=8){
+        color = $component+'success';
+    }
+    else if(score>=4){
+        color = $component+'warning';
     }
     else{
-        color= 'table-danger';
+        color= $component+'danger';
     }
     $(this).addClass(color);
   });
 };
+
+$(".pr-password").passwordRequirements({
+  numCharacters: 8,
+  useLowercase: true,
+  useUppercase: true,
+  useNumbers: true,
+  useSpecial: true
+});
 

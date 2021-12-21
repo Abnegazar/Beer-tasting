@@ -440,13 +440,31 @@ class Tasting
         return $res;
     }
 
-    public static function getAllTastings($offset = false, $limit = false)
+    public static function getAllTastings($offset = false, $limit = false, $filter = false)
     {
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
 
         $offset = ($offset) ? $offset : 0;
-        $sql = "SELECT * FROM tasting t join user u on t.u_id = u.user_id join beer_style b on t.bs_id = b.beer_style_id  ORDER BY t.t_created_at DESC";
+        $sql = "SELECT * FROM tasting t join user u on t.u_id = u.user_id join beer_style b on t.bs_id = b.beer_style_id";
+        if (!empty($filter)) {
+            switch ($filter) {
+                case 'oldest':
+                    $sql .=  ' ORDER BY t.t_created_at ASC';
+                    break;
+                case 'best-score':
+                    $sql .=  ' ORDER BY t.total DESC';
+                    break;
+                case 'lowest-score':
+                    $sql .=  ' ORDER BY t.total ASC';
+                    break;
+                case 'newest':
+                default:
+                    $sql .=  ' ORDER BY t.t_created_at DESC';
+            }
+        } else {
+            $sql .=  ' ORDER BY t.t_created_at DESC';
+        }
         if ($limit) {
             $sql .= ' LIMIT ' . $offset . ', ' . $limit;
         }

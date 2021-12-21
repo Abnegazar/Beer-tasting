@@ -1,9 +1,9 @@
 <?php
 $tasting = $var->tasting;
 ?>
-<div class="card h-100">
+<div class="card h-100 score" data-score="<?php echo $tasting->score['score'] / 5 ?>" data-type="card">
     <!-- Product details-->
-    <div class="card-body">
+    <div class=" card-body">
         <div class="text-center">
             <!-- Product name-->
             <h5 class="fw-bolder" id="beerCategory"><?php echo $tasting->beerStyleTitle ?></h5>

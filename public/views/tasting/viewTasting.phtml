@@ -27,12 +27,13 @@ if (isset($var->tasting)) {
     </div>
     <!-- Nom du degustateur-->
     <p class="masthead2-subheading font-weight-light mb-0">
-        <?php echo $tasting->userName . " - " . $tasting->beerName . " - " . $tasting->beerStyleTitle ?>
+        <?php echo $tasting->userName . " - " . $tasting->beerName . " - " ?> <a
+            href="<?php echo str_replace("#id#", $tasting->beerStyleId, PAGE_BEER_STYLE) ?>"><?php echo $tasting->beerStyleTitle  ?></a>
     </p>
 </div>
-<!-- Content Section-->
-<section class="">
-    <div class="container">
+
+<div class="row">
+    <div class="col-12">
         <div class="card" style="padding: 20px;">
             <!-- Content section -->
             <!-- Bottle Inspection -->
@@ -90,27 +91,31 @@ if (isset($var->tasting)) {
                                 <th><?php echo comments ?></th>
                             </thead>
                             <tbody>
-                                <tr class="score" data-score="<?php echo ($tasting->aromaScore * 10) / 10 ?>">
+                                <tr class="score" data-type="table"
+                                    data-score="<?php echo ($tasting->aromaScore * 10) / 10 ?>">
                                     <td><?php echo aroma ?></td>
                                     <td><?php echo $tasting->aromaScore ?> /12</td>
                                     <td><?php echo $tasting->aromaComment ?></td>
                                 </tr>
-                                <tr class="score" data-score="<?php echo ($tasting->appearanceScore * 10) / 3 ?>">
+                                <tr class="score" data-type="table"
+                                    data-score="<?php echo ($tasting->appearanceScore * 10) / 3 ?>">
                                     <td><?php echo appearance ?></td>
                                     <td><?php echo $tasting->appearanceScore ?> /3</td>
                                     <td><?php echo $tasting->appearanceComment ?></td>
                                 </tr>
-                                <tr class="score" data-score="<?php echo $tasting->flavorScore / 2  ?>">
+                                <tr class="score" data-type="table"
+                                    data-score="<?php echo $tasting->flavorScore / 2  ?>">
                                     <td><?php echo flavor ?></td>
                                     <td><?php echo $tasting->flavorScore ?> /20</td>
                                     <td><?php echo $tasting->flavorComment ?></td>
                                 </tr>
-                                <tr class="score" data-score="<?php echo ($tasting->mouthfeelScore * 10) / 5 ?>">
+                                <tr class="score" data-type="table"
+                                    data-score="<?php echo ($tasting->mouthfeelScore * 10) / 5 ?>">
                                     <td><?php echo mouthfeel ?></td>
                                     <td><?php echo $tasting->mouthfeelScore ?> /5</td>
                                     <td><?php echo $tasting->mouthfeelComment ?></td>
                                 </tr>
-                                <tr class="score" data-score="<?php echo $tasting->overallScore ?>">
+                                <tr class="score" data-type="table" data-score="<?php echo $tasting->overallScore ?>">
                                     <td><?php echo overallImpression ?></td>
                                     <td><?php echo $tasting->overallScore ?> /10</td>
                                     <td><?php echo $tasting->overallComment ?></td>
@@ -192,4 +197,4 @@ if (isset($var->tasting)) {
             </div>
         </div>
     </div>
-</section>
+</div>
