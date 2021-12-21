@@ -169,4 +169,57 @@ class App
                 break;
         }
     }
+    public static function getOffFlavorText($value){
+         switch ($value) {
+            case 'Acetaldehyde':
+                return ACETALDEHYDE_MESSAGE;
+                break;
+            case 'Acidic':
+                return SOURACIDIC_MESSAGE;
+                break;
+            case 'Astringent':
+                return ASTRINGENT_MESSAGE;
+                break;
+            case 'Diacetyl':
+                return DIACETYL_MESSAGE;
+                break;
+            case 'DMS':
+                return DMS_MESSAGE;
+                break;
+            case 'Estery':
+                return ESTERY_MESSAGE;
+                break;
+            case 'Grassy':
+                return GRASSY_MESSAGE;
+                break;
+            case 'Light struck':
+                return LIGHTSTRUCK_MESSAGE;
+                break;
+            case 'Metallic':
+                return METALLIC_MESSAGE;
+                break;
+            case 'Musty':
+                return MUSTY_MESSAGE;
+                break;
+            case 'Oxidized':
+                return OXIDIZED_MESSAGE;
+                break;
+            case 'Phenolic':
+                return PHENOLIC_MESSAGE;
+                break;
+            case 'Solvent':
+                return SOLVENT_MESSAGE;
+                break;
+            case 'Sulfur':
+                return SULFUR_MESSAGE;
+                break;
+            case 'Vegetal':
+                return VEGETAL_MESSAGE;
+                break;
+            case 'Yeasty':
+            default:
+                return  YEASTY_MESSAGE;
+                break;
+        }
+    }
 }

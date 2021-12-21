@@ -107,3 +107,44 @@ define("textTastings", "Lister toutes les dégustations");
 define("textMyTastings", "Voir ou supprimer vos dégustations");
 define("textBeerStyles", "Lister tous les styles de bières disponibles");
 define("textAccount", "Mettre à jour votre profil, changer votre mot de passe ou supprimer votre compte");
+DEFINE('AROMA_MESSAGE', 'Commenter le malt, le houblon, les esters et les autres aromates.');
+DEFINE('APPEARANCE_MESSAGE', 'Comment on color, clarity, and head (retention, color, and texture)');
+DEFINE('FLAVOR_MESSAGE', 'Commentaire sur la couleur, la clarté et la tête (rétention, couleur et texture)');
+DEFINE('MOUTHFEEL_MESSAGE', "Commentez le corps, la carbonatation, la chaleur, l'onctuosité, l'astringence et les autres sensations en bouche.");
+DEFINE('OVERALL_MESSAGE', "Commentez le plaisir de boire associé à l'entrée, donnez des suggestions pour l'améliorer.");
+DEFINE('BOTTLE_MESSAGE', "Taille appropriée, bouchon, niveau de remplissage, retrait de l'étiquette, etc.");
+DEFINE('ACETALDEHYDE_MESSAGE', 'Arôme et saveur de pomme verte');
+DEFINE('ALCOHOLIC_MESSAGE', "L'arôme, la saveur et l'effet chauffant de l'éthanol et des alcools supérieurs.
+l'éthanol et des alcools supérieurs. Parfois décrit comme chaud");
+DEFINE('ASTRINGENT_MESSAGE', "Rugosité, dureté et/ou sécheresse persistante
+dans la finale ou l'arrière-goût ; sensation de grain dur ; sensation d'écorce.");
+DEFINE('DIACETYL_MESSAGE', 'Arôme et saveur de beurre artificiel, de caramel ou de caramel.
+et saveur. Parfois perçu comme un glaçage sur la langue.');
+DEFINE('DMS_MESSAGE', 'A faible niveau, un arôme et une saveur sucrés, cuits ou
+cuit ou en conserve, ressemblant à du maïs');
+DEFINE('ESTERY_MESSAGE', 'Arôme et/ou saveur de tout ester (fruits, arômes de fruits ou roses)
+fruits, arômes de fruits ou roses)');
+DEFINE('GRASSY_MESSAGE', "Arôme/goût d'herbe fraîchement coupée ou de feuilles vertes.");
+DEFINE('LIGHTSTRUCK_MESSAGE', "Similaire à l'arôme d'une mouffette");
+DEFINE('METALLIC_MESSAGE', "Goût d'étain, de monnaie, de cuivre, de fer ou de sang.");
+DEFINE('MUSTY_MESSAGE', "Arômes et saveurs de renfermé, de moisi ou d'odeur de renfermé.");
+DEFINE('OXIDIZED_MESSAGE', "Une ou plusieurs combinaisons d'arômes rassis, vineux,
+arômes et saveurs de carton, de papeterie ou de sherry.");
+DEFINE('PHENOLIC_MESSAGE', 'Épicé (girofle, poivre), fumé, plastique, plastique
+bande adhésive, et/ou médicinale (chlorophénolique)');
+DEFINE('SOLVENT_MESSAGE', "Arômes et saveurs des alcools supérieurs (fuselés).
+alcools). Similaire aux arômes d'acétone ou de diluant pour laque.");
+DEFINE('SOURACIDIC_MESSAGE', "Aigre dans l'arôme et la saveur. Peut être vif
+et propre (acide lactique), ou vinaigré (acide acétique).");
+DEFINE('SULFUR_MESSAGE', "L'arôme d'œufs pourris ou d'allumettes brûlées");
+DEFINE('VEGETAL_MESSAGE', '- Arôme et saveur de légumes cuits, en conserve ou pourris (chou, oignon, céleri, asperges, etc.).
+saveur (chou, oignon, céleri, asperge, etc.).');
+DEFINE('YEASTY_MESSAGE', '- Un arôme ou une saveur de pain, de sulfure ou de levure.');
+
+DEFINE('STYLISTIC_MESSAGE_START', 'Pas de style');
+DEFINE('STYLISTIC_MESSAGE_END', 'Exemple classique');
+DEFINE('TECHNICALMERIT_MESSAGE_START', 'Défauts importants');
+DEFINE('TECHNICALMERIT_MESSAGE_END', 'impeccable');
+DEFINE('INTANGIBLES_MESSAGE_START', 'Sans vie');
+DEFINE('INTANGIBLES_MESSAGE_END', 'Merveilleux');
+define('TO','à');

@@ -139,7 +139,8 @@ if (isset($var->tasting)) {
                                 <?php
                                     foreach ($tasting->offFlavors->getOffFlavors() as $offFlavor) {
                                     ?>
-                                <li class="list-group-item">
+                                <li class="list-group-item" data-toggle="tooltip" data-placement="top"
+                                  title="<?php echo App::getOffFlavorText(App::renameOffFlavor($offFlavor)); ?>">
                                     <?php echo App::renameOffFlavor($offFlavor) ?>
                                 </li>
                                 <?php
@@ -162,7 +163,8 @@ if (isset($var->tasting)) {
                     <div class="card-header">
                         <h3><?php echo stylisticAccuracy ?></h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" data-toggle="tooltip" data-placement="top" 
+                         title="<?php echo STYLISTIC_MESSAGE_START.' '.TO.' '. STYLISTIC_MESSAGE_END ?>">
                         <div class="stars" data-rating="<?php echo ($tasting->stylisticAccuracy * 5) / 4 ?>"
                             data-num-stars="5">
                         </div>
@@ -175,7 +177,8 @@ if (isset($var->tasting)) {
                     <div class="card-header">
                         <h3><?php echo technicalMerit ?> </h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" data-toggle="tooltip" data-placement="top"
+                         title="<?php echo TECHNICALMERIT_MESSAGE_START .' '.TO.' '. TECHNICALMERIT_MESSAGE_END ?>">
                         <div class="stars" data-rating="<?php echo ($tasting->technicalMerit * 5) / 4 ?>"
                             data-num-stars="5">
                         </div>
@@ -188,7 +191,8 @@ if (isset($var->tasting)) {
                     <div class="card-header">
                         <h3><?php echo intangibles ?></h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" data-toggle="tooltip" data-placement="top"
+                         title="<?php echo INTANGIBLES_MESSAGE_START .' '.TO.' '. INTANGIBLES_MESSAGE_END ?>">
                         <div class="stars" data-rating="<?php echo ($tasting->intangibles * 5) / 4 ?>"
                             data-num-stars="5">
                         </div>
