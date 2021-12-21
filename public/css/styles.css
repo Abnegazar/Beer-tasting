@@ -5119,11 +5119,11 @@ fieldset:disabled .btn {
   content: var(--bs-breadcrumb-divider, "/")
     /* rtl: var(--bs-breadcrumb-divider, "/") */;
 }
-.breadcrumb-item.active{
+.breadcrumb-item.active {
   color: var(--bs-beer);
 }
 .breadcrumb-item a {
-  color: gray;
+  color: rgba(0, 0, 0, 0.5);
 }
 .breadcrumb-item a:hover {
   color: var(--bs-beer);
