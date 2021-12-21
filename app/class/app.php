@@ -9,14 +9,14 @@ class App
         if ($this_date != null && $this_date != '0000-00-00 00:00:00') {
             list($date, $heure_min_sec) = explode(' ', $this_date);
             list($annee, $mois, $jour) = explode('-', $date);
-            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee); //converts date string to UNIX timestamp
-            $return_date = date('d/m/Y', $timestamp);  //puts the UNIX timestamp back into string format
+            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee);
+            $return_date = date('d/m/Y', $timestamp);
             if ($display_hour && $heure_min_sec != '') {
                 $return_date .= ' ' . $heure_min_sec;
             }
         }
-        return $return_date; //exit function and return string
-    } //end of function
+        return $return_date;
+    }
 
     public static function dateUs($this_date, $display_hour = false)
     {
@@ -25,14 +25,14 @@ class App
 
             list($date, $heure_min_sec) = explode(' ', $this_date);
             list($jour, $mois, $annee) = explode('/', $date);
-            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee); //converts date string to UNIX timestamp
-            if ($timestamp) $return_date = date('Y-m-d', $timestamp);  //puts the UNIX timestamp back into string format
+            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee);
+            if ($timestamp) $return_date = date('Y-m-d', $timestamp);
             if ($display_hour && $heure_min_sec != '') {
                 $return_date .= ' ' . $heure_min_sec;
             }
         }
-        return $return_date; //exit function and return string
-    } //end of function
+        return $return_date;
+    }
 
 
     public static function logError($message)

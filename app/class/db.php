@@ -6,7 +6,7 @@ class Db
     public static $dbInstance;
 
     // Un constructeur prive empece la création directe d'objet
-    public function __construct()
+    private function __construct()
     {
         self::$dbInstance = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         mysqli_set_charset(self::$dbInstance, 'utf8');
