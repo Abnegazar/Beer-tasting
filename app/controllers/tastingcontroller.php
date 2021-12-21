@@ -90,7 +90,6 @@ class TastingController extends BaseController implements Controller
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[tastings] = PAGE_TASTINGS;
-        $this->breadCrumbs[tasting] = "";
         $this->h1 = "Tasting " . $id;
         $this->description = "Tasting " . $id;
         $this->title = "Tasting " . $id . " | TasteMyBeer";
@@ -98,6 +97,8 @@ class TastingController extends BaseController implements Controller
         $view = "viewTasting.phtml";
 
         $tasting = Tasting::getTastingById($id);
+        $this->breadCrumbs[tasting] = "";
+        $this->breadCrumbs[$tasting->title] = "";
 
         return App::get_content(
             self::viewDirectory . $view,
