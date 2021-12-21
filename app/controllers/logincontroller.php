@@ -115,9 +115,7 @@
                             return json_encode(['status' => 'success', 'message' => $success]);
                         }
                         */
-                        if (Mailer::sendMail($email, $success, $subject)) {
-                            return json_encode(['status' => 'success', 'message' => $success]);
-                        }
+                        return json_encode(['status' => 'success', 'message' => $success]);
                     }
                     $errors[] = "Une erreur s'est produite lors de la création du compte";
                 } else {
