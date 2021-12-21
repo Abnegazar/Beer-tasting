@@ -34,8 +34,7 @@ class TastingController extends BaseController implements Controller
         $filter = (isset($_GET['filter'])) ? $_GET['filter'] : "";
 
         $tastings = Tasting::getAllTastings($offset, $limit, $filter);
-        var_dump($tastings);
-        exit;
+
 
         $tastingsCount = Tasting::count();
 

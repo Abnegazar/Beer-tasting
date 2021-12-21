@@ -11,7 +11,6 @@ class Db
         self::$dbInstance = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         mysqli_set_charset(self::$dbInstance, 'utf8');
         if (!self::$dbInstance) {
-            echo "hey";
             header("HTTP/1.0 500 Internal Server Error");
             die();
         }
