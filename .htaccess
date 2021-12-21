@@ -65,10 +65,10 @@
 
 
 
-SetEnv host localhost
-SetEnv user root
-SetEnv password 
-SetEnv database beer_tasting_app
+SetEnv host eu-cdbr-west-01.cleardb.com
+SetEnv user b20aed084fb8c0
+SetEnv password 24cf5e66
+SetEnv database heroku_3060de8c3a96b87
 
 
 

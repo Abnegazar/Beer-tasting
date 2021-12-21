@@ -1,14 +1,34 @@
 
-CREATE SCHEMA IF NOT EXISTS `beer_tasting_app` DEFAULT CHARACTER SET utf8 ;
-USE `beer_tasting_app` ;
+
 
 
 -- -----------------------------------------------------
--- Table `beer_tasting_app`.`beer`
+-- Table `beer`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `beer_tasting_app`.`beer` ;
+DROP TABLE IF EXISTS `tasting` ;
 
-CREATE TABLE IF NOT EXISTS `beer_tasting_app`.`beer` (
+DROP TABLE IF EXISTS `beer_style` ;
+
+
+-- -----------------------------------------------------
+-- Table `user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user` ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `password` CHAR(32) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `last_login_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_login_ip` INT(11) UNSIGNED NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) );
+
+CREATE TABLE IF NOT EXISTS `beer_style` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `style` VARCHAR(255) NOT NULL,
   `aroma` TEXT NULL,
@@ -27,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `beer_tasting_app`.`beer` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `beer_tasting_app`.`tasting`
+-- Table `tasting`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `beer_tasting_app`.`tasting` ;
+DROP TABLE IF EXISTS `tasting` ;
 
-CREATE TABLE IF NOT EXISTS `beer_tasting_app`.`tasting` (
+CREATE TABLE IF NOT EXISTS `tasting` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `beer_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -75,32 +95,16 @@ CREATE TABLE IF NOT EXISTS `beer_tasting_app`.`tasting` (
   UNIQUE INDEX `idtasting_UNIQUE` (`id` ASC)  ,
   CONSTRAINT `fk_user_has_beer_user`
     FOREIGN KEY (`user_id`)
-    REFERENCES `beer_tasting_app`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_beer_beer1`
     FOREIGN KEY (`beer_id`)
-    REFERENCES `beer_tasting_app`.`beer` (`id`)
+    REFERENCES `beer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
--- -----------------------------------------------------
--- Table `beer_tasting_app`.`user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `beer_tasting_app`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `beer_tasting_app`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(255) NOT NULL,
-  `last_name` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(50) NOT NULL,
-  `password` CHAR(32) NOT NULL,
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `last_login_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `last_login_ip` INT(11) UNSIGNED NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) );
 
 ALTER TABLE tasting ADD `title` VARCHAR(250) NOT NULL AFTER `id`;
 
@@ -114,8 +118,7 @@ ALTER TABLE user MODIFY user.password CHAR(60);
 
 ALTER table tasting Add column beer_name varchar(250) NULL AFTER beer_id;
 
-RENAME TABLE  `beer` TO  `beer_style` ;
-ALTER TABLE tasting CHANGE beer_id beer_style_id int(11);
+ALTER TABLE tasting CHANGE beer_id bs_id int(11);
 
 ALTER table user add column is_verified tinyint(1) DEFAULT 0 NOT NULL after created_at;
 
@@ -132,7 +135,6 @@ ALTER TABLE beer_style CHANGE `id` beer_style_id INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE tasting CHANGE `id` tasting_id INT NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE tasting CHANGE `user_id` u_id INT NOT NULL ;
-ALTER TABLE tasting CHANGE `beer_style_id` bs_id INT NOT NULL;
 ALTER TABLE beer_style CHANGE `title` style VARCHAR(255) NOT NULL;
 ALTER TABLE tasting CHANGE `created_at` t_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
