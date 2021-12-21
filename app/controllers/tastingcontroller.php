@@ -18,7 +18,7 @@ class TastingController extends BaseController implements Controller
     public function getAllTastings()
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
-        $this->breadCrumbs[tastings] = PAGE_TASTINGS;
+        $this->breadCrumbs[tastings] = "";
         $this->h1 = "Tastings";
         $this->description = "All tastings";
         $this->title = "All Tastings | TasteMyBeer ";
@@ -54,7 +54,7 @@ class TastingController extends BaseController implements Controller
     public function getUserTastings($userId, $manage = false)
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
-        $this->breadCrumbs[myTastings] = PAGE_USER_TASTINGS_MANAGEMENT;
+        $this->breadCrumbs[myTastings] = "";
         $this->h1 = "My tastings";
         $this->description = "My tastings";
         $this->title = "My tastings | TasteMyBeer";
@@ -90,7 +90,7 @@ class TastingController extends BaseController implements Controller
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[tastings] = PAGE_TASTINGS;
-        $this->breadCrumbs[tasting] = str_replace("#id", $id, PAGE_TASTING);
+        $this->breadCrumbs[tasting] = "";
         $this->h1 = "Tasting " . $id;
         $this->description = "Tasting " . $id;
         $this->title = "Tasting " . $id . " | TasteMyBeer";
@@ -119,7 +119,7 @@ class TastingController extends BaseController implements Controller
     public function addNew()
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
-        $this->breadCrumbs[add] = PAGE_TASTINGS_ADD;
+        $this->breadCrumbs[add] = "";
 
         $this->h1 = "Add tasting";
         $this->description = "Add tasting";
