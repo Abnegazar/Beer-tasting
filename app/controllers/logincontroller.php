@@ -16,6 +16,14 @@
         public function signIn()
         {
             if (!empty($_POST)) {
+                if (SITE_URL == URL_PROD) {
+                    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+                        $response = $_POST['g-recaptcha-response'];
+                        if (Captcha::isCaptchaOk($response)) {
+                            return $this->signUpAjaxProcessing();
+                        }
+                    }
+                }
                 return $this->signInAjaxProcessing();
             }
 
@@ -125,14 +133,6 @@
         public function signUp()
         {
             if (!empty($_POST)) {
-                if (SITE_URL == URL_PROD) {
-                    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-                        $response = $_POST['g-recaptcha-response'];
-                        if (Captcha::isCaptchaOk($response)) {
-                            return $this->signUpAjaxProcessing();
-                        }
-                    }
-                }
                 return $this->signUpAjaxProcessing();
             }
             $view = 'signup.phtml';

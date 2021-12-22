@@ -24,17 +24,11 @@ DEFINE('PATTERN_NAME', '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõú
 DEFINE('PATTERN_NAME_EXPL', 'Votre nom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
 DEFINE('PATTERN_FIRST_NAME_EXPL', str_replace('nom', 'prénom', PATTERN_NAME_EXPL));
 
-if (
-    !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'
-    || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
-) {
-    DEFINE('SITE_PROTOCOL', 'https');
-} else {
-    DEFINE('SITE_PROTOCOL', 'http');
-}
 
+$protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === 0 ? 'https://' : 'http://';
+DEFINE('SITE_PROTOCOL', $protocol);
 DEFINE('URL_PROD', 'https://beer-tasting-env-production.herokuapp.com/');
-DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/');
+DEFINE('SITE_URL', SITE_PROTOCOL  . SERVER_NAME . '/');
 DEFINE('VENDOR_DIR', '../vendor/');
 
 DEFINE('EMAIL_FROM',             'no-reply@tastemybeer.com');
