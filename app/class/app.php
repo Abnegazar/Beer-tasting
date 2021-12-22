@@ -169,8 +169,9 @@ class App
                 break;
         }
     }
-    public static function getOffFlavorText($value){
-         switch ($value) {
+    public static function getOffFlavorText($value)
+    {
+        switch ($value) {
             case 'Acetaldehyde':
                 return ACETALDEHYDE_MESSAGE;
                 break;
@@ -221,5 +222,10 @@ class App
                 return  YEASTY_MESSAGE;
                 break;
         }
+    }
+
+    public static function createPasswordHash($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 }

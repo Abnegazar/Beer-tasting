@@ -151,3 +151,8 @@ DEFINE('TECHNICALMERIT_MESSAGE_END', 'impeccable');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Sans vie');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Merveilleux');
 define('TO', 'à');
+
+define('mandatoryPassword', 'Le mot de passe est obligatoire');
+define('incorrectPassword', 'Le mot de passe est incorrect');
+define('incorrectOldPassword', "L'ancien mot de passe est incorrect");
+define('passwordChangedMessage', 'Votre mot de passe a été modifié');

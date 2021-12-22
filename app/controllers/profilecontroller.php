@@ -33,9 +33,34 @@ class ProfileController extends BaseController implements Controller
 
     public function deleteAccount()
     {
+        $this->useLayout = false;
         if (User::delete()) {
             Session::deleteConnectedUser();
             header("Location:" . PAGE_HOME);
+        }
+    }
+
+    public function changePassword()
+    {
+        $this->useLayout = false;
+        $errors = array();
+        if (!empty($_POST)) {
+            $oldPassword = $_POST['oldPassword'];
+            $newPassword = $_POST['newPassword'];
+            if (!isset($_POST['newPassword']) || empty(($_POST['newPassword']))) {
+                $errors[] = mandatoryPassword;
+            } else if (!preg_match(PATTERN_PASSWORD, $_POST['newPassword'])) {
+                $errors[] = incorrectPassword;
+            }
+            if (empty($errors)) {
+                if (User::updatePassword($oldPassword, $newPassword)) {
+                    return json_encode(['status' => 'success', 'message' => passwordChangedMessage]);
+                } else {
+                    $errors[] = incorrectOldPassword;
+                    return json_encode(['status' => 'error', 'message' => $errors]);
+                }
+            }
+            return json_encode(['status' => 'error', 'message' => $errors]);
         }
     }
 
@@ -44,6 +69,9 @@ class ProfileController extends BaseController implements Controller
         $content = false;
         $operation = $_GET['operation'];
         switch ($operation) {
+            case 'changePassword':
+                $content = $this->changePassword();
+                break;
             case 'deleteAccount':
                 $content = $this->deleteAccount();
                 break;

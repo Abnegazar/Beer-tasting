@@ -31,7 +31,7 @@ class User
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->password = ($password) ? password_hash($password, PASSWORD_DEFAULT) : false;
+        $this->password = ($password) ? $password : false;
     }
 
     public function __initFromDbObject($o)
@@ -52,7 +52,7 @@ class User
                         \'' . mysqli_real_escape_string($dbInstance, $this->firstName) . '\', 
                         \'' . mysqli_real_escape_string($dbInstance, $this->lastName) . '\', 
                         \'' . mysqli_real_escape_string($dbInstance, $this->email) . '\', 
-                        \'' . mysqli_real_escape_string($dbInstance, $this->password) . '\'
+                        \'' . App::createPasswordHash(mysqli_real_escape_string($dbInstance, $this->password)) . '\'
                     )';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
@@ -121,8 +121,6 @@ class User
         return $res;
     }
 
-
-
     public static function delete()
     {
         $res = false;
@@ -132,6 +130,41 @@ class User
             $result = mysqli_query($dbInstance, $sql);
             if ($result) {
                 $res = true;
+            }
+        }
+        return $res;
+    }
+
+    public static function checkOldPassword($oldPassword)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "SELECT user.password FROM user WHERE user_id=" . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            $oldPassword = mysqli_real_escape_string($dbInstance, $oldPassword);
+            if (password_verify($oldPassword, $row['password'])) {
+                $res = true;
+            }
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function updatePassword($oldPassword, $newPassword)
+    {
+        $res = false;
+        if (User::checkOldPassword($oldPassword)) {
+            $dbInstance = Db::getInstance()->getDbInstance();
+            $password = App::createPasswordHash(mysqli_real_escape_string($dbInstance, $newPassword));
+            $sql = "UPDATE user SET user.password = \"" . $password . "\" WHERE user_id= " . Session::getConnectedUserId();
+            $result = mysqli_query($dbInstance, $sql);
+            if ($result) {
+                $res = true;
+            } else {
+                App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
             }
         }
         return $res;

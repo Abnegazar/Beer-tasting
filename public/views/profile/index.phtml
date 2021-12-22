@@ -11,90 +11,36 @@ input {
                 <p> <?php echo textAccount  ?></p>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="p-3 py-5">
-                            <div class="justify-content-between align-items-center mb-1">
-                                <h4 class="text-center"><?php echo personalInformation ?></h4>
-                            </div>
-                            <!-- Action pour modifier le nom ou le prenom -->
-                            <form action="#" method="post">
-                                <div class="row mt-2">
-                                    <div class="form-floating col-md-12 mb-4">
-                                        <input type="text" class="form-control" placeholder="<?php echo firstName ?>"
-                                            value="<?php echo Session::getConnectedUser()->firstName ?>" id="firstName"
-                                            name="<?php echo User::FIRST_NAME ?>">
-                                        <label for="floatingInput"><?php echo firstName ?></label>
-                                    </div>
-                                    <div class="form-floating col-md-12 mb-4">
-                                        <input type="text" class="form-control"
-                                            value="<?php echo Session::getConnectedUser()->lastName ?>"
-                                            placeholder="<?php echo lastName ?>" id="lastName"
-                                            name="<?php echo User::LAST_NAME ?>">
-                                        <label for="floatingInput"><?php echo lastName ?></label>
-                                    </div>
-                                    <div class="mt-5 text-center"><button
-                                            class="btn btn-primary profile-button btn-update"
-                                            type="button"><?php echo update ?></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <?php echo App::get_partial(PARTIAL_CHANGE_PERSONAL_INFORMATION, array()) ?>
                 <hr>
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Action pour modifier le password -->
-                        <form action="" method="post">
-                            <div class="p-3 py-5">
-                                <div class="justify-content-between align-items-center experience">
-                                    <h4 class="text-center"><?php echo changePassword ?></h4>
-                                </div><br>
-                                <div class="row">
-                                    <div class="form-floating mb-4 col-md-12">
-                                        <input type="password" class="form-control" id="floatingInput"
-                                            name="oldPassword">
-                                        <label for="floatingInput"><?php echo currentPassword ?></label>
-                                    </div>
-                                    <div class="form-floating mb-4 col-md-12">
-                                        <input type="password" class="form-control pr-password" id="floatingInput"
-                                            name="password">
-                                        <label for="floatingInput"><?php echo newPassword ?></label>
-                                    </div>
-                                    <div class="form-floating mb-4 col-md-12">
-                                        <input type="password" class="form-control pr-password" id="floatingInput"
-                                            name="confirmPassword">
-                                        <label for="floatingInput"><?php echo confirmNewPassword ?></label>
-                                    </div>
-                                </div>
-                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
-                                        type="button"><?php echo changePassword ?></button></div>
-                        </form>
-                    </div>
-                </div>
+                <?php echo App::get_partial(PARTIAL_CHANGE_PASSWORD, array()) ?>
                 <hr>
-                <div class="row">
-                    <form action="" method="post">
-                        <div class="p-3 py-5">
-                            <div class="justify-content-between align-items-center experience">
-                                <h4 class="text-center"><?php echo accountDeletion ?></h4>
-                            </div><br>
-                            <div class="row">
-                                <div class="alert alert-danger" role="alert">
-                                    <?php echo accountDeletionText ?>
-                                </div>
-                            </div>
-                            <div class="mt-5 text-center"><button class="btn btn-danger profile-button" type="button"
-                                    id="deleteAccountBtn"><?php echo deleteMyAccount ?></button></div>
-                    </form>
-                </div>
+                <?php echo App::get_partial(PARTIAL_DELETE_ACCOUNT, array()) ?>
             </div>
         </div>
     </div>
 </div>
 <script>
 $(document).ready(function() {
+    $('#changePasswordBtn').attr('disabled', true);
+
+    function setupMessagesContainer() {
+        $('#passwordSuccessContainer').empty();
+        $('#passwordSuccessContainer').hide();
+        $('#passwordErrorContainer').empty();
+        $('#passwordErrorContainer').hide();
+    }
+
+    function checkPassword() {
+        var old = $('#oldPassword').val();
+        var newP = $('#newPassword').val();
+        if (old != "" && newP != "") {
+            $('#changePasswordBtn').attr('disabled', false);
+        } else {
+            $('#changePasswordBtn').attr('disabled', true);
+        }
+    }
+
     $(".pr-password").passwordRequirements({
         numCharacters: 8,
         useLowercase: true,
@@ -130,6 +76,38 @@ $(document).ready(function() {
                 "<?php echo PAGE_DELETE_ACCOUNT ?>";
         }
     });
+    $("#changePasswordBtn").click(function(e) {
+        e.preventDefault();
+        const oldPassword = $("#oldPassword").val();
+        const newPassword = $("#newPassword").val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo PAGE_CHANGE_PASSWORD ?>",
+            data: {
+                "oldPassword": oldPassword,
+                'newPassword': newPassword
+            },
+            dataType: 'json',
+            success: function(feedback) {
+                setupMessagesContainer();
+                if (feedback.status == "success") {
+                    $('#passwordSuccessContainer').show();
+                    $('#passwordSuccessContainer').append("<ul>");
+                    $('#passwordSuccessContainer').append("<li>" + feedback.message +
+                        "</li>");
+                    $('#passwordSuccessContainer').append("</ul>");
+                } else if (feedback.status == "error") {
+                    $('#passwordErrorContainer').show();
+                    $('#passwordErrorContainer').append("<ul>");
+                    jQuery.each(feedback.message, function(index, item) {
+                        $('#passwordErrorContainer').append("<li>" + item +
+                            "</li>");
+                    });
+                    $('#passwordErrorContainer').append("</ul>");
+                }
+            }
+        })
+    });
 });
 $(document).on('keyup', '#firstName', function() {
     var newText = $('#firstName').val();
@@ -143,6 +121,24 @@ $(document).on('keyup', '#lastName', function() {
     if (newText != "") {
         $('#lastName').val(newText)
         $('#lastName').val(newText).trigger('change');
+    }
+});
+$(document).on('keyup', '#oldPassword', function() {
+    var old = $('#oldPassword').val();
+    var newP = $('#newPassword').val();
+    if (old != "" && newP != "") {
+        $('#changePasswordBtn').attr('disabled', false);
+    } else {
+        $('#changePasswordBtn').attr('disabled', true);
+    }
+});
+$(document).on('keyup', '#newPassword', function() {
+    var old = $('#oldPassword').val();
+    var newP = $('#newPassword').val();
+    if (old != "" && newP != "") {
+        $('#changePasswordBtn').attr('disabled', false);
+    } else {
+        $('#changePasswordBtn').attr('disabled', true);
     }
 });
 </script>

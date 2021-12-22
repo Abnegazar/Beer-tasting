@@ -150,3 +150,8 @@ DEFINE('TECHNICALMERIT_MESSAGE_END', 'Flawless');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Lifeless');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Wonderful');
 define('TO', 'to');
+
+define('mandatoryPassword', 'The password should not be empty');
+define('incorrectPassword', 'The password is not correct');
+define('incorrectOldPassword', 'The old password is not correct');
+define('passwordChangedMessage', 'Your password has been changed');

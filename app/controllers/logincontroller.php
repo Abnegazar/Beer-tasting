@@ -59,7 +59,6 @@
                     //if the user exists, create the session variable and do the redirection
                     Session::setConnectedUser($user);
                     return json_encode(["status" => "success"]);
-                    header("Location:" . PAGE_DASHBOARD);
                 } else {
                     $errors[] = "Les identifiants fournis sont incorrects.";
                 }
