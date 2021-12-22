@@ -31,7 +31,7 @@ class Session
     {
         if ($user) {
             $_SESSION[self::USER] = serialize($user);
-            self::setConnectedUserId($user->getId());
+            self::setConnectedUserId($user->id);
         }
         return true;
     }

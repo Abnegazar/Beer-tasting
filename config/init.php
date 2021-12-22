@@ -1,13 +1,15 @@
 <?php
 
 DEFINE('APP_VERSION', '0.0.0.1');
+DEFINE('APP_NAME', 'TasteMyBeer');
+
 
 DEFINE('DB_HOST', $_SERVER['host']);
 DEFINE('DB_USER', $_SERVER['user']);
 DEFINE('DB_PASSWORD', $_SERVER['password']);
 DEFINE('DB_NAME', $_SERVER['database']);
 
-DEFINE('DEFAULT_PAGINATION', '2');
+DEFINE('DEFAULT_PAGINATION', '10');
 
 DEFINE('PATTERN_PASSWORD', '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/');
 DEFINE('PATTERN_PASSWORD_EXPL', '');
@@ -19,7 +21,8 @@ DEFINE('PATERN_ONE_DIGIT_BETWEEN_1_AND_5', '/^[1-5]$/');
 DEFINE('PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL', 'Veuillez entre un chiffre compris entre 1 et 5.');
 
 DEFINE('PATTERN_NAME', '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{3,50}$/i');
-DEFINE('PATTERN_NAME_EXPL', 'Votre nom et prénom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
+DEFINE('PATTERN_NAME_EXPL', 'Votre nom doit comporter de 3 à 30 caractères alphanumériques. Les tirets \'-\' et \'_\' sont autorisés.');
+DEFINE('PATTERN_FIRST_NAME_EXPL', str_replace('nom', 'prénom', PATTERN_NAME_EXPL));
 
 if (
     !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'
@@ -30,5 +33,11 @@ if (
     DEFINE('SITE_PROTOCOL', 'http');
 }
 
-DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/beer-tasting-app/');
+DEFINE('URL_PROD', 'https://beer-tasting-env-production.herokuapp.com/');
+DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/');
+DEFINE('VENDOR_DIR', '../vendor/');
+
+DEFINE('EMAIL_FROM',             'no-reply@tastemybeer.com');
+DEFINE('EMAIL_FROM_NAME',         APP_NAME);
+
 require_once(CONFIG_FOLDER . 'routes.php');

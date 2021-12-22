@@ -9,14 +9,14 @@ class App
         if ($this_date != null && $this_date != '0000-00-00 00:00:00') {
             list($date, $heure_min_sec) = explode(' ', $this_date);
             list($annee, $mois, $jour) = explode('-', $date);
-            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee); //converts date string to UNIX timestamp
-            $return_date = date('d/m/Y', $timestamp);  //puts the UNIX timestamp back into string format
+            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee);
+            $return_date = date('d/m/Y', $timestamp);
             if ($display_hour && $heure_min_sec != '') {
                 $return_date .= ' ' . $heure_min_sec;
             }
         }
-        return $return_date; //exit function and return string
-    } //end of function
+        return $return_date;
+    }
 
     public static function dateUs($this_date, $display_hour = false)
     {
@@ -25,14 +25,14 @@ class App
 
             list($date, $heure_min_sec) = explode(' ', $this_date);
             list($jour, $mois, $annee) = explode('/', $date);
-            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee); //converts date string to UNIX timestamp
-            if ($timestamp) $return_date = date('Y-m-d', $timestamp);  //puts the UNIX timestamp back into string format
+            $timestamp = mktime(0, 0, 0, $mois, $jour, $annee);
+            if ($timestamp) $return_date = date('Y-m-d', $timestamp);
             if ($display_hour && $heure_min_sec != '') {
                 $return_date .= ' ' . $heure_min_sec;
             }
         }
-        return $return_date; //exit function and return string
-    } //end of function
+        return $return_date;
+    }
 
 
     public static function logError($message)
@@ -94,8 +94,6 @@ class App
         foreach ($values as $testValue) {
             if (empty($testValue) && $testValue !== '0') {
                 $errors[] = 'Veuillez renseigner tous les champs obligatoires.';
-            } else if ((tasting::getFloat($testValue)) > 10) {
-                $errors[] = 'Tous les scores donnés à la bière en général doivent être inférieurs ou égaux à 10.';
             }
         }
         return $errors;
@@ -115,4 +113,119 @@ class App
         }
         return $return_date; //exit function and return string
     } //end of function
+
+
+    public static function renameOffFlavor($value)
+    {
+        switch ($value) {
+            case OffFlavor::IS_ACETALDEHYDE:
+                return 'Acetaldehyde';
+                break;
+            case OffFlavor::IS_ACIDIC:
+                return 'Acidic';
+                break;
+            case OffFlavor::IS_ASTRINGENT:
+                return 'Astringent';
+                break;
+            case OffFlavor::IS_DIACETYL:
+                return 'Diacetyl';
+                break;
+            case OffFlavor::IS_DMS:
+                return 'DMS';
+                break;
+            case OffFlavor::IS_ESTERY:
+                return 'Estery';
+                break;
+            case OffFlavor::IS_GRASSY:
+                return 'Grassy';
+                break;
+            case OffFlavor::IS_LIGHT_STRUCK:
+                return 'Light struck';
+                break;
+            case OffFlavor::IS_METALLIC:
+                return 'Metallic';
+                break;
+            case OffFlavor::IS_MUSTY:
+                return 'Musty';
+                break;
+            case OffFlavor::IS_OXIDIZED:
+                return 'Oxidized';
+                break;
+            case OffFlavor::IS_PHENOLIC:
+                return 'Phenolic';
+                break;
+            case OffFlavor::IS_SOLVENT:
+                return 'Solvent';
+                break;
+            case OffFlavor::IS_SULFUR:
+                return 'Sulfur';
+                break;
+            case OffFlavor::IS_VEGETAL:
+                return 'Vegetal';
+                break;
+            case OffFlavor::IS_YEASTY:
+            default:
+                return 'Yeasty';
+                break;
+        }
+    }
+    public static function getOffFlavorText($value)
+    {
+        switch ($value) {
+            case 'Acetaldehyde':
+                return ACETALDEHYDE_MESSAGE;
+                break;
+            case 'Acidic':
+                return SOURACIDIC_MESSAGE;
+                break;
+            case 'Astringent':
+                return ASTRINGENT_MESSAGE;
+                break;
+            case 'Diacetyl':
+                return DIACETYL_MESSAGE;
+                break;
+            case 'DMS':
+                return DMS_MESSAGE;
+                break;
+            case 'Estery':
+                return ESTERY_MESSAGE;
+                break;
+            case 'Grassy':
+                return GRASSY_MESSAGE;
+                break;
+            case 'Light struck':
+                return LIGHTSTRUCK_MESSAGE;
+                break;
+            case 'Metallic':
+                return METALLIC_MESSAGE;
+                break;
+            case 'Musty':
+                return MUSTY_MESSAGE;
+                break;
+            case 'Oxidized':
+                return OXIDIZED_MESSAGE;
+                break;
+            case 'Phenolic':
+                return PHENOLIC_MESSAGE;
+                break;
+            case 'Solvent':
+                return SOLVENT_MESSAGE;
+                break;
+            case 'Sulfur':
+                return SULFUR_MESSAGE;
+                break;
+            case 'Vegetal':
+                return VEGETAL_MESSAGE;
+                break;
+            case 'Yeasty':
+            default:
+                return  YEASTY_MESSAGE;
+                break;
+        }
+    }
+
+    public static function createPasswordHash($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
 }

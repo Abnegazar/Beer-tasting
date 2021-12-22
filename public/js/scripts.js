@@ -72,3 +72,35 @@ $.fn.stars = function () {
     $(this).html(fullStar + halfStar + noStar);
   });
 };
+
+
+$.fn.score = function () {
+  return $(this).each(function () {
+    var color = "";
+    var score = $(this).data("score");
+    var type = $(this).data("type");
+    $component = "border-";
+    if(type == "table"){
+      $component = "table-";
+    }
+    if(score>=8){
+        color = $component+'success';
+    }
+    else if(score>=4){
+        color = $component+'warning';
+    }
+    else{
+        color= $component+'danger';
+    }
+    $(this).addClass(color);
+  });
+};
+
+$(".pr-password").passwordRequirements({
+  numCharacters: 8,
+  useLowercase: true,
+  useUppercase: true,
+  useNumbers: true,
+  useSpecial: true
+});
+
