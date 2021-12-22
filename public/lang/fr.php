@@ -109,7 +109,7 @@ define("textNewTasting", "J'ajoute une nouvelle dégustation");
 define("textTastings", "Lister toutes les dégustations");
 define("textMyTastings", "Voir ou supprimer vos dégustations");
 define("textBeerStyles", "Lister tous les styles de bières disponibles");
-define("textAccount", "Mettre à jour votre profil, changer votre mot de passe ou supprimer votre compte");
+define("textAccount", "Afficher vos information personnelles, changer votre mot de passe ou supprimer votre compte");
 DEFINE('AROMA_MESSAGE', 'Commenter le malt, le houblon, les esters et les autres aromates.');
 DEFINE('APPEARANCE_MESSAGE', 'Comment on color, clarity, and head (retention, color, and texture)');
 DEFINE('FLAVOR_MESSAGE', 'Commentaire sur la couleur, la clarté et la tête (rétention, couleur et texture)');

@@ -107,7 +107,7 @@ define("textNewTasting", "Add a new tasting");
 define("textTastings", "List all the tastings");
 define("textMyTastings", "View or delete your tastings");
 define("textBeerStyles", "List all the available beer styles");
-define("textAccount", "Update your profile, change password, or delete your account");
+define("textAccount", "View your personal information, change password, or delete your account");
 
 DEFINE('AROMA_MESSAGE', 'Comment on malt, hops, esters, and other aromatics');
 DEFINE('APPEARANCE_MESSAGE', 'Comment on color, clarity, and head (retention, color, and texture)');
