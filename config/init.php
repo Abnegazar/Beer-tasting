@@ -25,10 +25,17 @@ DEFINE('PATTERN_NAME_EXPL', 'Votre nom doit comporter de 3 à 30 caractères alp
 DEFINE('PATTERN_FIRST_NAME_EXPL', str_replace('nom', 'prénom', PATTERN_NAME_EXPL));
 
 
-$protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === 0 ? 'https://' : 'http://';
-DEFINE('SITE_PROTOCOL', $protocol);
 DEFINE('URL_PROD', 'https://beer-tasting-env-production.herokuapp.com/');
-DEFINE('SITE_URL', SITE_PROTOCOL  . SERVER_NAME . '/');
+
+if (SERVER_NAME == "beer-tasting-env-production.herokuapp.com" || SERVER_NAME == "beer-tasting-env-staging.herokuapp.com") {
+    $protocol = 'https://';
+} else {
+    $protocol = 'http://';
+}
+
+DEFINE('SITE_PROTOCOL', $protocol);
+
+DEFINE('SITE_URL', SITE_PROTOCOL . SERVER_NAME . '/');
 DEFINE('VENDOR_DIR', '../vendor/');
 
 DEFINE('EMAIL_FROM',             'no-reply@tastemybeer.com');
