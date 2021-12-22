@@ -7,7 +7,7 @@
             <div class="card-body bg-card">
                 <?php
                 if (empty($var->lastUserTastings) || !isset($var->lastUserTastings)) {
-                    echo "<p>No tastings</p>";
+                    //echo "<p>No tastings</p>";
                 } else {
                     echo App::get_partial(PARTIAL_TASTING, array("userTastings" => $var->lastUserTastings));
                 ?>
@@ -27,7 +27,7 @@
             <div class="card-body bg-card">
                 <?php
                 if (empty($var->lastTastings) || !isset($var->lastTastings)) {
-                    echo "<p>No tastings</p>";
+                    //echo "<p>No tastings</p>";
                 } else {
                     echo App::get_partial(PARTIAL_ALL_TASTINGS, array("lastTastings" => $var->lastTastings));
                 }
