@@ -59,7 +59,6 @@
                     //if the user exists, create the session variable and do the redirection
                     Session::setConnectedUser($user);
                     return json_encode(["status" => "success"]);
-                    header("Location:" . PAGE_DASHBOARD);
                 } else {
                     $errors[] = "Les identifiants fournis sont incorrects.";
                 }
@@ -108,18 +107,16 @@
                     $user = new User();
                     $user->initValue(false, $firstName, $lastName, $email, $password);
                     if ($user->save()) {
-                        $subject = "Confirmation";
-                        $success = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-                        /*
-                        if (Mailer::sendMail($email, $success, $subject)) {
-                            return json_encode(['status' => 'success', 'message' => $success]);
-                        }
-                        */
+                        //$subject = "Confirmation";
+                        $success = "Votre compte utilisateur a été créé. Vous pouvez vous connecter ";
+
+                        //Mailer::sendMail($email, $success, $subject);
+
                         return json_encode(['status' => 'success', 'message' => $success]);
                     }
                     $errors[] = "Une erreur s'est produite lors de la création du compte";
                 } else {
-                    $errors[] = 'Cet email est déjà associé à un compte. Vous pouvez utiliser la fonction "mot de passe oublié".';
+                    $errors[] = 'Cet email est déjà associé à un compte.';
                 }
             }
             return json_encode(['status' => 'error', 'message' => $errors]);
@@ -128,6 +125,14 @@
         public function signUp()
         {
             if (!empty($_POST)) {
+                if (SITE_URL == URL_PROD) {
+                    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+                        $response = $_POST['g-recaptcha-response'];
+                        if (Captcha::isCaptchaOk($response)) {
+                            return $this->signUpAjaxProcessing();
+                        }
+                    }
+                }
                 return $this->signUpAjaxProcessing();
             }
             $view = 'signup.phtml';

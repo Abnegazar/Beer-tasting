@@ -41,7 +41,10 @@ textarea {
                 } else if (!empty($var->success) and $var->success != false) {
                     ?>
                 <div class="alert alert-success" role="alert">
-                    <?php echo $var->success; ?>
+                    <p> <?php echo $var->success; ?>
+                        <br>
+                        <?php echo link . " <a href=" . $var->link . ">" . $var->link . "</a>" ?>
+                    </p>
                 </div>
                 <?php
                 }

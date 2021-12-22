@@ -127,6 +127,7 @@ class TastingController extends BaseController implements Controller
         $this->description = "Add tasting";
         $this->title = "Add | TasteMyBeer";
 
+        $link = "";
         $view = 'addTasting.phtml';
         $errors = [];
         $success = false;
@@ -242,9 +243,10 @@ class TastingController extends BaseController implements Controller
                     $technicalMerit
                 );
                 if ($tasting->save()) {
-                    $success = "La dégustation a été enregistré avec succès.";
+                    $link = Tasting::getLastUserTasting()->link;
+                    $success = successSaveTasting;
                 } else {
-                    $errors[] = "Une erreur s'est produite lors de l'ajout de cette dégustation.";
+                    $errors[] = errorSaveTasting;
                 }
             }
         }
@@ -253,7 +255,8 @@ class TastingController extends BaseController implements Controller
             array(
                 'beerStyles'         => $beerStyles,
                 'errors'             => $errors,
-                'success'            => $success
+                'success'            => $success,
+                'link'               => $link
             )
         );
     }

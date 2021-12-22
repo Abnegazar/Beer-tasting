@@ -8,7 +8,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
-    RewriteRule ^account                              index.php?c=profileController [L]
+    RewriteRule ^account/changePassword               index.php?c=profileController&operation=changePassword [L]
+    RewriteRule ^account/delete                       index.php?c=profileController&operation=deleteAccount [L]
+    RewriteRule ^account                              index.php?c=profileController&operation=viewProfile [L]
 
     RewriteRule ^beer-styles/(.*)$                    index.php?c=beerStyleController&operation=getAll&page=$1 [L]
     RewriteRule ^beer-styles                          index.php?c=beerStyleController&operation=getAll [L]

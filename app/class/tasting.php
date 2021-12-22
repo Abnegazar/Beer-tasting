@@ -91,6 +91,7 @@ class Tasting
     public $userName;
 
     public $isBottleOk;
+    public $link;
 
 
     public function __construct()
@@ -126,6 +127,8 @@ class Tasting
         $this->createdAt = false;
         $this->beerStyleTitle = false;
         $this->userName = false;
+
+        $this->link = "";
     }
 
 
@@ -264,6 +267,7 @@ class Tasting
 
         $this->userName          = $o[User::FIRST_NAME] . " " . $o[User::LAST_NAME];
         $this->beerStyleTitle    = $o[BeerStyle::TITLE];
+        $this->link              = str_replace("#id#", $this->id, PAGE_TASTING);
     }
 
     private function calculateScore()
@@ -531,7 +535,35 @@ class Tasting
         $sql = "DELETE FROM tasting WHERE tasting_id= " . $tastingId . " AND u_id= " . Session::getConnectedUserId();
         $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
         if ($result) {
-            $res = true;;
+            $res = true;
+        }
+        return $res;
+    }
+
+
+    public static function deleteUserTasting()
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "DELETE FROM tasting WHERE u_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $res = true;
+        }
+        return $res;
+    }
+
+    public static function getLastUserTasting()
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "SELECT * FROM tasting t join user u on t.u_id = u.user_id join beer_style b on t.bs_id = b.beer_style_id WHERE t.u_id= " . Session::getConnectedUserId() . " ORDER BY " . Tasting::ID . " DESC LIMIT 1";
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            $tasting = new Tasting();
+            $tasting->__initFromDbObject($row);
+            return $tasting;
         }
         return $res;
     }
