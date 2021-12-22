@@ -155,3 +155,8 @@ define('mandatoryPassword', 'The password should not be empty');
 define('incorrectPassword', 'The password is not correct');
 define('incorrectOldPassword', 'The old password is not correct');
 define('passwordChangedMessage', 'Your password has been changed');
+
+define('successSaveTasting', 'Your new tasting has been recorded');
+define('errorSaveTasting', 'An error has occurred when recording your tasting');
+
+define('link', 'Available at:');

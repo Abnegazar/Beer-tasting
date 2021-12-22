@@ -107,7 +107,7 @@
                     $user = new User();
                     $user->initValue(false, $firstName, $lastName, $email, $password);
                     if ($user->save()) {
-                        $subject = "Confirmation";
+                        //$subject = "Confirmation";
                         $success = "Votre compte utilisateur a été créé. Vous pouvez vous connecter ";
 
                         //Mailer::sendMail($email, $success, $subject);
@@ -116,7 +116,7 @@
                     }
                     $errors[] = "Une erreur s'est produite lors de la création du compte";
                 } else {
-                    $errors[] = 'Cet email est déjà associé à un compte. Vous pouvez utiliser la fonction "mot de passe oublié".';
+                    $errors[] = 'Cet email est déjà associé à un compte.';
                 }
             }
             return json_encode(['status' => 'error', 'message' => $errors]);

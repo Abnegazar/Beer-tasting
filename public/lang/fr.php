@@ -156,3 +156,8 @@ define('mandatoryPassword', 'Le mot de passe est obligatoire');
 define('incorrectPassword', 'Le mot de passe est incorrect');
 define('incorrectOldPassword', "L'ancien mot de passe est incorrect");
 define('passwordChangedMessage', 'Votre mot de passe a été modifié');
+
+define('successSaveTasting', 'La dégustation a été enregistré avec succès');
+define('errorSaveTasting', 'Une erreur s\'est produite lors de l\'ajout de la dégustation');
+
+define('link', 'Lien de la dégustation');
