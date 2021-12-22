@@ -20,6 +20,8 @@ DEFINE('PAGE_TASTINGS_VISITOR_BY_PAGE', SITE_URL . 'tastings/visitor/#page#');
 DEFINE('PAGE_TASTINGS_ADD', SITE_URL . 'tastings/add');
 
 DEFINE('PAGE_DELETE_TASTING', SITE_URL . 'tasting/delete/#id#');
+DEFINE('PAGE_DELETE_ACCOUNT', SITE_URL . 'account/delete');
+
 
 DEFINE('PAGE_USER_TASTINGS_MANAGEMENT', SITE_URL . 'my-tastings');
 DEFINE('PAGE_USER_TASTINGS_MANAGEMENT_PAGE', SITE_URL . 'my-tastings/#page#');

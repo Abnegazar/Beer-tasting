@@ -121,43 +121,19 @@ class User
         return $res;
     }
 
-    /**
-     * Get the value of id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Get the value of firstName
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
 
-    /**
-     * Get the value of lastName
-     */
-    public function getLastName()
+    public static function delete()
     {
-        return $this->lastName;
-    }
-
-    /**
-     * Get the value of email
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Get the value of tastings
-     */
-    public function getTastings()
-    {
-        return $this->tastings;
+        $res = false;
+        if (Tasting::deleteUserTasting()) {
+            $dbInstance = Db::getInstance()->getDbInstance();
+            $sql = "DELETE FROM user WHERE user_id= " . Session::getConnectedUserId();
+            $result = mysqli_query($dbInstance, $sql);
+            if ($result) {
+                $res = true;
+            }
+        }
+        return $res;
     }
 }

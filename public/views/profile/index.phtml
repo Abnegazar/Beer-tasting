@@ -85,8 +85,8 @@ input {
                                     <?php echo accountDeletionText ?>
                                 </div>
                             </div>
-                            <div class="mt-5 text-center"><button class="btn btn-danger profile-button"
-                                    type="button"><?php echo deleteMyAccount ?></button></div>
+                            <div class="mt-5 text-center"><button class="btn btn-danger profile-button" type="button"
+                                    id="deleteAccountBtn"><?php echo deleteMyAccount ?></button></div>
                     </form>
                 </div>
             </div>
@@ -119,6 +119,15 @@ $(document).ready(function() {
             $('.btn-update').attr('disabled', false);
         } else {
             $('.btn-update').attr('disabled', true);
+        }
+    });
+    $("#deleteAccountBtn").click(function(e) {
+        e.preventDefault();
+        if (!confirm("<?php echo deleteAccountConfirmationMessage ?>")) {
+            return false;
+        } else {
+            window.location.href =
+                "<?php echo PAGE_DELETE_ACCOUNT ?>";
         }
     });
 });

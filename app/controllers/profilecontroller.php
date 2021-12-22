@@ -11,7 +11,9 @@ class ProfileController extends BaseController implements Controller
         }
     }
 
-    public function render()
+
+
+    public function viewProfile()
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[account] = "";
@@ -26,6 +28,30 @@ class ProfileController extends BaseController implements Controller
             self::viewDirectory . $view,
             array()
         );
+        return $content;
+    }
+
+    public function deleteAccount()
+    {
+        if (User::delete()) {
+            Session::deleteConnectedUser();
+            header("Location:" . PAGE_HOME);
+        }
+    }
+
+    public function render()
+    {
+        $content = false;
+        $operation = $_GET['operation'];
+        switch ($operation) {
+            case 'deleteAccount':
+                $content = $this->deleteAccount();
+                break;
+            case 'viewProfile':
+            default:
+                $content = $this->viewProfile();
+                break;
+        }
         return $content;
     }
 }

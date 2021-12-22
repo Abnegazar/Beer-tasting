@@ -100,6 +100,9 @@ define("deleteMyAccount", "Delete my account");
 
 define("accountDeletionText", "Once you delete your account, there is no going back. Please be certain.");
 
+define("deleteAccountConfirmationMessage", "Are you sure you want to delete your account ?");
+define("deleteTastingConfirmationMessage", "Are you sure you want to delete this tasting ?");
+
 define("textNewTasting", "Add a new tasting");
 define("textTastings", "List all the tastings");
 define("textMyTastings", "View or delete your tastings");
@@ -146,4 +149,4 @@ DEFINE('TECHNICALMERIT_MESSAGE_START', 'Significant flaws');
 DEFINE('TECHNICALMERIT_MESSAGE_END', 'Flawless');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Lifeless');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Wonderful');
-define('TO','to');
+define('TO', 'to');

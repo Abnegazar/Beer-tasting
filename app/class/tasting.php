@@ -531,7 +531,20 @@ class Tasting
         $sql = "DELETE FROM tasting WHERE tasting_id= " . $tastingId . " AND u_id= " . Session::getConnectedUserId();
         $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
         if ($result) {
-            $res = true;;
+            $res = true;
+        }
+        return $res;
+    }
+
+
+    public static function deleteUserTasting()
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "DELETE FROM tasting WHERE u_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql) or die(mysqli_error($dbInstance));
+        if ($result) {
+            $res = true;
         }
         return $res;
     }

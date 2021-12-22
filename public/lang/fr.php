@@ -102,6 +102,9 @@ define("accountDeletion", "Suppression de compte");
 define("deleteMyAccount", "Supprimer mon compte");
 define("accountDeletionText", "Une fois que vous avez supprimé votre compte, vous ne pouvez plus revenir en arrière. Soyez certain.");
 
+define("deleteAccountConfirmationMessage", "Êtes-vous sûr de vouloir supprimer votre compte ?");
+define("deleteTastingConfirmationMessage", "Êtes-vous sûr de vouloir supprimer cette dégustation ?");
+
 define("textNewTasting", "J'ajoute une nouvelle dégustation");
 define("textTastings", "Lister toutes les dégustations");
 define("textMyTastings", "Voir ou supprimer vos dégustations");
@@ -147,4 +150,4 @@ DEFINE('TECHNICALMERIT_MESSAGE_START', 'Défauts importants');
 DEFINE('TECHNICALMERIT_MESSAGE_END', 'impeccable');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Sans vie');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Merveilleux');
-define('TO','à');
+define('TO', 'à');
