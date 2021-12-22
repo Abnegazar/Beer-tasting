@@ -33,6 +33,7 @@ if (
     DEFINE('SITE_PROTOCOL', 'http');
 }
 
+DEFINE('URL_PROD', 'https://beer-tasting-env-production.herokuapp.com/');
 DEFINE('SITE_URL', SITE_PROTOCOL . '://' . SERVER_NAME . '/');
 DEFINE('VENDOR_DIR', '../vendor/');
 
@@ -40,4 +41,3 @@ DEFINE('EMAIL_FROM',             'no-reply@tastemybeer.com');
 DEFINE('EMAIL_FROM_NAME',         APP_NAME);
 
 require_once(CONFIG_FOLDER . 'routes.php');
-
