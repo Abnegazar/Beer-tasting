@@ -3,10 +3,16 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+
+    ErrorDocument 404                                 /public/views/errors/404.phtml
+    
     RewriteEngine On
+    RewriteBase /
+
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
+
 
     RewriteRule ^account/changePassword               index.php?c=profileController&operation=changePassword [L]
     RewriteRule ^account/delete                       index.php?c=profileController&operation=deleteAccount [L]
@@ -19,7 +25,7 @@
     RewriteRule ^home                                 index.php?c=homeController [L]
 
     RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
-    RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
+
 
 
     RewriteRule ^signin                               index.php?c=loginController&operation=signIn [L]
