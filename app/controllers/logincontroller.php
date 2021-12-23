@@ -12,23 +12,21 @@ class LoginController extends BaseController implements Controller
         }
     }
 
-        public function signIn()
-        {
-            if (!empty($_POST)) {
-                if (SITE_URL == URL_PROD || SITE_URL == URL_DEV) {
-                    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-                        $response = $_POST['g-recaptcha-response'];
-                        if (Captcha::isCaptchaOk($response)) {
-                            return $this->signUpAjaxProcessing();
-                        }
-                    } else {
-                        die("error captcha");
+    public function signIn()
+    {
+        if (!empty($_POST)) {
+            if (SITE_URL == URL_PROD || SITE_URL == URL_DEV) {
+                if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+                    $response = $_POST['g-recaptcha-response'];
+                    if (Captcha::isCaptchaOk($response)) {
+                        return $this->signUpAjaxProcessing();
                     }
+                } else {
+                    die("error captcha");
                 }
             }
             return $this->signInAjaxProcessing();
         }
-
         $view = 'signin.phtml';
         $this->h1 = "Sign in";
         $this->description = "Sign in";
@@ -82,13 +80,13 @@ class LoginController extends BaseController implements Controller
         //name validation
         if (!isset($_POST['firstName'])) {
             $errors[] = 'Le prénom est obligatoire. ';
-        } else if(!User::checkUserName($_POST['firstName'])){
+        } else if (!User::checkUserName($_POST['firstName'])) {
             $errors[] = PATTERN_FIRST_NAME_EXPL;
         }
 
         if (!isset($_POST['name'])) {
             $errors[] = 'Le nom est obligatoire. ';
-        } else if(!User::checkUserName($_POST['name'])){
+        } else if (!User::checkUserName($_POST['name'])) {
             $errors[] = PATTERN_NAME_EXPL;
         }
 
