@@ -9,6 +9,8 @@
     RewriteCond %{REQUEST_FILENAME} !-f
 
     RewriteRule ^account/changePassword               index.php?c=profileController&operation=changePassword [L]
+    RewriteRule ^account/changeUsername               index.php?c=profileController&operation=changeUsername [L]
+
     RewriteRule ^account/delete                       index.php?c=profileController&operation=deleteAccount [L]
     RewriteRule ^account                              index.php?c=profileController&operation=viewProfile [L]
 

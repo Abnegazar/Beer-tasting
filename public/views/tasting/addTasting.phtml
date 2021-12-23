@@ -1,25 +1,25 @@
 <style>
-.hidden {
-    display: none;
-}
+    .hidden {
+        display: none;
+    }
 
-button {
-    width: 100%;
-    margin: 5px;
-}
+    button {
+        width: 100%;
+        margin: 5px;
+    }
 
-.buttons>input {
-    width: 100%;
-    margin: 5px;
-}
+    .buttons > input {
+        width: 100%;
+        margin: 5px;
+    }
 
-.card {
-    width: 100%;
-}
+    .card {
+        width: 100%;
+    }
 
-textarea {
-    height: 100px;
-}
+    textarea {
+        height: 100px;
+    }
 </style>
 <div class="row justify-content-center">
     <div class="col-12">
@@ -32,21 +32,21 @@ textarea {
                 <?php
                 if (!empty($var->errors)) {
                     foreach ($var->errors as $error) {
-                ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $error; ?>
-                </div>
-                <?php
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $error; ?>
+                        </div>
+                        <?php
                     }
                 } else if (!empty($var->success) and $var->success != false) {
                     ?>
-                <div class="alert alert-success" role="alert">
-                    <p> <?php echo $var->success; ?>
-                        <br>
-                        <?php echo link . " <a href=" . $var->link . ">" . $var->link . "</a>" ?>
-                    </p>
-                </div>
-                <?php
+                    <div class="alert alert-success" role="alert">
+                        <p> <?php echo $var->success; ?>
+                            <br>
+                            <?php echo "<a href=" . $var->link . ">". link ."</a>" ?>
+                        </p>
+                    </div>
+                    <?php
                 }
                 ?>
                 <form id="form" action="" method="post">
@@ -62,9 +62,9 @@ textarea {
                     <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_5, array()); ?>
                     <div class="d-grid mb-2">
                         <div class="buttons">
-                            <button class="btn btn-secondary btnPrev hidden"><?php echo previous ?></button>
-                            <button class="btn btn-secondary btnNext"><?php echo next ?></button>
-                            <input type="submit" value="<?php echo save ?>" class="btn btn-primary btnSubmit hidden" />
+                            <button class="btn btn-success btnNext"><?php echo next ?></button>
+                            <button class="btn btn-primary btnPrev hidden"><?php echo previous ?></button>
+                            <input type="submit" value="<?php echo save ?>" class="btn btn-info btnSubmit hidden"/>
                         </div>
                     </div>
                 </form>
@@ -73,52 +73,51 @@ textarea {
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    var $fieldsets = $('form fieldset');
-    $('.btnNext').click(function(e) {
-        e.preventDefault();
-        $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
+    $(document).ready(function () {
+        var $fieldsets = $('form fieldset');
+        $('.btnNext').click(function (e) {
+            e.preventDefault();
+            $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
+        });
 
-    });
-    $('.btnPrev').click(function(e) {
-        e.preventDefault();
-        $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
+        $('.btnPrev').click(function (e) {
+            e.preventDefault();
+            $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
+        });
 
-    });
-
-    function shButtons() {
-        console.log($fieldsets.filter(':visible').index());
-        if ($fieldsets.filter(':visible').index() > 0) {
-            $('.btnPrev').show();
-        } else {
-            $('.btnPrev').hide();
-        }
-        console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
-        if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
-            $('.btnSubmit').show();
-            $('.btnNext').hide();
-        } else {
-            $('.btnSubmit').hide();
-            $('.btnNext').show();
-        }
-    }
-
-    $(".btnSubmit").click(function(e) {
-        e.preventDefault();
-        var isFormValid = true;
-        $(".required").each(function() {
-            if ($.trim($(this).val()).length == 0) {
-                $(this).addClass("warning");
-                isFormValid = false;
+        function shButtons() {
+            console.log($fieldsets.filter(':visible').index());
+            if ($fieldsets.filter(':visible').index() > 0) {
+                $('.btnPrev').show();
             } else {
-                $(this).removeClass("warning");
+                $('.btnPrev').hide();
+            }
+            console.log(($fieldsets.filter(':visible').index() === $fieldsets.length));
+            if ($fieldsets.filter(':visible').index() === $fieldsets.length - 1) {
+                $('.btnSubmit').show();
+                $('.btnNext').hide();
+            } else {
+                $('.btnSubmit').hide();
+                $('.btnNext').show();
+            }
+        }
+
+        $(".btnSubmit").click(function (e) {
+            e.preventDefault();
+            var isFormValid = true;
+            $(".required").each(function () {
+                if ($.trim($(this).val()).length == 0) {
+                    $(this).addClass("warning");
+                    isFormValid = false;
+                } else {
+                    $(this).removeClass("warning");
+                }
+            });
+            if (!isFormValid) {
+                alert("Please fill in all the required fields (indicated by *)");
+            } else {
+                $("#form").submit();
             }
         });
-        if (!isFormValid) {
-            alert("Please fill in all the required fields (indicated by *)");
-        } else {
-            $("#form").submit();
-        }
     });
-});
 </script>

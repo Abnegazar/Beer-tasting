@@ -17,7 +17,6 @@ class Session
         if (isset($_SESSION[self::USER_ID])) {
             $user_id = $_SESSION[self::USER_ID];
         }
-
         return $user_id;
     }
 

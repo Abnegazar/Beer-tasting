@@ -224,6 +224,30 @@ class App
         }
     }
 
+    public static function getComment($value)
+    {
+        switch ($value) {
+            case tasting::OUTSTANDING['label']:
+                return OUTSTANDING_COMMENT;
+                break;
+            case tasting::EXCELLENT['label']:
+                return EXCELLENT_COMMENT;
+                break;
+            case tasting::VERY_GOOD['label']:
+                return VERY_GOOD_COMMENT;
+                break;
+            case tasting::GOOD['label']:
+                return GOOD_COMMENT;
+                break;
+            case tasting::FAIR['label']:
+                return FAIR_COMMENT;
+                break;
+            default:
+                return PROBLEMATIC_COMMENT;
+                break;
+        }
+    }
+
     public static function createPasswordHash($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);

@@ -160,4 +160,11 @@ define('passwordChangedMessage', 'Votre mot de passe a été modifié');
 define('successSaveTasting', 'La dégustation a été enregistré avec succès');
 define('errorSaveTasting', 'Une erreur s\'est produite lors de l\'ajout de la dégustation');
 
-define('link', 'Lien de la dégustation');
+define('link', 'Voir la nouvelle dégustation');
+
+DEFINE('PROBLEMATIC_COMMENT', 'Les arômes et les saveurs indésirables dominent. Difficile à boire.');
+DEFINE('FAIR_COMMENT', 'Saveurs/arômes décalés ou défauts de style majeurs. Désagréable.');
+DEFINE('GOOD_COMMENT', 'Saveurs/arômes décalés ou défauts de style majeurs.');
+DEFINE('VERY_GOOD_COMMENT', 'Globalement conforme aux paramètres du style, quelques petites imperfections.');
+DEFINE('EXCELLENT_COMMENT', 'Exprime bien le style, nécessite une mise au point mineure.');
+DEFINE('OUTSTANDING_COMMENT', 'Un exemple de style de classe mondiale.');

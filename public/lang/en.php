@@ -149,14 +149,21 @@ DEFINE('TECHNICALMERIT_MESSAGE_START', 'Significant flaws');
 DEFINE('TECHNICALMERIT_MESSAGE_END', 'Flawless');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Lifeless');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Wonderful');
-define('TO', 'to');
+DEFINE('TO', 'to');
 
-define('mandatoryPassword', 'The password should not be empty');
-define('incorrectPassword', 'The password is not correct');
-define('incorrectOldPassword', 'The old password is not correct');
-define('passwordChangedMessage', 'Your password has been changed');
+DEFINE('mandatoryPassword', 'The password should not be empty');
+DEFINE('incorrectPassword', 'The password is not correct');
+DEFINE('incorrectOldPassword', 'The old password is not correct');
+DEFINE('passwordChangedMessage', 'Your password has been changed');
 
-define('successSaveTasting', 'Your new tasting has been recorded');
-define('errorSaveTasting', 'An error has occurred when recording your tasting');
+DEFINE('successSaveTasting', 'Your new tasting has been recorded');
+DEFINE('errorSaveTasting', 'An error has occurred when recording your tasting');
 
-define('link', 'Available at:');
+DEFINE('link', 'See the new tasting');
+
+DEFINE('PROBLEMATIC_COMMENT', 'Major off flavors and aromas dominate. Hard to drink.');
+DEFINE('FAIR_COMMENT', 'Off flavors/aromas or major style deficiencies. Unpleasant.');
+DEFINE('GOOD_COMMENT', 'Misses the mark on style and/or minor flaws.');
+DEFINE('VERY_GOOD_COMMENT', 'Generally within style parameters, some minor flaws.');
+DEFINE('EXCELLENT_COMMENT', 'Exemplifies style well, requires minor fine-tuning.');
+DEFINE('OUTSTANDING_COMMENT', 'World-class example of style.');
