@@ -228,4 +228,17 @@ class App
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
+
+
+    public static function convertDate($date)
+    {
+        switch (Session::getUserLang()) {
+            case Session::LANG_FR:
+                return App::dateFr($date);
+                break;
+            case Session::LANG_EN:
+            default:
+                return App::dateUsOnlyDate($date);
+        }
+    }
 }

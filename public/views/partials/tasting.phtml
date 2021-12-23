@@ -15,7 +15,7 @@ $tasting = $var->tasting;
             <div class="stars" data-rating="<?php echo $tasting->score['score'] / 10 ?>" data-num-stars="5">
             </div>
             <hr />
-            <h4 class="fw-bolder" id="date"><?php echo App::dateUsOnlyDate($tasting->createdAt) ?>
+            <h4 class="fw-bolder" id="date"><?php echo App::convertDate($tasting->createdAt) ?>
             </h4>
         </div>
     </div>

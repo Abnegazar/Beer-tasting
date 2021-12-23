@@ -10,6 +10,8 @@ DEFINE('DB_PASSWORD', $_SERVER['password']);
 DEFINE('DB_NAME', $_SERVER['database']);
 
 DEFINE('DEFAULT_PAGINATION', '10');
+DEFINE('DEFAULT_LANG', 'en');
+
 
 DEFINE('PATTERN_PASSWORD', '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/');
 DEFINE('PATTERN_PASSWORD_EXPL', '');
