@@ -1,3 +1,8 @@
+# Utiliser TasteMyBeer
+
+Vous pouvez utiliser l'application sans l'installer en local.
+Pour cela aller à l'adresse [www.beer-tasting-env-production.herokuapp.com/](https://beer-tasting-env-production.herokuapp.com/).
+
 # Installer TasteMyBeer en local
 
 Ce document vous donne toutes les instructions pour installer TasteMyBeer avec toutes les dépendances nécessaires.
