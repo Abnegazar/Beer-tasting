@@ -4,8 +4,7 @@ class Captcha
 {
     public static function isCaptchaOk($response)
     {
-        $secretKey = "6LcV_ysdAAAAAF9l1j_Li5Smzr0dBu-xA1qbB2O_";
-        // "6LcyDSwdAAAAAJlaG5eb6Z4-gL2LhuocvVf-rIHv" (pour le serveur de prod)
+        $secretKey = "6LcyDSwdAAAAAJlaG5eb6Z4-gL2LhuocvVf-rIHv";
 
         $ip = $_SERVER['REMOTE_ADDR'];
 

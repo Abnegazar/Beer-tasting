@@ -102,11 +102,14 @@ define("accountDeletion", "Suppression de compte");
 define("deleteMyAccount", "Supprimer mon compte");
 define("accountDeletionText", "Une fois que vous avez supprimé votre compte, vous ne pouvez plus revenir en arrière. Soyez certain.");
 
+define("deleteAccountConfirmationMessage", "Êtes-vous sûr de vouloir supprimer votre compte ?");
+define("deleteTastingConfirmationMessage", "Êtes-vous sûr de vouloir supprimer cette dégustation ?");
+
 define("textNewTasting", "J'ajoute une nouvelle dégustation");
 define("textTastings", "Lister toutes les dégustations");
 define("textMyTastings", "Voir ou supprimer vos dégustations");
 define("textBeerStyles", "Lister tous les styles de bières disponibles");
-define("textAccount", "Mettre à jour votre profil, changer votre mot de passe ou supprimer votre compte");
+define("textAccount", "Afficher vos information personnelles, changer votre mot de passe ou supprimer votre compte");
 DEFINE('AROMA_MESSAGE', 'Commenter le malt, le houblon, les esters et les autres aromates.');
 DEFINE('APPEARANCE_MESSAGE', 'Comment on color, clarity, and head (retention, color, and texture)');
 DEFINE('FLAVOR_MESSAGE', 'Commentaire sur la couleur, la clarté et la tête (rétention, couleur et texture)');
@@ -147,6 +150,14 @@ DEFINE('TECHNICALMERIT_MESSAGE_START', 'Défauts importants');
 DEFINE('TECHNICALMERIT_MESSAGE_END', 'impeccable');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Sans vie');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Merveilleux');
-define('TO','à');
-define('error_message',"Nous sommes désolés, mais la page que vous avez demandée n'a pas été trouvée.");
-define('go_acceuil',"Allez à la page d'acceuil");
+define('TO', 'à');
+
+define('mandatoryPassword', 'Le mot de passe est obligatoire');
+define('incorrectPassword', 'Le mot de passe est incorrect');
+define('incorrectOldPassword', "L'ancien mot de passe est incorrect");
+define('passwordChangedMessage', 'Votre mot de passe a été modifié');
+
+define('successSaveTasting', 'La dégustation a été enregistré avec succès');
+define('errorSaveTasting', 'Une erreur s\'est produite lors de l\'ajout de la dégustation');
+
+define('link', 'Lien de la dégustation');

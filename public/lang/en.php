@@ -100,11 +100,14 @@ define("deleteMyAccount", "Delete my account");
 
 define("accountDeletionText", "Once you delete your account, there is no going back. Please be certain.");
 
+define("deleteAccountConfirmationMessage", "Are you sure you want to delete your account ?");
+define("deleteTastingConfirmationMessage", "Are you sure you want to delete this tasting ?");
+
 define("textNewTasting", "Add a new tasting");
 define("textTastings", "List all the tastings");
 define("textMyTastings", "View or delete your tastings");
 define("textBeerStyles", "List all the available beer styles");
-define("textAccount", "Update your profile, change password, or delete your account");
+define("textAccount", "View your personal information, change password, or delete your account");
 
 DEFINE('AROMA_MESSAGE', 'Comment on malt, hops, esters, and other aromatics');
 DEFINE('APPEARANCE_MESSAGE', 'Comment on color, clarity, and head (retention, color, and texture)');
@@ -146,6 +149,15 @@ DEFINE('TECHNICALMERIT_MESSAGE_START', 'Significant flaws');
 DEFINE('TECHNICALMERIT_MESSAGE_END', 'Flawless');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Lifeless');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Wonderful');
-define('TO','to');
+define('TO', 'to');
 define('error_message','we are sorry, but the page you requested was not found');
 define('go_acceuil','Go Homepage');
+define('mandatoryPassword', 'The password should not be empty');
+define('incorrectPassword', 'The password is not correct');
+define('incorrectOldPassword', 'The old password is not correct');
+define('passwordChangedMessage', 'Your password has been changed');
+
+define('successSaveTasting', 'Your new tasting has been recorded');
+define('errorSaveTasting', 'An error has occurred when recording your tasting');
+
+define('link', 'Available at:');

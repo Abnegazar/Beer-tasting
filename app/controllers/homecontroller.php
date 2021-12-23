@@ -13,10 +13,6 @@ class HomeController extends BaseController implements Controller
 
     public function render()
     {
-        //$subject = "Bienvenue";
-        //$message = "Votre compte utilisateur a été créé. Vous allez recevoir un email de confirmation. ";
-        //MailSender::sendMail('kudux01@gmail.com', $message, $subject);
-        //exit;
         $this->breadCrumbs[""] = PAGE_HOME;
         $content = false;
         $this->h1 = "Home";

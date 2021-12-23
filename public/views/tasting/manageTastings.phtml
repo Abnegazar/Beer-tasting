@@ -31,10 +31,10 @@
                                         data-num-stars="5">
                                     </div>
                                 </td>
-                                <td><?php echo App::dateUsOnlyDate($tasting->createdAt) ?></td>
+                                <td><?php echo App::convertDate($tasting->createdAt) ?></td>
                                 <td><Strong> <a
                                             href="<?php echo str_replace("#id#", $tasting->id, PAGE_TASTING) ?>"><?php echo view ?></a>
-                                        |<a class="del" href=""><?php echo delete ?></a></Strong>
+                                        |<a class="deleteTastingBtn" href=""><?php echo delete ?></a></Strong>
                                 </td>
                             </tr>
                             <?php
@@ -63,9 +63,9 @@
 
 <script>
 $(document).ready(function() {
-    $(".del").click(function(e) {
+    $(".deleteTastingBtn").click(function(e) {
         e.preventDefault();
-        if (!confirm("Do you want to delete")) {
+        if (!confirm("<?php echo deleteTastingConfirmationMessage ?>")) {
             return false;
         } else {
             window.location.href =

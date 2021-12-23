@@ -6,6 +6,10 @@ class BeerStyleController extends BaseController implements Controller
 
     public function __construct()
     {
+    }
+
+    public function getAllBeerStyles()
+    {
         if ((isset($_GET['mode']))) {
             if (($_GET['mode'] != "visitor")) {
                 header("Location:" . PAGE_SIGNIN);
@@ -13,10 +17,7 @@ class BeerStyleController extends BaseController implements Controller
         } else if (!Session::getConnectedUser()) {
             header("Location:" . PAGE_SIGNIN);
         }
-    }
 
-    public function getAllBeerStyles()
-    {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[beerStyles] = "";
 
