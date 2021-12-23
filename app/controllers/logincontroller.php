@@ -12,14 +12,17 @@ class LoginController extends BaseController implements Controller
         }
     }
 
-    public function signIn()
-    {
-        if (!empty($_POST)) {
-            if (SITE_URL == URL_PROD) {
-                if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-                    $response = $_POST['g-recaptcha-response'];
-                    if (Captcha::isCaptchaOk($response)) {
-                        return $this->signUpAjaxProcessing();
+        public function signIn()
+        {
+            if (!empty($_POST)) {
+                if (SITE_URL == URL_PROD || SITE_URL == URL_DEV) {
+                    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+                        $response = $_POST['g-recaptcha-response'];
+                        if (Captcha::isCaptchaOk($response)) {
+                            return $this->signUpAjaxProcessing();
+                        }
+                    } else {
+                        die("error captcha");
                     }
                 }
             }

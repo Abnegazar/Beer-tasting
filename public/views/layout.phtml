@@ -53,11 +53,19 @@ $connectedUser = Session::getConnectedUser();
 
 <body>
     <?php
+    /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
     if ($connectedUser == null) {
-        /* Cas ou l'utilisateur n'est pas connecté, affichez le menu adequat et le content*/
-        echo App::get_partial('nav_1', array());
-        echo $var->content;
-        echo App::get_partial('footer', array());
+    ?>
+    <div class="d-flex flex-column min-vh-100">
+        <?php echo App::get_partial('nav_1', array()); ?>
+        <main class="flex-fill">
+            <?php
+                echo $var->content;
+                ?>
+        </main>
+        <?php echo App::get_partial('footer', array()); ?>
+    </div>
+    <?php
     } else {
     ?>
     <div class="container-fluid overflow-hidden">

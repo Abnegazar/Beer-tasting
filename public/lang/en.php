@@ -149,12 +149,13 @@ DEFINE('TECHNICALMERIT_MESSAGE_START', 'Significant flaws');
 DEFINE('TECHNICALMERIT_MESSAGE_END', 'Flawless');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Lifeless');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Wonderful');
-DEFINE('TO', 'to');
-
-DEFINE('mandatoryPassword', 'The password should not be empty');
-DEFINE('incorrectPassword', 'The password is not correct');
-DEFINE('incorrectOldPassword', 'The old password is not correct');
-DEFINE('passwordChangedMessage', 'Your password has been changed');
+define('TO', 'to');
+define('error_message','we are sorry, but the page you requested was not found');
+define('go_acceuil','Go Homepage');
+define('mandatoryPassword', 'The password should not be empty');
+define('incorrectPassword', 'The password is not correct');
+define('incorrectOldPassword', 'The old password is not correct');
+define('passwordChangedMessage', 'Your password has been changed');
 
 DEFINE('successSaveTasting', 'Your new tasting has been recorded');
 DEFINE('errorSaveTasting', 'An error has occurred when recording your tasting');

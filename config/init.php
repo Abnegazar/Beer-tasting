@@ -9,7 +9,9 @@ DEFINE('DB_USER', $_SERVER['user']);
 DEFINE('DB_PASSWORD', $_SERVER['password']);
 DEFINE('DB_NAME', $_SERVER['database']);
 
-const DEFAULT_PAGINATION = '10';
+DEFINE('DEFAULT_PAGINATION', '10');
+DEFINE('DEFAULT_LANG', 'en');
+
 
 const PATTERN_PASSWORD = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!%&@#$^*?_])[A-Za-z\d!%&@#$^*?_]{8,}$/';
 const PATTERN_PASSWORD_EXPL = '';
@@ -25,7 +27,8 @@ const PATTERN_NAME_EXPL = 'Votre nom doit comporter de 3 à 30 caractères alpha
 DEFINE('PATTERN_FIRST_NAME_EXPL', str_replace('nom', 'prénom', PATTERN_NAME_EXPL));
 
 
-const URL_PROD = 'https://beer-tasting-env-production.herokuapp.com/';
+DEFINE('URL_PROD', 'https://beer-tasting-env-production.herokuapp.com/');
+DEFINE('URL_DEV', 'http://bta/');
 
 if (SERVER_NAME == "beer-tasting-env-production.herokuapp.com" || SERVER_NAME == "beer-tasting-env-staging.herokuapp.com") {
     $protocol = 'https://';
