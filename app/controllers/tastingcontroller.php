@@ -17,6 +17,11 @@ class TastingController extends BaseController implements Controller
 
     public function getAllTastings()
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[tastings] = "";
+        $this->h1 = "Tastings";
+        $this->description = "All tastings";
+        $this->title = "All Tastings | TasteMyBeer ";
 
         $view = "viewTastings.phtml";
 
@@ -26,20 +31,37 @@ class TastingController extends BaseController implements Controller
 
         $offset = ($page - 1) * $limit;
 
-        $tastings = Tasting::getAllTastings($offset, $limit);
+        $filter = (isset($_GET['filter'])) ? $_GET['filter'] : "";
+
+        $tastings = Tasting::getAllTastings($offset, $limit, $filter);
+
+
+        $tastingsCount = Tasting::count();
+
+        $pages = ceil($tastingsCount / $limit);
 
         return App::get_content(
             self::viewDirectory . $view,
             array(
-                'tastings' => $tastings
+                'tastings' => $tastings,
+                'pages' => $pages,
+                'count' => $tastingsCount,
+                'page' => $page
             )
         );
     }
 
 
-    public function getUserTastings($userId)
+    public function getUserTastings($userId, $manage = false)
     {
-        $view = "viewTastings.phtml";
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[myTastings] = "";
+        $this->h1 = "My tastings";
+        $this->description = "My tastings";
+        $this->title = "My tastings | TasteMyBeer";
+
+
+        $view = ($manage) ? "manageTastings.phtml" : "viewTastings.phtml";
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
@@ -49,116 +71,127 @@ class TastingController extends BaseController implements Controller
 
         $tastings = Tasting::getUserTastings($userId, $offset, $limit);
 
+
+        $tastingsCount = Tasting::count(true);
+
+        $pages = ceil($tastingsCount / $limit);
+
         return App::get_content(
             self::viewDirectory . $view,
-            array('tastings' => $tastings)
+            array(
+                'tastings' => $tastings,
+                'pages' => $pages,
+                'count' => $tastingsCount,
+                'page' => $page
+            )
         );
     }
 
     public function getTastingById($id)
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[tastings] = PAGE_TASTINGS;
+        $this->h1 = "Tasting " . $id;
+        $this->description = "Tasting " . $id;
+        $this->title = "Tasting " . $id . " | TasteMyBeer";
+
         $view = "viewTasting.phtml";
 
-        $tastings = Tasting::getTastingById($id);
+        $tasting = Tasting::getTastingById($id);
+        $this->breadCrumbs[tasting] = "";
+        $this->breadCrumbs[$tasting->title] = "";
 
         return App::get_content(
             self::viewDirectory . $view,
-            array('tastings' => $tastings)
+            array('tasting' => $tasting)
         );
     }
 
+    public function deleteTasting($id)
+    {
+        $this->useLayout = false;
+
+        if (Tasting::deleteTasting($id)) {
+            header("Location:" . PAGE_USER_TASTINGS_MANAGEMENT);
+        }
+    }
+
+
     public function addNew()
     {
+        $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
+        $this->breadCrumbs[add] = "";
+
+        $this->h1 = "Add tasting";
+        $this->description = "Add tasting";
+        $this->title = "Add | TasteMyBeer";
+
+        $link = "";
         $view = 'addTasting.phtml';
         $errors = [];
         $success = false;
+        $beerStyles = BeerStyle::getBeerStyles();
         if (!empty($_POST)) {
 
             //sélection de la bière dégustée
-            if (!isset($_POST['' . Tasting::BEER_STYLE_ID . ''])) {
+            if (!isset($_POST[Tasting::BEER_STYLE_ID])) {
                 $errors[] = 'Aucune Bière n\'a été sélectionnée.';
             }
 
             //nom de la bière
-            if (!isset($_POST['' . Tasting::BEER_NAME . '']) || empty($_POST['' . Tasting::BEER_NAME . ''])) {
+            if (!isset($_POST[Tasting::BEER_NAME]) || empty($_POST[Tasting::BEER_NAME])) {
                 $errors[] = 'Le nom de la bière est obligatoire.';
             }
 
-            $values = array($_POST['' . Tasting::AROMA_SCORE . ''], $_POST['' . Tasting::APPEARANCE_SCORE . ''], $_POST['' . Tasting::FLAVOR_SCORE . ''], $_POST['' . Tasting::MOUTHFEEL_SCORE . ''], $_POST['' . Tasting::OVERALL_SCORE . '']);
+            $values = array($_POST[Tasting::AROMA_SCORE], $_POST[Tasting::APPEARANCE_SCORE], $_POST[Tasting::FLAVOR_SCORE], $_POST[Tasting::MOUTHFEEL_SCORE], $_POST[Tasting::OVERALL_SCORE]);
             $res = App::checkValue($values);
             if ($res != false) {
-                $errors[] = $res;
+                $errors = array_merge($errors, $res);
             }
-            //Précision stylistique
-            /*if (!isset($_POST['stylisticAccuracy']) || empty($_POST['stylisticAccuracy'])) {
-                $errors[] = 'La précision stylistique est obligatoire.';
-            } else if (!preg_match($_POST['stylisticAccuracy'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }*/
-
-
-            //Intangibilité
-            /*
-            if (!isset($_POST['intangibles']) || empty($_POST['intangibles'])) {
-                $errors[] = 'L\'intangibilité est obligatoire.';
-            } else if (!preg_match($_POST['intangibles'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
-            */
-
-            /*
-
-            //Mérite thechinique
-            if (!isset($_POST['technicalMerit']) || empty($_POST['technicalMerit'])) {
-                $errors[] = 'Le mérite thechinique est obligatoire.';
-            } else if (!preg_match($_POST['technicalMerit'], PATERN_ONE_DIGIT_BETWEEN_1_AND_5)) {
-                $errors[] = PATERN_ONE_DIGIT_BETWEEN_1_AND_5_EXPL;
-            }
-            */
 
             if (empty($errors)) {
-
                 $userId = Session::getConnectedUser()->id;
-                $beerStyleId = $_POST['' . Tasting::BEER_STYLE_ID . ''];
-                $beerName = Tasting::clearComments($_POST['' . Tasting::BEER_NAME . '']);
-                $title = $_POST['' . Tasting::TITLE . ''];
-                $aromaComment = Tasting::clearComments($_POST['' . Tasting::AROMA_COMMENT . '']);
-                $appearanceComment = Tasting::clearComments($_POST['' . Tasting::APPEARANCE_COMMENT . '']);
-                $flavorComment = Tasting::clearComments($_POST['' . Tasting::FLAVOR_COMMENT . '']);
-                $mouthfeelComment = Tasting::clearComments($_POST['' . Tasting::MOUTHFEEL_COMMENT . '']);
-                $overallComment = Tasting::clearComments($_POST['' . Tasting::OVERALL_COMMENT . '']);
-                $aromaScore = tasting::getFloat($_POST['' . Tasting::AROMA_SCORE . '']);
-                $appearanceScore = tasting::getFloat($_POST['' . Tasting::APPEARANCE_SCORE . '']);
-                $flavorScore = tasting::getFloat($_POST['' . Tasting::FLAVOR_SCORE . '']);
-                $mouthfeelScore = tasting::getFloat($_POST['' . Tasting::MOUTHFEEL_SCORE . '']);
-                $overallScore = tasting::getFloat($_POST['' . Tasting::OVERALL_SCORE . '']);
+                $beerStyleId = $_POST[Tasting::BEER_STYLE_ID];
+                $beerName = Tasting::clearComments($_POST[Tasting::BEER_NAME]);
+                $title = $_POST[Tasting::TITLE];
+                $aromaComment = Tasting::clearComments($_POST[Tasting::AROMA_COMMENT]);
+                $appearanceComment = Tasting::clearComments($_POST[Tasting::APPEARANCE_COMMENT]);
+                $flavorComment = Tasting::clearComments($_POST[Tasting::FLAVOR_COMMENT]);
+                $mouthfeelComment = Tasting::clearComments($_POST[Tasting::MOUTHFEEL_COMMENT]);
+                $overallComment = Tasting::clearComments($_POST[Tasting::OVERALL_COMMENT]);
+                $bottleInspectionComment = Tasting::clearComments($_POST[Tasting::BOTTLE_INSPECTION_COMMENT]);
+                $aromaScore = tasting::getFloat($_POST[Tasting::AROMA_SCORE]);
+                $appearanceScore = tasting::getFloat($_POST[Tasting::APPEARANCE_SCORE]);
+                $flavorScore = tasting::getFloat($_POST[Tasting::FLAVOR_SCORE]);
+                $mouthfeelScore = tasting::getFloat($_POST[Tasting::MOUTHFEEL_SCORE]);
+                $overallScore = tasting::getFloat($_POST[Tasting::OVERALL_SCORE]);
                 $total = Tasting::calculateTotal($aromaScore, $appearanceScore, $flavorScore, $mouthfeelScore, $overallScore);
 
-                $isAcetaldehyde = isset($_POST['' . Tasting::IS_ACETALDEHYDE . '']) ? 1 : 0;
+                $isAcetaldehyde = isset($_POST[Tasting::IS_ACETALDEHYDE]) ? 1 : 0;
 
-                $isAlcoholic = isset($_POST['' . Tasting::IS_ALCOHOLIC . '']) ? 1 : 0;
-                $isAstringent = isset($_POST['' . Tasting::IS_ASTRINGENT . '']) ? 1 : 0;
-                $isDiacetyl = isset($_POST['' . Tasting::IS_DIACETYL . '']) ? 1 : 0;
-                $isDms = isset($_POST['' . Tasting::IS_DMS . '']) ? 1 : 0;
-                $isEstery = isset($_POST['' . Tasting::IS_ESTERY . '']) ? 1 : 0;
-                $isGrassy = isset($_POST['' . Tasting::IS_GRASSY . '']) ? 1 : 0;
-                $isLightStruck = isset($_POST['' . Tasting::IS_LIGHT_STRUCK . '']) ? 1 : 0;
-                $isMetallic = isset($_POST['' . Tasting::IS_METALLIC . '']) ? 1 : 0;
-                $isMusty = isset($_POST['' . Tasting::IS_MUSTY . '']) ? 1 : 0;
-                $isOxidized = isset($_POST['' . Tasting::IS_OXIDIZED . '']) ? 1 : 0;
-                $isPhenolic = isset($_POST['' . Tasting::IS_PHENOLIC . '']) ? 1 : 0;
-                $isSolvent = isset($_POST['' . Tasting::IS_SOLVENT . '']) ? 1 : 0;
-                $isAcidic = isset($_POST['' . Tasting::IS_ACIDIC . '']) ? 1 : 0;
-                $isSulfur = isset($_POST['' . Tasting::IS_SULFUR . '']) ? 1 : 0;
-                $isVegetal = isset($_POST['' . Tasting::IS_VEGETAL . '']) ? 1 : 0;
-                $isBottleOk = isset($_POST['' . Tasting::IS_BOTTLE_OK . '']) ? 1 : 0;
-                $isYeasty = isset($_POST['' . Tasting::IS_YEASTY . '']) ? 1 : 0;
+                $isAlcoholic = isset($_POST[Tasting::IS_ALCOHOLIC]) ? 1 : 0;
+                $isAstringent = isset($_POST[Tasting::IS_ASTRINGENT]) ? 1 : 0;
+                $isDiacetyl = isset($_POST[Tasting::IS_DIACETYL]) ? 1 : 0;
+                $isDms = isset($_POST[Tasting::IS_DMS]) ? 1 : 0;
+                $isEstery = isset($_POST[Tasting::IS_ESTERY]) ? 1 : 0;
+                $isGrassy = isset($_POST[Tasting::IS_GRASSY]) ? 1 : 0;
+                $isLightStruck = isset($_POST[Tasting::IS_LIGHT_STRUCK]) ? 1 : 0;
+                $isMetallic = isset($_POST[Tasting::IS_METALLIC]) ? 1 : 0;
+                $isMusty = isset($_POST[Tasting::IS_MUSTY]) ? 1 : 0;
+                $isOxidized = isset($_POST[Tasting::IS_OXIDIZED]) ? 1 : 0;
+                $isPhenolic = isset($_POST[Tasting::IS_PHENOLIC]) ? 1 : 0;
+                $isSolvent = isset($_POST[Tasting::IS_SOLVENT]) ? 1 : 0;
+                $isAcidic = isset($_POST[Tasting::IS_ACIDIC]) ? 1 : 0;
+                $isSulfur = isset($_POST[Tasting::IS_SULFUR]) ? 1 : 0;
+                $isVegetal = isset($_POST[Tasting::IS_VEGETAL]) ? 1 : 0;
+                $isBottleOk = isset($_POST[Tasting::IS_BOTTLE_OK]) ? 1 : 0;
+                $isYeasty = isset($_POST[Tasting::IS_YEASTY]) ? 1 : 0;
 
-                /*
-                $stylisticAccuracy = $_POST['isYeasty'];
-                $intangibles = $_POST['intangibles'];
-                $technicalMerit = $_POST['technicalMerit'];
-                */
+                $stylisticAccuracy = (int)$_POST[Tasting::STYLISTIC_ACCURACY];
+                $intangibles =
+                    (int)$_POST[Tasting::INTANGIBLES];
+                $technicalMerit =
+                    (int)$_POST[Tasting::TECHNICAL_MERIT];
 
                 $tasting = new Tasting();
                 $tasting->initValue(
@@ -172,6 +205,7 @@ class TastingController extends BaseController implements Controller
                     $flavorComment,
                     $mouthfeelComment,
                     $overallComment,
+                    $bottleInspectionComment,
                     $aromaScore,
                     $appearanceScore,
                     $flavorScore,
@@ -195,20 +229,26 @@ class TastingController extends BaseController implements Controller
                     $isSulfur,
                     $isVegetal,
                     $isBottleOk,
-                    $isYeasty
+                    $isYeasty,
+                    $stylisticAccuracy,
+                    $intangibles,
+                    $technicalMerit
                 );
                 if ($tasting->save()) {
-                    $success = "La dégustation a été enregistré avec succès.";
+                    $link = Tasting::getLastUserTasting()->link;
+                    $success = successSaveTasting;
                 } else {
-                    $errors[] = "Une erreur s'est produite lors de l'ajout de cette dégustation.";
+                    $errors[] = errorSaveTasting;
                 }
             }
         }
         return App::get_content(
             self::viewDirectory . $view,
             array(
-                'errors'             => $errors,
-                'success'            => $success
+                'beerStyles' => $beerStyles,
+                'errors' => $errors,
+                'success' => $success,
+                'link' => $link
             )
         );
     }
@@ -226,6 +266,12 @@ class TastingController extends BaseController implements Controller
                 break;
             case 'getTastingById':
                 $content = $this->getTastingById($_GET['id']);
+                break;
+            case 'manageTastings':
+                $content = $this->getUserTastings(Session::getConnectedUserId(), true);
+                break;
+            case 'deleteTasting':
+                $content = $this->deleteTasting($_GET['id']);
                 break;
             case 'getAllTastings':
             default:

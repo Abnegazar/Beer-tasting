@@ -4,6 +4,10 @@ class Session
 
     const USER = 'user';
     const USER_ID = 'userId';
+    const LANG = 'lang';
+    const LANG_FR = 'fr';
+    const LANG_EN = 'en';
+
 
     public static function setConnectedUserId($userId)
     {
@@ -13,11 +17,10 @@ class Session
 
     public static function getConnectedUserId()
     {
-        $userId = false;
+        $user_id = false;
         if (isset($_SESSION[self::USER_ID])) {
             $user_id = $_SESSION[self::USER_ID];
         }
-
         return $user_id;
     }
 
@@ -31,9 +34,24 @@ class Session
     {
         if ($user) {
             $_SESSION[self::USER] = serialize($user);
-            self::setConnectedUserId($user->getId());
+            self::setConnectedUserId($user->id);
         }
         return true;
+    }
+
+    public static function setUserLang($lang)
+    {
+        $_SESSION[self::LANG] = $lang;
+        return true;
+    }
+
+    public static function getUserLang()
+    {
+        $lang = false;
+        if (isset($_SESSION[self::LANG])) {
+            $lang = $_SESSION[self::LANG];
+        }
+        return $lang;
     }
 
     public static function getConnectedUser()

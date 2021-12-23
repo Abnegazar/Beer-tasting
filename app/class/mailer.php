@@ -1,11 +1,11 @@
 <?php
 
 // include require files
-include_once(__DIR__ . '/vendor/autoload.php');
+include_once(APP_ROOT . '/vendor/autoload.php');
 
-include_once(__DIR__ . '\vendor\phpmailer\phpmailer\src\PHPMailer.php');
-include_once(__DIR__ . '\vendor\phpmailer\phpmailer\src\Exception.php');
-include_once(__DIR__ . '\vendor\phpmailer\phpmailer\src\SMTP.php');
+include_once(APP_ROOT . '\vendor\phpmailer\phpmailer\src\PHPMailer.php');
+include_once(APP_ROOT . '\vendor\phpmailer\phpmailer\src\Exception.php');
+include_once(APP_ROOT . '\vendor\phpmailer\phpmailer\src\SMTP.php');
 
 
 
@@ -25,14 +25,14 @@ require 'vendor/autoload.php';
 class Mailer
 {
 
-    static function sendMail($user, $message, $subject)
+    static function sendMail($userEmail, $message, $subject)
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
         try {
             //Server settings
-            $mail->SMTPDebug = 2;                      //Enable verbose debug output
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
@@ -43,9 +43,9 @@ class Mailer
             $mail->Port       = 465; //587;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('pdlgroup4@gmail.com', 'Mailer');
+            $mail->setFrom($mail->Username, EMAIL_FROM);
             //$mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
-            $mail->addAddress($user);               //Name is optional
+            $mail->addAddress($userEmail);               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
             //$mail->addBCC('bcc@example.com');
@@ -59,11 +59,13 @@ class Mailer
             $mail->Subject = $subject;
             $mail->Body    = $message;
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-            $mail->send();
-            echo 'Message envoyé';
+            if (!$mail->send()) {
+                return false;
+            }
         } catch (Exception $e) {
             echo "Message echoué. Mailer Error: {$mail->ErrorInfo}";
         }
         $mail->smtpClose();
+        return true;
     }
 }

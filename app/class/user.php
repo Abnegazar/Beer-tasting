@@ -2,7 +2,7 @@
 
 class User
 {
-    const ID = 'id';
+    const ID = 'user_id';
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
     const EMAIL = 'email';
@@ -31,7 +31,7 @@ class User
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->password = ($password) ? password_hash($password, PASSWORD_DEFAULT) : false;
+        $this->password = ($password) ? $password : false;
     }
 
     public function __initFromDbObject($o)
@@ -52,7 +52,7 @@ class User
                         \'' . mysqli_real_escape_string($dbInstance, $this->firstName) . '\', 
                         \'' . mysqli_real_escape_string($dbInstance, $this->lastName) . '\', 
                         \'' . mysqli_real_escape_string($dbInstance, $this->email) . '\', 
-                        \'' . mysqli_real_escape_string($dbInstance, $this->password) . '\'
+                        \'' . App::createPasswordHash(mysqli_real_escape_string($dbInstance, $this->password)) . '\'
                     )';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
@@ -69,7 +69,7 @@ class User
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
         $id = ($id) ? $id : Session::getConnectedUserId();
-        $sql = 'SELECT * FROM user WHERE user.id = ' . (int)$id . '';
+        $sql = 'SELECT * FROM user WHERE user.user_id = ' . (int)$id . '';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             $user = new User();
@@ -94,7 +94,7 @@ class User
         if ($result) {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
-                if ($row[self::IS_VERIFIED] == 1) {
+                if ($row[self::IS_VERIFIED] == 0) {
                     if (password_verify($password, $row['password'])) {
                         $user = new User();
                         $user->__initFromDbObject($row);
@@ -121,43 +121,77 @@ class User
         return $res;
     }
 
-    /**
-     * Get the value of id
-     */
-    public function getId()
+    public static function delete()
     {
-        return $this->id;
+        $res = false;
+        if (Tasting::deleteUserTasting()) {
+            $dbInstance = Db::getInstance()->getDbInstance();
+            $sql = "DELETE FROM user WHERE user_id= " . Session::getConnectedUserId();
+            $result = mysqli_query($dbInstance, $sql);
+            if ($result) {
+                $res = true;
+            }
+        }
+        return $res;
     }
 
-    /**
-     * Get the value of firstName
-     */
-    public function getFirstName()
+    public static function checkOldPassword($oldPassword)
     {
-        return $this->firstName;
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "SELECT user.password FROM user WHERE user_id=" . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            $oldPassword = mysqli_real_escape_string($dbInstance, $oldPassword);
+            if (password_verify($oldPassword, $row['password'])) {
+                $res = true;
+            }
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
     }
 
-    /**
-     * Get the value of lastName
-     */
-    public function getLastName()
+    public static function updatePassword($oldPassword, $newPassword)
     {
-        return $this->lastName;
+        $res = false;
+        if (User::checkOldPassword($oldPassword)) {
+            $dbInstance = Db::getInstance()->getDbInstance();
+            $password = App::createPasswordHash(mysqli_real_escape_string($dbInstance, $newPassword));
+            $sql = "UPDATE user SET user.password = \"" . $password . "\" WHERE user_id= " . Session::getConnectedUserId();
+            $result = mysqli_query($dbInstance, $sql);
+            if ($result) {
+                $res = true;
+            } else {
+                App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+            }
+        }
+        return $res;
     }
 
-    /**
-     * Get the value of email
-     */
-    public function getEmail()
+
+    public static function checkUserName($text)
     {
-        return $this->email;
+        return preg_match(PATTERN_NAME, $text);
     }
 
-    /**
-     * Get the value of tastings
-     */
-    public function getTastings()
+    public static function updateUsername($first_name, $last_name)
     {
-        return $this->tastings;
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+
+        $first_name = mysqli_real_escape_string($dbInstance, $first_name);
+        $last_name = mysqli_real_escape_string($dbInstance, $last_name);
+
+        $sql = "UPDATE user SET user.first_name = '" . $first_name . "', user.last_name = '" . $last_name . "' WHERE user_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql);
+
+        if ($result) {
+            $res = true;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
     }
 }

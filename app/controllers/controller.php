@@ -8,4 +8,5 @@
 		function getDescription();
 		function getH1();
 		function useLayout();
+		function getBreadCrumbs();
 	}

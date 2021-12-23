@@ -1,5 +1,4 @@
 <?php
-
 DEFINE('APP_FOLDER', 'app/');
 DEFINE('CONFIG_FOLDER', 'config/');
 DEFINE('RESOURCES_FOLDER', 'public/');
@@ -11,19 +10,25 @@ DEFINE('JS_FOLDER', RESOURCES_FOLDER . 'js/');
 DEFINE('ASSET_FOLDER', RESOURCES_FOLDER . 'assets/');
 DEFINE('PARTIALS_SUBFOLDER', 'partials/');
 DEFINE('EMAILS_SUBFOLDER', VIEWS_FOLDER . '/emails/');
-DEFINE('LOGS_FOLDER', '../logs/');
+DEFINE('LOGS_FOLDER', 'logs/');
+DEFINE('LANG_FOLDER', RESOURCES_FOLDER . 'lang/');
+
 
 if (isset($_SERVER['SERVER_NAME'])) {
     $serverName = $_SERVER['SERVER_NAME'];
 } else {
-    die(); // pas le $_SERVER['SERVER_NAME'] du mode web ni le $_GET['brand'] des crons
+    die();
 }
+
+DEFINE('APP_ROOT', __DIR__);
 
 DEFINE('SERVER_NAME', $serverName);
 
 require_once(CONFIG_FOLDER . 'init.php');
 
 @session_start();
+
+
 
 spl_autoload_register(function ($class) {
     $class = strtolower($class);
@@ -35,6 +40,14 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$acceptLang = [Session::LANG_EN, Session::LANG_FR];
+$lang = in_array($lang, $acceptLang) ? $lang : DEFAULT_LANG;
+
+Session::setUserLang($lang);
+
+require_once LANG_FOLDER . "{$lang}.php";
 
 $controller = false;
 if (isset($_GET['c']) and class_exists($_GET['c'])) {
@@ -49,15 +62,16 @@ $content =  $controller->render();
 if ($controller->useLayout()) {
     $h1Controller = $controller->getH1();
     $titleController = $controller->getTitle();
+    $breadCrumbs = $controller->getBreadCrumbs();
     $content = App::get_content(
         'layout.phtml',
         array(
             'title' => $titleController,
             'h1' => $h1Controller,
-            'content' => $content
+            'content' => $content,
+            'breadCrumbs' => $breadCrumbs,
         )
     );
 }
 unset($controller);
 echo $content;
-// Db::getInstance()->close();
