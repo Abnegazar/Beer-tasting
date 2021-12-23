@@ -28,6 +28,7 @@ DEFINE('PATTERN_FIRST_NAME_EXPL', str_replace('nom', 'prénom', PATTERN_NAME_EXP
 
 
 DEFINE('URL_PROD', 'https://beer-tasting-env-production.herokuapp.com/');
+DEFINE('URL_DEV', 'http://bta/');
 
 if (SERVER_NAME == "beer-tasting-env-production.herokuapp.com" || SERVER_NAME == "beer-tasting-env-staging.herokuapp.com") {
     $protocol = 'https://';

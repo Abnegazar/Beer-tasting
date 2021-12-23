@@ -4,14 +4,14 @@
     </IfModule>
 
 
-    ErrorDocument 404                                 /public/views/errors/404.phtml
+    ErrorDocument 404                                /index.php?c=errorController 
     
     RewriteEngine On
-    RewriteBase /
-
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
+
+
 
 
     RewriteRule ^account/changePassword               index.php?c=profileController&operation=changePassword [L]
@@ -69,8 +69,14 @@
 
 
     RewriteRule ^$                                    index.php?c=homeController [L]
+    
 </IfModule>
 
+<IfModule mod_deflate.c>
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|html|php|txt|xml)$">
+    SetOutputFilter DEFLATE
+    </FilesMatch>
+</IfModule>
 
 
 SetEnv host eu-cdbr-west-01.cleardb.com
