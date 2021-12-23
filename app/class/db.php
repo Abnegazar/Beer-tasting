@@ -1,11 +1,17 @@
 <?php
-
+ /**
+ * a class for Database instance
+ * @author PDL groupe 4
+ */
 class Db
 {
     public static $instance;
     public static $dbInstance;
 
     // Un constructeur prive empece la création directe d'objet
+    /**
+     * Constructor to prevent direct database initialization
+     */
     private function __construct()
     {
         self::$dbInstance = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -15,7 +21,9 @@ class Db
             die();
         }
     }
-
+    /**
+     * Close the database instance
+     */
     public function close()
     {
         if (self::$dbInstance) {
@@ -24,7 +32,9 @@ class Db
         self::$dbInstance = null;
     }
 
-
+     /**
+     * Get the instance
+     */
     public static function getInstance()
     {
         gc_collect_cycles();
@@ -34,7 +44,9 @@ class Db
         }
         return self::$instance;
     }
-
+    /**
+     * Get the Db instance
+     */
     public static function getDbInstance()
     {
         return self::$dbInstance;

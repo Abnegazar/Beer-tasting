@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * a class for off Flavor Model
+ * @author PDL groupe 4
+ */
 class OffFlavor
 {
     const IS_ACETALDEHYDE = 'isAcetaldehyde';
@@ -37,7 +40,9 @@ class OffFlavor
     public $isSulfur;
     public $isVegetal;
     public $isYeasty;
-
+  /**
+   * Constructor to initialize all off flavors
+   */
     public function __construct()
     {
         $this->isAcetaldehyde = 0;
@@ -59,7 +64,10 @@ class OffFlavor
         $this->isYeasty = 0;
     }
 
-
+    /**
+     * Get all off flavors
+     * @return array an Array who contains all off flavors
+     */
     public function getOffFlavors()
     {
         $offFlavors = array();

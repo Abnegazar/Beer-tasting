@@ -7,7 +7,10 @@ class BeerStyleController extends BaseController implements Controller
     public function __construct()
     {
     }
-
+   /**
+    * Provide an all styles beer page content
+    *@return content the content
+    */
     public function getAllBeerStyles()
     {
         if ((isset($_GET['mode']))) {
@@ -52,7 +55,11 @@ class BeerStyleController extends BaseController implements Controller
         );
         return $content;
     }
-
+   /**
+    * Provide a specific beer style page content
+    *@param id the beer style id
+    *@return content the content
+    */
     public function getBeerStyleById($id)
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;

@@ -12,7 +12,10 @@ class ProfileController extends BaseController implements Controller
     }
 
 
-
+    /**
+     * Provide a page for seeing all connected user informations
+     * @return content the page content
+     */
     public function viewProfile()
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
@@ -30,7 +33,9 @@ class ProfileController extends BaseController implements Controller
         );
         return $content;
     }
-
+    /**
+     * Delete connected user account
+     */
     public function deleteAccount()
     {
         $this->useLayout = false;
@@ -39,7 +44,10 @@ class ProfileController extends BaseController implements Controller
             header("Location:" . PAGE_HOME);
         }
     }
-
+    /**
+     * Update connected user password
+     * @return array an array who contains the operation answer
+     */
     public function changePassword()
     {
         $this->useLayout = false;
@@ -63,7 +71,10 @@ class ProfileController extends BaseController implements Controller
             return json_encode(['status' => 'error', 'message' => $errors]);
         }
     }
-
+    /**
+     * Update connected user name
+     * @return array an array who contains the operation answer
+     */
     public function changeUsername()
     {
         $firstName = "";

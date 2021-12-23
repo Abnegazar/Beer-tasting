@@ -1,8 +1,16 @@
 <?php
-
+/**
+ * A class for static function
+ * @author PDL groupe 4
+ */
 class App
 {
-
+    /**
+     * Transform the date into french format
+     * @param this_date The date to be formatted
+     * @param display_hour To decide whether to display the time or only the date
+     * @return return_date the formatted date
+     */
     public static function dateFr($this_date, $display_hour = false)
     {
         $return_date = false;
@@ -17,7 +25,12 @@ class App
         }
         return $return_date;
     }
-
+    /**
+     * Transform the date into US format
+     * @param this_date The date to be formatted
+     * @param display_hour To decide whether to display the time or only the date
+     * @return return_date the formatted date
+     */
     public static function dateUs($this_date, $display_hour = false)
     {
         $return_date = false;
@@ -34,13 +47,20 @@ class App
         return $return_date;
     }
 
-
+    /**
+     * Display an error message into the log
+     * @param message The error message
+     */
     public static function logError($message)
     {
         App::log("LOG_ERROR : " . $message, 'error');
     }
 
-
+      /**
+     * Display a message into the log
+     * @param message The message to display
+     * @param file Decide if the message is displaying into a file or into a log
+     */
     public static function log($message, $file = false)
     {
         if (!file_exists(LOGS_FOLDER)) {
@@ -54,7 +74,13 @@ class App
         }
     }
 
-
+     /**
+     * Get a content 
+     * @param file the content file name
+     * @param tab an array who contains parameters for the file
+     * @param inViewsFolder Decide if the content is in the views folder or not
+     * @return content the content 
+     */
     public static function get_content($file, $tab = array(), $inViewsFolder = true)
     {
         if ($inViewsFolder) $file = VIEWS_FOLDER . $file;
@@ -70,23 +96,36 @@ class App
 
         return $content;
     }
-
+     /**
+     * Get a partial content
+     * @param partial the partial name file
+     * @param tab an array who contains parameters for the file
+     * @return partial the partial content
+     */
     public static function get_partial($partial, $tab = array())
     {
         return self::get_content(PARTIALS_SUBFOLDER . $partial . '.phtml', $tab);
     }
-
+     /**
+     * Get a visitor ip adress
+     */
     public static function getVisitorIP()
     {
         return (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
     }
-
+     /**
+     * Test elements
+     */
     public static function test()
     {
         var_dump("hey");
     }
 
-
+     /**
+     * Test values validities
+     * @param values the values to test
+     * @return errors an array containing all the rules not respected
+     */
     public static function checkValue($values)
     {
         $errors = false;
@@ -98,12 +137,21 @@ class App
         }
         return $errors;
     }
-
+     /**
+     * transform the date into US date format
+     * @param this_date the date to format
+     * @return date  the date in US format whitout hours
+     */
     public static function dateUsOnlyDate($this_date)
     {
         return substr($this_date, 0, 10);
     }
-
+     /**
+     * transform SQL date into US date format
+     * @param this_date the date to format
+     * @param display_hour To decide whether to display the time or only the date
+     * @return date the sql date into US format 
+     */
     public static function dateSqlToUs($this_date, $display_hour = false)
     {
         $return_date = false;
@@ -114,7 +162,11 @@ class App
         return $return_date; //exit function and return string
     } //end of function
 
-
+    /**
+     * Get offFlavor name by her variable 
+     * @param value the offFlavor variable
+     * @return string the offFlavor name
+     */
     public static function renameOffFlavor($value)
     {
         switch ($value) {
@@ -169,6 +221,11 @@ class App
                 break;
         }
     }
+    /**
+     * Get offFlavor comment text by her name
+     * @param value the offFlavor name
+     * @return string the offFlavor comment text
+     */
     public static function getOffFlavorText($value)
     {
         switch ($value) {
@@ -223,7 +280,11 @@ class App
                 break;
         }
     }
-
+    /**
+     * Get appropriate comment for a mark
+     * @param value the mark
+     * @return string the appropriate comment
+     */
     public static function getComment($value)
     {
         switch ($value) {
@@ -247,13 +308,20 @@ class App
                 break;
         }
     }
-
+    /**
+     * Hash password
+     * @param value the password
+     * @return string the password hash correspondance
+     */
     public static function createPasswordHash($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
-
-
+     /**
+     * Convert date in an appropriate lang
+     * @param value the date to convert
+     * @return date the date in appropriate lang
+     */
     public static function convertDate($date)
     {
         switch (Session::getUserLang()) {

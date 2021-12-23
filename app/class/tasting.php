@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * a class for the Tasting model
+ * @author PDL groupe 4
+ */
 class Tasting
 {
     const ID = 'tasting_id';
@@ -93,7 +96,9 @@ class Tasting
     public $isBottleOk;
     public $link;
 
-
+  /**
+   * Constructor to initialize all elementss
+   */
     public function __construct()
     {
         $this->userId = false;
@@ -131,7 +136,46 @@ class Tasting
         $this->link = "";
     }
 
-
+  /**
+   * Init all variables with a specific value
+   * @param id the tasting id
+   * @param userId the tasting creator id
+   * @param beerStyleId the tasting beer style id
+   * @param beerName the tasting beer name
+   * @param title the tasting title
+   * @param aromaComment the tasting aroma comment
+   * @param appearanceComment the tasting appearance comment
+   * @param flavorComment the tasting flavor comment 
+   * @param mouthfeelComment the tasting mouthfeel comment
+   * @param overallComment the tasting overall comment
+   * @param bottleinspectionComment the tasting bottle inspection comment
+   * @param aromaScore the tasting aroma mark
+   * @param appearanceCore the tasting appearance mark
+   * @param flavorScore the tasting flavor mark
+   * @param mouthfeelScore the tasting mouthfeel mark
+   * @param overallScore the tasting overaal mark
+   * @param total the tasting total mark
+   * @param isAcetaldehyde the tasting acetaldehyde off flavor
+   * @param isAlcoholic the tasting alcoholic off flavor
+   * @param isAstringent the tasting astringent off flavor
+   * @param isDiacetyl the tasting diacetyl off flavor
+   * @param isDms the tasting Dms off flavor
+   * @param isEstery the tasting estery off flavor
+   * @param isGrassy the tasting grassy off flavor
+   * @param isLightStruck the tasting light struck off flavor
+   * @param isMetallic the tasting metallic off flavor
+   * @param isMusty the tasting musty off flavor
+   * @param isOxidized the tasting oxidized off flavor
+   * @param isPhenolic the tasting phenolic off flavor
+   * @param isSolvent the tasting solvent off flavor
+   * @param isAcidic the tasting acidic off flavor
+   * @param isSulfur the tasting sulfur off flavor
+   * @param isYeasty the tasting yeasty off flavor
+   * @param isBottleOk the tasting bottle inspectrion mark
+   * @param stylisticAccuracy the tasting stylistic accuracy mark
+   * @param intangibles the tasting instangibles mark
+   * @param technicalMerit the tasting technical merit mark
+   */
     public function initValue(
         $id = false,
         $userId,
@@ -215,7 +259,10 @@ class Tasting
         $this->intangibles = $intangibles;
         $this->technicalMerit = $technicalMerit;
     }
-
+   /**
+    * Init a tasting by a database object
+    *@param o the database object
+    */
     public function __initFromDbObject($o)
     {
         $this->id                = (int)$o[self::ID];
@@ -269,7 +316,10 @@ class Tasting
         $this->beerStyleTitle    = $o[BeerStyle::TITLE];
         $this->link              = str_replace("#id#", $this->id, PAGE_TASTING);
     }
-
+    /**
+     * Caculate the tasting total score
+     * @return array who contains the mark and the mark category
+     */
     private function calculateScore()
     {
         switch (true) {
@@ -313,22 +363,37 @@ class Tasting
     }
 
     //Devrait être calculé et afficher en temps réel au front
+    /**
+     * Calculate instantly the thasting total score
+     * @return int the total score 
+     */
     public static function calculateTotal($arS, $appS, $flS, $mthfS, $ovS)
     {
         return $arS + $appS + $flS + $mthfS + $ovS;
     }
-
+    /**
+     * Clear the comments
+     * @param comment the comments who will clear
+     * @return comment the comment cleared
+     */
     public static function clearComments($comment)
     {
         return filter_var($comment, FILTER_SANITIZE_STRING);
     }
-
+    /**
+     * Provide a float value correspondance for one value
+     * @param value the value who will get a float correspondance
+     * @return float the corresponding float value
+     */
     public static function getFloat($value)
     {
         $result = filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         return floatval($result);
     }
-
+    /**
+     * save a tasting instance into database
+     * @return boolean the operation answer
+     */
     public function save()
     {
         $res = false;
@@ -418,7 +483,13 @@ class Tasting
         }
         return $res;
     }
-
+    /**
+     * provide an array of  tasting instance for a specific creator
+     * @param userId the tastings creator id
+     * @param offset an offset step
+     * @param limit  a number to limit the array content 
+     * @return array an array who contains the tastings
+     */
     public static function getUserTastings($userId, $offset = false, $limit = false)
     {
         $res = false;
@@ -443,7 +514,13 @@ class Tasting
         }
         return $res;
     }
-
+    /**
+     * provide all tastings of the database
+     * @param offset an offset step
+     * @param limit a number to limit the selection
+     * @param filter a rule to filter the selection
+     * @return array an array who contains the tastings
+     */
     public static function getAllTastings($offset = false, $limit = false, $filter = false)
     {
         $res = false;
@@ -487,7 +564,11 @@ class Tasting
         }
         return $res;
     }
-
+    /**
+     * provide a tasting by her id
+     * @param id the tasting id
+     * @return res a tasting instance
+     */
     public static function getTastingById($id)
     {
         $res = false;
@@ -504,7 +585,11 @@ class Tasting
         }
         return $res;
     }
-
+    /**
+     * Count all tastings into the database for the specific creator or not
+     * @param user the creator id 
+     * @return int the number of tastings into the database
+     */
     public static function count($user = false)
     {
         $res = false;
@@ -526,7 +611,11 @@ class Tasting
         }
         return $res;
     }
-
+    /**
+     * remove a tasting of the database
+     * @param tastingId the tasting id
+     * @return boolean the operation answer
+     */
     public static function deleteTasting($tastingId)
     {
         $res = false;
@@ -540,7 +629,10 @@ class Tasting
         return $res;
     }
 
-
+    /**
+     * delete all connected user tastings
+     * @return boolean the operation answer
+     */
     public static function deleteUserTasting()
     {
         $res = false;
@@ -552,7 +644,10 @@ class Tasting
         }
         return $res;
     }
-
+    /**
+     * provide the last tastings of the connected user
+     * @return res an array who contains the tasting or false if the operation failed
+     */
     public static function getLastUserTasting()
     {
         $res = false;

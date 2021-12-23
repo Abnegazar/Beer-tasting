@@ -11,7 +11,10 @@ class LoginController extends BaseController implements Controller
             header('Location:' . PAGE_DASHBOARD);
         }
     }
-
+    /**
+     * Provide a page for connection
+     * @return content the page content
+     */
     public function signIn()
     {
         if (!empty($_POST)) {
@@ -38,7 +41,10 @@ class LoginController extends BaseController implements Controller
         );
         return $content;
     }
-
+    /**
+     * Provide an array with all errors occured by the last connection trying
+     * @return array an array who contains the error
+     */
     public function signInAjaxProcessing()
     {
         $this->useLayout = false;
@@ -73,7 +79,10 @@ class LoginController extends BaseController implements Controller
         }
         return json_encode(["status" => "error", "message" => $errors]);
     }
-
+     /**
+     * Provide an array with all errors occured by the last registration trying
+     * @return array an array who contains the error
+     */
     public function signUpAjaxProcessing()
     {
         $this->useLayout = false;
@@ -128,7 +137,10 @@ class LoginController extends BaseController implements Controller
         }
         return json_encode(['status' => 'error', 'message' => $errors]);
     }
-
+    /**
+     * Provide a page for registration
+     * @return content the page content
+     */
     public function signUp()
     {
         if (!empty($_POST)) {
@@ -144,7 +156,9 @@ class LoginController extends BaseController implements Controller
         );
         return $content;
     }
-
+    /**
+     * Disconnect the connected user
+     */
     public function logOut()
     {
         Session::deleteConnectedUser();

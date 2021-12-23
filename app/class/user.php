@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * a class for the Users model
+ * @author PDL groupe 4
+ */
 class User
 {
     const ID = 'user_id';
@@ -14,7 +17,9 @@ class User
     public $email;
     public $password;
     public $tastings;
-
+    /**
+     * Constructor to initialize all elements
+     */
     public function __construct()
     {
         $this->id = false;
@@ -24,7 +29,14 @@ class User
         $this->password = false;
         $this->isVerified = false;
     }
-
+    /**
+     * Init a user with specific value
+     * @param id the user id
+     * @param firstName the user first name
+     * @param lastName the user last name
+     * @param email the user email
+     * @param password the user password
+     */
     public function initValue($id = false, $firstName, $lastName, $email, $password = false)
     {
         $this->id = ($id) ? $id : false;
@@ -33,7 +45,10 @@ class User
         $this->email = $email;
         $this->password = ($password) ? $password : false;
     }
-
+    /**
+     * Init a user with a database object
+     * @param o the database object
+     */
     public function __initFromDbObject($o)
     {
         $this->id = (int)$o[self::ID];
@@ -42,7 +57,10 @@ class User
         $this->email = $o[self::EMAIL];
         $this->tastings = Tasting::getUserTastings($this->id);
     }
-
+    /**
+     * save an user in the database 
+     * @return boolean the operation answer
+     */
     public function save()
     {
         $res = false;
@@ -63,7 +81,11 @@ class User
         return $res;
     }
 
-
+    /**
+     * Provide a user by her id
+     * @param id the user id
+     * @return res an instance of user or false if the operation failed
+     */
     public static function getUserById($id = false)
     {
         $res = false;
@@ -82,7 +104,12 @@ class User
         }
         return $res;
     }
-
+    /**
+     * Connect a user to the app by her email and her password
+     * @param email an user email
+     * @param password an user password
+     * @return res an user instance or false if the operation failed
+     */
     public static function logIn($email, $password)
     {
         $res = false;
@@ -105,7 +132,11 @@ class User
         }
         return $res;
     }
-
+    /**
+     * Check if the user exists in the database by her email
+     * @param email the user email
+     * @return boolean the operation answer
+     */
     public static function isUserExists($email)
     {
         $res = false;
@@ -120,7 +151,10 @@ class User
         }
         return $res;
     }
-
+   /**
+    * Remove the connected user of the database
+    *@return boolean the operation answer
+    */
     public static function delete()
     {
         $res = false;
@@ -134,7 +168,11 @@ class User
         }
         return $res;
     }
-
+    /**
+     * Check if a value is equals at the old user password
+     * @param oldPassword the value
+     * @return boolean the operation answer
+     */
     public static function checkOldPassword($oldPassword)
     {
         $res = false;
@@ -152,7 +190,12 @@ class User
         }
         return $res;
     }
-
+    /**
+     * Update the connected  user password 
+     * @param oldPassword the old password
+     * @param newPassword the new password
+     * @return boolean the operation answers
+     */
     public static function updatePassword($oldPassword, $newPassword)
     {
         $res = false;
@@ -170,12 +213,20 @@ class User
         return $res;
     }
 
-
+    /**
+     * Check if the user name match with the name rules
+     * @return boolean the operation answer
+     */
     public static function checkUserName($text)
     {
         return preg_match(PATTERN_NAME, $text);
     }
-
+    /**
+     * Update the connected user name
+     * @param first_name the user first name
+     * @param last_name the user last name
+     * @return boolean the operation answer
+     */
     public static function updateUsername($first_name, $last_name)
     {
         $res = false;

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * a class for Beerstyle Model
+ * @author PDL groupe 4
+ */
 class BeerStyle
 {
     const ID = 'beer_style_id';
@@ -27,11 +30,16 @@ class BeerStyle
     public $stylesComparison;
     public $commercialExamples;
 
-
+    /**
+     * Simple constructor to initialize a beer Style
+     */
     public function __construct()
     {
     }
-
+    /**
+     * Init a beer style by database beerstyle object
+     * @param o the database object 
+     */
     public function __initFromDbObject($o)
     {
         $this->id                 = (int)$o[self::ID];
@@ -46,7 +54,12 @@ class BeerStyle
         $this->stylesComparison   = $o[self::STYLES_COMPARISON];
         $this->commercialExamples = $o[self::COMMERCIAL_EXAMPLES];
     }
-
+    /**
+     * Get an array of beer style
+     * @param offset an offset step
+     * @param limit a number limit for the array 
+     * @return array an array of beer style instance
+     */
     public static function getBeerStyles($offset = false, $limit = false)
     {
         $res = array();
@@ -68,7 +81,11 @@ class BeerStyle
         }
         return $res;
     }
-
+    /**
+     * Get a beer style
+     * @param id the beer Style id
+     * @return object the beer style instance
+     */
     public static function getBeerStyle($id)
     {
         $res = false;
@@ -86,7 +103,10 @@ class BeerStyle
         }
         return $res;
     }
-
+    /**
+     * Count the numbers of beer style into the database
+     * @return int the number of beer style instance
+     */
     public static function count()
     {
         $res = false;

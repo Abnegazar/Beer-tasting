@@ -14,7 +14,10 @@ class TastingController extends BaseController implements Controller
             header("Location:" . PAGE_SIGNIN);
         }
     }
-
+    /**
+     * provide the page who seeing all tastings
+     * @return content the page content
+     */
     public function getAllTastings()
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
@@ -51,7 +54,12 @@ class TastingController extends BaseController implements Controller
         );
     }
 
-
+    /**
+     * provide the page who seeing all conected user tastings
+     * @param userId the connected user id
+     * @param manage the boolean to say if the user want manage his stastings or not
+     * @return content the page content
+     */
     public function getUserTastings($userId, $manage = false)
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
@@ -86,7 +94,11 @@ class TastingController extends BaseController implements Controller
             )
         );
     }
-
+    /**
+     * Provide the page for see a specific tasting
+     * @param id the tasting id
+     * @return content the page content
+     */
     public function getTastingById($id)
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
@@ -106,7 +118,10 @@ class TastingController extends BaseController implements Controller
             array('tasting' => $tasting)
         );
     }
-
+    /**
+     * Delete a tasting
+     * @param id the tasting id
+     */
     public function deleteTasting($id)
     {
         $this->useLayout = false;
@@ -116,7 +131,10 @@ class TastingController extends BaseController implements Controller
         }
     }
 
-
+    /**
+     * Add new tasting in the database
+     * @return array an array who contains the operation answer
+     */
     public function addNew()
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;

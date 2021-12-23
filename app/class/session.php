@@ -1,4 +1,8 @@
 <?php
+/**
+ * a class for the User session
+ * @author PDL groupe 4
+ */
 class Session
 {
 
@@ -8,13 +12,20 @@ class Session
     const LANG_FR = 'fr';
     const LANG_EN = 'en';
 
-
+    /**
+     * Put the user as connected
+     * @param userId the connected user id
+     * @return boolean true for say that the user is really connected
+     */
     public static function setConnectedUserId($userId)
     {
         $_SESSION[self::USER_ID] = $userId;
         return true;
     }
-
+    /**
+     * Get the connected user session
+     * @return int the connected user id
+     */
     public static function getConnectedUserId()
     {
         $user_id = false;
@@ -23,13 +34,19 @@ class Session
         }
         return $user_id;
     }
-
+    /**
+     * Delete the session of the connected user
+     */
     public static function deleteConnectedUserId()
     {
         unset($_SESSION[self::USER_ID]);
     }
 
-
+    /**
+     * Save the connected user instance
+     * @param user the connected user instance
+     * @return boolean true for say that the instance has been successfully saved
+     */
     public static function setConnectedUser($user)
     {
         if ($user) {
@@ -38,13 +55,20 @@ class Session
         }
         return true;
     }
-
+    /**
+     * Save the session language 
+     * @param lang the session language
+     * @return boolean true for say that the language has been successfully saved
+     */
     public static function setUserLang($lang)
     {
         $_SESSION[self::LANG] = $lang;
         return true;
     }
-
+    /**
+     * Provide the session language
+     * @return lang the session language
+     */
     public static function getUserLang()
     {
         $lang = false;
@@ -53,7 +77,10 @@ class Session
         }
         return $lang;
     }
-
+    /**
+     * Provide the connected user instance
+     * @return user the connected user instance
+     */
     public static function getConnectedUser()
     {
         $user = false;
@@ -63,7 +90,9 @@ class Session
 
         return $user;
     }
-
+    /**
+     * Delete the connected user instance
+     */
     public static function deleteConnectedUser()
     {
         unset($_SESSION[self::USER]);

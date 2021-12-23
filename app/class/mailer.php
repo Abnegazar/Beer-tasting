@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * a class for Mail feature
+ * @author PDL groupe 4
+ */
 // include require files
 include_once(APP_ROOT . '/vendor/autoload.php');
 
@@ -24,7 +27,12 @@ require 'vendor/autoload.php';
 
 class Mailer
 {
-
+    /**
+     * Send email to a receiver
+     * @param userEmail the receiver email
+     * @param message the email message
+     * @param subject the email subject
+     */
     static function sendMail($userEmail, $message, $subject)
     {
         //Create an instance; passing `true` enables exceptions
