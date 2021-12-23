@@ -147,3 +147,5 @@ DEFINE('TECHNICALMERIT_MESSAGE_END', 'Flawless');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Lifeless');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Wonderful');
 define('TO','to');
+define('error_message','we are sorry, but the page you requested was not found');
+define('go_acceuil','Go Homepage');
