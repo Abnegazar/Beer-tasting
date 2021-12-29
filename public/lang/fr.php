@@ -151,8 +151,8 @@ DEFINE('TECHNICALMERIT_MESSAGE_END', 'impeccable');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Sans vie');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Merveilleux');
 define('TO', 'à');
-define('error_message',"Nous sommes désolés, mais la page que vous avez demandée n'a pas été trouvée.");
-define('go_acceuil',"Allez à la page d'acceuil");
+define('error_message', "Nous sommes désolés, mais la page que vous avez demandée n'a pas été trouvée.");
+define('go_acceuil', "Allez à la page d'acceuil");
 
 define('mandatoryPassword', 'Le mot de passe est obligatoire');
 define('incorrectPassword', 'Le mot de passe est incorrect');
@@ -170,3 +170,10 @@ DEFINE('GOOD_COMMENT', 'Saveurs/arômes décalés ou défauts de style majeurs.'
 DEFINE('VERY_GOOD_COMMENT', 'Globalement conforme aux paramètres du style, quelques petites imperfections.');
 DEFINE('EXCELLENT_COMMENT', 'Exprime bien le style, nécessite une mise au point mineure.');
 DEFINE('OUTSTANDING_COMMENT', 'Un exemple de style de classe mondiale.');
+
+DEFINE('PROBLEMATIC', 'Problématique');
+DEFINE('FAIR', 'Passable');
+DEFINE('GOOD', 'Bien');
+DEFINE('VERY_GOOD', 'Très bien');
+DEFINE('EXCELLENT', 'Excellent');
+DEFINE('OUTSTANDING', 'Remarquable');

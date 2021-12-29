@@ -47,12 +47,12 @@ class Tasting
     const INTANGIBLES = 'intangibles';
     const TECHNICAL_MERIT = 'technical_merit';
 
-    const OUTSTANDING = array('label' => 'Outstanding', 'range' => array('start' => 45, 'end' => 50));
-    const EXCELLENT = array('label' => 'Excellent', 'range' => array('start' => 38, 'end' => 44));
-    const VERY_GOOD = array('label' => 'Very good', 'range' => array('start' => 30, 'end' => 37));
-    const GOOD = array('label' => 'Good', 'range' => array('start' => 21, 'end' => 29));
-    const FAIR = array('label' => 'Fair', 'range' => array('start' => 14, 'end' => 20));
-    const PROBLEMATIC = array('label' => 'Problematic', 'range' => array('start' => 0, 'end' => 13));
+    const OUTSTANDING = array('label' => OUTSTANDING, 'range' => array('start' => 45, 'end' => 50));
+    const EXCELLENT = array('label' => EXCELLENT, 'range' => array('start' => 38, 'end' => 44));
+    const VERY_GOOD = array('label' => VERY_GOOD, 'range' => array('start' => 30, 'end' => 37));
+    const GOOD = array('label' => GOOD, 'range' => array('start' => 21, 'end' => 29));
+    const FAIR = array('label' => FAIR, 'range' => array('start' => 14, 'end' => 20));
+    const PROBLEMATIC = array('label' => PROBLEMATIC, 'range' => array('start' => 0, 'end' => 13));
     const CREATED_AT = 't_created_at';
 
 
