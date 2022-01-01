@@ -74,11 +74,20 @@ class BeerStyleController extends BaseController implements Controller
         );
     }
 
+    public function deleteBeerStyle($id)
+    {
+        $this->useLayout = false;
+        BeerStyle::delete($id) ? header("Location:" . PAGE_BEER_STYLES) : "";
+    }
+
     public function render()
     {
         $content = false;
         $operation = $_GET['operation'];
         switch ($operation) {
+            case 'delete':
+                $content = $this->deleteBeerStyle($_GET['id']);
+                break;
             case 'getAll':
                 $content = $this->getAllBeerStyles();
                 break;

@@ -102,6 +102,8 @@ define("accountDeletionText", "Once you delete your account, there is no going b
 
 define("deleteAccountConfirmationMessage", "Are you sure you want to delete your account ?");
 define("deleteTastingConfirmationMessage", "Are you sure you want to delete this tasting ?");
+define("deleteBeerStyleConfirmationMessage", "Are you sure you want to delete this beer style ?");
+
 
 define("textNewTasting", "Add a new tasting");
 define("textTastings", "List all the tastings");
@@ -175,3 +177,11 @@ DEFINE('GOOD', 'Good');
 DEFINE('VERY_GOOD', 'Very good');
 DEFINE('EXCELLENT', 'Excellent');
 DEFINE('OUTSTANDING', 'Outstanding');
+
+DEFINE('adminArea', 'Admin area');
+
+DEFINE('beerStyleSaveMessage', 'The beer style has been recorded');
+
+DEFINE('textAdminArea', 'Record new beer styles');
+
+DEFINE('showPassword', 'Show password');

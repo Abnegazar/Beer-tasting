@@ -19,7 +19,9 @@
 
     RewriteRule ^account/delete                       index.php?c=profileController&operation=deleteAccount [L]
     RewriteRule ^account                              index.php?c=profileController&operation=viewProfile [L]
+    RewriteRule ^admin                                index.php?c=adminController [L]
 
+    RewriteRule ^beer-styles/delete/(.*)$             index.php?c=beerStyleController&operation=delete&id=$1 [L]
     RewriteRule ^beer-styles/(.*)$                    index.php?c=beerStyleController&operation=getAll&page=$1 [L]
     RewriteRule ^beer-styles                          index.php?c=beerStyleController&operation=getAll [L]
     RewriteRule ^beer-style/(.*)$                     index.php?c=beerStyleController&operation=getBeerStyle&id=$1 [L]

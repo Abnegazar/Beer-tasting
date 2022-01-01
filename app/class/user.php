@@ -7,6 +7,8 @@ class User
     const LAST_NAME = 'last_name';
     const EMAIL = 'email';
     const IS_VERIFIED = 'is_verified';
+    const IS_ADMIN = 'is_admin';
+
 
     public $id;
     public $firstName;
@@ -14,6 +16,7 @@ class User
     public $email;
     public $password;
     public $tastings;
+    public $isAdmin;
 
     public function __construct()
     {
@@ -23,6 +26,7 @@ class User
         $this->email = false;
         $this->password = false;
         $this->isVerified = false;
+        $this->isAdmin = false;
     }
 
     public function initValue($id = false, $firstName, $lastName, $email, $password = false)
@@ -41,6 +45,7 @@ class User
         $this->lastName = $o[self::LAST_NAME];
         $this->email = $o[self::EMAIL];
         $this->tastings = Tasting::getUserTastings($this->id);
+        $this->isAdmin = ($o[self::IS_ADMIN] == 1) ? true : false;
     }
 
     public function save()
