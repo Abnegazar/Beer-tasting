@@ -187,3 +187,5 @@ DEFINE('beerStyleSaveMessage', 'Le style de bière a été enregistreé avec suc
 DEFINE('textAdminArea', 'Enregistrer un nouveau style de bière');
 
 DEFINE('showPassword', 'Afficher le mot de passe');
+
+DEFINE('home', 'Accueil');

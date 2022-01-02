@@ -61,7 +61,7 @@ class AdminController extends BaseController implements Controller
         $view = 'index.phtml';
         $this->h1 = "";
         $this->description = "";
-        $this->title = "Admin | TasteMyBeer";
+        $this->title = adminArea . " | TasteMyBeer";
 
         $content = App::get_content(
             self::viewDirectory . $view,

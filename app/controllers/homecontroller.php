@@ -13,11 +13,11 @@ class HomeController extends BaseController implements Controller
 
     public function render()
     {
-        $this->breadCrumbs[""] = PAGE_HOME;
+        $this->breadCrumbs[""] = "";
         $content = false;
-        $this->h1 = "Home";
-        $this->description = "Home";
-        $this->title = "Home | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = home . " | TasteMyBeer";
 
         $view = "index.phtml";
 

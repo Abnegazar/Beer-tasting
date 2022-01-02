@@ -22,9 +22,9 @@ class BeerStyleController extends BaseController implements Controller
         $this->breadCrumbs[beerStyles] = "";
 
         $content = false;
-        $this->h1 = "Beer styles";
-        $this->description = "Beer styles";
-        $this->title = "Beer styles | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = beerStyles . " | TasteMyBeer";
 
         $view = "index.phtml";
 
@@ -60,11 +60,11 @@ class BeerStyleController extends BaseController implements Controller
 
         $this->h1 = "BeerStyle " . $id;
         $this->description = "BeerStyle " . $id;
-        $this->title = "BeerStyle " . $id . " | TasteMyBeer";
 
         $view = "viewBeerStyle.phtml";
 
         $beerStyle = BeerStyle::getBeerStyle($id);
+        $this->title = $beerStyle->title . " | TasteMyBeer";
 
         $this->breadCrumbs[$beerStyle->title] = "";
 

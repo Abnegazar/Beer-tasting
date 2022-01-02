@@ -12,7 +12,7 @@ class ErrorController extends BaseController implements Controller
     {
         $this->breadCrumbs[""] = "";
         $content = false;
-        $this->h1 = "404 error";
+        $this->h1 = "";
         $this->description = "";
         $this->title = "404 | TasteMyBeer";
 

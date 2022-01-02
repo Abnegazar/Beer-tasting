@@ -15,9 +15,9 @@ class DashboardController extends BaseController implements Controller
     {
         $this->breadCrumbs[dashboard] = "";
         $content = false;
-        $this->h1 = "Dashboard";
-        $this->description = "Dashboard";
-        $this->title = "Dashboard | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = dashboard . " | TasteMyBeer";
 
         $view = "index.phtml";
 
