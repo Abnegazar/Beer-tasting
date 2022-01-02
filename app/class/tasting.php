@@ -13,7 +13,7 @@ class Tasting
     const APPEARANCE_COMMENT = 'appearance_comment';
     const FLAVOR_COMMENT = 'flavor_comment';
     const MOUTHFEEL_COMMENT = 'mouthfeel_comment';
-    const OVERALL_COMMENT = 'flavor_comment';
+    const OVERALL_COMMENT = 'overall_comment';
     const BOTTLE_INSPECTION_COMMENT = 'bottle_inspection_comment';
 
 
@@ -21,7 +21,7 @@ class Tasting
     const APPEARANCE_SCORE = 'appearance_score';
     const FLAVOR_SCORE = 'flavor_score';
     const MOUTHFEEL_SCORE = 'mouthfeel_score';
-    const OVERALL_SCORE = 'flavor_score';
+    const OVERALL_SCORE = 'overall_score';
     const TOTAL = 'total';
 
     const IS_ACETALDEHYDE = 'is_acetaldehyde';
@@ -234,7 +234,7 @@ class Tasting
 
         $this->aromaScore        = (float)$o[self::AROMA_SCORE];
         $this->appearanceScore   = (float)$o[self::APPEARANCE_SCORE];
-        $this->flavorScore       = (float)$o[self::OVERALL_SCORE];
+        $this->flavorScore       = (float)$o[self::FLAVOR_SCORE];
         $this->mouthfeelScore    = (float)$o[self::MOUTHFEEL_SCORE];
         $this->overallScore      = (float)$o[self::OVERALL_SCORE];
 
