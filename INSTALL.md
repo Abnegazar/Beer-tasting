@@ -99,6 +99,8 @@ sqlcmd -U myLogin -P myPassword -S MyServerName -d MyDatabaseName -i init.sql
 
 ```
 
+### 6. Modifier les dernières lignes du fichier .htaccess pour pointer vers votre base de données configurée.
+
 ## Dépendences
 
 Les librairies suivantes sont nécéssaires:
