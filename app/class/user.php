@@ -7,6 +7,8 @@ class User
     const LAST_NAME = 'last_name';
     const EMAIL = 'email';
     const IS_VERIFIED = 'is_verified';
+    const IS_ADMIN = 'is_admin';
+
 
     public $id;
     public $firstName;
@@ -14,6 +16,7 @@ class User
     public $email;
     public $password;
     public $tastings;
+    public $isAdmin;
 
     public function __construct()
     {
@@ -23,6 +26,7 @@ class User
         $this->email = false;
         $this->password = false;
         $this->isVerified = false;
+        $this->isAdmin = false;
     }
 
     public function initValue($id = false, $firstName, $lastName, $email, $password = false)
@@ -41,6 +45,7 @@ class User
         $this->lastName = $o[self::LAST_NAME];
         $this->email = $o[self::EMAIL];
         $this->tastings = Tasting::getUserTastings($this->id);
+        $this->isAdmin = ($o[self::IS_ADMIN] == 1) ? true : false;
     }
 
     public function save()
@@ -69,7 +74,7 @@ class User
         $res = false;
         $dbInstance = Db::getInstance()->getDbInstance();
         $id = ($id) ? $id : Session::getConnectedUserId();
-        $sql = 'SELECT * FROM user WHERE user.id = ' . (int)$id . '';
+        $sql = 'SELECT * FROM user WHERE user.user_id = ' . (int)$id . '';
         $result = mysqli_query($dbInstance, $sql);
         if ($result) {
             $user = new User();
@@ -166,6 +171,31 @@ class User
             } else {
                 App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
             }
+        }
+        return $res;
+    }
+
+
+    public static function checkUserName($text)
+    {
+        return preg_match(PATTERN_NAME, $text);
+    }
+
+    public static function updateUsername($first_name, $last_name)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+
+        $first_name = mysqli_real_escape_string($dbInstance, $first_name);
+        $last_name = mysqli_real_escape_string($dbInstance, $last_name);
+
+        $sql = "UPDATE user SET user.first_name = '" . $first_name . "', user.last_name = '" . $last_name . "' WHERE user_id= " . Session::getConnectedUserId();
+        $result = mysqli_query($dbInstance, $sql);
+
+        if ($result) {
+            $res = true;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
         }
         return $res;
     }

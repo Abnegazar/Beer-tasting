@@ -104,6 +104,8 @@ define("accountDeletionText", "Une fois que vous avez supprimé votre compte, vo
 
 define("deleteAccountConfirmationMessage", "Êtes-vous sûr de vouloir supprimer votre compte ?");
 define("deleteTastingConfirmationMessage", "Êtes-vous sûr de vouloir supprimer cette dégustation ?");
+define("deleteBeerStyleConfirmationMessage", "Êtes-vous sûr de vouloir supprimer ce style de bière ?");
+
 
 define("textNewTasting", "J'ajoute une nouvelle dégustation");
 define("textTastings", "Lister toutes les dégustations");
@@ -151,6 +153,8 @@ DEFINE('TECHNICALMERIT_MESSAGE_END', 'impeccable');
 DEFINE('INTANGIBLES_MESSAGE_START', 'Sans vie');
 DEFINE('INTANGIBLES_MESSAGE_END', 'Merveilleux');
 define('TO', 'à');
+define('error_message', "Nous sommes désolés, mais la page que vous avez demandée n'a pas été trouvée.");
+define('go_acceuil', "Allez à la page d'acceuil");
 
 define('mandatoryPassword', 'Le mot de passe est obligatoire');
 define('incorrectPassword', 'Le mot de passe est incorrect');
@@ -160,4 +164,26 @@ define('passwordChangedMessage', 'Votre mot de passe a été modifié');
 define('successSaveTasting', 'La dégustation a été enregistré avec succès');
 define('errorSaveTasting', 'Une erreur s\'est produite lors de l\'ajout de la dégustation');
 
-define('link', 'Lien de la dégustation');
+define('link', 'Voir la nouvelle dégustation');
+
+DEFINE('PROBLEMATIC_COMMENT', 'Les arômes et les saveurs indésirables dominent. Difficile à boire.');
+DEFINE('FAIR_COMMENT', 'Saveurs/arômes décalés ou défauts de style majeurs. Désagréable.');
+DEFINE('GOOD_COMMENT', 'Saveurs/arômes décalés ou défauts de style majeurs.');
+DEFINE('VERY_GOOD_COMMENT', 'Globalement conforme aux paramètres du style, quelques petites imperfections.');
+DEFINE('EXCELLENT_COMMENT', 'Exprime bien le style, nécessite une mise au point mineure.');
+DEFINE('OUTSTANDING_COMMENT', 'Un exemple de style de classe mondiale.');
+
+DEFINE('PROBLEMATIC', 'Problématique');
+DEFINE('FAIR', 'Passable');
+DEFINE('GOOD', 'Bien');
+DEFINE('VERY_GOOD', 'Très bien');
+DEFINE('EXCELLENT', 'Excellent');
+DEFINE('OUTSTANDING', 'Remarquable');
+
+DEFINE('adminArea', 'Espace admin');
+
+DEFINE('beerStyleSaveMessage', 'Le style de bière a été enregistreé avec succès');
+
+DEFINE('textAdminArea', 'Enregistrer un nouveau style de bière');
+
+DEFINE('showPassword', 'Afficher le mot de passe');

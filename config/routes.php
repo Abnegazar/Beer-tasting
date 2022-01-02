@@ -41,8 +41,13 @@ DEFINE('PAGE_PROFILE', SITE_URL . 'account');
 DEFINE('PAGE_BEER_STYLE', SITE_URL . 'beer-style/#id#');
 DEFINE('PAGE_BEER_STYLES', SITE_URL . 'beer-styles');
 DEFINE('PAGE_BEER_STYLES_PAGE', SITE_URL . 'beer-styles/#page#');
+DEFINE('PAGE_BEER_STYLE_DELETE', SITE_URL . 'beer-styles/delete/#id#');
+
 DEFINE('PAGE_CHANGE_PASSWORD', SITE_URL . 'account/changePassword');
 
+DEFINE('PAGE_CHANGE_USERNAME', SITE_URL . 'account/changeUsername');
+
+DEFINE('PAGE_ADMIN', SITE_URL . 'admin');
 
 
 DEFINE('PARTIAL_ADD_TASTING_FORM_1', 'add_tasting_form_1');

@@ -19,20 +19,29 @@
                                 name="password" required>
                             <label for="password"><?php echo password ?></label>
                         </div>
+
                         <?php
+                        /** 
                         if (SITE_URL == URL_PROD) {
                         ?>
                         <div class="g-recaptcha form-floating mb-3"
                             data-sitekey="6LcyDSwdAAAAAFT7QOdQTsZ4hTPnKC3DO-KTJANO"></div>
                         <?php
-                        }
+                        } else if (SITE_URL == URL_DEV) {
                         ?>
+                        <div class="g-recaptcha form-floating mb-3"
+                            data-sitekey="6LcV_ysdAAAAAGWDDP703-b3WU7qiengcMI5aE7g"></div>
+                        <?php
+                        }
+                         */
+                        ?>
+
                         <div class="d-grid">
                             <button class="btn btn-primary btn-login text-uppercase fw-bold"
                                 type="submit"><?php echo signIn ?></button>
                         </div>
 
-                        <a href=""><?php echo forgotPassword ?></a>
+                        <a href="#"><?php echo forgotPassword ?></a>
 
                         <hr class="my-4">
                         <label class="text-center">

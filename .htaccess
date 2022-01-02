@@ -3,15 +3,25 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+
+    ErrorDocument 404                                /index.php?c=errorController 
+    
     RewriteEngine On
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
+
+
+
     RewriteRule ^account/changePassword               index.php?c=profileController&operation=changePassword [L]
+    RewriteRule ^account/changeUsername               index.php?c=profileController&operation=changeUsername [L]
+
     RewriteRule ^account/delete                       index.php?c=profileController&operation=deleteAccount [L]
     RewriteRule ^account                              index.php?c=profileController&operation=viewProfile [L]
+    RewriteRule ^admin                                index.php?c=adminController [L]
 
+    RewriteRule ^beer-styles/delete/(.*)$             index.php?c=beerStyleController&operation=delete&id=$1 [L]
     RewriteRule ^beer-styles/(.*)$                    index.php?c=beerStyleController&operation=getAll&page=$1 [L]
     RewriteRule ^beer-styles                          index.php?c=beerStyleController&operation=getAll [L]
     RewriteRule ^beer-style/(.*)$                     index.php?c=beerStyleController&operation=getBeerStyle&id=$1 [L]
@@ -19,7 +29,7 @@
     RewriteRule ^home                                 index.php?c=homeController [L]
 
     RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
-    RewriteRule ^dashboard                            index.php?c=dashBoardController [L]
+
 
 
     RewriteRule ^signin                               index.php?c=loginController&operation=signIn [L]
@@ -63,8 +73,14 @@
 
 
     RewriteRule ^$                                    index.php?c=homeController [L]
+    
 </IfModule>
 
+<IfModule mod_deflate.c>
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|html|php|txt|xml)$">
+    SetOutputFilter DEFLATE
+    </FilesMatch>
+</IfModule>
 
 
 SetEnv host eu-cdbr-west-01.cleardb.com

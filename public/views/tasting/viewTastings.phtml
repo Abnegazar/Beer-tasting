@@ -15,19 +15,19 @@ $filter = (isset($_GET['filter'])) ? $_GET['filter'] : '';
                 if (empty($var->tastings)) {
                     //echo "<p>No tastings </p>";
                 } else {
-                ?>
-                <div class="row mx-0">
-                    <?php
+                    ?>
+                    <div class="row mx-0">
+                        <?php
                         foreach ($var->tastings as $tasting) {
-                        ?>
-                    <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
-                        <?php echo App::get_partial(PARTIAL_TASTING_CARD, array('tasting' => $tasting)) ?>
-                    </div>
-                    <?php
+                            ?>
+                            <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
+                                <?php echo App::get_partial(PARTIAL_TASTING_CARD, array('tasting' => $tasting)) ?>
+                            </div>
+                            <?php
                         }
                         ?>
-                </div>
-                <?php
+                    </div>
+                    <?php
                 }
                 ?>
             </div>
@@ -49,21 +49,21 @@ $filter = (isset($_GET['filter'])) ? $_GET['filter'] : '';
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    var $filter = "<?php echo $filter ?>"
-    var $num = 0;
-    switch ($filter) {
-        case "oldest":
-            $num = 1;
-            break;
-        case "best-score":
-            $num = 2;
-            break;
-        case "lowest-score":
-            $num = 3;
-            break;
-        default:
-    }
-    $(".sort option:eq(" + $num + ")").prop('selected', true)
-});
+    $(document).ready(function () {
+        var $filter = "<?php echo $filter ?>"
+        var $num = 0;
+        switch ($filter) {
+            case "oldest":
+                $num = 1;
+                break;
+            case "best-score":
+                $num = 2;
+                break;
+            case "lowest-score":
+                $num = 3;
+                break;
+            default:
+        }
+        $(".sort option:eq(" + $num + ")").prop('selected', true)
+    });
 </script>

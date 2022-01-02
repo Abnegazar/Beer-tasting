@@ -32,6 +32,46 @@ class BeerStyle
     {
     }
 
+    public function initValue($title, $aroma, $appearance, $flavor, $body, $comments, $story, $ingredients, $stylesComparison, $commercialExamples)
+    {
+        $this->title = $title;
+        $this->aroma = $aroma;
+        $this->appearance = $appearance;
+        $this->flavor = $flavor;
+        $this->body = $body;
+        $this->comments = $comments;
+        $this->story = $story;
+        $this->ingredients = $ingredients;
+        $this->stylesComparison = $stylesComparison;
+        $this->commercialExamples = $commercialExamples;
+    }
+
+    public function save()
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = 'INSERT INTO beer_style (style, aroma, appearance, flavor, body, comments, story, ingredients, styles_comparison, commercial_examples)
+                    VALUES (
+                        \'' . mysqli_real_escape_string($dbInstance, $this->title) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->aroma) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->appearance) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->flavor) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->body) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->comments) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->story) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->ingredients) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->stylesComparison) . '\', 
+                        \'' . mysqli_real_escape_string($dbInstance, $this->commercialExamples) . '\'
+                    )';
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            return true;
+        } else {
+            App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
     public function __initFromDbObject($o)
     {
         $this->id                 = (int)$o[self::ID];
@@ -101,6 +141,18 @@ class BeerStyle
             return $total;
         } else {
             App::logError(mysqli_error($dbInstance) . "\r\n" . $sql);
+        }
+        return $res;
+    }
+
+    public static function delete($id)
+    {
+        $res = false;
+        $dbInstance = Db::getInstance()->getDbInstance();
+        $sql = "DELETE FROM beer_style WHERE beer_style_id= " . $id;
+        $result = mysqli_query($dbInstance, $sql);
+        if ($result) {
+            $res = true;
         }
         return $res;
     }

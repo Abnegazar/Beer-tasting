@@ -43,7 +43,7 @@ textarea {
                 <div class="alert alert-success" role="alert">
                     <p> <?php echo $var->success; ?>
                         <br>
-                        <?php echo link . " <a href=" . $var->link . ">" . $var->link . "</a>" ?>
+                        <?php echo "<a href=" . $var->link . ">" . link . "</a>" ?>
                     </p>
                 </div>
                 <?php
@@ -62,8 +62,8 @@ textarea {
                     <?php echo App::get_partial(PARTIAL_ADD_TASTING_FORM_5, array()); ?>
                     <div class="d-grid mb-2">
                         <div class="buttons">
-                            <button class="btn btn-secondary btnPrev hidden"><?php echo previous ?></button>
                             <button class="btn btn-secondary btnNext"><?php echo next ?></button>
+                            <button class="btn btn-secondary btnPrev hidden"><?php echo previous ?></button>
                             <input type="submit" value="<?php echo save ?>" class="btn btn-primary btnSubmit hidden" />
                         </div>
                     </div>
@@ -78,12 +78,11 @@ $(document).ready(function() {
     $('.btnNext').click(function(e) {
         e.preventDefault();
         $fieldsets.filter(':visible').slideUp().next().slideDown(shButtons);
-
     });
+
     $('.btnPrev').click(function(e) {
         e.preventDefault();
         $fieldsets.filter(':visible').slideUp().prev().slideDown(shButtons);
-
     });
 
     function shButtons() {

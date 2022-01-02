@@ -11,7 +11,19 @@
                     foreach ($var->beerStyles as $beerStyle) {
                     ?>
                     <a href="<?php echo str_replace("#id#", $beerStyle->id, PAGE_BEER_STYLE) ?>"
-                        class="list-group-item list-group-item-action"><?php echo $beerStyle->title ?></a>
+                        class="list-group-item list-group-item-action"><?php echo $beerStyle->title ?>
+                        <?php
+                            if (Session::getConnectedUser()->isAdmin) {
+                            ?>
+                        <span>
+                            <button data-id="<?php echo $beerStyle->id ?>"
+                                class="btn btn-danger delete-beer-style-btn"><?php echo delete  ?>
+                            </button>
+                        </span>
+                        <?php
+                            }
+                            ?>
+                    </a>
                     <?php
                     }
                     ?>
@@ -33,3 +45,18 @@
 
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $(".delete-beer-style-btn").click(function(e) {
+        e.preventDefault();
+        if (!confirm("<?php echo deleteBeerStyleConfirmationMessage ?>")) {
+            return false;
+        } else {
+            $id = $(this).data("id");
+            $url = "<?php echo PAGE_BEER_STYLE_DELETE  ?>"
+            window.location.href = $url.replace("#id#", $id);
+        }
+    });
+});
+</script>

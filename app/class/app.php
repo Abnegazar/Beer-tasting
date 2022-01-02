@@ -224,8 +224,45 @@ class App
         }
     }
 
+    public static function getComment($value)
+    {
+        switch ($value) {
+            case tasting::OUTSTANDING['label']:
+                return OUTSTANDING_COMMENT;
+                break;
+            case tasting::EXCELLENT['label']:
+                return EXCELLENT_COMMENT;
+                break;
+            case tasting::VERY_GOOD['label']:
+                return VERY_GOOD_COMMENT;
+                break;
+            case tasting::GOOD['label']:
+                return GOOD_COMMENT;
+                break;
+            case tasting::FAIR['label']:
+                return FAIR_COMMENT;
+                break;
+            default:
+                return PROBLEMATIC_COMMENT;
+                break;
+        }
+    }
+
     public static function createPasswordHash($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+
+    public static function convertDate($date)
+    {
+        switch (Session::getUserLang()) {
+            case Session::LANG_FR:
+                return App::dateFr($date);
+                break;
+            case Session::LANG_EN:
+            default:
+                return App::dateUsOnlyDate($date);
+        }
     }
 }
