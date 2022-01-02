@@ -19,9 +19,9 @@ class TastingController extends BaseController implements Controller
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[tastings] = "";
-        $this->h1 = "Tastings";
-        $this->description = "All tastings";
-        $this->title = "All Tastings | TasteMyBeer ";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = tastings . " | TasteMyBeer ";
 
         $view = "viewTastings.phtml";
 
@@ -56,9 +56,9 @@ class TastingController extends BaseController implements Controller
     {
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[myTastings] = "";
-        $this->h1 = "My tastings";
-        $this->description = "My tastings";
-        $this->title = "My tastings | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = myTastings . " | TasteMyBeer";
 
 
         $view = ($manage) ? "manageTastings.phtml" : "viewTastings.phtml";
@@ -93,13 +93,13 @@ class TastingController extends BaseController implements Controller
         $this->breadCrumbs[tastings] = PAGE_TASTINGS;
         $this->h1 = "Tasting " . $id;
         $this->description = "Tasting " . $id;
-        $this->title = "Tasting " . $id . " | TasteMyBeer";
 
         $view = "viewTasting.phtml";
 
         $tasting = Tasting::getTastingById($id);
         $this->breadCrumbs[tasting] = "";
         $this->breadCrumbs[$tasting->title] = "";
+        $this->title = $tasting->title . " | TasteMyBeer";
 
         return App::get_content(
             self::viewDirectory . $view,
@@ -124,7 +124,7 @@ class TastingController extends BaseController implements Controller
 
         $this->h1 = "Add tasting";
         $this->description = "Add tasting";
-        $this->title = "Add | TasteMyBeer";
+        $this->title = add . " | TasteMyBeer";
 
         $link = "";
         $view = 'addTasting.phtml';

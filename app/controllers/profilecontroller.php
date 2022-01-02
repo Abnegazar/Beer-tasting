@@ -18,9 +18,9 @@ class ProfileController extends BaseController implements Controller
         $this->breadCrumbs[dashboard] = PAGE_DASHBOARD;
         $this->breadCrumbs[account] = "";
         $content = false;
-        $this->h1 = "My account";
-        $this->description = "My account";
-        $this->title = "My account | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = account . " | TasteMyBeer";
 
         $view = "index.phtml";
 

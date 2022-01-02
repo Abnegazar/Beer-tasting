@@ -30,9 +30,9 @@ class LoginController extends BaseController implements Controller
             return $this->signInAjaxProcessing();
         }
         $view = 'signin.phtml';
-        $this->h1 = "Sign in";
-        $this->description = "Sign in";
-        $this->title = "Login | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = signIn . " | TasteMyBeer";
 
         $content = App::get_content(
             self::viewDirectory . $view,
@@ -137,9 +137,9 @@ class LoginController extends BaseController implements Controller
             return $this->signUpAjaxProcessing();
         }
         $view = 'signup.phtml';
-        $this->h1 = "Sign up";
-        $this->description = "Sign up";
-        $this->title = "Sign Up | TasteMyBeer";
+        $this->h1 = "";
+        $this->description = "";
+        $this->title = signUp . " | TasteMyBeer";
         $content = App::get_content(
             self::viewDirectory . $view,
             array()

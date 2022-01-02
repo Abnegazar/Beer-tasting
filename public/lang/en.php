@@ -185,3 +185,5 @@ DEFINE('beerStyleSaveMessage', 'The beer style has been recorded');
 DEFINE('textAdminArea', 'Record new beer styles');
 
 DEFINE('showPassword', 'Show password');
+
+DEFINE('home', 'Home');
