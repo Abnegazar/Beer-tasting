@@ -38,7 +38,7 @@ if (SERVER_NAME == "beer-tasting-env-production.herokuapp.com" || SERVER_NAME ==
 
 DEFINE('SITE_PROTOCOL', $protocol);
 
-const SITE_URL = SITE_PROTOCOL . SERVER_NAME . '/';
+const SITE_URL = SITE_PROTOCOL . SERVER_NAME . '/beer-tasting-app/';
 const VENDOR_DIR = '../vendor/';
 
 const EMAIL_FROM = 'no-reply@tastemybeer.com';
