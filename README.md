@@ -14,15 +14,6 @@ Un peu partout dans le monde, des concours sont organisés afin de définir la m
 
 Ce projet intervient donc dans ce contexte afin de mettre à disposition des dégustateurs, professionnels comme amateurs, une plateforme leur permettant de recenser leurs avis sur chaque style de bière qu'ils auraient goûté, et de pouvoir partager ces impressions avec des passionnées de la bière.
 
-### **Participants**
-
-- ABDOU Ibouraima
-- BOULLE Louis
-- DJEDJEMEL Arnauld
-- LUBIN Fritzgy
-- PADONOU Dieu-Donné Isidore
-- PRENVEILLE Paul
-
 ## **Objectif du projet**
 
 Créer une plateforme web permettant de d'enregistrer des dégustations dans le « style BJCP » afin de faciliter la sauvegarde et le partage des impressions sur les bières entre passionnées du sujet.
